@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScrollCapture</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --border: #1e1e2e;
+      --accent: #6ee7b7;
+      --accent2: #38bdf8;
+      --danger: #f87171;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --radius: 10px;
+    }
+
+    body {
+      width: 300px;
+      background: var(--bg);
+      font-family: 'Sora', sans-serif;
+      color: var(--text);
+      padding: 20px;
+      min-height: 320px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .title-block h1 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--text);
+    }
+
+    .title-block p {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      margin-top: 1px;
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .scroll-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      transition: border-color 0.2s;
+    }
+
+    .scroll-input-wrap:focus-within {
+      border-color: var(--accent);
+    }
+
+    .scroll-input-wrap span {
+      font-size: 16px;
+    }
+
+    input[type="number"] {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      width: 60px;
+      text-align: center;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      opacity: 1;
+      filter: invert(1);
+    }
+
+    .hint {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .delay-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+    }
+
+    .delay-row span { font-size: 12px; color: var(--muted); flex: 1; }
+    
+    select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn-start {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0a0a0f;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Sora', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      margin-top: 4px;
+    }
+
+    .btn-start:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-start:active { transform: translateY(0); }
+    .btn-start:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* Progress UI */
+    #progress-view {
+      display: none;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .status-msg {
+      font-size: 11px;
+      color: var(--text);
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      min-height: 28px;
+      line-height: 1.5;
+    }
+
+    .done-badge {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 14px;
+      background: #0d2318;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .done-badge.show { display: flex; }
+
+    .btn-reset {
+      width: 100%;
+      padding: 9px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-top: 10px;
+    }
+
+    .btn-reset:hover { color: var(--text); border-color: var(--muted); }
+
+    .error-msg {
+      color: var(--danger);
+      font-size: 11px;
+      font-family: 'Space Mono', monospace;
+      text-align: center;
+      margin-top: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main setup view -->
+  <div id="setup-view">
+    <div class="header">
+      <div class="logo">📸</div>
+      <div class="title-block">
+        <h1>ScrollCapture</h1>
+        <p>LinkedIn → PDF</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>How many scrolls?</label>
+      <div class="scroll-input-wrap">
+        <span>↕</span>
+        <input type="number" id="scroll-count" value="10" min="1" max="200" />
+        <span style="font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;">scrolls</span>
+      </div>
+      <div class="hint">Each scroll = 1 screenshot = 1 PDF page</div>
+    </div>
+
+    <div class="section">
+      <label>Delay between scrolls</label>
+      <div class="delay-row">
+        <span>⏱ Pause after each scroll</span>
+        <select id="delay-select">
+          <option value="800">0.8s</option>
+          <option value="1200" selected>1.2s</option>
+          <option value="2000">2.0s</option>
+          <option value="3000">3.0s</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-start" id="btn-start">▶ Start Capturing</button>
+    <div class="error-msg" id="error-msg"></div>
+  </div>
+
+  <!-- Progress view -->
+  <div id="progress-view">
+    <div class="header">
+      <div class="logo">📸</div>
+      <div class="title-block">
+        <h1>Capturing…</h1>
+        <p>DO NOT switch tabs</p>
+      </div>
+    </div>
+
+    <div class="progress-label" id="progress-label">0 / 0 screenshots</div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div class="status-msg" id="status-msg">Starting up…</div>
+
+    <div class="done-badge" id="done-badge">
+      <span style="font-size:24px">✅</span>
+      <span id="done-text">PDF saved!</span>
+    </div>
+
+    <button class="btn-reset" id="btn-reset" style="display:none">← Capture Again</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

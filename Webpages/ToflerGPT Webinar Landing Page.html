@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToflerGPT Webinar | Instant AI Business Insights</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .container {
+            max-width: 1500px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        .logo {
+            height: 52px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-left-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-item {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #5E3BE1;
+        }
+
+        .nav-link-outline {
+            color: #5E3BE1;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 1px solid #5E3BE1;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-outline:hover {
+            background-color: rgba(94, 59, 225, 0.05);
+        }
+
+        .nav-btn-solid {
+            background-color: #5E3BE1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-solid:hover {
+            background-color: #4b2eb5;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #5E3BE1;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 24px 0 0 0;
+        }
+
+        .hero-card {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            gap: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            flex: 0 0 45%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hero-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #E2E8F0;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+
+        .hero-date {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: 0px;
+        }
+
+        .hero-button {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        /* SHARE SECTION */
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .share-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #F1F5F9;
+            color: #475569;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .share-icon-btn:hover {
+            background-color: #E2E8F0;
+            color: #5E3BE1;
+            transform: translateY(-2px);
+        }
+
+        .share-icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-button:hover {
+            background-color: #333;
+        }
+
+        /* MOBILE DROPDOWN */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 16px 40px;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 992px) {
+            .nav-item, .nav-link-outline, .nav-btn-solid {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .navbar .container {
+                padding: 0 20px;
+            }
+            .hero-card {
+                flex-direction: column;
+                gap: 32px;
+                padding: 24px;
+            }
+            .hero-image-wrapper {
+                flex: 0 0 100%;
+            }
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+        
+        /* INFO SECTION STYLES */
+        .info-section {
+            padding: 24px 0 24px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .about-headline {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 32px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 24px;
+        }
+
+        .highlight-text {
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .speaker-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            height: fit-content;
+            background: linear-gradient(135deg, #ffffff 0%, #FAFAFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .speaker-heading-icon {
+            width: 16px;
+            height: 16px;
+            color: #5E3BE1;
+        }
+
+        .speaker-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #F1F5F9;
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 24px;
+        }
+
+        .speaker-linkedin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #5E3BE1;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 20px;
+            background-color: rgba(94, 59, 225, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .speaker-linkedin:hover {
+            background-color: rgba(94, 59, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-box {
+                padding: 32px 24px;
+            }
+        }
+
+        .action-container {
+            margin-top: 24px;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 10px 0 40px 0;
+        }
+
+        .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.02);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #5E3BE1 !important;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #5E3BE1 !important;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* LIGHTBOX STYLES */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-lightbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* FOOTER STYLES */
+        .footer_wrapper {
+            background-color: #0F172A;
+            padding: 80px 0 40px 0;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer_container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .flex-col { display: flex; flex-direction: column; }
+        .flex { display: flex; }
+        .gap-4 { gap: 4px; }
+        .gap-8 { gap: 8px; }
+        .gap-24 { gap: 24px; }
+        .gap-32 { gap: 32px; }
+        .gap-80 { gap: 80px; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+
+        .footer_desc {
+            color: #94A3B8;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-dark { color: #0F172A; }
+        .font-light { font-weight: 300; }
+        .font-regular { font-weight: 400; }
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 18px; font-weight: 700; }
+
+        .footer_wrapper a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer_wrapper a:hover {
+            color: #ffffff;
+        }
+
+        .low_footer {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #0F172A;
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .footer_container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .low_footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        .footer_social_icon {
+            width: 24px;
+            height: 24px;
+            color: #ffffff;
+            transition: opacity 0.2s;
+        }
+
+        .footer_social_icon:hover {
+            opacity: 0.7;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #475569;
+        }
+
+        .modal-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0F172A;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+        }
+
+        .modal-subheading {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #334155;
+            letter-spacing: 0.2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background-color: #F8FAFC;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #5E3BE1;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(94, 59, 225, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #5E3BE1;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #4b2eb5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:disabled {
+            background-color: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left-group">
+                <a href="https://www.tofler.in/">
+                    <img src="https://get.tofler.in/wp-content/uploads/2025/11/Untitled-design-15-1.jpg" alt="Tofler Logo" class="logo">
+                </a>
+            </div>
+            
+            <div class="nav-right-group">
+                <a href="https://www.tofler.in/benefits" class="nav-item">Benefits</a>
+                <a href="https://www.tofler.in/price-and-plans" class="nav-link-outline">See Price & Plans</a>
+                <a href="https://www.tofler.in/login" class="nav-btn-solid">Login</a>
+                <button class="menu-toggle" onclick="toggleMobileNav()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="https://www.tofler.in/benefits" class="nav-item" style="display: block;">Benefits</a>
+            <a href="https://www.tofler.in/price-and-plans" class="nav-item" style="display: block;">See Price & Plans</a>
+            <a href="https://www.tofler.in/login" class="nav-item" style="display: block;">Login</a>
+        </div>
+    </nav>
+
+    <!-- First Step: Hero Card Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-card">
+                <div class="hero-image-wrapper">
+                    <img src="https://get.tofler.in/wp-content/uploads/2026/03/Introducing.webp" alt="ToflerGPT Webinar" class="hero-image">
+                </div>
+                <div class="hero-details">
+                    <div class="hero-badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14v-4z"></path>
+                            <path d="M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"></path>
+                        </svg>
+                        LIVESTREAM
+                    </div>
+                    <p class="hero-date">Wed, 15th April, 3:00 PM IST</p>
+                    <h1 class="hero-title">Meet ToflerGPT: The Future of Business Intelligence</h1>
+                    
+                    <!-- Share Section -->
+                    <div class="share-row">
+                        <span class="share-label">Share on:</span>
+                        <div class="share-icons">
+                            <a href="#" id="share-wa" class="share-icon-btn" title="Share on WhatsApp" target="_blank">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.551 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </a>
+                            <a href="#" id="share-email" class="share-icon-btn" title="Share via Email" target="_blank">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </a>
+                            <a href="#" id="share-li" class="share-icon-btn" title="Share on LinkedIn" target="_blank">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                            </a>
+                            <a href="#" id="share-tw" class="share-icon-btn" title="Share on X" target="_blank">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="hero-button" onclick="openModal()">Register Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <!-- Left: About ToflerGPT -->
+                <div class="about-box">
+                    <h2 class="about-headline">About ToflerGPT</h2>
+                    <div class="about-text">
+                        <p>ToflerGPT is an AI-powered intelligence layer built on top of Tofler’s proprietary company data platform, turning complex business data into <span class="highlight-text">instant, conversational insights</span>.</p>
+                        
+                        <p>Instead of manually analyzing financials and filings, users can simply ask questions and get structured data in seconds, ensuring <span class="highlight-text">faster and smarter decision making</span>.</p>
+                        
+                        <p>It is especially powerful for use cases like <span class="highlight-text">credit risk assessment, vendor analysis, client discovery, and peer comparison</span>.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Meet the Speaker -->
+                <div class="speaker-box">
+                    <div class="speaker-heading">
+                        <svg class="speaker-heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        SESSION HOST
+                    </div>
+                    <div class="speaker-profile">
+                        <img src="https://get.tofler.in/wp-content/uploads/2026/03/Make_this_a_202603251659.webp" alt="Sayan Ghosh" class="speaker-avatar">
+                        <h4 class="speaker-name">Sayan Ghosh</h4>
+                        <p class="speaker-title">Marketing Manager</p>
+                        <a href="https://www.linkedin.com/in/sayan-ghosh-844524151/" target="_blank" class="speaker-linkedin">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                            </svg>
+                            LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Container: See ToflerGPT in Action -->
+            <div class="action-container">
+                <h2 class="action-title">See ToflerGPT in Action</h2>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" onclick="openLightbox(this)"><img src="https://get.tofler.in/wp-content/uploads/2026/03/Explore-ToflerGPT.webp" alt="ToflerGPT Screenshot"></div>
+                        <div class="swiper-slide" onclick="openLightbox(this)"><img src="https://get.tofler.in/wp-content/uploads/2026/03/Explore-ToflerGPT-1.webp" alt="ToflerGPT Screenshot"></div>
+                        <div class="swiper-slide" onclick="openLightbox(this)"><img src="https://get.tofler.in/wp-content/uploads/2026/03/Explore-ToflerGPT-2.webp" alt="ToflerGPT Screenshot"></div>
+                        <div class="swiper-slide" onclick="openLightbox(this)"><img src="https://get.tofler.in/wp-content/uploads/2026/03/Explore-ToflerGPT-3.webp" alt="ToflerGPT Screenshot"></div>
+                        <div class="swiper-slide" onclick="openLightbox(this)"><img src="https://get.tofler.in/wp-content/uploads/2026/03/Explore-ToflerGPT-4.webp" alt="ToflerGPT Screenshot"></div>
+                        <div class="swiper-slide" onclick="openLightbox(this)"><img src="https://get.tofler.in/wp-content/uploads/2026/03/Explore-ToflerGPT-5.webp" alt="ToflerGPT Screenshot"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer_wrapper hide-on-print">
+        <div class="container text-white">
+            <div class="footer_container">
+                <!-- Brand & Help -->
+                <div class="flex-col gap-32">
+                    <img class="logo" src="https://get.tofler.in/wp-content/uploads/2026/03/Untitled-design-27.png" alt="Tofler Logo" style="width: 140px; height: auto;">
+                    <p class="text-sm font-light footer_desc">All trademarks, service marks, trade names and logos appearing on the site are the property of their respective owners.</p>
+                    <div class="flex-col gap-4 font-regular">
+                        <p class="text-sm">Need any help? Email us at:</p>
+                        <p class="text-sm" style="color: #ffffff; font-weight: 600;">support@tofler.in</p>
+                    </div>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="flex justify-between" style="gap: 40px;">
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">QUICK LINKS</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/about">About us</a></li>
+                            <li><a href="https://www.tofler.in/blog">Blogs</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">LEGAL</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/tos">Terms</a></li>
+                            <li><a href="https://www.tofler.in/privacy">Privacy</a></li>
+                            <li><a href="https://www.tofler.in/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Details & Social -->
+                <div class="flex-col gap-32">
+                    <div class="font-regular flex-col gap-4 text-sm" style="color: #94A3B8;">
+                        <p>TWS Systems Private Limited (Tofler)</p>
+                        <p>Gurgaon, Haryana - 122002</p>
+                        <p>(CIN: U72502DL2013PTC261372)</p>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">FOLLOW US ON:</h3>
+                        <div class="flex gap-24">
+                            <a href="https://www.facebook.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9a5 5 0 0 1 5-5h3v3h-2c-1.1 0-2 .9-2 2v2h4l-1 3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tofler/" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@tofler8107" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C1 8.1 1 12 1 12s0 3.9.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C23 15.9 23 12 23 12s0-3.9-.46-5.58zM9.54 15.22V8.78L15.3 12l-5.76 3.22z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container pb-40">
+            <div class="low_footer text-sm">
+                <p>© TWS Systems Private Limited.</p>
+                <p>All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox Overlay -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <button class="close-lightbox">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <img id="lightbox-img" class="lightbox-image" src="" alt="Zoomed Screenshot">
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="reg-modal" class="modal-overlay" onclick="handleOverlayClick(event)">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div id="modal-body">
+                <h2 class="modal-heading">Register for ToflerGPT Webinar</h2>
+                <p class="modal-subheading">Fill in your details below to secure your spot.</p>
+                
+                <form id="reg-form" onsubmit="submitRegistration(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-name">NAME *</label>
+                        <input type="text" id="reg-name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="reg-email">EMAIL ID *</label>
+                        <input type="email" id="reg-email" class="form-input" placeholder="name@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reg-phone">WHATSAPP NUMBER</label>
+                        <input type="tel" id="reg-phone" class="form-input" value="+91 " placeholder="+91 98765 43210">
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="submit-btn">Complete Registration</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('active');
+        }
+
+        function openModal() {
+            document.getElementById('reg-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            document.getElementById('reg-modal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        function handleOverlayClick(e) {
+            if (e.target.className === 'modal-overlay') {
+                closeModal();
+            }
+        }
+
+        async function submitRegistration(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<svg style="width:20px; height:20px; animation:spin 1s linear infinite; display:inline-block; vertical-align:middle; margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path></svg> Processing...';
+            btn.disabled = true;
+
+            const name = document.getElementById('reg-name').value;
+            let phone = document.getElementById('reg-phone').value.trim();
+            const email = document.getElementById('reg-email').value;
+
+            // Simple but robust email regex: something@something.something
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address (e.g., name@domain.com)");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return;
+            }
+
+            // If phone is empty or only contains the +91 prefix, send NA
+            if (!phone || phone === "+91") {
+                phone = "NA";
+            }
+
+            try {
+                const url = `https://n8n.srv846064.hstgr.cloud/webhook/toflergpt_webinar?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`;
+                
+                // Using mode: 'no-cors' since webhooks often don't return JSON/headers back
+                await fetch(url, { method: 'GET', mode: 'no-cors' });
+                
+                // Show Success Message
+                document.getElementById('modal-body').innerHTML = `
+                    <div style="text-align: center; padding: 20px 0;">
+                        <div style="background-color: #DCFCE7; color: #166534; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <h2 style="font-size: 24px; font-weight: 700; color: #0F172A; margin-bottom: 12px; font-family: 'Outfit', sans-serif;">Registration Successful!</h2>
+                        <p style="color: #64748B; font-size: 16px; margin-bottom: 32px;">You're all set! We’ve sent a confirmation to your email. See you at the webinar.</p>
+                        <button onclick="closeModal()" class="submit-btn" style="background-color: #0F172A;">Close</button>
+                    </div>
+                `;
+            } catch (err) {
+                console.error('Registration error:', err);
+                alert("Success! Your registration has been received.");
+                closeModal();
+            }
+        }
+
+        // Setup Share Links
+        document.addEventListener('DOMContentLoaded', () => {
+            const staticUrl = "https://get.tofler.in/webinar-toflergpt";
+            const url = encodeURIComponent(staticUrl);
+            const title = encodeURIComponent("Meet ToflerGPT: The Future of Business Intelligence");
+            
+            document.getElementById('share-wa').href = `https://wa.me/?text=${title}%20${url}`;
+            document.getElementById('share-email').href = `mailto:?subject=${title}&body=Register%20here:%20${url}`;
+            document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            slidesPerView: 4,
+            spaceBetween: 24,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                480: { slidesPerView: 2, spaceBetween: 15 },
+                768: { slidesPerView: 3, spaceBetween: 20 },
+                1024: { slidesPerView: 4, spaceBetween: 24 }
+            }
+        });
+
+        // Lightbox Functions
+        function openLightbox(slide) {
+            const img = slide.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = img.src;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            swiper.autoplay.stop();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            swiper.autoplay.start();
+        }
+    </script>
+    <style>
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</body>
+</html>

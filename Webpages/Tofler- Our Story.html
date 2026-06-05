@@ -1,0 +1,4090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tofler: Our Story</title>
+    <link rel="icon" type="image/png" href="https://get.tofler.in/wp-content/uploads/2025/08/faviconlogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .container {
+            max-width: 1500px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        .logo {
+            height: 52px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-left-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-item {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #5E3BE1;
+        }
+
+        .nav-link-outline {
+            color: #5E3BE1;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 1px solid #5E3BE1;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-outline:hover {
+            background-color: rgba(94, 59, 225, 0.05);
+        }
+
+        .nav-btn-solid {
+            background-color: #5E3BE1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-solid:hover {
+            background-color: #4b2eb5;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #5E3BE1;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 24px 0 0 0;
+        }
+
+        .hero-card {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            gap: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            flex: 0 0 45%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hero-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #E2E8F0;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+
+        .hero-date {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: 0px;
+        }
+
+        .hero-button {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        /* SHARE SECTION */
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .share-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #F1F5F9;
+            color: #475569;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .share-icon-btn:hover {
+            background-color: #E2E8F0;
+            color: #5E3BE1;
+            transform: translateY(-2px);
+        }
+
+        .share-icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-button:hover {
+            background-color: #333;
+        }
+
+        /* MOBILE DROPDOWN */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 16px 40px;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 992px) {
+            .nav-item, .nav-link-outline, .nav-btn-solid {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .navbar .container {
+                padding: 0 20px;
+            }
+            .hero-card {
+                flex-direction: column;
+                gap: 32px;
+                padding: 24px;
+            }
+            .hero-image-wrapper {
+                flex: 0 0 100%;
+            }
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+        
+        /* INFO SECTION STYLES */
+        .info-section {
+            padding: 24px 0 24px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .about-headline {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 32px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 24px;
+        }
+
+        .highlight-text {
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .speaker-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            height: fit-content;
+            background: linear-gradient(135deg, #ffffff 0%, #FAFAFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .speaker-heading-icon {
+            width: 16px;
+            height: 16px;
+            color: #5E3BE1;
+        }
+
+        .speaker-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #F1F5F9;
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 24px;
+        }
+
+        .speaker-linkedin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #5E3BE1;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 20px;
+            background-color: rgba(94, 59, 225, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .speaker-linkedin:hover {
+            background-color: rgba(94, 59, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-box {
+                padding: 32px 24px;
+            }
+        }
+
+        .action-container {
+            margin-top: 24px;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 10px 0 40px 0;
+        }
+
+        .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.02);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #5E3BE1 !important;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #5E3BE1 !important;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* LIGHTBOX STYLES */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-lightbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* FOOTER STYLES */
+        .footer_wrapper {
+            background-color: #27184F;
+            padding: 80px 0 40px 0;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .footer_wrapper .container {
+            display: block !important;
+            max-width: 1500px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 18px !important;
+        }
+
+
+        .footer_container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .flex-col { display: flex; flex-direction: column; }
+        .flex { display: flex; }
+        .gap-4 { gap: 4px; }
+        .gap-8 { gap: 8px; }
+        .gap-24 { gap: 24px; }
+        .gap-32 { gap: 32px; }
+        .gap-80 { gap: 80px; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+
+        .footer_desc {
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer_wrapper p {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-dark { color: #0F172A; }
+        .font-light { font-weight: 300; }
+        .font-regular { font-weight: 400; }
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 18px; font-weight: 700; }
+
+        .footer_wrapper a {
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer_wrapper a:hover {
+            color: #ffffff !important;
+            opacity: 0.8;
+        }
+
+        .low_footer {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #0F172A;
+            font-weight: 600;
+        }
+
+        .low_footer p {
+            color: #0F172A !important;
+        }
+
+        @media (max-width: 992px) {
+            .footer_container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .low_footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        .footer_social_icon {
+            width: 24px;
+            height: 24px;
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            transition: opacity 0.2s;
+        }
+
+        .footer_social_icon:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #475569;
+        }
+
+        .modal-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0F172A;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+        }
+
+        .modal-subheading {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #334155;
+            letter-spacing: 0.2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background-color: #F8FAFC;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #5E3BE1;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(94, 59, 225, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #5E3BE1;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #4b2eb5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:disabled {
+            background-color: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        /* New Premium Logo Styles & Infinite Loop Marquee */
+        .hero-img {
+            max-width: 1350px !important; /* Extremely grand header illustration */
+            width: 100%;
+            height: auto !important;
+            object-fit: contain;
+            margin: -55px auto 30px auto !important; /* Pulled up to eliminate the excessive gap */
+            display: block;
+        }
+
+        .logo-scroll-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+            box-sizing: border-box;
+            background: transparent;
+        }
+
+        .logo-strip {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            gap: 60px;
+            animation: logoScrollMarquee 35s linear infinite;
+        }
+
+        .logo-strip img {
+            height: 90px; /* Bigger default desktop size */
+            object-fit: contain;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .logo-strip img:hover {
+            transform: scale(1.05); /* Soft premium hover scaling */
+        }
+
+        /* Responsive custom logo heights to make specific logos stand out nicely */
+        @media only screen and (min-width: 769px) {
+            .logo-strip img[alt="Ratnabali"] { height: 110px !important; }
+            .logo-strip img[alt="Shipyaari"] { height: 120px !important; }
+            .logo-strip img[alt="Unirail"] { height: 85px !important; }
+            .logo-strip img[alt="Ramsons"] { height: 90px !important; }
+            .logo-strip img[alt="Pothys"] { height: 90px !important; }
+            .logo-strip img[alt="Seagull"] { height: 100px !important; }
+            .logo-strip img[alt="Hindu"] { height: 105px !important; }
+            .logo-strip img[alt="O2 Power"] { height: 110px !important; }
+            .logo-strip img[alt="CSM"] { height: 110px !important; }
+        }
+
+        @keyframes logoScrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 30px)); } /* Infinite seamless loop translation */
+        }
+
+        @media only screen and (max-width: 768px) {
+            .hero-container { padding: 60px 20px 0px !important; }
+            .hero-title { font-size: 26px !important; margin-bottom: 15px !important; }
+            .hero-subtitle { font-size: 15px !important; text-align: center !important; margin-top: 15px !important; }
+            .hero-img { margin: 20px auto !important; height: auto !important; max-width: 500px !important; width: 90% !important; }
+            .logo-heading { font-size: 26px !important; margin: 0px auto 15px auto !important; }
+
+            .logo-scroll-container { padding: 15px 0 !important; }
+            .logo-strip {
+                gap: 40px !important;
+                animation: logoScrollMarquee 20s linear infinite; /* Slightly faster loop on mobile */
+            }
+            .logo-strip img { height: 60px !important; }
+        }
+
+        /* Purpose & Vision Section */
+        .purpose-vision-section {
+            width: 100%;
+            padding: 80px 0px 60px; /* Decreased bottom padding by 20px to tighten space to timeline */
+            background: #fff;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Title */
+        .purpose-vision-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #27184F;
+            margin-bottom: 40px !important; /* Spacing below heading set to exactly 40px */
+        }
+        .purpose-vision-section h2 span {
+            color: #AF32B1;
+        }
+
+        /* Cards Container */
+        .purpose-vision-section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px; /* Restored original tight horizontal gap between cards */
+        }
+
+        /* Card */
+        .purpose-vision-section .card {
+            flex: 1;
+            max-width: 500px;
+            min-height: 320px; /* Elegant dynamic fit height */
+            border: 3px solid #AF32B1;
+            border-radius: 20px;
+            background: #fff;
+            overflow: hidden;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(97, 61, 193, 0.05); /* Premium soft purple glow */
+            transition: all 0.3s ease-in-out;
+        }
+        .purpose-vision-section .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(97, 61, 193, 0.12); /* Dynamic lift shadow */
+        }
+
+        /* Header Strip */
+        .purpose-vision-section .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px;
+            background: #f6f4ff;
+            padding: 0px;
+            border-radius: 5px;
+        }
+
+        .purpose-vision-section .card-header img {
+            width: 45%;
+            height: auto;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+
+        .purpose-vision-section .card-header h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #27184F;
+            margin: 0;
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Body */
+        .purpose-vision-section .card-body {
+            padding: 20px;
+        }
+        .purpose-vision-section .card-body p {
+            font-size: 15px;
+            font-weight: 300;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Responsive for Mobile */
+        @media (max-width: 768px) {
+            .purpose-vision-section h2 {
+                font-size: 26px !important;
+                margin-bottom: 40px;
+            }
+
+            .purpose-vision-section .cards {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .purpose-vision-section .card {
+                max-width: 100%;
+                height: auto;
+                border-radius: 15px;
+                padding-bottom: 20px;
+            }
+
+            .purpose-vision-section .card-header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 10px 15px;
+            }
+
+            .purpose-vision-section .card-header img {
+                width: 35%;
+                max-width: 120px;
+                height: auto;
+                margin-right: 60px;
+            }
+
+            .purpose-vision-section .card-header h3 {
+                font-size: 26px;
+                flex: 1;
+                text-align: center;
+                margin: 0;
+            }
+
+            .purpose-vision-section .card-body p {
+                font-size: 15px;
+                text-align: center;
+                padding: 0 10px;
+            }
+        }
+
+        /* Premium Unified Typography Design System */
+        h1, h2, h3 {
+            font-family: 'Manrope', 'Outfit', 'Inter', sans-serif !important;
+            color: #27184F;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 38px !important;
+            font-weight: 800 !important;
+            line-height: 1.25 !important;
+            text-align: center !important;
+            margin-bottom: 24px;
+        }
+
+        h2 span {
+            color: #AF32B1 !important;
+        }
+
+        p {
+            font-family: 'Inter', sans-serif !important;
+            color: #475569 !important;
+            line-height: 1.65 !important;
+            letter-spacing: 0.1px;
+        }
+
+        /* Lead texts */
+        p.lead, p.intro, p.impact-subtitle, p.hero-subtitle {
+            font-size: 18px !important;
+            font-weight: 300 !important;
+            line-height: 1.7 !important;
+            color: #475569 !important;
+        }
+
+        /* Horizontal Swiper Timeline Section */
+        .journey-timeline-section {
+            width: 100%;
+            padding: 50px 0 100px 0; /* Decreased top padding by another 20px to bring Our Story closer */
+            background-color: #FAF9FF;
+            background-image: radial-gradient(#e1d9ff 1px, transparent 1px), radial-gradient(#e1d9ff 1px, #FAF9FF 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            position: relative;
+            /* overflow: hidden removed to allow manual nav arrows to float gracefully outside the container boundary */
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+
+
+        .journey-timeline-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 100px;
+            background: linear-gradient(to top, #ffffff, transparent);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .journey-timeline-section .section-header {
+            text-align: center;
+            margin-bottom: 25px; /* Significantly reduced to bring the cards snug and close to the header text */
+            padding: 0 20px;
+        }
+
+        .journey-timeline-section .section-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #27184F;
+            margin-bottom: 12px; /* Snugger heading space */
+            font-family: 'Manrope', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .journey-timeline-section .section-header h2 span {
+            color: #AF32B1;
+        }
+
+        .journey-timeline-section .section-header p {
+            font-size: 18px;
+            color: #475569;
+            max-width: 750px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.65;
+        }
+
+        /* Auto-Advancing Premium 3-Card Slideshow Timeline */
+        .roadmap-wrapper {
+            position: relative;
+            width: 100%;
+            /* overflow: hidden removed to prevent floating nav arrow clipping */
+            margin: 0 auto;
+            padding: 5px 0 0 0;
+            box-sizing: border-box;
+        }
+
+        .timeline-slideshow-container {
+            width: 100%;
+            max-width: 1100px; /* Reduced to make cards narrower, compact and highly premium */
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            padding: 10px 0 15px 0; /* Cleared side padding to let cards slide boundary-to-boundary */
+            box-sizing: border-box;
+        }
+
+        .timeline-slideshow-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            gap: 30px;
+            width: max-content;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HIGH-FIDELITY DUAL-TRACK VISUAL ROADMAP PATH (Moves in 100% perfect sync with cards) */
+        /* Track 1: Solid glowing active progress pipeline */
+        .timeline-slideshow-track::before {
+            content: '';
+            position: absolute;
+            top: 60px; /* Perfectly centered behind 60px icon tiles (30px padding + 30px half-icon) */
+            left: 45px;
+            right: 45px;
+            height: 4px;
+            background: linear-gradient(to right, #5E3BE1 0%, #AF32B1 50%, #5E3BE1 100%);
+            z-index: 1;
+            box-shadow: 0 0 16px rgba(94, 59, 225, 0.35);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        /* Track 2: Subtle technological secondary connection track */
+        .timeline-slideshow-track::after {
+            content: '';
+            position: absolute;
+            top: 59px;
+            left: 30px;
+            right: 30px;
+            height: 6px;
+            background: transparent;
+            border-top: 2px dashed rgba(94, 59, 225, 0.18);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Extremely clean, flat, premium and borderless cards with soft layout */
+        .timeline-step-item {
+            width: 360px; /* Dynamic exact width calculated dynamically by JS */
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+            background: #FDFDFF;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        .timeline-step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px rgba(94, 59, 225, 0.06);
+            background: #ffffff;
+        }
+
+        /* Cleanest premium signature square-round icon design - NATURALLY HIGHLIGHTED (Static State) */
+        .timeline-step-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: #5E3BE1; /* Naturally premium high-contrast filled state */
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            margin-bottom: 22px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 6px 16px rgba(94, 59, 225, 0.2);
+            position: relative;
+            z-index: 4; /* Elevated above background connecting line */
+        }
+
+        .timeline-step-item:nth-child(even) .timeline-step-icon {
+            background: #AF32B1; /* Naturally magenta filled state */
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(175, 50, 177, 0.2);
+        }
+
+        .timeline-step-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2.25;
+            transition: transform 0.4s ease;
+        }
+
+        /* Hover state: Elegant hollow/light transition (The old static style is now the hover state!) */
+        .timeline-step-item:hover .timeline-step-icon {
+            transform: scale(1.1) rotate(6deg);
+            background: #F8F6FF;
+            color: #5E3BE1;
+            border-color: #EAE5FF;
+            box-shadow: 0 8px 20px rgba(94, 59, 225, 0.15);
+        }
+
+        .timeline-step-item:nth-child(even):hover .timeline-step-icon {
+            background: #FDF2FF;
+            color: #AF32B1;
+            border-color: #F8E6FF;
+            box-shadow: 0 8px 20px rgba(175, 50, 177, 0.15);
+        }
+
+        /* Toggle switches / manual controls style - positioned outside the card frame */
+        .timeline-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #EAE5FF;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5E3BE1;
+            cursor: pointer;
+            z-index: 25;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 0;
+        }
+
+        .timeline-nav-btn:hover {
+            background: #5E3BE1;
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 22px rgba(94, 59, 225, 0.25);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .timeline-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        /* Positioning toggle switches completely outside the 1100px content frame */
+        .roadmap-wrapper .timeline-nav-btn.prev-btn {
+            left: calc(50% - 610px); /* Placed elegantly outside the 1100px container width */
+        }
+
+        .roadmap-wrapper .timeline-nav-btn.next-btn {
+            right: calc(50% - 610px); /* Placed elegantly outside the 1100px container width */
+        }
+
+        @media (max-width: 1280px) {
+            /* Safely shift controls inward on narrower viewports to avoid going off-screen */
+            .roadmap-wrapper .timeline-nav-btn.prev-btn {
+                left: 15px;
+            }
+            .roadmap-wrapper .timeline-nav-btn.next-btn {
+                right: 15px;
+            }
+        }
+
+        .timeline-nav-btn.next-btn:hover {
+            background: #AF32B1;
+            box-shadow: 0 8px 22px rgba(175, 50, 177, 0.25);
+        }
+
+        .timeline-nav-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2.5;
+        }
+
+        /* Milestone Year Header */
+        .timeline-step-year {
+            font-size: 26px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step-item:nth-child(odd) .timeline-step-year {
+            color: #5E3BE1;
+        }
+
+        .timeline-step-item:nth-child(even) .timeline-step-year {
+            color: #AF32B1;
+        }
+
+        /* Premium line-height story description */
+        .timeline-step-text {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #475569;
+            font-weight: 400;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step-text strong {
+            font-weight: 700;
+            color: #1E293B;
+        }
+
+        /* High-end hover animations */
+        .timeline-step-item:hover .timeline-step-icon {
+            transform: scale(1.1) rotate(6deg);
+            background: #5E3BE1;
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 20px rgba(94, 59, 225, 0.25);
+        }
+
+        .timeline-step-item:nth-child(even):hover .timeline-step-icon {
+            background: #AF32B1;
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(175, 50, 177, 0.25);
+        }
+
+        /* Tablet & Mobile responsive optimization */
+        @media (max-width: 991px) {
+            .timeline-step-item {
+                width: 340px;
+            }
+            .timeline-nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+            .timeline-nav-btn.prev-btn {
+                left: -10px;
+            }
+            .timeline-nav-btn.next-btn {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-wrapper {
+                padding: 10px 0;
+            }
+
+            .timeline-slideshow-container::before {
+                display: none; /* Hide track line on mobile */
+            }
+
+            .timeline-slideshow-container {
+                padding: 10px 20px 15px 20px !important;
+            }
+
+            .timeline-step-item {
+                padding: 24px;
+            }
+
+            .timeline-step-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
+                margin-bottom: 18px;
+            }
+
+            .timeline-step-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .timeline-step-year {
+                font-size: 22px;
+            }
+
+            .timeline-step-text {
+                font-size: 14px;
+            }
+
+            .journey-timeline-section {
+                padding: 5px 0 25px 0; /* Snug top and balanced bottom gap */
+            }
+
+            .journey-timeline-section .section-header h2 {
+                font-size: 28px !important;
+            }
+
+            .journey-timeline-section .section-header p {
+                font-size: 15px !important;
+            }
+
+            .timeline-nav-btn {
+                display: none; /* Swipe works perfectly on mobile */
+            }
+        }
+
+        /* Values Grid (3x2 Matrix) Premium Styles */
+        .drives-us-section .du-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 20px !important;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .du-card, .du-card-large {
+            width: 100% !important; /* stretch to fill the grid columns */
+            min-height: 210px !important;
+            height: auto !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            padding: 24px 20px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+        }
+
+        .du-card h3 {
+            font-size: 24px !important;
+            color: #ffffff !important;
+            letter-spacing: 0.3px;
+            margin: 0 0 8px 0 !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            text-align: center !important;
+        }
+
+        .du-card-large h3 {
+            font-size: 38px !important;
+            color: #ffffff !important;
+            letter-spacing: 0.3px;
+            margin: 0 0 8px 0 !important;
+            font-weight: 800 !important;
+            line-height: 1.2 !important;
+            text-transform: uppercase !important;
+            text-align: center !important;
+        }
+
+        .du-card p, .du-card-large p {
+            color: #ffffff !important;
+            font-size: 14.5px !important;
+            line-height: 1.5 !important;
+            margin: 0 !important;
+            text-align: center !important;
+        }
+
+        .du-card:hover, .du-card-large:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 12px 25px rgba(97, 61, 193, 0.2) !important;
+        }
+
+        @media (max-width: 1024px) {
+            .drives-us-section .du-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 16px !important;
+            }
+            .du-card, .du-card-large {
+                min-height: 210px !important;
+                padding: 24px 16px !important;
+            }
+            .du-card h3 {
+                font-size: 22px !important;
+            }
+            .du-card p {
+                font-size: 13.5px !important;
+            }
+            .du-card-large h3 {
+                font-size: 32px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .drives-us-section .du-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+            .du-card, .du-card-large {
+                min-height: 180px !important;
+                height: auto !important;
+                padding: 20px 14px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+            }
+            .du-card h3 {
+                font-size: 18px !important;
+            }
+            .du-card p {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+            }
+            .du-card-large h3 {
+                font-size: 28px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .drives-us-section .du-grid {
+                grid-template-columns: 1fr !important; /* Stack vertically on small screens for comfortable width */
+                gap: 16px !important;
+            }
+            .du-card, .du-card-large {
+                min-height: 140px !important;
+                height: auto !important;
+                padding: 24px 20px !important;
+            }
+            .du-card h3 {
+                font-size: 22px !important;
+            }
+            .du-card p {
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+            }
+            .du-card-large h3 {
+                font-size: 32px !important;
+            }
+        }
+
+        /* Turning Complexity Into Clarity – Premium Card Styles */
+        .clarity-section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .clarity-section .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px 24px;
+            width: 360px;
+            min-height: 200px;
+            border: 1px solid rgba(94, 59, 225, 0.08);
+            box-shadow: 0 4px 20px rgba(94, 59, 225, 0.04);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle gradient accent line at top of each card */
+        .clarity-section .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #5E3BE1, #AF32B1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .clarity-section .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(94, 59, 225, 0.12);
+            border-color: rgba(94, 59, 225, 0.15);
+        }
+
+        .clarity-section .card:hover::before {
+            opacity: 1;
+        }
+
+        .clarity-section .card .top-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .clarity-section .card img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            padding: 8px;
+            background: #F8F6FF;
+            border-radius: 14px;
+            border: 1px solid #EAE5FF;
+            flex-shrink: 0;
+        }
+
+        .clarity-section .card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+            text-align: left;
+            color: #27184F;
+            line-height: 1.35;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .clarity-section .card p {
+            font-size: 14px;
+            font-weight: 400;
+            color: #64748B;
+            margin: 0;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .clarity-prev, .clarity-next, .dots {
+            display: none;
+        }
+
+        /* Mobile layout */
+        @media (max-width: 768px) {
+            .clarity-section h2 {
+                font-size: 26px !important;
+            }
+
+            .clarity-section .intro {
+                font-size: 15px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .clarity-section .cards {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .clarity-section .card {
+                display: none;
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+                text-align: center !important;
+                padding: 24px;
+                box-sizing: border-box;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            }
+
+            .clarity-section .card .top-row {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 10px !important;
+                margin-bottom: 15px;
+            }
+
+            .clarity-section .card h3 {
+                font-size: 1.05rem !important;
+                text-align: center !important;
+            }
+
+            .clarity-section .card p {
+                font-size: 0.9rem !important;
+                text-align: center !important;
+            }
+
+            .clarity-section .card img {
+                width: 60px;
+                height: 60px;
+            }
+
+            /* Arrows */
+            .clarity-prev, .clarity-next {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 44px;
+                height: 44px;
+                background: rgba(39, 24, 79, 0.85);
+                backdrop-filter: blur(4px);
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 20;
+                font-size: 18px;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            }
+
+            .clarity-prev:hover, .clarity-next:hover {
+                background: #5E3BE1;
+                transform: translateY(-50%) scale(1.05);
+            }
+
+            .clarity-prev {
+                left: 10px;
+            }
+
+            .clarity-next {
+                right: 10px;
+            }
+
+            /* Dots */
+            .dots {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .dots button {
+                height: 10px;
+                width: 10px;
+                margin: 0 5px;
+                background: #cbd5e1;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                transition: all 0.25s ease;
+            }
+
+            .dots button.active {
+                background: #5E3BE1;
+                width: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        /* Case Studies Custom Enhancements */
+        .cs-tabs button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .cs-tabs button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(97, 61, 193, 0.12);
+        }
+
+        .cs-panel [onclick] {
+            transition: all 0.3s ease;
+        }
+
+        .cs-panel [onclick]:hover {
+            background: #4f2eb2 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(97, 61, 193, 0.2) !important;
+        }
+
+        .cs-panel img {
+            transition: transform 0.4s ease;
+        }
+
+        .cs-panel:hover img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 768px) {
+            /* Section spacing */
+            .case-studies {
+                padding: 20px 10px !important;
+            }
+
+            /* Title */
+            .case-studies h2 {
+                font-size: 26px !important;
+                line-height: 1.3 !important;
+                text-align: center !important;
+                margin: 15px auto !important;
+                padding: 0 10px !important;
+            }
+
+            /* Tabs grid */
+            .case-studies .cs-tabs { 
+                display: grid !important; 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 12px !important; 
+                justify-items: center; 
+                max-width: 100% !important; 
+                margin-bottom: 30px !important; 
+            }
+            
+            .case-studies .cs-tabs button {
+                width: 100% !important;
+                max-width: 140px !important;
+                height: 60px !important;
+                font-size: 14px !important;
+                padding: 10px 8px !important;
+                line-height: 1.2;
+                white-space: normal !important;
+            }
+
+            .case-studies .cs-tabs button:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            /* Panels stack text & image */
+            .case-studies .cs-panel > div {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                gap: 20px !important;
+            }
+
+            /* Left content (text) */
+            .case-studies .cs-panel > div > div:first-child {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* Headings inside panels */
+            .case-studies .cs-panel h3 {
+                font-size: 18px !important;
+                margin-bottom: 12px !important;
+                text-align: center !important;
+            }
+
+            /* Paragraphs */
+            .case-studies .cs-panel p {
+                font-size: 15px !important;
+                line-height: 1.5 !important;
+                text-align: center !important;
+            }
+
+            /* Right content (image) */
+            .case-studies .cs-panel > div > div:last-child {
+                flex: 0 0 auto !important;
+                max-width: 80% !important;
+                text-align: center !important;
+            }
+            
+            .case-studies .cs-panel img {
+                width: 200px !important;
+                height: auto !important;
+                margin: 0 auto !important;
+            }
+
+            /* Ramsons only -> add extra space between button and image */
+            #panel-ramsons > div > div:last-child {
+                margin-top: 5px !important;
+            }
+
+            /* Force chip rows to align left on mobile */
+            .case-studies .cs-more > div {
+                justify-content: flex-start !important;
+                gap: 6px !important;
+            }
+
+            .case-studies .cs-more > div img {
+                width: 22px !important;
+                height: 22px !important;
+                flex-shrink: 0;
+                margin: 0 !important;
+            }
+
+            .case-studies .cs-more > div > div {
+                padding: 4px 10px !important;
+                font-size: 13px !important;
+                white-space: nowrap;
+            }
+        }
+
+        /* Impact Section Custom Enhancements */
+        .impact-number {
+            font-size: 32px;
+            color: #27184F;
+            margin: 0;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .scroll-stats > div {
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-stats > div:hover {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .impact-section {
+                padding: 40px 20px !important;
+                margin: 40px auto 20px auto !important;
+            }
+
+            .impact-title {
+                font-size: 26px !important;
+            }
+
+            .impact-subtitle {
+                font-size: 15px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .scroll-stats {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 30px !important;
+                row-gap: 30px !important;
+                justify-items: center;
+                overflow: visible !important;
+                padding: 0 10px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .scroll-stats > div {
+                flex: unset !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .scroll-stats h2 {
+                font-size: 22px !important;
+                text-align: left;
+            }
+
+            .scroll-stats p {
+                font-size: 12px !important;
+                text-align: left;
+            }
+
+            .scroll-stats::-webkit-scrollbar,
+            .scroll-testimonials::-webkit-scrollbar {
+                display: none;
+            }
+
+            .scroll-stats {
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .scroll-stats > div:hover {
+                transform: none !important;
+            }
+        }
+
+        /* What Drives Us Custom Enhancements */
+        .du-card, .du-card-large {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .du-card:hover, .du-card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(39, 24, 79, 0.18);
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .drives-us-section {
+                margin: 40px 15px 20px 15px !important;
+            }
+
+            .drives-us-section .du-title {
+                font-size: 26px !important;
+                margin-bottom: 50px !important;
+            }
+
+
+
+            /* Mobile-only color sequence */
+            .drives-us-section .du-card-large { background: #AF32B1CC !important; }
+            .drives-us-section .du-card:nth-child(2) { background: #613DC1B3 !important; }
+            .drives-us-section .du-card:nth-child(3) { background: #613DC1 !important; }
+            .drives-us-section .du-card:nth-child(4) { background: #AF32B1 !important; }
+            .drives-us-section .du-card:nth-child(5) { background: #AF32B1B3 !important; }
+            .drives-us-section .du-card:nth-child(6) { background: #613DC1CC !important; }
+        }
+
+        /* Meet Our Team Custom Enhancements */
+        .tofler-team-section {
+            font-family: 'Inter', sans-serif;
+            padding: 40px 16px 60px 16px;
+            background: #fff;
+            color: #222;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .tofler-team-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tofler-team-inner h2 {
+            margin: 0 0 12px;
+            font-size: 38px;
+            color: #27184F;
+            font-weight: 800;
+            font-family: 'Manrope', sans-serif;
+            letter-spacing: 0.2px;
+        }
+
+        .tofler-team-inner p.lead {
+            margin: 0 auto 50px;
+            font-weight: 300;
+            font-size: 18px;
+            color: #475569;
+            max-width: 900px;
+            line-height: 1.6;
+        }
+
+        .scroll-wrapper {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        .tofler-cards {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+            width: max-content;
+        }
+
+        .tofler-card {
+            flex: 0 0 260px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .tofler-photo {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 18px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 8px 24px rgba(35, 20, 80, 0.06);
+            margin-bottom: 16px;
+            display: block;
+            overflow: hidden;
+            background-color: #f8fafc;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tofler-card:hover .tofler-photo {
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 16px 36px rgba(35, 20, 80, 0.12);
+        }
+
+        .tofler-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 12px;
+            padding: 0 4px;
+        }
+
+        .meta-left {
+            text-align: left;
+        }
+
+        .tofler-name {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 700;
+            color: #1e293b;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .tofler-role {
+            margin: 4px 0 0;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tofler-linkedin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            flex-shrink: 0;
+            overflow: hidden;
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tofler-linkedin:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .tofler-linkedin img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 720px) {
+            .tofler-team-section {
+                padding: 40px 16px;
+            }
+
+            .scroll-wrapper {
+                justify-content: flex-start !important;
+            }
+
+            .tofler-cards {
+                gap: 20px !important;
+            }
+
+            .tofler-card {
+                flex: 0 0 200px;
+            }
+
+            .tofler-team-inner h2 {
+                font-size: 26px !important;
+            }
+
+            .tofler-team-inner p.lead {
+                font-size: 15px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .tofler-card:hover .tofler-photo {
+                transform: none !important;
+                box-shadow: 0 8px 24px rgba(35, 20, 80, 0.06) !important;
+            }
+        }
+
+        /* Join Our Team Custom Enhancements */
+        .team-section {
+            width: 100%;
+            padding: 80px 10% 80px;
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            box-sizing: border-box;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-left {
+            flex: 0 0 calc(50% - 30px) !important;
+            max-width: calc(50% - 30px) !important;
+            min-width: 320px;
+            text-align: left;
+        }
+
+        .team-left h2 {
+            font-size: 48px !important;
+            color: #27184F !important;
+            font-weight: 800 !important;
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-family: 'Manrope', sans-serif;
+            text-align: left !important;
+        }
+
+        .team-left p {
+            font-size: 18px !important;
+            color: #475569 !important;
+            font-weight: 300 !important;
+            margin-bottom: 30px !important;
+            line-height: 1.6 !important;
+            text-align: left !important;
+        }
+
+        .team-btn {
+            display: inline-block;
+            padding: 15px 36px !important;
+            background: #613DC1;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700 !important;
+            font-size: 17.5px !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(97, 61, 193, 0.2);
+            letter-spacing: 0.5px !important;
+        }
+
+        .team-btn:hover {
+            background: #4c28d6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(97, 61, 193, 0.3);
+        }
+
+        .team-right {
+            flex: 0 0 calc(50% - 30px) !important;
+            max-width: calc(50% - 30px) !important;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 20px !important;
+            min-width: 320px;
+        }
+
+        .team-card {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            background: #f8fafc;
+            border: 2px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 16px 20px;
+            text-align: left;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            width: 100%;
+            height: 90px;
+            box-sizing: border-box;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            border-color: #e2e8f0;
+            box-shadow: 0 8px 24px rgba(35, 20, 80, 0.05);
+        }
+
+        .team-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #fff;
+            border: 1.5px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .team-avatar img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .team-info p {
+            font-size: 16.5px !important;
+            font-weight: 700 !important;
+            color: #1e293b !important;
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Form Popups Styling */
+        .popup-overlay,
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-card,
+        .success-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 440px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f1f5f9;
+        }
+
+        .popup-close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s ease;
+        }
+
+        .popup-close:hover {
+            color: #475569;
+        }
+
+        .popup-card h2,
+        .success-card h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #27184F;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        #jobForm input {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 10px 0;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s ease;
+        }
+
+        #jobForm input:focus {
+            outline: none;
+            border-color: #613DC1;
+        }
+
+        #jobForm input[type="file"] {
+            background: #f8fafc;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        #jobForm button {
+            background: #613DC1;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(97, 61, 193, 0.2);
+            margin-top: 10px;
+        }
+
+        #jobForm button:hover {
+            background: #4c28d6;
+            transform: translateY(-1px);
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #613DC1;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        .success-card button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #613DC1;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-card button:hover {
+            background: #4c28d6;
+        }
+
+        .success-image {
+            width: 70px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .team-section {
+                padding: 40px 20px !important;
+            }
+
+            .team-container {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                gap: 30px !important;
+            }
+
+            .team-left {
+                display: contents !important;
+            }
+
+            .team-left h2 {
+                order: 1 !important;
+                font-size: 26px !important;
+                margin-bottom: 12px !important;
+                text-align: center !important;
+                width: 100% !important;
+                align-self: center !important;
+            }
+
+            .team-left p {
+                order: 2 !important;
+                font-size: 15px !important;
+                margin-bottom: 25px !important;
+                text-align: center !important;
+                width: 100% !important;
+                align-self: center !important;
+                line-height: 1.5 !important;
+            }
+
+            .team-right {
+                order: 3 !important;
+                grid-template-columns: 1fr !important;
+                width: 100% !important;
+                max-width: 320px !important;
+                margin: 0 auto 10px auto !important;
+            }
+
+            .team-btn {
+                order: 4 !important;
+                display: inline-block !important;
+                align-self: center !important;
+                margin: 0 auto !important;
+            }
+
+            .team-card:hover {
+                transform: none !important;
+            }
+        }
+
+        /* ==========================================================================
+           Unified Typography & Consistency Design System (Antigravity Polish)
+           Categorized into 4 Main Groups: Main Header, Lead Sub-Header, Card Sub-Header, Content Text
+           (Excludes Navbar and Footer)
+           ========================================================================== */
+
+        /* 1. MAIN HEADER (Section Main Titles) */
+        h1.hero-title,
+        .purpose-vision-section h2,
+        .journey-timeline-section .section-header h2,
+        .clarity-container h2,
+        .case-studies h2,
+        .impact-section h2.impact-title,
+        .drives-us-section h2.du-title,
+        .tofler-team-inner h2,
+        .popup-card h2,
+        .success-card h2,
+        .modal-content h2.modal-heading {
+            font-family: 'Outfit', 'Manrope', 'Inter', sans-serif !important;
+            font-size: 48px !important;
+            font-weight: 700 !important;
+            color: #1E293B !important; /* Premium Slate/Dark gray */
+            line-height: 1.25 !important;
+            letter-spacing: 1px !important;
+            text-transform: none !important;
+            text-shadow: none !important;
+            text-align: center !important;
+            margin-bottom: 20px !important;
+        }
+
+        .impact-section h2.impact-title {
+            color: #000000 !important;
+        }
+
+        /* 2. SECTION SUB-HEADERS / LEAD DESCRIPTIONS (Description text under Main Headers) */
+        .hero-container p.hero-subtitle,
+        .journey-timeline-section .section-header p,
+        .clarity-container p.intro,
+        .impact-section p.impact-subtitle,
+        .tofler-team-inner p.lead {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 18px !important;
+            font-weight: 400 !important;
+            color: #4B5563 !important; /* Grey-600 */
+            line-height: 1.6 !important;
+            letter-spacing: 0.5px !important;
+            margin: 0 auto 40px auto !important;
+            max-width: 1000px !important;
+            text-align: center !important;
+        }
+
+        /* Ensure colored spans under Main Headers match the gorgeous purple-to-pink gradient precisely */
+        h1.hero-title span,
+        .purpose-vision-section h2 span,
+        .journey-timeline-section h2 span,
+        .clarity-container h2 span,
+        .case-studies h2 span,
+        .impact-section h2 span,
+        .drives-us-section h2 span,
+        .tofler-team-inner h2 span,
+        .team-left h2 span {
+            background: linear-gradient(90deg, #613DC1 0%, #AF32B1 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            display: inline-block !important;
+            font-weight: 700 !important;
+        }
+
+        /* 3. CARD SUB-HEADERS (Card headings, Milestone Labels, Values headings) */
+        .purpose-vision-section .card-header h3,
+        .journey-timeline-section .timeline-year,
+        .clarity-section .card h3,
+        .case-studies h3,
+        .tofler-team-section .tofler-name,
+        .logo-heading,
+        .speaker-name,
+        .action-title,
+        .modal-subheading {
+            font-family: 'Outfit', 'Manrope', 'Inter', sans-serif !important;
+            font-size: 26px !important; /* Globally increased subheading size across all cards and sections */
+            font-weight: 600 !important;
+            color: #1E293B !important;
+            line-height: 1.4 !important;
+            letter-spacing: -0.2px !important;
+            text-transform: none !important;
+        }
+
+        /* 4. CARD CONTENT & BODY TEXT (All Paragraphs, Quotes, Details, Captions, Form fields) */
+        .purpose-vision-section .card-body p,
+        .journey-timeline-section .timeline-text,
+        .clarity-section .card p,
+        .case-studies p,
+        .case-studies li,
+        .case-studies .cs-more,
+        .impact-section p:not(.impact-title):not(.impact-number):not(.impact-subtitle),
+        .drives-us-section p,
+        .tofler-team-section .tofler-role,
+        .popup-card p,
+        .popup-card label,
+        .popup-card input,
+        .popup-card button,
+        .success-card p,
+        .success-card button,
+        .modal-content p,
+        .modal-content label,
+        .modal-content input,
+        .modal-content button,
+        .speaker-title,
+        .about-text p {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            color: #475569 !important;
+            line-height: 1.65 !important;
+            letter-spacing: 0.1px !important;
+            text-transform: none !important;
+        }
+
+        /* Responsive overrides to scale headers nicely on mobile devices */
+        @media (max-width: 768px) {
+            h1.hero-title,
+            .purpose-vision-section h2,
+            .journey-timeline-section .section-header h2,
+            .clarity-container h2,
+            .case-studies h2,
+            .impact-section h2.impact-title,
+            .drives-us-section h2.du-title,
+            .tofler-team-inner h2,
+            .team-left h2,
+            .popup-card h2,
+            .success-card h2,
+            .modal-content h2.modal-heading {
+                font-size: 32px !important;
+                line-height: 1.3 !important;
+                letter-spacing: 0.5px !important;
+            }
+
+            .hero-container p.hero-subtitle,
+            .journey-timeline-section .section-header p,
+            .clarity-container p.intro,
+            .impact-section p.impact-subtitle,
+            .tofler-team-inner p.lead,
+            .team-left p {
+                font-size: 15px !important;
+                line-height: 1.5 !important;
+                margin-bottom: 24px !important;
+            }
+
+            .purpose-vision-section .card-header h3,
+            .clarity-section .card h3,
+            .case-studies h3,
+            .drives-us-section .du-card h3,
+            .drives-us-section .du-card-large h3,
+            .tofler-team-section .tofler-name,
+            .team-card p,
+            .logo-heading,
+            .modal-subheading {
+                font-size: 18px !important;
+                line-height: 1.35 !important;
+            }
+
+            .purpose-vision-section .card-body p,
+            .journey-timeline-section .timeline-text,
+            .clarity-section .card p,
+            .case-studies p,
+            .drives-us-section p,
+            .popup-card p,
+            .success-card p,
+            .modal-content p {
+                font-size: 15px !important;
+                line-height: 1.6 !important;
+            }
+
+
+            /* Dynamic cascade override to win layout calculation (Desktop & Mobile) */
+            .purpose-vision-section h2 {
+                margin-bottom: 40px !important;
+            }
+        }
+        
+        /* Global typography cascade win */
+        .purpose-vision-section h2 {
+            margin-bottom: 40px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left-group">
+                <a href="https://www.tofler.in/">
+                    <img src="https://get.tofler.in/wp-content/uploads/2025/11/Untitled-design-15-1.jpg" alt="Tofler Logo" class="logo">
+                </a>
+            </div>
+            
+            <div class="nav-right-group">
+                <a href="https://tofler.in/our-story" class="nav-item">Our Story</a>
+                <a href="https://www.tofler.in/benefits" class="nav-item">Benefits</a>
+                <a href="https://www.tofler.in/price-and-plans" class="nav-link-outline">See Price & Plans</a>
+                <a href="https://www.tofler.in/login" class="nav-btn-solid">Login</a>
+                <button class="menu-toggle" onclick="toggleMobileNav()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="https://tofler.in/our-story" class="nav-item" style="display: block;">Our Story</a>
+            <a href="https://www.tofler.in/benefits" class="nav-item" style="display: block;">Benefits</a>
+            <a href="https://www.tofler.in/price-and-plans" class="nav-item" style="display: block;">See Price & Plans</a>
+            <a href="https://www.tofler.in/login" class="nav-item" style="display: block;">Login</a>
+        </div>
+    </nav>
+
+    <!-- New Hero Section -->
+    <div style="background-color:#f6f4ff; width:100%; box-sizing:border-box;">
+        <div class="hero-container" style="text-align:center; padding:60px 20px 10px 20px; width:100%; margin:0; font-family: 'Inter', sans-serif;">
+            <h1 class="hero-title" style="font-size:36px; font-weight:700; color:#27184F; margin-bottom:20px;">
+                We’re <span style="color:#AF32B1;">Tofler,</span> <br> Empowering Smart <span style="color:#AF32B1;">Business Decisions</span>
+            </h1>
+            <p class="hero-subtitle" style="font-size:18px; width:80%; margin:0 auto 0px auto; font-weight:300; font-family: 'Inter', sans-serif;">
+                India’s first business intelligence platform built for SMEs, startups, and enterprises. With the largest database of <strong style="color: #000000; font-weight: 700;">20 lakh+ private companies</strong>, Tofler helps you <strong style="color: #000000; font-weight: 700;">discover opportunities, minimize risks, and grow with confidence.</strong>
+            </p>
+
+            <!-- Hero Illustration -->
+            <img class="hero-img" src="https://get.tofler.in/wp-content/uploads/2025/08/happy-people-holding-hands-isolated-white.webp" alt="Hero Illustration">
+
+            <!-- Logos -->
+            <div style="text-align:center; margin-top:30px;">
+                <p class="logo-heading" style="font-size:25px; color:black; margin-bottom:20px;">
+                    Trusted by 5200+ businesses all across India
+                </p>
+                <div class="logo-scroll-container">
+                    <div class="logo-strip">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/pothys-web.webp" alt="Pothys">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/seagull-web.webp" alt="Seagull">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/hindu-web.webp" alt="Hindu">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/ratnabali-web.webp" alt="Ratnabali">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/shipyaari-web.webp" alt="Shipyaari">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/o2-web.webp" alt="O2 Power">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/unirail-web.webp" alt="Unirail">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/csm-web.webp" alt="CSM">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/ramsons-web-1-1.webp" alt="Ramsons">
+                        <!-- Infinite Loop Duplicate -->
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/pothys-web.webp" alt="Pothys">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/seagull-web.webp" alt="Seagull">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/hindu-web.webp" alt="Hindu">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/ratnabali-web.webp" alt="Ratnabali">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/shipyaari-web.webp" alt="Shipyaari">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/o2-web.webp" alt="O2 Power">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/unirail-web.webp" alt="Unirail">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/csm-web.webp" alt="CSM">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/ramsons-web-1-1.webp" alt="Ramsons">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Purpose & Vision Section -->
+    <section class="purpose-vision-section">
+        <div class="container">
+            <h2>Driven By <span>Purpose,</span> Guided By <span>Vision</span></h2>
+
+            <div class="cards">
+                <!-- Mission Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/gradient-level-up-illustration.webp" alt="Mission">
+                        <h3>Our <br>Mission</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            To democratize access to structured financial and business information,
+                            empowering every Indian SME to make faster and data-backed decisions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vision Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/8510560-removebg-preview.webp" alt="Vision">
+                        <h3>Our <br>Vision</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            To build the most trusted SaaS platform for business intelligence in India,
+                            shaping a transparent and resilient economy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Timeline Section -->
+    <section class="journey-timeline-section">
+        <div class="section-header">
+            <h2>Our Story: <span>How It All Began</span></h2>
+            <p>A decade of empowering Indian SMEs, startups, and enterprises with transparency, reliability,<br>and data-backed business intelligence.</p>
+        </div>
+
+        <div class="roadmap-wrapper">
+            <div class="timeline-slideshow-container">
+                <div class="timeline-slideshow-track">
+                    <!-- Milestone 1 (2013) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </div>
+                        <span class="timeline-step-year">2013</span>
+                        <p class="timeline-step-text">
+                            <strong>Identifying the gap:</strong> Indian SMEs and startups <strong>lacked reliable, structured, and easily accessible</strong> company data.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 2 (2014) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        </div>
+                        <span class="timeline-step-year">2014</span>
+                        <p class="timeline-step-text">
+                            Started distributing comprehensive reports <strong>directly via leading banks</strong> and key strategic partners.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 3 (2015) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <span class="timeline-step-year">2015</span>
+                        <p class="timeline-step-text">
+                            Launched Tofler's <strong>first web platform</strong> to drastically simplify and democratize instant access to financial reports.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 4 (2016) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <span class="timeline-step-year">2016</span>
+                        <p class="timeline-step-text">
+                            Focused heavily on engineering <strong>high-end due diligence reports</strong> tailored for top corporate investors.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 5 (2017) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        </div>
+                        <span class="timeline-step-year">2017</span>
+                        <p class="timeline-step-text">
+                            Realised SMEs were left out of the data revolution, <strong>shifting core product focus directly to SMEs.</strong>
+                        </p>
+                    </div>
+
+                    <!-- Milestone 6 (2018) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <span class="timeline-step-year">2018</span>
+                        <p class="timeline-step-text">
+                            Successfully partnered with <strong>major corporate brands and industry leaders</strong> across the country.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 7 (2020) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <span class="timeline-step-year">2020</span>
+                        <p class="timeline-step-text">
+                            Introduced the <strong>revolutionary Company360 platform</strong>, delivering unparalleled instant insights.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 8 (2024) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        </div>
+                        <span class="timeline-step-year">2024</span>
+                        <p class="timeline-step-text">
+                            Launched <strong>Tofler Pro and Tofler Growth</strong> plans for high-tier advanced risk predictive analytics.
+                        </p>
+                    </div>
+
+                    <!-- Milestone 9 (Present) -->
+                    <div class="timeline-step-item">
+                        <div class="timeline-step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                        </div>
+                        <span class="timeline-step-year">Present</span>
+                        <p class="timeline-step-text">
+                            Proudly stand as <strong>India's leading SME business intelligence platform</strong>, trusted daily by <strong>150,000+ active users.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manual Navigation controls (toggle switches) absolute to full-width roadmap-wrapper -->
+            <button class="timeline-nav-btn prev-btn" aria-label="Previous milestone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="timeline-nav-btn next-btn" aria-label="Next milestone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Turning Complexity Into Clarity Section -->
+    <div class="clarity-section" style="margin:0; font-family: 'Inter', sans-serif;background:#f6f4ff;color:#000;width:100%;">
+        <div class="clarity-container" style="padding:70px 20px 70px 20px;text-align:center;width:100%; position:relative;">
+            <h2 style="margin-top: 0px;">Turning <span>Complexity</span> Into <span>Clarity</span></h2>
+            <p class="intro" style="font-size:18px;font-weight:300;margin-bottom:50px;text-align:center; max-width:1200px;margin:0 auto 70px auto;">
+                At Tofler, we don't just give you data, we turn it into actionable intelligence that drives business growth.
+                With Tofler, every decision from prospecting to partnerships is rooted in clarity, speed, and confidence.
+            </p>
+
+            <div class="slider-outer" style="position:relative;">
+                <div class="cards">
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <div class="top-row">
+                            <img src="https://get.tofler.in/wp-content/uploads/2025/08/headhunting_17929120.webp" alt="Discover New Customers"/>
+                            <h3>Discover New Customers</h3>
+                        </div>
+                        <p>Use our <strong>Finder Tool</strong> to filter <strong>20 lakh+ companies</strong> by industry, location, revenue, and more to identify high-potential leads instantly.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <div class="top-row">
+                            <img src="https://get.tofler.in/wp-content/uploads/2025/08/exploration.webp" alt="Credit Analysis"/>
+                            <h3>Minimize Credit<br>Risk</h3>
+                        </div>
+                        <p>Leverage a <strong>62-point assessment framework</strong> to evaluate financial health of clients, suppliers, or partners before every commitment.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <div class="top-row">
+                            <img src="https://get.tofler.in/wp-content/uploads/2025/08/flexibility.webp" alt="Benchmark"/>
+                            <h3>Benchmark Performance</h3>
+                        </div>
+                        <p>Compare your business against <strong>industry peers</strong> to uncover inefficiencies, improve margins, and spot <strong>opportunities</strong> for growth.</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card">
+                        <div class="top-row">
+                            <img src="https://get.tofler.in/wp-content/uploads/2025/08/partner.webp" alt="Supplier Network"/>
+                            <h3>Strengthen Supply Chain</h3>
+                        </div>
+                        <p>Find <strong>financially stable</strong>, trustworthy suppliers who help you scale sustainably while reducing disruptions across your supply chain.</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="card">
+                        <div class="top-row">
+                            <img src="https://get.tofler.in/wp-content/uploads/2025/08/insight.webp" alt="Industry Insights"/>
+                            <h3>Gain Industry Insights</h3>
+                        </div>
+                        <p>Access trends across <strong>1,200+ industry sub-segments</strong> and <strong>9,000+ product categories</strong> to make confident, data-driven strategic moves.</p>
+                    </div>
+                </div>
+
+                <!-- Arrows -->
+                <button class="clarity-prev" aria-label="Previous slide">&#10094;</button>
+                <button class="clarity-next" aria-label="Next slide">&#10095;</button>
+
+                <!-- Dots -->
+                <div class="dots"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Real Stories / Case Studies Section -->
+    <section class="case-studies" style="width:100%; margin:0; padding:80px 0 40px; font-family: 'Inter', sans-serif; background:#ffffff; box-sizing: border-box;">
+        <!-- Title -->
+        <h2 style="margin: 0 auto 60px; text-align: center;">
+            Real <span>Stories.</span> Real <span>Impact</span>
+        </h2>
+
+        <!-- Tabs -->
+        <div class="cs-tabs" style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin:0 auto 45px; width:100%; max-width: 1200px; padding: 0 20px; box-sizing: border-box;">
+            <button id="btn-shipyaari" onclick="csShow('shipyaari')" style="width:190px; height:64px; border:0; border-radius:18px; background:#613DC1; color:#fff; font-size:18px; font-weight:700; cursor:pointer; box-shadow:0 4px 15px rgba(97, 61, 193, 0.2);">Shipyaari</button>
+            <button id="btn-ramsons" onclick="csShow('ramsons')" style="width:190px; height:64px; border:0; border-radius:18px; background:#F2EEFF; color:#1f1f1f; font-size:18px; font-weight:600; cursor:pointer;">Ramsons</button>
+            <button id="btn-live" onclick="csShow('live')" style="width:190px; height:64px; border:0; border-radius:18px; background:#F2EEFF; color:#1f1f1f; font-size:18px; font-weight:600; cursor:pointer;">Live Mint</button>
+            <button id="btn-team" onclick="csShow('team')" style="width:190px; height:64px; border:0; border-radius:18px; background:#F2EEFF; color:#1f1f1f; font-size:18px; font-weight:600; cursor:pointer;">Team<br>Computers</button>
+            <button id="btn-ratnabali" onclick="csShow('ratnabali')" style="width:190px; height:64px; border:0; border-radius:18px; background:#F2EEFF; color:#1f1f1f; font-size:18px; font-weight:600; cursor:pointer;">Ratnabali</button>
+        </div>
+
+        <!-- Content Panels -->
+        <div style="max-width:1180px; margin:0 auto; padding:0 20px; box-sizing: border-box;">
+            <!-- TEAM -->
+            <div id="panel-team" class="cs-panel" style="display:none;">
+                <h3 style="margin:0 0 25px; font-size:24px; font-weight:700; color:#27184F; font-family: 'Outfit', sans-serif;">Smarter Strategic Decisions</h3>
+                <div style="display:flex; align-items:flex-start; gap:40px; flex-wrap:nowrap;">
+                    <!-- Left 70% -->
+                    <div style="flex:0 0 70%; max-width:70%;">
+                        <p style="margin:0 0 16px; font-size:20px; color:#475569; font-weight:400; line-height: 1.6;">
+                            Using Tofler’s risk assessment, industry insights, and financial analysis, TeamComputers reduced risk exposure and accelerated data-backed growth initiatives.
+                        </p>
+                        <p style="margin:6px 0 25px 0; font-size:18px; font-style: italic; font-weight:500; color:#1E293B; line-height: 1.6; border-left: 4px solid #AF32B1; padding-left: 20px;">
+                            “Adding Tofler to our toolkit significantly enhanced our understanding of businesses and industries. It’s a game-changer.”
+                        </p>
+                        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" 
+                             style="cursor:pointer; background:#613dc1; color:#fff; font-weight:600; font-size:14px; padding:12px 28px; border-radius:999px; display:inline-block; margin-bottom:20px; box-shadow: 0 4px 10px rgba(97, 61, 193, 0.15);">
+                            Read Full Story
+                        </div>
+
+                        <div class="cs-more" style="display:none; text-align:left; font-size:15px; color:#334155; line-height:1.7; background: #FAF9FF; padding: 30px; border-radius: 20px; border: 1.5px solid #F1F5F9; margin-top: 10px;">
+                            <!-- Challenge -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/danger.webp" alt="Danger Icon" style="width:30px; height:30px;">
+                                <div style="background:#FCE8E6; color: #C53929; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Challenge</div>
+                            </div>
+                            <div style="margin-bottom:20px;">
+                                At TeamComputers we were facing challenges in the Indian markets while doing business research about a company because in the case the customers asking for credit period, analyzing them without checking the legal background, holding merger and subsidiary company and credit assessment for the company was a challenge. For this purpose we required a platform to conduct business research for an accurate decision making.
+                            </div>
+                            
+                            <!-- Solution -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/tick-circle-light.webp" alt="Tick Icon" style="width:30px; height:30px;">
+                                <div style="background:#E6F4EA; color: #137333; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Solution</div>
+                            </div>
+                            <div style="margin-bottom:20px;">
+                                After utmost hunt, we found the platform Tofler Company360 and on boarded into our operations for Business Research and Analysis. We found the following information and insights useful for our purpose:
+                                <ul style="padding-left:18px; margin-top:10px; line-height: 1.8;">
+                                    <li><strong>Company Information:</strong> Gives a detailed overview of a company, including its history, key personnel, subsidiaries, and contact information.</li>
+                                    <li><strong>Financial Analysis:</strong> Access to financial statements, including balance sheets, income statements, and cash flow statements. We could analyze financial ratios and performance metrics for assessment in no time.</li>
+                                    <li><strong>Risk Assessment:</strong> Provides us with potential risks associated with the company, including financial risks, legal issues, and market risks. Saved us a ton of efforts and time.</li>
+                                    <li><strong>Industry Insights:</strong> Helps with industry-specific data, trends, and benchmark analysis to understand the company's position within its sector.</li>
+                                    <li><strong>User-Friendly Interface:</strong> A user-friendly dashboard and interface designed to make complex data easy to understand and navigate.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Conclusion -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/mouse-circle.webp" alt="Conclusion Icon" style="width:30px; height:30px;">
+                                <div style="background:#E8F0FE; color: #1A73E8; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Conclusion</div>
+                            </div>
+                            <div>
+                                Adding Tofler Company 360 to our toolkit has significantly enhanced our understanding of businesses and industries. Its comprehensive features provide a wealth of information and insights crucial for making informed decisions. With access to detailed financial analysis, competitor comparisons, risk assessments, industry-specific data, and customizable reports, it offers a holistic view of companies. The platform’s user-friendly interface makes navigating complex data effortless, while its real-time alerts ensure we stay updated and seamlessly incorporate insights into our workflows.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right 30% -->
+                    <div style="flex:0 0 30%; max-width:30%; text-align:right;">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/team.webp" alt="Team Computers" style="max-width:100%; height:auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RATNABALI -->
+            <div id="panel-ratnabali" class="cs-panel" style="display:none;">
+                <h3 style="margin:0 0 25px; font-size:24px; font-weight:700; color:#27184F; font-family: 'Outfit', sans-serif;">Faster Investment Analysis</h3>
+                <div style="display:flex; align-items:flex-start; gap:40px; flex-wrap:nowrap;">
+                    <div style="flex:0 0 70%; max-width:70%;">
+                        <p style="margin:0 0 16px; font-size:20px; color:#475569; font-weight:400; line-height: 1.6;">
+                            Tofler enabled Ratnabali to instantly access unlisted company financials, evaluate capital structures, and discover opportunities—all in one place.
+                        </p>
+                        <p style="margin:6px 0 25px 0; font-size:18px; font-style: italic; font-weight:500; color:#1E293B; line-height: 1.6; border-left: 4px solid #AF32B1; padding-left: 20px;">
+                            “Through Tofler, our business needs for consistent, time-saving data are finally being met.”
+                        </p>
+                        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" 
+                             style="cursor:pointer; background:#613dc1; color:#fff; font-weight:600; font-size:14px; padding:12px 28px; border-radius:999px; display:inline-block; margin-bottom:20px; box-shadow: 0 4px 10px rgba(97, 61, 193, 0.15);">
+                            Read Full Story
+                        </div>
+                        
+                        <div class="cs-more" style="display:none; text-align:left; font-size:15px; color:#334155; line-height:1.7; background: #FAF9FF; padding: 30px; border-radius: 20px; border: 1.5px solid #F1F5F9; margin-top: 10px;">
+                            <!-- Challenge -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/danger.webp" alt="Danger Icon" style="width:30px; height:30px;">
+                                <div style="background:#FCE8E6; color: #C53929; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Challenge</div>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                At Ratnabali, being a proprietary investment firm we are constantly reviewing data on companies, including the unlisted vertical. We are dependent on instant financial data of companies and a platform to help us retrieve them.
+                            </div>
+                            
+                            <!-- Solution -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/tick-circle-light.webp" alt="Tick Icon" style="width:30px; height:30px;">
+                                <div style="background:#E6F4EA; color: #137333; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Solution</div>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                We decided to use Tofler's Company360 Enterprise solution as this product offers a user-friendly interface to review important financial data.
+                                <ul style="padding-left:18px; margin-top:10px; line-height: 1.8;">
+                                    <li><strong>Flexible Financial Aid:</strong> Financial information is crucial in our work. Tofler's platform allows us to access a company's financial information at ease as made available on MCA. The detailed balance sheet, cash flows and profit and loss statements spread across multiple years makes the breakup easier to follow as provided in the original filed documents.</li>
+                                    <li><strong>Capital Structure:</strong> While examining companies, details regarding known shareholders, capital history and allotments of funds are one of our requirements. Tofler provides a dedicated feature for this.</li>
+                                    <li><strong>Industry Segmentation:</strong> Tofler's screener aid is highly helpful for evaluating companies for market research based on specific filtration like location, product, revenues, etc. providing instant research results.</li>
+                                    <li><strong>Specialised Networking:</strong> Finding directorial details and establishing common connections between companies and directors is very important for our findings. Tofler's own Company Network tool quickly explores these relationships.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Conclusion -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/mouse-circle.webp" alt="Conclusion Icon" style="width:30px; height:30px;">
+                                <div style="background:#E8F0FE; color: #1A73E8; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Conclusion</div>
+                            </div>
+                            <div>
+                                Our business constantly revolves around data-driven decisions for which a consistent and time-saving platform is a must. Through Tofler's inclusion, these business needs are being met.
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:0 0 30%; max-width:30%; text-align:right;">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/ratnabali-2.webp" alt="Ratnabali" style="max-width:100%; height:auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHIPYAARI -->
+            <div id="panel-shipyaari" class="cs-panel" style="display:block;">
+                <h3 style="margin:0 0 25px; font-size:24px; font-weight:700; color:#27184F; font-family: 'Outfit', sans-serif;">Scaling Logistics with Confidence</h3>
+                <div style="display:flex; align-items:flex-start; gap:40px; flex-wrap:nowrap;">
+                    <div style="flex:0 0 70%; max-width:70%;">
+                        <p style="margin:0 0 12px; font-size:20px; color:#475569; font-weight:400; line-height: 1.6;">Shipyaari used Tofler’s data-driven insights to expand operations while reducing compliance risks.</p>
+                        <p style="margin:6px 0 25px 0; font-size:18px; font-style: italic; font-weight:500; color:#1E293B; line-height: 1.6; border-left: 4px solid #AF32B1; padding-left: 20px;">“We scaled faster because Tofler reduced uncertainty at every step.”</p>
+
+                        <!-- Expandable -->
+                        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" 
+                             style="cursor:pointer; background:#613dc1; color:#fff; font-weight:600; font-size:14px; padding:12px 28px; border-radius:999px; display:inline-block; margin-bottom:20px; box-shadow: 0 4px 10px rgba(97, 61, 193, 0.15);">
+                            Read Full Story
+                        </div>
+
+                        <div class="cs-more" style="display:none; text-align:left; font-size:15px; color:#334155; line-height:1.7; background: #FAF9FF; padding: 30px; border-radius: 20px; border: 1.5px solid #F1F5F9; margin-top: 10px;">
+                            <!-- Challenge -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/danger.webp" alt="Danger Icon" style="width:30px; height:30px;">
+                                <div style="background:#FCE8E6; color: #C53929; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Challenge</div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                Shipyaari was rapidly scaling operations but struggled with verifying vendor credibility and ensuring compliance across multiple regions.
+                            </div>
+
+                            <!-- Solution -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/tick-circle-light.webp" alt="Tick Icon" style="width:30px; height:30px;">
+                                <div style="background:#E6F4EA; color: #137333; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Solution</div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                By integrating Tofler Company360, Shipyaari gained access to:
+                                <ul style="padding-left:18px; margin-top:10px; line-height: 1.8;">
+                                    <li><strong>Compliance Reports:</strong> Verified vendors and minimized compliance risks.</li>
+                                    <li><strong>Risk Assessment:</strong> Identified red flags in advance for safe onboarding.</li>
+                                    <li><strong>Industry Benchmarking:</strong> Compared partners against market standards.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Conclusion -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/mouse-circle.webp" alt="Conclusion Icon" style="width:30px; height:30px;">
+                                <div style="background:#E8F0FE; color: #1A73E8; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Conclusion</div>
+                            </div>
+                            <div>
+                                Tofler reduced compliance risks and gave Shipyaari the confidence to scale faster while maintaining strong vendor reliability.
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:0 0 30%; max-width:30%; text-align:right;">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/Shipyaari-Logo-1.webp" alt="Shipyaari" style="max-width:100%; height:auto; border-radius: 12px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIVE MINT -->
+            <div id="panel-live" class="cs-panel" style="display:none;">
+                <h3 style="margin:0 0 25px; font-size:24px; font-weight:700; color:#27184F; font-family: 'Outfit', sans-serif;">Trusted Media Insights</h3>
+                <div style="display:flex; align-items:flex-start; gap:40px; flex-wrap:nowrap;">
+                    <div style="flex:0 0 70%; max-width:70%;">
+                        <p style="margin:0 0 12px; font-size:20px; color:#475569; font-weight:400; line-height: 1.6;">Live Mint improved reporting quality and accuracy using Tofler’s deep business intelligence.</p>
+                        <p style="margin:6px 0 25px 0; font-size:18px; font-style: italic; font-weight:500; color:#1E293B; line-height: 1.6; border-left: 4px solid #AF32B1; padding-left: 20px;">“Our stories became sharper and more impactful thanks to Tofler’s data.”</p>
+
+                        <!-- Expandable -->
+                        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" 
+                             style="cursor:pointer; background:#613dc1; color:#fff; font-weight:600; font-size:14px; padding:12px 28px; border-radius:999px; display:inline-block; margin-bottom:20px; box-shadow: 0 4px 10px rgba(97, 61, 193, 0.15);">
+                            Read Full Story
+                        </div>
+
+                        <div class="cs-more" style="display:none; text-align:left; font-size:15px; color:#334155; line-height:1.7; background: #FAF9FF; padding: 30px; border-radius: 20px; border: 1.5px solid #F1F5F9; margin-top: 10px;">
+                            <!-- Challenge -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/danger.webp" alt="Danger Icon" style="width:30px; height:30px;">
+                                <div style="background:#FCE8E6; color: #C53929; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Challenge</div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                Live Mint needed reliable and real-time company insights to back its business journalism with accurate and trusted data.
+                            </div>
+
+                            <!-- Solution -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/tick-circle-light.webp" alt="Tick Icon" style="width:30px; height:30px;">
+                                <div style="background:#E6F4EA; color: #137333; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Solution</div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                Tofler Company360 provided:
+                                <ul style="padding-left:18px; margin-top:10px; line-height: 1.8;">
+                                    <li><strong>Reliable Data:</strong> Fact-based information for accurate reporting.</li>
+                                    <li><strong>Company Profiles:</strong> Quick access to corporate histories and financials.</li>
+                                    <li><strong>Real-time Alerts:</strong> Helped Live Mint track breaking corporate updates.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Conclusion -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/mouse-circle.webp" alt="Conclusion Icon" style="width:30px; height:30px;">
+                                <div style="background:#E8F0FE; color: #1A73E8; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Conclusion</div>
+                            </div>
+                            <div>
+                                With Tofler’s intelligence, Live Mint built stronger, fact-driven stories that enhanced credibility and impact.
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:0 0 30%; max-width:30%; text-align:right;">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/08/live-mint.webp" alt="Live Mint" style="max-width:100%; height:auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAMSONS -->
+            <div id="panel-ramsons" class="cs-panel" style="display:none;">
+                <h3 style="margin:0 0 25px; font-size:24px; font-weight:700; color:#27184F; font-family: 'Outfit', sans-serif;">Driving Retail Growth</h3>
+                <div style="display:flex; align-items:flex-start; gap:40px; flex-wrap:nowrap;">
+                    <div style="flex:0 0 70%; max-width:70%;">
+                        <p style="margin:0 0 12px; font-size:20px; color:#475569; font-weight:400; line-height: 1.6;">Ramsons leveraged Tofler’s insights to optimize vendor partnerships and accelerate business expansion.</p>
+                        <p style="margin:6px 0 25px 0; font-size:18px; font-style: italic; font-weight:500; color:#1E293B; line-height: 1.6; border-left: 4px solid #AF32B1; padding-left: 20px;">“With Tofler, we made smarter business moves and built stronger collaborations.”</p>
+
+                        <!-- Expandable -->
+                        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" 
+                             style="cursor:pointer; background:#613dc1; color:#fff; font-weight:600; font-size:14px; padding:12px 28px; border-radius:999px; display:inline-block; margin-bottom:20px; box-shadow: 0 4px 10px rgba(97, 61, 193, 0.15);">
+                            Read Full Story
+                        </div>
+
+                        <div class="cs-more" style="display:none; text-align:left; font-size:15px; color:#334155; line-height:1.7; background: #FAF9FF; padding: 30px; border-radius: 20px; border: 1.5px solid #F1F5F9; margin-top: 10px;">
+                            <!-- Challenge -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/danger.webp" alt="Danger Icon" style="width:30px; height:30px;">
+                                <div style="background:#FCE8E6; color: #C53929; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Challenge</div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                Ramsons wanted to grow faster but faced challenges in vetting new suppliers and ensuring strong vendor relationships.
+                            </div>
+
+                            <!-- Solution -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/tick-circle-light.webp" alt="Tick Icon" style="width:30px; height:30px;">
+                                <div style="background:#E6F4EA; color: #137333; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Solution</div>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                With Tofler Company360, Ramsons could:
+                                <ul style="padding-left:18px; margin-top:10px; line-height: 1.8;">
+                                    <li><strong>Vendor Verification:</strong> Assessed credibility before partnerships.</li>
+                                    <li><strong>Financial Health:</strong> Analyzed supplier stability with accurate data.</li>
+                                    <li><strong>Risk Insights:</strong> Reduced exposure by identifying potential threats.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Conclusion -->
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                                <img src="https://get.tofler.in/wp-content/uploads/2025/08/mouse-circle.webp" alt="Conclusion Icon" style="width:30px; height:30px;">
+                                <div style="background:#E8F0FE; color: #1A73E8; padding:6px 16px; border-radius:999px; font-weight:600; font-size: 13px;">Conclusion</div>
+                            </div>
+                            <div>
+                                Ramsons built stronger collaborations, reduced vendor risks, and accelerated expansion using Tofler’s insights.
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:0 0 30%; max-width:30%; text-align:right; margin-top:-40px;">
+                        <img src="https://www.tofler.in/images/svg/ramsons_logo" alt="Ramsons" style="max-width:100%; height:200px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Container 1: Our Impact --> 
+    <div class="impact-section" style="font-family: 'Inter', sans-serif; width:100%; margin:80px auto 80px auto; padding:0 80px; text-align:center; box-sizing:border-box;">
+        <!-- Title -->
+        <h2 class="impact-title" style="font-size:38px; font-weight:800; margin-bottom:12px; font-family: 'Manrope', sans-serif; color: #000000 !important;">
+            Our <span style="color:#AF32B1 !important;">Impact,</span> By The <span style="color:#AF32B1 !important;">Numbers</span>
+        </h2>
+
+        <!-- Subtitle -->
+        <p class="impact-subtitle" style="font-size:18px; font-weight:300; margin:0 auto 50px; max-width:900px; color: #475569;">
+            Proof that Tofler is no longer just a tool, it's a vital part of India's business workflow.
+        </p>
+
+        <!-- Boxes Grid -->
+        <div class="scroll-stats" style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 12px; width: 200px;">
+                <div style="width: 3px; height: 70px; background-color: #00BF62; flex-shrink: 0; border-radius: 2px;"></div>
+                <div>
+                    <h2 class="impact-number" style="color: #1E293B;">10M+</h2>
+                    <p style="margin: 4px 0 0; color: #1E293B; font-weight: 500; font-size: 15px; text-align: left;">Business profiles</p>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; width: 200px;">
+                <div style="width: 3px; height: 70px; background-color: #5CE1E6; flex-shrink: 0; border-radius: 2px;"></div>
+                <div>
+                    <h2 class="impact-number" style="color: #1E293B;">62</h2>
+                    <p style="margin: 4px 0 0; color: #1E293B; font-weight: 500; font-size: 15px; text-align: left;">Points of risk analysis</p>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; width: 220px;">
+                <div style="width: 3px; height: 70px; background-color: #ff9040; flex-shrink: 0; border-radius: 2px;"></div>
+                <div>
+                    <h2 class="impact-number" style="color: #1E293B;">1200</h2>
+                    <p style="margin: 4px 0 0; color: #1E293B; font-weight: 500; font-size: 15px; text-align: left;">Industry sub segments</p>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; width: 200px;">
+                <div style="width: 3px; height: 70px; background-color: #ff1fa9; flex-shrink: 0; border-radius: 2px;"></div>
+                <div>
+                    <h2 class="impact-number" style="color: #1E293B;">9000</h2>
+                    <p style="margin: 4px 0 0; color: #1E293B; font-weight: 500; font-size: 15px; text-align: left;">Product categories</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container 2: What Drives Us -->
+    <div class="drives-us-section" style="max-width:1200px; margin:110px auto 90px auto; padding:0 20px; text-align:center; box-sizing: border-box;">
+        <!-- Title -->
+        <h2 class="du-title" style="margin-bottom:50px !important;">
+            What <span>Drives</span> Us
+        </h2>
+
+        <!-- Boxes Grid -->
+        <div class="du-grid" style="margin-top:0px;">
+            <div class="du-card-large" style="background:#AF32B1CC; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing: border-box;">
+                <h3 style="margin:0; font-size:42px; font-weight:800; font-family: 'Outfit', sans-serif; line-height: 1.2; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.15); text-transform: uppercase;">OUR<br>VALUES</h3>
+            </div>
+
+            <div class="du-card" style="background:#613DC1; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing: border-box;">
+                <h3 style="margin:0; font-size:28px; font-weight:800; font-family: 'Outfit', sans-serif; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.1); text-transform: uppercase;">TRANSPARENCY FIRST</h3>
+                <p style="margin:12px auto 0 auto; font-size:16px; line-height:1.5; font-weight:400; color:#ffffff !important; max-width:85%;">We believe clarity builds trust.</p>
+            </div>
+
+            <div class="du-card" style="background:#AF32B1B3; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing: border-box;">
+                <h3 style="margin:0; font-size:28px; font-weight:800; font-family: 'Outfit', sans-serif; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.1); text-transform: uppercase;">MADE FOR INDIA</h3>
+                <p style="margin:12px auto 0 auto; font-size:16px; line-height:1.5; font-weight:400; color:#ffffff !important; max-width:85%;">An Indian homegrown SaaS for Indian businesses.</p>
+            </div>
+
+            <div class="du-card" style="background:#613DC1B3; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing: border-box;">
+                <h3 style="margin:0; font-size:28px; font-weight:800; font-family: 'Outfit', sans-serif; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.1); text-transform: uppercase;">CUSTOMER-CENTRIC</h3>
+                <p style="margin:12px auto 0 auto; font-size:16px; line-height:1.5; font-weight:400; color:#ffffff !important; max-width:85%;">Our users' growth defines our success.</p>
+            </div>
+
+            <div class="du-card" style="background:#AF32B1; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing: border-box;">
+                <h3 style="margin:0; font-size:28px; font-weight:800; font-family: 'Outfit', sans-serif; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.1); text-transform: uppercase;">DATA WITH PURPOSE</h3>
+                <p style="margin:12px auto 0 auto; font-size:16px; line-height:1.5; font-weight:400; color:#ffffff !important; max-width:85%;">Insights should empower action, not overwhelm.</p>
+            </div>
+
+            <div class="du-card" style="background:#613DC1CC; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing: border-box;">
+                <h3 style="margin:0; font-size:28px; font-weight:800; font-family: 'Outfit', sans-serif; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.1); text-transform: uppercase;">CONTINUOUS INNOVATION</h3>
+                <p style="margin:12px auto 0 auto; font-size:16px; line-height:1.5; font-weight:400; color:#ffffff !important; max-width:85%;">From reports to AI-driven tools, we evolve with businesses.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ Meet Our Team (Auto-scroll on mobile, static on web) ============ -->
+    <section class="tofler-team-section" aria-labelledby="team-heading">
+        <div class="tofler-team-inner">
+            <h2 id="team-heading">Meet Our <span style="color:#AF32B1;">Team</span></h2>
+            <p class="lead">Behind Tofler is a team of experts dedicated to data engineering, business intelligence, and your ongoing success. We believe powerful data shouldn't be complicated, so we work every day to turn complex numbers into the simple, actionable steps that move your business forward.</p>
+
+            <div class="scroll-wrapper" aria-hidden="false">
+                <div class="tofler-cards" id="teamScroller">
+                    <!-- Card 1 -->
+                    <article class="tofler-card" role="group" aria-label="Anchal Agarwal — Co-Founder and CEO">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/1766386611595.jpg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Anchal Agarwal</h3>
+                                <div class="tofler-role">Co-Founder &amp; CEO</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/anchal-agarwal-24ba642a/" target="_blank" rel="noopener noreferrer" aria-label="Open Anchal Agarwal LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="tofler-card" role="group" aria-label="Parijat Garg — Co-Founder">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/1754838032070.jpg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Parijat Garg</h3>
+                                <div class="tofler-role">Co-Founder</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/parijatgarg/" target="_blank" rel="noopener noreferrer" aria-label="Open Parijat Garg LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="tofler-card" role="group" aria-label="Mahesh Lamb — Head of Operations">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/1560857496484.jpg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Mahesh Lamb</h3>
+                                <div class="tofler-role">Head of Operations</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/mahesh-lamb-6bb35915b/" target="_blank" rel="noopener noreferrer" aria-label="Open Mahesh Lamb LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="tofler-card" role="group" aria-label="Sayan Ghosh — Marketing Manager">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/03/Make_this_a_202603251659.jpeg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Sayan Ghosh</h3>
+                                <div class="tofler-role">Marketing Manager</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/sayan-ghosh-844524151/" target="_blank" rel="noopener noreferrer" aria-label="Open Sayan Ghosh LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="tofler-card" role="group" aria-label="Kathyayini Patha — Collaboration Lead">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/1566451432400.jpg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Kathyayini Patha</h3>
+                                <div class="tofler-role">Collaboration Lead</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/kathyayini-patha-22b285a/" target="_blank" rel="noopener noreferrer" aria-label="Open Kathyayini Patha LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="tofler-card" role="group" aria-label="Deepa Yadav — Business Development Executive">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/1721195387541.jpg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Deepa Yadav</h3>
+                                <div class="tofler-role">Business Development Executive</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/deepa-yadav-b5ba491b3/" target="_blank" rel="noopener noreferrer" aria-label="Open Deepa Yadav LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 7 -->
+                    <article class="tofler-card" role="group" aria-label="Bhagat Singh — Operations Associate">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/BHAGAT-SINGH.jpg.jpeg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Bhagat Singh</h3>
+                                <div class="tofler-role">Operations Associate</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/bhagat-singh-5b5467296/" target="_blank" rel="noopener noreferrer" aria-label="Open Bhagat Singh LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 8 -->
+                    <article class="tofler-card" role="group" aria-label="Mohd Ashif Ali — Operations Associate">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-20-at-13.22.53-1.jpeg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Mohd Ashif Ali</h3>
+                                <div class="tofler-role">Operations Associate</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/mohd-ashif-ali-899701165/" target="_blank" rel="noopener noreferrer" aria-label="Open Mohd Ashif Ali LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 9 -->
+                    <article class="tofler-card" role="group" aria-label="Manisha Goyal — Office Manager">
+                        <div class="tofler-photo" style="background-image:url('https://get.tofler.in/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-20-at-10.48.13-1.jpeg');" aria-hidden="true"></div>
+                        <div class="tofler-meta">
+                            <div class="meta-left">
+                                <h3 class="tofler-name">Manisha Goyal</h3>
+                                <div class="tofler-role">Office Manager</div>
+                            </div>
+                            <a class="tofler-linkedin" href="https://www.linkedin.com/in/manisha-goyal-6921a1313/" target="_blank" rel="noopener noreferrer" aria-label="Open Manisha Goyal LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <!-- Left Content -->
+            <div class="team-left">
+                <h2><span style="color:#AF32B1;">Join Us</span> On This Journey</h2>
+                <p>
+                    If you’re someone who thrives on solving complex problems, enjoys building products that matter, and wants to be part of a Made-in-India success story, we’d love to hear from you.
+                </p>
+                <a href="mailto:hiring@tofler.in?subject=Interested%20in%20working%20with%20Tofler&body=Hi%20Team%2C%0D%0A%0D%0AI%20am%20interested%20in%20working%20with%20Tofler.%20I%20would%20love%20to%20explore%20any%20suitable%20opportunities%20where%20I%20can%20contribute%20to%20the%20team.%0D%0A%0D%0APlease%20let%20me%20know%20if%20there%20are%20any%20open%20roles%20or%20if%20I%20can%20share%20my%20resume%20for%20your%20consideration.%0D%0A%0D%0ARegards%2C%0D%0A%5BYour%20Name%5D" class="team-btn">Join Our Team</a>
+            </div>
+
+            <!-- Right Team Cards -->
+            <div class="team-right">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/09/boy_6247196.webp" alt="Avatar">
+                    </div>
+                    <div class="team-info">
+                        <p>Customer Success Manager</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/09/woman_6714055.webp" alt="Avatar">
+                    </div>
+                    <div class="team-info">
+                        <p>Sales Associate</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/09/gamer_4333658.webp" alt="Avatar">
+                    </div>
+                    <div class="team-info">
+                        <p>Software Engineer</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://get.tofler.in/wp-content/uploads/2025/09/kid_5294569.webp" alt="Avatar">
+                    </div>
+                    <div class="team-info">
+                        <p>Business Analyst</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Popup -->
+    <div id="jobPopup" class="popup-overlay">
+        <div class="popup-card">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h2>Apply Now</h2>
+            <form id="jobForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone" required>
+                <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                <button type="submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loader Popup -->
+    <div id="loaderPopup" class="success-overlay">
+        <div class="success-card">
+            <div class="loader"></div>
+            <p style="font-weight:600; color:#475569; margin: 0;">Submitting...</p>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="successPopup" class="success-overlay">
+        <div class="success-card">
+            <img src="https://cdn2.iconfinder.com/data/icons/greenline/512/check-512.png" alt="Success" class="success-image">
+            <h2>Submission Successful</h2>
+            <p style="color:#64748b; line-height: 1.5; font-size:15px; margin: 0 0 10px 0;">Thank you for submitting your application. We will contact you soon.</p>
+            <button onclick="closeSuccess()">Done</button>
+        </div>
+    </div>
+
+    <footer class="footer_wrapper hide-on-print">
+        <div class="container text-white">
+            <div class="footer_container">
+                <!-- Brand & Help -->
+                <div class="flex-col gap-32">
+                    <img class="logo" src="https://get.tofler.in/wp-content/uploads/2026/03/Untitled-design-27.png" alt="Tofler Logo" style="width: 140px; height: auto;">
+                    <p class="text-sm font-light footer_desc">All trademarks, service marks, trade names and logos appearing on the site are the property of their respective owners.</p>
+                    <div class="flex-col gap-4 font-regular">
+                        <p class="text-sm">Need any help? Email us at:</p>
+                        <p class="text-sm" style="color: #ffffff; font-weight: 600;">support@tofler.in</p>
+                    </div>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="flex" style="gap: 60px; justify-content: flex-start;">
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">QUICK LINKS</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/about">About us</a></li>
+                            <li><a href="https://www.tofler.in/blog">Blogs</a></li>
+                            <li><a href="https://www.tofler.in/industry-reports">Industry Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-col gap-24" style="margin-left: 5px;">
+                        <h3 class="text-white text-md">LEGAL</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/tos">Terms</a></li>
+                            <li><a href="https://www.tofler.in/privacy">Privacy</a></li>
+                            <li><a href="https://www.tofler.in/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Details & Social -->
+                <div class="flex-col gap-32">
+                    <div class="font-regular flex-col gap-4 text-sm" style="color: #ffffff;">
+                        <p>TWS Systems Private Limited (Tofler)</p>
+                        <p>Gurgaon, Haryana - 122002</p>
+                        <p>(CIN: U72502DL2013PTC261372)</p>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">FOLLOW US ON:</h3>
+                        <div class="flex gap-24">
+                            <a href="https://www.facebook.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9a5 5 0 0 1 5-5h3v3h-2c-1.1 0-2 .9-2 2v2h4l-1 3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tofler/" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@tofler8107" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C1 8.1 1 12 1 12s0 3.9.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C23 15.9 23 12 23 12s0-3.9-.46-5.58zM9.54 15.22V8.78L15.3 12l-5.76 3.22z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container pb-40">
+            <div class="low_footer text-sm" style="justify-content: center;">
+                <p style="margin: 0;">© TWS Systems Private Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox Overlay -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <button class="close-lightbox">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <img id="lightbox-img" class="lightbox-image" src="" alt="Zoomed Screenshot">
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="reg-modal" class="modal-overlay" onclick="handleOverlayClick(event)">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div id="modal-body">
+                <h2 class="modal-heading">Register for ToflerGPT Webinar</h2>
+                <p class="modal-subheading">Fill in your details below to secure your spot.</p>
+                
+                <form id="reg-form" onsubmit="submitRegistration(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-name">NAME *</label>
+                        <input type="text" id="reg-name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="reg-email">EMAIL ID *</label>
+                        <input type="email" id="reg-email" class="form-input" placeholder="name@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reg-phone">WHATSAPP NUMBER</label>
+                        <input type="tel" id="reg-phone" class="form-input" value="+91 " placeholder="+91 98765 43210">
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="submit-btn">Complete Registration</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('active');
+        }
+
+        function openModal() {
+            document.getElementById('reg-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            document.getElementById('reg-modal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        function handleOverlayClick(e) {
+            if (e.target.className === 'modal-overlay') {
+                closeModal();
+            }
+        }
+
+        async function submitRegistration(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<svg style="width:20px; height:20px; animation:spin 1s linear infinite; display:inline-block; vertical-align:middle; margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path></svg> Processing...';
+            btn.disabled = true;
+
+            const name = document.getElementById('reg-name').value;
+            let phone = document.getElementById('reg-phone').value.trim();
+            const email = document.getElementById('reg-email').value;
+
+            // Simple but robust email regex: something@something.something
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address (e.g., name@domain.com)");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return;
+            }
+
+            // If phone is empty or only contains the +91 prefix, send NA
+            if (!phone || phone === "+91") {
+                phone = "NA";
+            }
+
+            try {
+                const url = `https://n8n.srv846064.hstgr.cloud/webhook/toflergpt_webinar?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`;
+                
+                // Using mode: 'no-cors' since webhooks often don't return JSON/headers back
+                await fetch(url, { method: 'GET', mode: 'no-cors' });
+                
+                // Show Success Message
+                document.getElementById('modal-body').innerHTML = `
+                    <div style="text-align: center; padding: 20px 0;">
+                        <div style="background-color: #DCFCE7; color: #166534; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <h2 style="font-size: 24px; font-weight: 700; color: #0F172A; margin-bottom: 12px; font-family: 'Outfit', sans-serif;">Registration Successful!</h2>
+                        <p style="color: #64748B; font-size: 16px; margin-bottom: 32px;">You're all set! We’ve sent a confirmation to your email. See you at the webinar.</p>
+                        <button onclick="closeModal()" class="submit-btn" style="background-color: #0F172A;">Close</button>
+                    </div>
+                `;
+            } catch (err) {
+                console.error('Registration error:', err);
+                alert("Success! Your registration has been received.");
+                closeModal();
+            }
+        }
+
+        // Setup Share Links
+        document.addEventListener('DOMContentLoaded', () => {
+            const staticUrl = "https://get.tofler.in/webinar-toflergpt";
+            const url = encodeURIComponent(staticUrl);
+            const title = encodeURIComponent("Meet ToflerGPT: The Future of Business Intelligence");
+            
+            document.getElementById('share-wa').href = `https://wa.me/?text=${title}%20${url}`;
+            document.getElementById('share-email').href = `mailto:?subject=${title}&body=Register%20here:%20${url}`;
+            document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            slidesPerView: 4,
+            spaceBetween: 24,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                480: { slidesPerView: 2, spaceBetween: 15 },
+                768: { slidesPerView: 3, spaceBetween: 20 },
+                1024: { slidesPerView: 4, spaceBetween: 24 }
+            }
+        });
+
+        // Lightbox Functions
+        function openLightbox(slide) {
+            const img = slide.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = img.src;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            swiper.autoplay.stop();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            swiper.autoplay.start();
+        }
+
+        // Infinite scroll is now powered purely by CSS marquee animation for maximum performance
+
+        // Fade-in effect on scroll for timeline items
+        document.addEventListener("DOMContentLoaded", function () {
+            const timelineItems = document.querySelectorAll(".timeline-item");
+            
+            // Immediately show first few items on load for a premium feel
+            setTimeout(() => {
+                for (let i = 0; i < Math.min(2, timelineItems.length); i++) {
+                    timelineItems[i].classList.add("visible");
+                }
+            }, 300);
+
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -60px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+
+        // Turning Complexity Into Clarity Slider Script
+        document.addEventListener("DOMContentLoaded", function () {
+            const section = document.querySelector(".clarity-section");
+            if (!section) return;
+
+            const slides = Array.from(section.querySelectorAll(".card"));
+            const prevBtn = section.querySelector(".clarity-prev");
+            const nextBtn = section.querySelector(".clarity-next");
+            const dotsWrap = section.querySelector(".dots");
+
+            // Build dots
+            dotsWrap.innerHTML = "";
+            slides.forEach((_, i) => {
+                const b = document.createElement("button");
+                b.type = "button";
+                b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                b.addEventListener("click", () => goTo(i));
+                dotsWrap.appendChild(b);
+            });
+            const dots = Array.from(dotsWrap.querySelectorAll("button"));
+
+            let index = 0;
+
+            function showCard(i) {
+                slides.forEach((slide, j) => {
+                    slide.style.display = (j === i) ? "block" : "none";
+                });
+                dots.forEach((d, j) => d.classList.toggle("active", j === i));
+            }
+
+            function goTo(i) {
+                if (i < 0) i = slides.length - 1;
+                if (i >= slides.length) i = 0;
+                index = i;
+                showCard(index);
+            }
+
+            if (prevBtn) prevBtn.addEventListener("click", () => goTo(index - 1));
+            if (nextBtn) nextBtn.addEventListener("click", () => goTo(index + 1));
+
+            // Check screen size on load/resize
+            function initLayout() {
+                if (window.innerWidth > 768) {
+                    slides.forEach(slide => slide.style.display = "block"); // show all
+                    dotsWrap.style.display = "none"; // hide dots
+                    if (prevBtn) prevBtn.style.display = "none";
+                    if (nextBtn) nextBtn.style.display = "none";
+                } else {
+                    showCard(index); // show only current card
+                    dotsWrap.style.display = "block";
+                    if (prevBtn) prevBtn.style.display = "flex";
+                    if (nextBtn) nextBtn.style.display = "flex";
+                }
+            }
+
+            // Run once on load
+            initLayout();
+
+            // Run again on resize
+            window.addEventListener("resize", initLayout);
+        });
+
+        // Case Studies Tab Switcher Script
+        function csShow(key) {
+            var ids = ['team', 'ratnabali', 'shipyaari', 'live', 'ramsons'];
+            ids.forEach(function (k) {
+                var p = document.getElementById('panel-' + k);
+                if (p) { p.style.display = (k === key) ? 'block' : 'none'; }
+            });
+            ids.forEach(function (k) {
+                var b = document.getElementById('btn-' + k);
+                if (!b) return;
+                if (k === key) {
+                    b.style.background = '#613DC1';
+                    b.style.color = '#fff';
+                    b.style.fontWeight = '700';
+                    b.style.boxShadow = '0 4px 15px rgba(97, 61, 193, 0.2)';
+                } else {
+                    b.style.background = '#F2EEFF';
+                    b.style.color = '#1f1f1f';
+                    b.style.fontWeight = '600';
+                    b.style.boxShadow = 'none';
+                }
+            });
+        }
+
+        // Meet Our Team Auto-scroll Script
+        document.addEventListener("DOMContentLoaded", function () {
+            const wrapper = document.querySelector('.scroll-wrapper');
+            if (!wrapper) return;
+            const scroller = wrapper.querySelector('.tofler-cards');
+            if (!scroller) return;
+            const originalCards = Array.from(scroller.children);
+
+            let rafId = null;
+            const speed = 0.65; // Ultra-smooth scrolling speed
+
+            function step() {
+                wrapper.scrollLeft += speed;
+                const halfScroll = scroller.scrollWidth / 2;
+                if (wrapper.scrollLeft >= halfScroll) {
+                    wrapper.scrollLeft = 0;
+                }
+                rafId = requestAnimationFrame(step);
+            }
+
+            function start() {
+                if (!rafId) step();
+            }
+            function stop() {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+            }
+
+            function initScroll() {
+                // Clear and append original cards
+                scroller.innerHTML = '';
+                originalCards.forEach(c => scroller.appendChild(c.cloneNode(true)));
+
+                // Duplicate the entire set of cards to guarantee seamless infinite scroll on all resolutions
+                originalCards.forEach(c => scroller.appendChild(c.cloneNode(true)));
+
+                // Always start scrolling across all screen widths (desktop & mobile)
+                start();
+            }
+
+            // Run on load
+            initScroll();
+
+            window.addEventListener('resize', initScroll);
+
+            // Desktop Hover interactions: pause on enter, resume on leave
+            wrapper.addEventListener('mouseenter', stop);
+            wrapper.addEventListener('mouseleave', start);
+
+            // Mobile Touch interactions
+            wrapper.addEventListener('touchstart', stop, { passive: true });
+            wrapper.addEventListener('touchend', start);
+
+            // Page Focus/Blur resilience
+            window.addEventListener('blur', stop);
+            window.addEventListener('focus', start);
+        });
+
+        // Join Our Team Popup Logic
+        function openPopup() {
+            document.getElementById("jobPopup").style.display = "flex";
+        }
+        
+        function closePopup() {
+            document.getElementById("jobPopup").style.display = "none";
+        }
+        
+        function closeSuccess() {
+            document.getElementById("successPopup").style.display = "none";
+        }
+
+        // Handle form submission via AJAX
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("jobForm");
+            if (form) {
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(this);
+
+                    // hide form popup & show loader
+                    document.getElementById("jobPopup").style.display = "none";
+                    document.getElementById("loaderPopup").style.display = "flex";
+
+                    fetch("https://script.google.com/macros/s/AKfycbwijIpfdPnNRPaKWNthHojq4_Vjo1_IkHuwWCDM2EM61iPY3jKLX8r_z-EQJIih66Y_/exec", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(res => res.text())
+                    .then(() => {
+                        // hide loader, show success
+                        document.getElementById("loaderPopup").style.display = "none";
+                        document.getElementById("successPopup").style.display = "flex";
+                        form.reset(); // clear fields
+                    })
+                    .catch(() => {
+                        document.getElementById("loaderPopup").style.display = "none";
+                        alert("Something went wrong. Please try again.");
+                    });
+                });
+            }
+        });
+        // Premium 3-Card Auto-Advancing Horizontal Slideshow Timeline Controller
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector('.timeline-slideshow-container');
+            const track = document.querySelector('.timeline-slideshow-track');
+            if (!container || !track) return;
+
+            const items = Array.from(track.children);
+            const gap = 30; // gap matching CSS
+            let currentIndex = 0;
+            const totalItems = items.length; // 9 steps
+            let visibleCount = 3;
+
+            function calculateLayout() {
+                const containerWidth = container.clientWidth;
+                if (window.innerWidth <= 768) {
+                    visibleCount = 1;
+                } else if (window.innerWidth <= 991) {
+                    visibleCount = 2;
+                } else {
+                    visibleCount = 3;
+                }
+
+                // Dynamically size each card to fit the viewport perfectly
+                const gapsTotal = gap * (visibleCount - 1);
+                const itemWidth = (containerWidth - gapsTotal) / visibleCount;
+
+                items.forEach(item => {
+                    item.style.width = `${itemWidth}px`;
+                });
+
+                updateSlide(false); // slide without transition on resize
+            }
+
+            function updateSlide(useTransition = true) {
+                const containerWidth = container.clientWidth;
+                const gapsTotal = gap * (visibleCount - 1);
+                const itemWidth = (containerWidth - gapsTotal) / visibleCount;
+
+                track.style.transition = useTransition ? "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)" : "none";
+                const translateAmount = currentIndex * (itemWidth + gap);
+                track.style.transform = `translate3d(-${translateAmount}px, 0, 0)`;
+            }
+
+            function nextSlide() {
+                const maxIndex = totalItems - visibleCount;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // seamless loop back to start
+                }
+                updateSlide(true);
+            }
+
+            // Calculate initial layout
+            calculateLayout();
+            window.addEventListener('resize', calculateLayout);
+
+            // Auto advance slide every 2000ms (2 seconds auto-advance animation)
+            let slideInterval = setInterval(nextSlide, 2000);
+
+            // Pause slideshow on mouse enter, resume on mouse leave
+            container.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            container.addEventListener('mouseleave', () => {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 2000);
+            });
+
+            // Manual toggle control click event listeners
+            const prevBtn = document.querySelector('.roadmap-wrapper .prev-btn');
+            const nextBtn = document.querySelector('.roadmap-wrapper .next-btn');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    } else {
+                        const maxIndex = totalItems - visibleCount;
+                        currentIndex = maxIndex; // loop back to end
+                    }
+                    updateSlide(true);
+                    slideInterval = setInterval(nextSlide, 2000);
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    nextSlide();
+                    slideInterval = setInterval(nextSlide, 2000);
+                });
+            }
+
+            // Touch support for mobile devices
+            let startX = 0;
+            container.addEventListener('touchstart', (e) => {
+                clearInterval(slideInterval);
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            container.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                const maxIndex = totalItems - visibleCount;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0 && currentIndex < maxIndex) {
+                        currentIndex++;
+                    } else if (diff < 0 && currentIndex > 0) {
+                        currentIndex--;
+                    }
+                    updateSlide(true);
+                }
+                slideInterval = setInterval(nextSlide, 5500);
+            });
+        });
+    </script>
+    <style>
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</body>
+</html>

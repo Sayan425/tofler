@@ -1,0 +1,3769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tofler: Ecommerce Benchmarking Report</title>
+    <link rel="icon" type="image/png" href="https://get.tofler.in/wp-content/uploads/2025/08/faviconlogo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1440px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        .logo {
+            height: 52px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-left-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-item {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #5E3BE1;
+        }
+
+        .nav-link-outline {
+            color: #5E3BE1;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 1px solid #5E3BE1;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-outline:hover {
+            background-color: rgba(94, 59, 225, 0.05);
+        }
+
+        .nav-btn-solid {
+            background-color: #5E3BE1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-solid:hover {
+            background-color: #4b2eb5;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #5E3BE1;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 24px 0 0 0;
+        }
+
+        .hero-card {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            gap: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            flex: 0 0 45%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hero-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #E2E8F0;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+
+        .hero-date {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: 0px;
+        }
+
+        .hero-button {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        /* SHARE SECTION */
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .share-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #F1F5F9;
+            color: #475569;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .share-icon-btn:hover {
+            background-color: #E2E8F0;
+            color: #5E3BE1;
+            transform: translateY(-2px);
+        }
+
+        .share-icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-button:hover {
+            background-color: #333;
+        }
+
+        /* MOBILE DROPDOWN */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 16px 40px;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 992px) {
+
+            .nav-right-group .nav-item,
+            .nav-right-group .nav-link-outline,
+            .nav-right-group .nav-btn-solid {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar .container {
+                padding: 0 20px;
+            }
+
+            .hero-card {
+                flex-direction: column;
+                gap: 32px;
+                padding: 24px;
+            }
+
+            .hero-image-wrapper {
+                flex: 0 0 100%;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+
+        /* INFO SECTION STYLES */
+        .info-section {
+            padding: 24px 0 24px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .about-headline {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 32px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 24px;
+        }
+
+        .highlight-text {
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .speaker-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            height: fit-content;
+            background: linear-gradient(135deg, #ffffff 0%, #FAFAFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .speaker-heading-icon {
+            width: 16px;
+            height: 16px;
+            color: #5E3BE1;
+        }
+
+        .speaker-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #F1F5F9;
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 24px;
+        }
+
+        .speaker-linkedin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #5E3BE1;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 20px;
+            background-color: rgba(94, 59, 225, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .speaker-linkedin:hover {
+            background-color: rgba(94, 59, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-box {
+                padding: 32px 24px;
+            }
+        }
+
+        .action-container {
+            margin-top: 24px;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 10px 0 40px 0;
+        }
+
+        .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.02);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #5E3BE1 !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #5E3BE1 !important;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* LIGHTBOX STYLES */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-lightbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* FOOTER STYLES */
+        .footer_wrapper {
+            background-color: #27184F;
+            padding: 80px 0 40px 0;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .footer_wrapper .container {
+            display: block !important;
+            max-width: 1500px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 18px !important;
+        }
+
+
+        .footer_container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .flex-col { display: flex; flex-direction: column; }
+        .flex { display: flex; }
+        .gap-4 { gap: 4px; }
+        .gap-8 { gap: 8px; }
+        .gap-24 { gap: 24px; }
+        .gap-32 { gap: 32px; }
+        .gap-80 { gap: 80px; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+
+        .footer_desc {
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer_wrapper p {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-dark { color: #0F172A; }
+        .font-light { font-weight: 300; }
+        .font-regular { font-weight: 400; }
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 18px; font-weight: 700; }
+
+        .footer_wrapper a {
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer_wrapper a:hover {
+            color: #ffffff !important;
+            opacity: 0.8;
+        }
+
+        .low_footer {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #0F172A;
+            font-weight: 600;
+        }
+
+        .low_footer p {
+            color: #0F172A !important;
+        }
+
+        @media (max-width: 992px) {
+            .footer_container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .low_footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        .footer_social_icon {
+            width: 24px;
+            height: 24px;
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            transition: opacity 0.2s;
+        }
+
+        .footer_social_icon:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #475569;
+        }
+
+        .modal-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0F172A;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+        }
+
+        .modal-subheading {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #334155;
+            letter-spacing: 0.2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background-color: #F8FAFC;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #5E3BE1;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(94, 59, 225, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #5E3BE1;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #4b2eb5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:disabled {
+            background-color: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+
+        :root {
+            --primary: #613dc1;
+            --secondary: #dbd4ee;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        .report-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+
+        .report-content h1,
+        .report-content h2,
+        .report-content h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #0F172A;
+        }
+
+        .report-content h1 {
+            font-size: 32px;
+            margin-top: 24px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        .report-content h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        .report-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .report-content ul:not(.company-list) {
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .report-content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .report-img {
+            width: 100%;
+            margin: 40px 0;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        /* Grid layout for companies to save vertical space */
+        .company-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .company-list li {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 0 !important;
+        }
+
+        .company-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: var(--secondary);
+        }
+
+        .company-list .title-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .company-list h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F172A;
+            line-height: 1.4;
+        }
+
+        .company-list .index {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .company-list .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .comp-cin {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .comp-link {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .comp-link:hover {
+            text-decoration: underline;
+            color: #4f30a0;
+        }
+
+
+        /* Tofler Table Style updated */
+        .table-wrapper {
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.03));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 32px 0;
+            background: #fff;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tofler-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .tofler-table th,
+        .tofler-table td {
+            padding: 16px 20px;
+            font-weight: 400 !important;
+        }
+
+        .tofler-table th {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 600 !important;
+            font-size: 15px;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .tofler-table th:first-child {
+            text-align: left;
+        }
+
+        .tofler-table td:first-child {
+            text-align: left;
+            color: #334155;
+        }
+
+        .tofler-table td {
+            color: #1e293b;
+            border: none;
+        }
+
+        .tofler-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .tofler-table tr:nth-child(odd) {
+            background-color: #f7f5fb;
+        }
+
+        /* Plain Table for text heavy sections */
+        .plain-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            white-space: normal;
+        }
+
+        .plain-table th,
+        .plain-table td {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .plain-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+            border-bottom: 2px solid var(--border);
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .plain-table td {
+            font-weight: 400;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .plain-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .plain-table tr:nth-child(odd) {
+            background-color: #f7f5fb;
+        }
+
+        /* Desktop-specific table name wrapping fix */
+        @media (min-width: 769px) {
+            .tofler-table td:first-child {
+                white-space: normal !important;
+                min-width: 250px;
+            }
+        }
+
+
+        /* Responsive Toggle Logic for Desktop and Mobile */
+        .expandable-list:not(.expanded) li:nth-child(n+7) {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .expandable-list:not(.expanded) li:nth-child(n+4) {
+                display: none !important;
+            }
+        }
+
+        .expandable-table:not(.expanded) tr:nth-child(n+12) {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .expandable-table:not(.expanded) tr:nth-child(n+7) {
+                display: none !important;
+            }
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-top: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+            margin-top: -16px;
+            margin-bottom: 24px;
+        }
+
+        .toggle-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .table-wrapper .toggle-btn {
+            margin-top: 0;
+            margin-bottom: 0;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .view-all-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+        }
+
+        .view-all-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .hero-banner {
+            position: relative;
+            padding: 120px 20px;
+            text-align: center;
+            color: #fff;
+            background-image: url('https://get.tofler.in/wp-content/uploads/2026/04/Ecommerce-5.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(97, 61, 193, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(219, 212, 238, 0.95);
+            color: #5e3be1;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-banner h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-banner p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            color: #ffffff;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            font-weight: 500;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #4f30a0;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
+
+        /* Highlights Component */
+        strong.hl {
+            color: #0f172a;
+            font-weight: 700;
+            background: none;
+            padding: 0;
+        }
+
+        /* Mobile Responsiveness Rules */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-banner {
+                padding: 60px 16px 50px;
+            }
+
+            .hero-tag {
+                font-size: 11px;
+                padding: 6px 12px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                line-height: 1.4;
+                letter-spacing: 0.5px;
+                max-width: 95%;
+            }
+
+            .hero-banner h1 {
+                font-size: 30px;
+                margin-bottom: 16px;
+                line-height: 1.3;
+            }
+
+            .hero-banner p {
+                font-size: 16px;
+                margin-bottom: 24px;
+                padding: 0 4px;
+            }
+
+            .hero-p-desktop {
+                display: none !important;
+            }
+
+            .hero-p-mobile {
+                display: block !important;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .report-content {
+                padding: 30px 16px;
+            }
+
+            .report-content h1 {
+                font-size: 24px;
+                margin-top: 32px;
+                margin-bottom: 16px;
+                border-bottom-width: 2px;
+            }
+
+            .report-content h2 {
+                font-size: 20px;
+                margin-top: 24px;
+                margin-bottom: 12px;
+            }
+
+            .report-content p,
+            .report-content li {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .tofler-table th,
+            .tofler-table td,
+            .plain-table th,
+            .plain-table td {
+                padding: 12px 10px;
+                font-size: 13px !important;
+            }
+
+            .tofler-table th,
+            .plain-table th {
+                font-size: 12px !important;
+            }
+
+            .tofler-table td:first-child {
+                min-width: 150px;
+                white-space: normal;
+            }
+
+            .company-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin: 16px 0;
+            }
+
+            .company-list li {
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .footer_container {
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .company-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-banner h1 {
+                font-size: 26px;
+            }
+
+            .report-content h1 {
+                font-size: 22px;
+            }
+
+            .report-content h2 {
+                font-size: 18px;
+            }
+
+            .btn-primary {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+
+            .tofler-table td,
+            .tofler-table th {
+                padding: 10px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .logo {
+                height: 40px;
+            }
+
+            .hero-banner {
+                padding: 50px 12px 40px;
+            }
+
+            .hero-banner h1 {
+                font-size: 24px;
+            }
+
+            .report-content h1 {
+                font-size: 20px;
+            }
+
+            .report-content p,
+            .report-content li {
+                font-size: 14px;
+            }
+
+            .footer_wrapper {
+                padding: 40px 0 20px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left-group">
+                <a href="https://www.tofler.in/">
+                    <img src="https://get.tofler.in/wp-content/uploads/2025/11/Untitled-design-15-1.jpg"
+                        alt="Tofler Logo" class="logo">
+                </a>
+            </div>
+
+            <div class="nav-right-group">
+                <a href="https://tofler.in/our-story" class="nav-item">Our Story</a>
+                <a href="https://www.tofler.in/benefits" class="nav-item">Benefits</a>
+                <a href="https://www.tofler.in/price-and-plans" class="nav-link-outline">See Price & Plans</a>
+                <a href="https://www.tofler.in/login" class="nav-btn-solid">Login</a>
+                <button class="menu-toggle" onclick="toggleMobileNav()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="https://tofler.in/our-story" class="nav-item" style="display: block;">Our Story</a>
+            <a href="https://www.tofler.in/benefits" class="nav-item" style="display: block;">Benefits</a>
+            <a href="https://www.tofler.in/price-and-plans" class="nav-item" style="display: block;">See Price &
+                Plans</a>
+            <a href="https://www.tofler.in/login" class="nav-item" style="display: block;">Login</a>
+        </div>
+    </nav>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <div class="hero-tag">A Five-Year Financial Benchmarking Study</div>
+            <h1>Digital Retail India 2026</h1>
+            <p class="hero-p-desktop">Assessing Top 30 E-Commerce Leaders Shaping the Next Decade</p>
+            <p class="hero-p-mobile" style="display: none;">Assessing Top 30 E-Commerce Leaders Shaping the Next Decade
+            </p>
+            <a href="https://get.tofler.in/wp-content/uploads/2026/04/Digital-Retail-India-2026.pdf" target="_blank"
+                class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+        </div>
+    </div>
+
+    <div class="report-content">
+
+        <h1>1. Executive Summary</h1>
+        <p>India’s e-commerce sector has transformed from discretionary online retail to a core pillar of India’s
+            consumption economy, driven by mass digitization, expanding logistics networks, and rising consumer trust.
+            The sector contributes significantly to GDP growth, catalyzes formalization of retail, and supports millions
+            of jobs across warehousing, logistics, tech development, and MSME supply chains.</p>
+        <p>Our analysis of <b>30 leading e-commerce companies</b> indicates a period of explosive scale growth
+            accompanied by significant profitability turnaround in FY24–FY25. The sector continues to invest
+            aggressively in technology, fulfillment capacity, and supply chain infrastructure, driving strong balance
+            sheet expansion and rising capital intensity.</p>
+
+        <h2>Revenue and Profit Trends</h2>
+        <ul>
+            <li>Sector revenue grew steadily by <strong class="hl">₹72,273 crore over five years (₹47,576 crore in FY21
+                    to ₹1,19,849 crore in FY25)</strong>, reflecting strong scale-up with a ~25.9% 5-year CAGR.</li>
+            <li>Operating performance showed a sharp turnaround, from a loss of <strong class="hl">₹8,516 crore in FY21
+                    to a positive ₹2,389 crore in FY25</strong>, indicating improving cost control and scale
+                efficiencies.</li>
+            <li>Net losses, while still present, reduced significantly from a peak of <strong class="hl">₹15,417 crore
+                    in FY22 to ₹6,358 crore in FY25</strong>, signalling a clear path toward profitability.</li>
+            <li>Borrowings increased from <strong class="hl">₹6,825 crore to ₹11,900 crore</strong> (~14.9% CAGR),
+                reflecting moderate leverage to support expansion rather than aggressive debt loading.</li>
+            <li>Total assets expanded by <strong class="hl">₹55,028 crore (₹48,378 crore → ₹1,03,406 crore)</strong>,
+                growing at a strong ~20.9% CAGR, driven by investments in infrastructure, logistics, and platform
+                capabilities.</li>
+            <li>Net worth more than doubled from <strong class="hl">₹18,465 crore to ₹41,448 crore</strong> (~22.4%
+                CAGR), indicating sustained equity infusion and investor confidence in long-term growth.</li>
+            <li>Employee costs and operating overheads remained elevated, reflecting continued investments in talent,
+                supply chain, and customer experience to support scale.</li>
+            <li>Operating margin improved significantly from <strong class="hl">-18.68% in FY22 to +1.99% in
+                    FY25</strong>, highlighting strong operating leverage kicking in with scale.</li>
+            <li>Net margins, though still negative, improved steadily from <strong class="hl">-23.71% in FY21 to -5.31%
+                    in FY25</strong>, indicating disciplined cost management and improving unit economics.</li>
+            <li>Overall, the sector is transitioning from a high-growth, loss-making phase to a more sustainable,
+                efficiency-driven growth model.</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>47,576</td>
+                    <td>68,648</td>
+                    <td>88,525</td>
+                    <td>104,239</td>
+                    <td>119,849</td>
+                </tr>
+                <tr>
+                    <td>Operating profit</td>
+                    <td>-8,516</td>
+                    <td>-12,824</td>
+                    <td>-10,221</td>
+                    <td>-2,070</td>
+                    <td>2,389</td>
+                </tr>
+                <tr>
+                    <td>Net profit</td>
+                    <td>-11,279</td>
+                    <td>-15,417</td>
+                    <td>-15,352</td>
+                    <td>-8,224</td>
+                    <td>-6,358</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>18,465</td>
+                    <td>24,836</td>
+                    <td>34,428</td>
+                    <td>36,839</td>
+                    <td>41,448</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>6,825</td>
+                    <td>6,382</td>
+                    <td>7,990</td>
+                    <td>8,946</td>
+                    <td>11,900</td>
+                </tr>
+                <tr>
+                    <td>Assets</td>
+                    <td>48,378</td>
+                    <td>60,258</td>
+                    <td>79,881</td>
+                    <td>88,094</td>
+                    <td>103,406</td>
+                </tr>
+                <tr>
+                    <td>Operating Margin</td>
+                    <td>-17.90%</td>
+                    <td>-18.68%</td>
+                    <td>-11.55%</td>
+                    <td>-1.99%</td>
+                    <td>1.99%</td>
+                </tr>
+                <tr>
+                    <td>Net Margin</td>
+                    <td>-23.71%</td>
+                    <td>-22.46%</td>
+                    <td>-17.34%</td>
+                    <td>-7.89%</td>
+                    <td>-5.31%</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>2. Methodology</h1>
+        <p>This analysis is based on a comprehensive financial and structural review of <strong class="hl">30 leading
+                companies</strong> in India’s E-Commerce sector, covering both listed and unlisted players across
+            digital stores, and marketplace aggregators. The objective was to evaluate sector-wide performance trends,
+            profitability dynamics, balance-sheet health, and long-term competitiveness using standardized financial
+            metrics and comparable company data.</p>
+
+        <h2>2.1 Data Sources</h2>
+        <p>All financial information used in this study was sourced exclusively from <a href="https://www.tofler.in"
+                target="_blank"
+                style="color: var(--primary); font-weight: 700; text-decoration: underline;">Tofler.in</a>, including:
+        </p>
+        <ul>
+            <li>Profit & Loss Statements</li>
+            <li>Balance Sheets</li>
+            <li>Cash Flow Statements</li>
+            <li>Financial Highlights</li>
+            <li>Ratios & Margins</li>
+        </ul>
+        <p>Only audited financials were considered for the analysis.</p>
+
+        <h2>2.2 Company Selection</h2>
+        <p>The study covers 30 major companies representing the organized E-Commerce value chain. Companies were
+            selected based on:</p>
+        <ul>
+            <li><b>Scale</b> of operations (revenue/asset base)</li>
+            <li><b>Market presence</b> in key E-Commerce segments</li>
+            <li><b>Mix</b> of listed and unlisted entities to reflect the sector’s true structure</li>
+            <li><b>Geographic diversity</b> of operations</li>
+            <li><b>Availability</b> of consistent financial data for FY21–FY25</li>
+        </ul>
+
+        <p><b>Companies Used for Analysis:</b></p>
+        <ul class="company-list expandable-list" id="companies-list">
+            <li>
+                <div class="title-row">
+                    <span class="index">1.</span>
+                    <h4>BRAINBEES SOLUTIONS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L51100PN2010PLC136340</span>
+                    <a href="https://www.tofler.in/brainbees-solutions-limited/company/L51100PN2010PLC136340"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">2.</span>
+                    <h4>YATRA ONLINE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L63040MH2005PLC158404</span>
+                    <a href="https://www.tofler.in/yatra-online-limited/company/L63040MH2005PLC158404" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">3.</span>
+                    <h4>CLUES NETWORK PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U52590HR2011PTC055841</span>
+                    <a href="https://www.tofler.in/clues-network-private-limited/company/U52590HR2011PTC055841"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">4.</span>
+                    <h4>BLUESTONE JEWELLERY AND LIFESTYLE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L72900KA2011PLC059678</span>
+                    <a href="https://www.tofler.in/bluestone-jewellery-and-lifestyle-limited/company/L72900KA2011PLC059678"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">5.</span>
+                    <h4>INDIAMART INTERMESH LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L74899DL1999PLC101534</span>
+                    <a href="https://www.tofler.in/indiamart-intermesh-limited/company/L74899DL1999PLC101534"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">6.</span>
+                    <h4>HONASA CONSUMER LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L74999DL2016PLC306016</span>
+                    <a href="https://www.tofler.in/honasa-consumer-limited/company/L74999DL2016PLC306016"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">7.</span>
+                    <h4>REDBUS INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72900HR2012PTC090199</span>
+                    <a href="https://www.tofler.in/redbus-india-private-limited/company/U72900HR2012PTC090199"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">8.</span>
+                    <h4>LENSKART SOLUTIONS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U33100DL2008PLC178355</span>
+                    <a href="https://www.tofler.in/lenskart-solutions-limited/company/U33100DL2008PLC178355"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">9.</span>
+                    <h4>FLIPKART INTERNET PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U51109KA2012PTC066107</span>
+                    <a href="https://www.tofler.in/flipkart-internet-private-limited/company/U51109KA2012PTC066107"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">10.</span>
+                    <h4>AMAZON SELLER SERVICES PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U51900KA2010PTC053234</span>
+                    <a href="https://www.tofler.in/amazon-seller-services-private-limited/company/U51900KA2010PTC053234"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">11.</span>
+                    <h4>HERSHEINBOX PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U51909CH2021PTC043509</span>
+                    <a href="https://www.tofler.in/hersheinbox-private-limited/company/U51909CH2021PTC043509"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">12.</span>
+                    <h4>SUPERMARKET GROCERY SUPPLIES PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U51909KA2011PTC060707</span>
+                    <a href="https://www.tofler.in/supermarket-grocery-supplies-private-limited/company/U51909KA2011PTC060707"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">13.</span>
+                    <h4>CARATLANE TRADING PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U52393TN2007PTC064830</span>
+                    <a href="https://www.tofler.in/caratlane-trading-private-limited/company/U52393TN2007PTC064830"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">14.</span>
+                    <h4>ARVIND LIFESTYLE BRANDS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U64201GJ1995PLC024598</span>
+                    <a href="https://www.tofler.in/arvind-lifestyle-brands-limited/company/U64201GJ1995PLC024598"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">15.</span>
+                    <h4>DROOM TECHNOLOGY PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72300DL2014PTC271386</span>
+                    <a href="https://www.tofler.in/droom-technology-private-limited/company/U72300DL2014PTC271386"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">16.</span>
+                    <h4>MYNTRA DESIGNS PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72300KA2007PTC041799</span>
+                    <a href="https://www.tofler.in/myntra-designs-private-limited/company/U72300KA2007PTC041799"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">17.</span>
+                    <h4>SHIPROCKET LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72900DL2011PLC225614</span>
+                    <a href="https://www.tofler.in/shiprocket-limited/company/U72900DL2011PLC225614" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">18.</span>
+                    <h4>ESHOPBOX E-COMMERCE PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72900HR2012PTC046278</span>
+                    <a href="https://www.tofler.in/eshopbox-e-commerce-private-limited/company/U72900HR2012PTC046278"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">19.</span>
+                    <h4>ALIBABA.COM INDIA E-COMMERCE PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72900MH2010PTC202217</span>
+                    <a href="https://www.tofler.in/alibaba-com-india-e-commerce-private-limited/company/U72900MH2010PTC202217"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">20.</span>
+                    <h4>TATA 1MG TECHNOLOGIES PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74140DL2015PTC279229</span>
+                    <a href="https://www.tofler.in/tata-1mg-technologies-private-limited/company/U74140DL2015PTC279229"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">21.</span>
+                    <h4>FABINDIA LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74899DL1976PLC008436</span>
+                    <a href="https://www.tofler.in/fabindia-limited/company/U74899DL1976PLC008436" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">22.</span>
+                    <h4>URBAN LADDER HOME DECOR SOLUTIONS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74999MH2012PLC437564</span>
+                    <a href="https://www.tofler.in/urban-ladder-home-decor-solutions-limited/company/U74999MH2012PLC437564"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">23.</span>
+                    <h4>NYKAA E-RETAIL LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74999MH2017PLC291558</span>
+                    <a href="https://www.tofler.in/nykaa-e--retail-limited/company/U74999MH2017PLC291558"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">24.</span>
+                    <h4>MAGICBRICKS REALTY SERVICES LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U70109DL2013PLC256668</span>
+                    <a href="https://www.tofler.in/magicbricks-realty-services-limited/company/U70109DL2013PLC256668"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">25.</span>
+                    <h4>BIG TREE ENTERTAINMENT PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U99999MH1999PTC120990</span>
+                    <a href="https://www.tofler.in/big-tree-entertainment-private-limited/company/U99999MH1999PTC120990"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">26.</span>
+                    <h4>MEESHO LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74900KA2015PLC082263</span>
+                    <a href="https://www.tofler.in/meesho-limited/company/U74900KA2015PLC082263" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">27.</span>
+                    <h4>CARS24 SERVICES PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74999HR2015FTC056386</span>
+                    <a href="https://www.tofler.in/cars24-services-private-limited/company/U74999HR2015FTC056386"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">28.</span>
+                    <h4>NETMEDS HEALTHCARE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U51505TN2010PLC077105</span>
+                    <a href="https://www.tofler.in/netmeds-healthcare-limited/company/U51505TN2010PLC077105"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">29.</span>
+                    <h4>SUGAR BRANDS PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U52100MH2012PTC233397</span>
+                    <a href="https://www.tofler.in/sugar-brands-private-limited/company/U52100MH2012PTC233397"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">30.</span>
+                    <h4>BEWAKOOF BRANDS PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U74999MH2011PTC220994</span>
+                    <a href="https://www.tofler.in/bewakoof-brands-private-limited/company/U74999MH2011PTC220994"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+        </ul>
+        <button class="toggle-btn" style="border-radius:12px; margin-top:-8px; border:1px solid var(--border);"
+            onclick="toggleExpand('companies-list', this, 'View All Companies', 'Collapse')">View All Companies
+            &darr;</button>
+        <p>These companies together offer a representative view of India’s structured digital ecosystem, including
+            digital stores and marketplaces.</p>
+
+        <h2>2.3 Scope of Analysis & Metrics Used</h2>
+        <p>This study covers five years of audited financial data (FY21–FY25) for 30 major E-Commerce companies, with
+            the objective of assessing sector-wide growth, profitability patterns, balance-sheet health, and efficiency
+            trends.</p>
+
+        <p><b>Key Metrics Analyzed:</b></p>
+        <p>The analysis draws on a broad set of financial and operational indicators across the P&L, balance sheet, and
+            working capital cycle, including:</p>
+        <ul>
+            <li><b>Growth Metrics:</b> Sales CAGR, Absolute EBITDA CAGR</li>
+            <li><b>Profitability Metrics:</b> Gross Margin, Operating Margin, Net Margin, Operating Profit, Net Profit,
+                EBITDA</li>
+            <li><b>Cost Structure Metrics:</b> Sales, COGS, Employee Costs, Other Operating Costs</li>
+            <li><b>Balance Sheet Metrics:</b> Borrowings (short-term & long-term), Networth, Total Assets, Debt/Equity
+            </li>
+            <li><b>Efficiency Metrics:</b> Asset Turnover, Days Receivable, Days Inventory, Days Payable, Working
+                Capital Days, Cash Conversion Cycle</li>
+        </ul>
+
+        <p><b>Analytical Approach:</b> Insights were generated by:</p>
+        <ul>
+            <li>Aggregating financials of all companies to compute sector-level totals</li>
+            <li>Comparing year-on-year performance across FY21–FY25</li>
+            <li>Calculating 3-year CAGRs to capture medium-term growth</li>
+            <li>Benchmarking ratios using sector medians for realistic comparisons</li>
+            <li>Diagnosing margin drivers, leverage trends, and cash cycle efficiency</li>
+        </ul>
+        <p>This structured methodology allowed us to evaluate both company-level performance and broader sector shifts
+            across the span of the last five years.</p>
+
+        <h1>3. Industry Aggregates And Trends</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>47,576</td>
+                    <td>68,648</td>
+                    <td>88,525</td>
+                    <td>104,239</td>
+                    <td>119,849</td>
+                </tr>
+                <tr>
+                    <td>Expenses</td>
+                    <td>60,046</td>
+                    <td>85,908</td>
+                    <td>104,949</td>
+                    <td>113,687</td>
+                    <td>125,130</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Sales-vs-Expenses-Trendline-Over-the-Years-1.svg"
+            class="report-img" alt="Sales vs Expenses">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>EBITDA</td>
+                    <td>-8,516</td>
+                    <td>-12,824</td>
+                    <td>-10,221</td>
+                    <td>-2,070</td>
+                    <td>2,389</td>
+                </tr>
+                <tr>
+                    <td>Net Profit</td>
+                    <td>-11,279</td>
+                    <td>-15,417</td>
+                    <td>-15,352</td>
+                    <td>-8,224</td>
+                    <td>-6,358</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>18,465</td>
+                    <td>24,836</td>
+                    <td>34,428</td>
+                    <td>36,839</td>
+                    <td>41,448</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/EBITDA-vs-PAT-vs-Networth-Trendline-Over-the-Years-1.svg"
+            class="report-img" alt="EBITDA vs PAT">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Fixed Assets</td>
+                    <td>11,564</td>
+                    <td>17,767</td>
+                    <td>26,335</td>
+                    <td>25,203</td>
+                    <td>26,543</td>
+                </tr>
+                <tr>
+                    <td>Current Assets</td>
+                    <td>30,174</td>
+                    <td>33,519</td>
+                    <td>43,186</td>
+                    <td>49,885</td>
+                    <td>63,040</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>6,825</td>
+                    <td>6,382</td>
+                    <td>7,990</td>
+                    <td>8,946</td>
+                    <td>11,900</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Fixed-_Current-Assets-vs-Borrowings-Trendline-Over-the-Years-1.svg"
+            class="report-img" alt="Assets vs Borrowings">
+
+
+        <h1>4. Three Year Sales CAGR of the companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="sales-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>2022</th>
+                    <th>2025</th>
+                    <th>3 Year Sales CAGR</th>
+                </tr>
+                <tr>
+                    <td>BRAINBEES SOLUTIONS LIMITED</td>
+                    <td>1752.4</td>
+                    <td>2470.9</td>
+                    <td>12.13%</td>
+                </tr>
+                <tr>
+                    <td>YATRA ONLINE LIMITED</td>
+                    <td>139.8</td>
+                    <td>493.3</td>
+                    <td>52.24%</td>
+                </tr>
+                <tr>
+                    <td>CLUES NETWORK PRIVATE LIMITED</td>
+                    <td>59.9</td>
+                    <td>25.2</td>
+                    <td>-25.07%</td>
+                </tr>
+                <tr>
+                    <td>BLUESTONE JEWELLERY AND LIFESTYLE LIMITED</td>
+                    <td>461.4</td>
+                    <td>1770.0</td>
+                    <td>56.54%</td>
+                </tr>
+                <tr>
+                    <td>INDIAMART INTERMESH LIMITED</td>
+                    <td>750.8</td>
+                    <td>1320.1</td>
+                    <td>20.70%</td>
+                </tr>
+                <tr>
+                    <td>HONASA CONSUMER LIMITED</td>
+                    <td>943.5</td>
+                    <td>2066.9</td>
+                    <td>29.88%</td>
+                </tr>
+                <tr>
+                    <td>REDBUS INDIA PRIVATE LIMITED</td>
+                    <td>294.7</td>
+                    <td>979.5</td>
+                    <td>49.24%</td>
+                </tr>
+                <tr>
+                    <td>LENSKART SOLUTIONS LIMITED</td>
+                    <td>1502.7</td>
+                    <td>6652.5</td>
+                    <td>64.20%</td>
+                </tr>
+                <tr>
+                    <td>FLIPKART INTERNET PRIVATE LIMITED</td>
+                    <td>10477.4</td>
+                    <td>20493.3</td>
+                    <td>25.06%</td>
+                </tr>
+                <tr>
+                    <td>AMAZON SELLER SERVICES PRIVATE LIMITED</td>
+                    <td>21462.0</td>
+                    <td>30138.6</td>
+                    <td>11.98%</td>
+                </tr>
+                <tr>
+                    <td>HERSHEINBOX PRIVATE LIMITED</td>
+                    <td>229.7</td>
+                    <td>549.6</td>
+                    <td>33.75%</td>
+                </tr>
+                <tr>
+                    <td>SUPERMARKET GROCERY SUPPLIES PRIVATE LIMITED</td>
+                    <td>8502.9</td>
+                    <td>9866.7</td>
+                    <td>5.08%</td>
+                </tr>
+                <tr>
+                    <td>CARATLANE TRADING PRIVATE LIMITED</td>
+                    <td>1255.6</td>
+                    <td>4193.0</td>
+                    <td>49.47%</td>
+                </tr>
+                <tr>
+                    <td>ARVIND LIFESTYLE BRANDS LIMITED</td>
+                    <td>1408.7</td>
+                    <td>2392.7</td>
+                    <td>19.31%</td>
+                </tr>
+                <tr>
+                    <td>DROOM TECHNOLOGY PRIVATE LIMITED</td>
+                    <td>384.6</td>
+                    <td>168.4</td>
+                    <td>-24.06%</td>
+                </tr>
+                <tr>
+                    <td>MYNTRA DESIGNS PRIVATE LIMITED</td>
+                    <td>3501.2</td>
+                    <td>6042.7</td>
+                    <td>19.95%</td>
+                </tr>
+                <tr>
+                    <td>SHIPROCKET LIMITED</td>
+                    <td>610.6</td>
+                    <td>1632.0</td>
+                    <td>38.78%</td>
+                </tr>
+                <tr>
+                    <td>ESHOPBOX E-COMMERCE PRIVATE LIMITED</td>
+                    <td>85.0</td>
+                    <td>215.1</td>
+                    <td>36.27%</td>
+                </tr>
+                <tr>
+                    <td>ALIBABA.COM INDIA E-COMMERCE PRIVATE LIMITED</td>
+                    <td>28.2</td>
+                    <td>40.9</td>
+                    <td>13.19%</td>
+                </tr>
+                <tr>
+                    <td>TATA 1MG TECHNOLOGIES PRIVATE LIMITED</td>
+                    <td>627.1</td>
+                    <td>2353.3</td>
+                    <td>55.40%</td>
+                </tr>
+                <tr>
+                    <td>FABINDIA LIMITED</td>
+                    <td>1372.6</td>
+                    <td>1234.7</td>
+                    <td>-3.47%</td>
+                </tr>
+                <tr>
+                    <td>URBAN LADDER HOME DECOR SOLUTIONS LIMITED</td>
+                    <td>226.5</td>
+                    <td>106.0</td>
+                    <td>-22.36%</td>
+                </tr>
+                <tr>
+                    <td>NYKAA E-RETAIL LIMITED</td>
+                    <td>3190.6</td>
+                    <td>6259.3</td>
+                    <td>25.18%</td>
+                </tr>
+                <tr>
+                    <td>MAGICBRICKS REALTY SERVICES LIMITED</td>
+                    <td>245.3</td>
+                    <td>317.8</td>
+                    <td>9.01%</td>
+                </tr>
+                <tr>
+                    <td>BIG TREE ENTERTAINMENT PRIVATE LIMITED</td>
+                    <td>277.1</td>
+                    <td>1831.4</td>
+                    <td>87.66%</td>
+                </tr>
+                <tr>
+                    <td>MEESHO LIMITED</td>
+                    <td>3232.3</td>
+                    <td>9387.5</td>
+                    <td>42.67%</td>
+                </tr>
+                <tr>
+                    <td>CARS24 SERVICES PRIVATE LIMITED</td>
+                    <td>5136.5</td>
+                    <td>6233.2</td>
+                    <td>6.66%</td>
+                </tr>
+                <tr>
+                    <td>NETMEDS HEALTHCARE LIMITED</td>
+                    <td>107.8</td>
+                    <td>43.7</td>
+                    <td>-25.99%</td>
+                </tr>
+                <tr>
+                    <td>SUGAR BRANDS PRIVATE LIMITED</td>
+                    <td>221.1</td>
+                    <td>397.7</td>
+                    <td>21.62%</td>
+                </tr>
+                <tr>
+                    <td>BEWAKOOF BRANDS PRIVATE LIMITED</td>
+                    <td>160.2</td>
+                    <td>173.0</td>
+                    <td>2.60%</td>
+                </tr>
+            </table>
+            <button class="toggle-btn"
+                onclick="toggleExpand('sales-table', this, 'View All Companies', 'Collapse')">View All Companies
+                &darr;</button>
+        </div>
+
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/3-Year-Sales-CAGR-Analysis-1.svg" class="report-img"
+            alt="Sales CAGR Chart">
+
+        <h1>5. Three Year Absolute EBITDA CAGR of the companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="ebitda-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>2022</th>
+                    <th>2025</th>
+                    <th>3 Year Absolute EBITDA CAGR</th>
+                </tr>
+                <tr>
+                    <td>BRAINBEES SOLUTIONS LIMITED</td>
+                    <td>53.8</td>
+                    <td>102.5</td>
+                    <td>30.2%</td>
+                </tr>
+                <tr>
+                    <td>YATRA ONLINE LIMITED</td>
+                    <td>-5.8</td>
+                    <td>16.8</td>
+                    <td>129.9%</td>
+                </tr>
+                <tr>
+                    <td>CLUES NETWORK PRIVATE LIMITED</td>
+                    <td>-45.8</td>
+                    <td>-4.9</td>
+                    <td>29.8%</td>
+                </tr>
+                <tr>
+                    <td>BLUESTONE JEWELLERY AND LIFESTYLE LIMITED</td>
+                    <td>-1236.0</td>
+                    <td>75.9</td>
+                    <td>35.4%</td>
+                </tr>
+                <tr>
+                    <td>INDIAMART INTERMESH LIMITED</td>
+                    <td>312.1</td>
+                    <td>513.4</td>
+                    <td>21.5%</td>
+                </tr>
+                <tr>
+                    <td>HONASA CONSUMER LIMITED</td>
+                    <td>11.5</td>
+                    <td>68.5</td>
+                    <td>165.2%</td>
+                </tr>
+                <tr>
+                    <td>REDBUS INDIA PRIVATE LIMITED</td>
+                    <td>-27.3</td>
+                    <td>254.0</td>
+                    <td>343.5%</td>
+                </tr>
+                <tr>
+                    <td>LENSKART SOLUTIONS LIMITED</td>
+                    <td>-114.6</td>
+                    <td>975.5</td>
+                    <td>317.1%</td>
+                </tr>
+                <tr>
+                    <td>FLIPKART INTERNET PRIVATE LIMITED</td>
+                    <td>-4107.1</td>
+                    <td>-1399.7</td>
+                    <td>22.0%</td>
+                </tr>
+                <tr>
+                    <td>AMAZON SELLER SERVICES PRIVATE LIMITED</td>
+                    <td>-1457.3</td>
+                    <td>2646.9</td>
+                    <td>93.9%</td>
+                </tr>
+                <tr>
+                    <td>HERSHEINBOX PRIVATE LIMITED</td>
+                    <td>14.9</td>
+                    <td>31.6</td>
+                    <td>37.4%</td>
+                </tr>
+                <tr>
+                    <td>SUPERMARKET GROCERY SUPPLIES PRIVATE LIMITED</td>
+                    <td>-769.1</td>
+                    <td>-1387.4</td>
+                    <td>-26.8%</td>
+                </tr>
+                <tr>
+                    <td>CARATLANE TRADING PRIVATE LIMITED</td>
+                    <td>77.2</td>
+                    <td>348.1</td>
+                    <td>117.0%</td>
+                </tr>
+                <tr>
+                    <td>ARVIND LIFESTYLE BRANDS LIMITED</td>
+                    <td>17.7</td>
+                    <td>285.8</td>
+                    <td>504.9%</td>
+                </tr>
+                <tr>
+                    <td>DROOM TECHNOLOGY PRIVATE LIMITED</td>
+                    <td>-137.1</td>
+                    <td>-44.4</td>
+                    <td>22.5%</td>
+                </tr>
+                <tr>
+                    <td>MYNTRA DESIGNS PRIVATE LIMITED</td>
+                    <td>-660.3</td>
+                    <td>444.4</td>
+                    <td>55.8%</td>
+                </tr>
+                <tr>
+                    <td>SHIPROCKET LIMITED</td>
+                    <td>-79.4</td>
+                    <td>-60.0</td>
+                    <td>8.1%</td>
+                </tr>
+                <tr>
+                    <td>ESHOPBOX E-COMMERCE PRIVATE LIMITED</td>
+                    <td>5.1</td>
+                    <td>23.8</td>
+                    <td>122.2%</td>
+                </tr>
+                <tr>
+                    <td>ALIBABA.COM INDIA E-COMMERCE PRIVATE LIMITED</td>
+                    <td>-3.0</td>
+                    <td>1.1</td>
+                    <td>45.6%</td>
+                </tr>
+                <tr>
+                    <td>TATA 1MG TECHNOLOGIES PRIVATE LIMITED</td>
+                    <td>-521.5</td>
+                    <td>-178.2</td>
+                    <td>21.9%</td>
+                </tr>
+                <tr>
+                    <td>FABINDIA LIMITED</td>
+                    <td>218.2</td>
+                    <td>272.6</td>
+                    <td>8.3%</td>
+                </tr>
+                <tr>
+                    <td>URBAN LADDER HOME DECOR SOLUTIONS LIMITED</td>
+                    <td>21.8</td>
+                    <td>14.3</td>
+                    <td>-11.5%</td>
+                </tr>
+                <tr>
+                    <td>NYKAA E-RETAIL LIMITED</td>
+                    <td>181.7</td>
+                    <td>308.1</td>
+                    <td>23.2%</td>
+                </tr>
+                <tr>
+                    <td>MAGICBRICKS REALTY SERVICES LIMITED</td>
+                    <td>-4.3</td>
+                    <td>51.2</td>
+                    <td>430.2%</td>
+                </tr>
+                <tr>
+                    <td>BIG TREE ENTERTAINMENT PRIVATE LIMITED</td>
+                    <td>-73.0</td>
+                    <td>182.6</td>
+                    <td>116.7%</td>
+                </tr>
+                <tr>
+                    <td>MEESHO LIMITED</td>
+                    <td>-3366.0</td>
+                    <td>-555.2</td>
+                    <td>27.8%</td>
+                </tr>
+                <tr>
+                    <td>CARS24 SERVICES PRIVATE LIMITED</td>
+                    <td>-997.7</td>
+                    <td>-419.1</td>
+                    <td>19.3%</td>
+                </tr>
+                <tr>
+                    <td>NETMEDS HEALTHCARE LIMITED</td>
+                    <td>9.6</td>
+                    <td>2.6</td>
+                    <td>-24.3%</td>
+                </tr>
+                <tr>
+                    <td>SUGAR BRANDS PRIVATE LIMITED</td>
+                    <td>-68.4</td>
+                    <td>-121.4</td>
+                    <td>-25.8%</td>
+                </tr>
+                <tr>
+                    <td>BEWAKOOF BRANDS PRIVATE LIMITED</td>
+                    <td>-74.2</td>
+                    <td>-60.7</td>
+                    <td>6.1%</td>
+                </tr>
+            </table>
+            <button class="toggle-btn"
+                onclick="toggleExpand('ebitda-table', this, 'View All Companies', 'Collapse')">View All Companies
+                &darr;</button>
+        </div>
+
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/3-Year-Absolute-EBITDA-CAGR-Analysis-1.svg"
+            class="report-img" alt="Absolute EBITDA CAGR Chart">
+
+        <h1>6. Cash Efficiency Comparison Between Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="cash-table">
+                <tr>
+                    <th>Companies</th>
+                    <th>Cash Conversion Cycle</th>
+                    <th>Working Capital Days</th>
+                </tr>
+                <tr>
+                    <td>BRAINBEES SOLUTIONS LIMITED</td>
+                    <td>184</td>
+                    <td>369</td>
+                </tr>
+                <tr>
+                    <td>YATRA ONLINE LIMITED</td>
+                    <td>265</td>
+                    <td>267</td>
+                </tr>
+                <tr>
+                    <td>CLUES NETWORK PRIVATE LIMITED</td>
+                    <td>-10309</td>
+                    <td>-1532</td>
+                </tr>
+                <tr>
+                    <td>BLUESTONE JEWELLERY AND LIFESTYLE LIMITED</td>
+                    <td>495</td>
+                    <td>85</td>
+                </tr>
+                <tr>
+                    <td>INDIAMART INTERMESH LIMITED</td>
+                    <td>0</td>
+                    <td>448</td>
+                </tr>
+                <tr>
+                    <td>HONASA CONSUMER LIMITED</td>
+                    <td>-95</td>
+                    <td>92</td>
+                </tr>
+                <tr>
+                    <td>REDBUS INDIA PRIVATE LIMITED</td>
+                    <td>54</td>
+                    <td>101</td>
+                </tr>
+                <tr>
+                    <td>LENSKART SOLUTIONS LIMITED</td>
+                    <td>65</td>
+                    <td>97</td>
+                </tr>
+                <tr>
+                    <td>FLIPKART INTERNET PRIVATE LIMITED</td>
+                    <td>35</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>AMAZON SELLER SERVICES PRIVATE LIMITED</td>
+                    <td>17</td>
+                    <td>46</td>
+                </tr>
+                <tr>
+                    <td>HERSHEINBOX PRIVATE LIMITED</td>
+                    <td>226</td>
+                    <td>220</td>
+                </tr>
+                <tr>
+                    <td>SUPERMARKET GROCERY SUPPLIES PRIVATE LIMITED</td>
+                    <td>-7</td>
+                    <td>-110</td>
+                </tr>
+                <tr>
+                    <td>CARATLANE TRADING PRIVATE LIMITED</td>
+                    <td>178</td>
+                    <td>16</td>
+                </tr>
+                <tr>
+                    <td>ARVIND LIFESTYLE BRANDS LIMITED</td>
+                    <td>17</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>DROOM TECHNOLOGY PRIVATE LIMITED</td>
+                    <td>-3026</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>MYNTRA DESIGNS PRIVATE LIMITED</td>
+                    <td>-150</td>
+                    <td>64</td>
+                </tr>
+                <tr>
+                    <td>SHIPROCKET LIMITED</td>
+                    <td>-35</td>
+                    <td>116</td>
+                </tr>
+                <tr>
+                    <td>ESHOPBOX E-COMMERCE PRIVATE LIMITED</td>
+                    <td>-12</td>
+                    <td>29</td>
+                </tr>
+                <tr>
+                    <td>ALIBABA.COM INDIA E-COMMERCE PRIVATE LIMITED</td>
+                    <td>-1435</td>
+                    <td>82</td>
+                </tr>
+                <tr>
+                    <td>TATA 1MG TECHNOLOGIES PRIVATE LIMITED</td>
+                    <td>15</td>
+                    <td>-67</td>
+                </tr>
+                <tr>
+                    <td>FABINDIA LIMITED</td>
+                    <td>144</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>URBAN LADDER HOME DECOR SOLUTIONS LIMITED</td>
+                    <td>-758</td>
+                    <td>219</td>
+                </tr>
+                <tr>
+                    <td>NYKAA E-RETAIL LIMITED</td>
+                    <td>44</td>
+                    <td>22</td>
+                </tr>
+                <tr>
+                    <td>MAGICBRICKS REALTY SERVICES LIMITED</td>
+                    <td>28</td>
+                    <td>-22</td>
+                </tr>
+                <tr>
+                    <td>BIG TREE ENTERTAINMENT PRIVATE LIMITED</td>
+                    <td>-21705</td>
+                    <td>79</td>
+                </tr>
+                <tr>
+                    <td>MEESHO LIMITED</td>
+                    <td>0</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>CARS24 SERVICES PRIVATE LIMITED</td>
+                    <td>24</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td>NETMEDS HEALTHCARE LIMITED</td>
+                    <td>-338</td>
+                    <td>361</td>
+                </tr>
+                <tr>
+                    <td>SUGAR BRANDS PRIVATE LIMITED</td>
+                    <td>93</td>
+                    <td>76</td>
+                </tr>
+                <tr>
+                    <td>BEWAKOOF BRANDS PRIVATE LIMITED</td>
+                    <td>38</td>
+                    <td>-118</td>
+                </tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('cash-table', this, 'View All Companies', 'Collapse')">View
+                All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Cash-Conversion-Cycle-and-Working-Capital-Days-1.svg"
+            class="report-img" alt="Cash Conversion Cycle">
+
+        <h1>7. Ratios And Benchmarks</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table" style="white-space: normal;">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mean Benchmark</th>
+                    <th>Median Benchmark</th>
+                    <th>Minimum Value</th>
+                    <th>Maximum Value</th>
+                </tr>
+                <tr>
+                    <td>Total Debt/Equity</td>
+                    <td>0.8</td>
+                    <td>0.0</td>
+                    <td>-3.5</td>
+                    <td>17.4</td>
+                </tr>
+                <tr>
+                    <td>Net Debt/Equity</td>
+                    <td>0.8</td>
+                    <td>0.0</td>
+                    <td>-3.4</td>
+                    <td>17.3</td>
+                </tr>
+                <tr>
+                    <td>Total Debt/Assets</td>
+                    <td>0.2</td>
+                    <td>0.1</td>
+                    <td>0.0</td>
+                    <td>0.9</td>
+                </tr>
+                <tr>
+                    <td>Total Assets/Equity</td>
+                    <td>3.9</td>
+                    <td>2.4</td>
+                    <td>-4.7</td>
+                    <td>19.3</td>
+                </tr>
+                <tr>
+                    <td>Current Ratio</td>
+                    <td>2.3</td>
+                    <td>1.5</td>
+                    <td>0.1</td>
+                    <td>14.8</td>
+                </tr>
+                <tr>
+                    <td>Quick Ratio</td>
+                    <td>1.9</td>
+                    <td>1.3</td>
+                    <td>0.1</td>
+                    <td>11.6</td>
+                </tr>
+                <tr>
+                    <td>Interest Coverage</td>
+                    <td>5.8</td>
+                    <td>2.6</td>
+                    <td>-80.5</td>
+                    <td>136.9</td>
+                </tr>
+                <tr>
+                    <td>Gross Margin</td>
+                    <td>66.3</td>
+                    <td>66.3</td>
+                    <td>10.9</td>
+                    <td>100.0</td>
+                </tr>
+                <tr>
+                    <td>Operating Margin</td>
+                    <td>2.2</td>
+                    <td>4.6</td>
+                    <td>-35.1</td>
+                    <td>38.9</td>
+                </tr>
+                <tr>
+                    <td>Net Margin</td>
+                    <td>-2.5</td>
+                    <td>1.6</td>
+                    <td>-41.9</td>
+                    <td>41.7</td>
+                </tr>
+                <tr>
+                    <td>Return on Equity</td>
+                    <td>-26.8</td>
+                    <td>3.6</td>
+                    <td>-341.9</td>
+                    <td>63.3</td>
+                </tr>
+                <tr>
+                    <td>Pre-tax ROCE</td>
+                    <td>301.1</td>
+                    <td>6.6</td>
+                    <td>-275.9</td>
+                    <td>6363.8</td>
+                </tr>
+                <tr>
+                    <td>Return on Assets</td>
+                    <td>-7.0</td>
+                    <td>0.7</td>
+                    <td>-78.4</td>
+                    <td>28.0</td>
+                </tr>
+                <tr>
+                    <td>Pre-tax ROIC</td>
+                    <td>-14.7</td>
+                    <td>4.0</td>
+                    <td>-342.4</td>
+                    <td>58.8</td>
+                </tr>
+                <tr>
+                    <td>Days Payable</td>
+                    <td>1327.6</td>
+                    <td>77.5</td>
+                    <td>0.0</td>
+                    <td>21926.0</td>
+                </tr>
+                <tr>
+                    <td>Days Inventory</td>
+                    <td>88.7</td>
+                    <td>35.5</td>
+                    <td>0.0</td>
+                    <td>549.0</td>
+                </tr>
+                <tr>
+                    <td>Days Receivable</td>
+                    <td>40.6</td>
+                    <td>26.0</td>
+                    <td>0.0</td>
+                    <td>265.0</td>
+                </tr>
+                <tr>
+                    <td>Fixed Asset Turnover</td>
+                    <td>35.0</td>
+                    <td>8.4</td>
+                    <td>1.1</td>
+                    <td>401.4</td>
+                </tr>
+                <tr>
+                    <td>Total Asset Turnover</td>
+                    <td>1.2</td>
+                    <td>1.1</td>
+                    <td>0.3</td>
+                    <td>3.1</td>
+                </tr>
+                <tr>
+                    <td>Cash Conversion Cycle</td>
+                    <td>-1198.3</td>
+                    <td>17.0</td>
+                    <td>-21705.0</td>
+                    <td>495.0</td>
+                </tr>
+                <tr>
+                    <td>Working Capital Days</td>
+                    <td>43.3</td>
+                    <td>72.5</td>
+                    <td>-1532.0</td>
+                    <td>448.0</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>8. Borrowings Trend (Short Term vs Long Term)</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Short Term Borrowings</td>
+                    <td>1772</td>
+                    <td>3276</td>
+                    <td>5076</td>
+                    <td>7155</td>
+                    <td>9848</td>
+                </tr>
+                <tr>
+                    <td>Long Term Borrowings</td>
+                    <td>5053</td>
+                    <td>3107</td>
+                    <td>2914</td>
+                    <td>1791</td>
+                    <td>2052</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>6825</td>
+                    <td>6382</td>
+                    <td>7990</td>
+                    <td>8946</td>
+                    <td>11900</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Borrowings-Trend-Short-Term-vs-Long-Term-1.svg"
+            class="report-img" alt="Borrowings Trend Chart">
+
+        <h1>9. Top 3 Companies by Metrics (As of March 2025)</h1>
+
+        <h2>9.1 Top 3 Companies by Net Margin</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales</th>
+                    <th>Net Profit</th>
+                    <th>Net Margin</th>
+                </tr>
+                <tr>
+                    <td>FABINDIA LIMITED</td>
+                    <td>1235</td>
+                    <td>548</td>
+                    <td>42</td>
+                </tr>
+                <tr>
+                    <td>INDIAMART INTERMESH LIMITED</td>
+                    <td>1320</td>
+                    <td>607</td>
+                    <td>38</td>
+                </tr>
+                <tr>
+                    <td>REDBUS INDIA PRIVATE LIMITED</td>
+                    <td>980</td>
+                    <td>198</td>
+                    <td>20</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.2 Top 3 Companies by Sales</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales</th>
+                    <th>Net Profit</th>
+                    <th>EBITDA</th>
+                </tr>
+                <tr>
+                    <td>AMAZON SELLER SERVICES PRIVATE LIMITED</td>
+                    <td>30139</td>
+                    <td>-374</td>
+                    <td>2647</td>
+                </tr>
+                <tr>
+                    <td>FLIPKART INTERNET PRIVATE LIMITED</td>
+                    <td>20493</td>
+                    <td>-1494</td>
+                    <td>-1400</td>
+                </tr>
+                <tr>
+                    <td>SUPERMARKET GROCERY SUPPLIES PRIVATE LIMITED</td>
+                    <td>9867</td>
+                    <td>-2007</td>
+                    <td>-1387</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.3 Top 3 Companies by Borrowings</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales</th>
+                    <th>Net Profit</th>
+                    <th>Borrowings</th>
+                </tr>
+                <tr>
+                    <td>SUPERMARKET GROCERY SUPPLIES PRIVATE LIMITED</td>
+                    <td>9867</td>
+                    <td>-2007</td>
+                    <td>3606</td>
+                </tr>
+                <tr>
+                    <td>FLIPKART INTERNET PRIVATE LIMITED</td>
+                    <td>20493</td>
+                    <td>-1494</td>
+                    <td>1604</td>
+                </tr>
+                <tr>
+                    <td>MYNTRA DESIGNS PRIVATE LIMITED</td>
+                    <td>6043</td>
+                    <td>548</td>
+                    <td>1079</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>10. Industry Context & Market Landscape</h1>
+        <h2>10.1 Market Landscape (National View)</h2>
+        <p>India’s e-commerce sector has moved from being a metro-centric convenience channel to a mainstream retail
+            backbone serving hundreds of millions of shoppers across the country. It sits at the intersection of three
+            large structural shifts:</p>
+        <ul>
+            <li>Near-universal smartphone adoption</li>
+            <li>Mass-scale digital payments</li>
+            <li>Rising aspirational consumption among a young population.</li>
+        </ul>
+        <p>Over the last decade, e-retail has grown multi-fold, consistently outpacing overall retail growth.
+            High-frequency categories such as grocery, lifestyle, beauty and general merchandise now account for a large
+            share of online orders, while big-ticket electronics and appliances continue to act as traffic drivers and
+            “event” categories.</p>
+        <p>E-retail still represents a relatively small share of India’s total retail spending, but its penetration is
+            steadily rising as more households make the first transition from offline-only to hybrid online-offline
+            shopping.</p>
+        <p>The shopper base itself has expanded rapidly. Since 2020, well over a hundred million new online shoppers
+            have entered the market, with a significant proportion expected to come from smaller towns in the next few
+            years. India now has one of the largest online shopper bases globally, and is on track to add hundreds of
+            millions more over the next decade as digital access deepens and real incomes rise.</p>
+
+        <h2>10.2 Regional / Tier-Wise Adoption Landscape</h2>
+        <p>India’s e-commerce story is no longer just about metros. E-retail has “democratised” access to products and
+            brands for consumers in Tier-2, Tier-3 and smaller cities, as well as many semi-urban and rural catchments.
+        </p>
+        <ul>
+            <li>Metros & Tier-1 cities continue to account for a large share of gross merchandise value (GMV), driven by
+                higher spending per shopper, faster adoption of premium brands, and early uptake of new business models
+                such as quick commerce and trend-first fashion.</li>
+            <li>Tier-2 and Tier-3 cities now contribute the majority of new online shoppers and a growing share of
+                orders. These customers increasingly buy beyond essentials, showing strong interest in lifestyle, beauty
+                and electronics, with average selling prices that are often comparable to metros when delivery,
+                cash-on-delivery and trust in platforms are in place.</li>
+            <li>Smaller towns and remote regions benefit from e-commerce as an access infrastructure. Consumers can now
+                tap into national assortments in categories like fashion, electronics, beauty, and specialised products
+                that local offline retail does not stock.</li>
+        </ul>
+        <p>On the supply side, e-commerce platforms and brands are expanding fulfilment networks into tens of thousands
+            of pin codes, supported by a rapidly growing warehousing and last-mile delivery ecosystem. Dark stores,
+            micro-fulfilment centres and regional warehouses are being added across major clusters to support same-day
+            and next-day delivery, as well as sub-30-minute quick-commerce promises in top cities.</p>
+        <p>Regional differences in category mix and shopper behaviour remain important:</p>
+        <ul>
+            <li>Northern and western markets tend to over-index on fashion and electronics,</li>
+            <li>Southern markets show strong adoption of online grocery and quick commerce,</li>
+            <li>Tier-2+ markets are increasingly buying premium variants once trust in delivery and returns is
+                established.</li>
+        </ul>
+
+        <h1>11. Industry Structure And Business Model</h1>
+        <p>India’s consumer e-commerce sector operates through a layered structure of horizontal marketplaces, vertical
+            specialists, emerging D2C brands and fast-growing quick-commerce platforms. Each model plays a distinct role
+            in assortment, price discovery, fulfilment and value capture.</p>
+
+        <h2>11.1 Industry Structure Overview</h2>
+        <div class="table-wrapper">
+            <table class="plain-table">
+                <tr>
+                    <th>Segment</th>
+                    <th>Role / Examples (type)</th>
+                    <th>Core Strengths</th>
+                    <th>Limitations</th>
+                </tr>
+                <tr>
+                    <td>Horizontal Marketplaces</td>
+                    <td>Large multi-category platforms (general merchandise, electronics, fashion, home)</td>
+                    <td>Massive assortment, price discovery, high traffic, strong logistics & payment integration</td>
+                    <td>Intense competition, high customer acquisition cost, structurally low margins in commoditised
+                        categories</td>
+                </tr>
+                <tr>
+                    <td>Vertical Specialists</td>
+                    <td>Focused platforms in beauty, fashion, electronics, furniture, baby products, etc.</td>
+                    <td>Deeper curation, category expertise, stronger brand storytelling, higher share of wallet in
+                        niche</td>
+                    <td>Dependence on a narrower category, higher sensitivity to fashion/tech cycles</td>
+                </tr>
+                <tr>
+                    <td>D2C Brands (Online-led)</td>
+                    <td>Digital-first brands selling via own sites + marketplaces</td>
+                    <td>Control over brand, pricing and data; ability to build communities and recurring revenue</td>
+                    <td>Need to invest heavily in marketing; dependence on platform algorithms & ad spends for discovery
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quick-Commerce Platforms</td>
+                    <td>Sub-30-minute delivery of grocery & everyday essentials; expanding into general merchandise</td>
+                    <td>Ultra-high convenience, high purchase frequency, strong habit formation</td>
+                    <td>High complexity in dark-store operations; thin unit economics outside dense catchments</td>
+                </tr>
+            </table>
+        </div>
+        <p>Traditional offline retailers and brands are also becoming important participants, shifting to omni-channel
+            models where physical stores act as experience centres and local fulfilment nodes for online orders.</p>
+
+        <h2>11.2 Value Chain Model</h2>
+        <p>The consumer e-commerce value chain typically involves:</p>
+        <p><b>Seller & Brand Onboarding → Cataloging & Merchandising → Online Discovery & Marketing → Order Placement &
+                Payments → Fulfilment (Warehousing / Dark Stores) → Line-haul & Last-mile Delivery → Returns & Customer
+                Support</b></p>
+        <p>Key characteristics:</p>
+        <ul>
+            <li><b>Demand generation & discovery</b>
+                <ul>
+                    <li>Driven by a mix of platform search, personalised recommendations, influencer content, social
+                        media, and performance marketing.</li>
+                    <li>Platform ad engines and brand stores are major monetisation levers, allowing sellers to pay for
+                        visibility.</li>
+                </ul>
+            </li>
+            <li><b>Payments & risk</b>
+                <ul>
+                    <li>UPI, cards and wallets now dominate digital payments, with cash-on-delivery still important in
+                        trust-building and in certain regions.</li>
+                    <li>BNPL and EMI options are widely used in big-ticket categories like electronics and appliances.
+                    </li>
+                </ul>
+            </li>
+            <li><b>Fulfilment & delivery</b>
+                <ul>
+                    <li>Central and regional warehouses handle bulk inventory; dark stores and micro-fulfilment centres
+                        support hyperlocal and quick-commerce deliveries.</li>
+                    <li>Third-party logistics providers, captive delivery networks and hyperlocal partners together
+                        enable reach into tens of thousands of pin codes.</li>
+                </ul>
+            </li>
+            <li><b>Returns & reverse logistics</b>
+                <ul>
+                    <li>Liberal return policies in fashion, footwear and certain electronics categories are key to
+                        adoption but add cost and operational complexity.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>Margins tend to improve with each value-added layer—from basic product sales to private labels, ad
+            monetisation, memberships and financial services. Platforms that increase the share of higher-margin
+            categories, private labels and monetisation levers in their mix typically exhibit more resilient EBITDA,
+            especially in periods of demand slowdown or marketing cost inflation.</p>
+
+        <h2>11.3 Margin Hierarchy: Commoditised vs. Value-Added E-Retail</h2>
+        <div class="table-wrapper">
+            <table class="plain-table">
+                <tr>
+                    <th>Product / Revenue Pool</th>
+                    <th>Examples</th>
+                    <th>Typical Margin Profile</th>
+                    <th>Industry Trend</th>
+                </tr>
+                <tr>
+                    <td>Traffic-Driving, Commoditised Categories</td>
+                    <td>Smartphones, large appliances, FMCG staples bought on deal days</td>
+                    <td>Lowest margins; highly price-sensitive, heavy discounting, used to acquire and retain customers
+                    </td>
+                    <td>Volumetrically large but not the primary profit pool; platforms try to cross-sell higher-margin
+                        add-ons</td>
+                </tr>
+                <tr>
+                    <td>Mid-Margin Branded & Long-Tail Categories</td>
+                    <td>Fashion, footwear, home décor, beauty & personal care, small appliances</td>
+                    <td>Moderate margins; scope for curation, branding and private-label plays</td>
+                    <td>Fastest expansion in Tier-2+ markets; key for building differentiation and loyalty</td>
+                </tr>
+                <tr>
+                    <td>Private Labels & Exclusive Collections</td>
+                    <td>Platform-owned brands and exclusive SKUs across categories</td>
+                    <td>Higher margins; control over sourcing, pricing and inventory</td>
+                    <td>Growing share in fashion, home, beauty and some electronics accessories</td>
+                </tr>
+                <tr>
+                    <td>Monetisation Beyond Product Sales</td>
+                    <td>On-platform advertising, memberships, logistics services to sellers, BNPL & fintech offerings
+                    </td>
+                    <td>Highest margin contribution; largely asset-light revenue</td>
+                    <td>Increasingly critical profit pool; ad revenues and membership fees help offset fulfilment &
+                        discounting costs</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>12. Innovation And Upcoming Business Models</h1>
+        <p>India’s e-retail industry is moving from a discount-driven, traffic-chasing phase to a more innovation-led,
+            habit-forming ecosystem. Three themes stand out: speed, personalisation and social influence.</p>
+        <h2>12.1 Quick Commerce & High-Frequency E-Grocery</h2>
+        <p>Quick commerce has transformed e-retail in India by promising deliveries within minutes — starting with
+            groceries and now expanding into personal care, snacks, small electronics and more. High urban density and
+            dark-store networks make fast fulfilment viable. Platforms improve margins through direct sourcing and ad
+            monetization, while scaling from metros to Tier-1/2 cities with flexible speed tiers.<br>Examples: Blinkit,
+            Swiggy Instamart, Zepto, BigBasket BB Now.</p>
+        <h2>12.2 Trend-First, Social & Hyper-Value Commerce</h2>
+        <p>Fast-changing fashion and beauty trends driven by social media are fuelling demand for affordable, rapidly
+            rotating assortments. Social commerce models tap influencers, communities and livestreams to build trust and
+            move inventory quickly — especially in Tier-2+ markets where shoppers seek style at mass price
+            points.<br>Examples: Meesho, Myntra FWD, Shopee-style live commerce pilots, Trell (content-commerce).</p>
+        <h2>12.3 D2C & Subscription-Led Brands</h2>
+        <p>D2C challengers in beauty, personal care, home and niche foods are combining marketplace reach with deeper
+            engagement on owned websites/apps. Subscription models like auto-replenishment and curated boxes boost
+            loyalty and lifetime value.<br>Examples: Mamaearth, Sugar Cosmetics, Lenskart subscriptions, The Whole
+            Truth, The Man Company.</p>
+        <h2>12.4 Assisted, Local & “Phygital” Commerce</h2>
+        <p>To serve digitally cautious consumers, local shops and agents now help place online orders and manage
+            fulfilment — bringing ecommerce to the neighbourhood. Meanwhile, offline retailers enable digital inventory,
+            ship-from-store and click-and-collect to merge convenience with trust.<br>Examples: Jiomart Kirana partners,
+            Amazon Easy stores, DMart Ready pickup points, Croma omni-commerce.</p>
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Companies</th>
+                    <th>Sales in Cr. (2023)</th>
+                    <th>Sales in Cr. (2024)</th>
+                    <th>Sales in Cr. (2025)</th>
+                </tr>
+                <tr>
+                    <td>MINIMALIST</td>
+                    <td>184.8</td>
+                    <td>335.2</td>
+                    <td>444.8</td>
+                </tr>
+                <tr>
+                    <td>MOKOBARA</td>
+                    <td>53.3</td>
+                    <td>117.4</td>
+                    <td>230.2</td>
+                </tr>
+                <tr>
+                    <td>SNITCH</td>
+                    <td>1.2</td>
+                    <td>241.3</td>
+                    <td>498.2</td>
+                </tr>
+                <tr>
+                    <td>THE SOULED STORE</td>
+                    <td>233.5</td>
+                    <td>360.2</td>
+                    <td>492.4</td>
+                </tr>
+                <tr>
+                    <td>THE WHOLE TRUTH</td>
+                    <td>36.0</td>
+                    <td>64.9</td>
+                    <td>215.8</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>13. Policy, Schemes & Recent Developments</h1>
+        <p>Government policy has largely focused on building digital public infrastructure, payments rails, connectivity
+            and logistics, all of which indirectly power consumer e-commerce.</p>
+        <h2>13.1 Digital Infrastructure & Payments</h2>
+        <p>Key pillars supporting e-commerce include:</p>
+        <ul>
+            <li>Nationwide expansion of broadband and mobile data networks, driving affordable, always-on internet
+                access;</li>
+            <li>The digital identity and verification stack, which simplifies onboarding for both customers and sellers;
+            </li>
+            <li>The real-time digital payments infrastructure, which has scaled to billions of transactions per month
+                and normalised cashless commerce even for small-ticket spends.</li>
+        </ul>
+        <p>Taken together, these have lowered entry barriers for both consumers and small businesses to participate in
+            digital commerce.</p>
+
+        <h2>13.2 FDI, Regulatory & Tax Environment</h2>
+        <p>The policy framework for e-commerce touches multiple areas:</p>
+        <ul>
+            <li>FDI rules that differentiate between marketplace and inventory-led models in B2C e-commerce, influencing
+                how foreign-owned platforms structure operations;</li>
+            <li>Consumer protection and e-commerce guidelines, which address transparency of discounts, grievance
+                redressal, and responsibilities of platforms towards buyers and sellers;</li>
+            <li>Tax reforms and GST, which have gradually reduced some of the complexity around interstate warehousing
+                and movement of goods, while also bringing more digital sellers into the formal tax net.</li>
+        </ul>
+        <p>Regulation continues to evolve around topics such as data protection, competition, dark patterns and
+            accountability of intermediaries.</p>
+
+        <h2>13.3 Logistics, Warehousing & Last-Mile Support</h2>
+        <p>Recognising that logistics is a structural bottleneck for e-commerce, various initiatives and market
+            developments have focused on:</p>
+        <ul>
+            <li>Expansion of organised warehousing capacity in key consumption and manufacturing clusters;</li>
+            <li>Development of multi-modal logistics parks and corridor-level infrastructure to reduce transit times;
+            </li>
+            <li>Growth of a specialised last-mile delivery ecosystem, including hyperlocal players and
+                technology-enabled fleets that can handle both planned and on-demand deliveries.</li>
+        </ul>
+        <p>These improvements are gradually lowering fulfilment costs per order and allowing faster delivery promises to
+            more pin codes.</p>
+
+        <h2>13.4 Strategic Direction: E-Commerce in India’s Digital Economy Vision</h2>
+        <p>E-commerce is a core pillar of India’s broader digital economy agenda, which aims to:</p>
+        <ul>
+            <li>Formalise and digitise consumption and enterprise activity;</li>
+            <li>Enable small manufacturers, artisans, traders and MSMEs to access national demand pools;</li>
+            <li>Create transparent, data-rich transaction trails that support credit, insurance and other financial
+                services.</li>
+        </ul>
+        <p>Over the next few years, policy emphasis is expected to remain on building open, interoperable digital
+            networks; strengthening consumer rights; and ensuring that the benefits of e-commerce extend beyond metros
+            to smaller towns and rural areas.</p>
+
+        <h1>14. Sector Challenges & Risks</h1>
+        <p>Despite its rapid growth and strategic importance, the Indian consumer e-commerce sector faces several
+            structural challenges that shape profitability, competitive intensity and the pace of penetration.</p>
+        <div class="table-wrapper">
+            <table class="plain-table">
+                <tr>
+                    <th>Challenge</th>
+                    <th>Impact on the Sector</th>
+                    <th>Who is Most Affected</th>
+                </tr>
+                <tr>
+                    <td>High Logistics & Last-Mile Costs</td>
+                    <td>High cost of fulfilment—especially for low-ticket, high-frequency orders and remote pin
+                        codes—constrains margins and limits the viability of aggressive discounting.</td>
+                    <td>Quick-commerce players, grocery e-retailers, platforms expanding into low-density regions</td>
+                </tr>
+                <tr>
+                    <td>Returns, COD & Fraud Risk</td>
+                    <td>High returns in fashion and discretionary categories, combined with cash-on-delivery and
+                        occasional fraud, increase cost per successful order and complicate working capital.</td>
+                    <td>Fashion & lifestyle verticals, horizontal marketplaces, new D2C brands</td>
+                </tr>
+                <tr>
+                    <td>Intense Price Competition & Promotion Cycles</td>
+                    <td>Frequent sale events and discount battles compress margins, shift shopper focus to price rather
+                        than brand, and raise the bar for sustained differentiation.</td>
+                    <td>Large marketplaces and brands competing in commoditised categories</td>
+                </tr>
+                <tr>
+                    <td>Regulatory Uncertainty & Compliance Load</td>
+                    <td>Evolving norms on FDI, data protection, consumer protection and competition require constant
+                        adaptation and can constrain certain business models.</td>
+                    <td>Foreign-owned platforms, high-growth marketplaces, data-intensive models</td>
+                </tr>
+                <tr>
+                    <td>Profitability & Unit Economics Pressure</td>
+                    <td>Balancing growth, customer acquisition, discounts, logistics and technology investments makes
+                        sustained profitability challenging, particularly for smaller or single-category players.</td>
+                    <td>Venture-funded platforms, emerging D2C and social commerce startups</td>
+                </tr>
+                <tr>
+                    <td>Infrastructure Gaps in Smaller Towns</td>
+                    <td>Inconsistent connectivity, limited warehousing and fragmented last-mile networks increase cost
+                        and reduce service levels in certain regions.</td>
+                    <td>Platforms expanding into Tier-3+ and rural markets</td>
+                </tr>
+                <tr>
+                    <td>Data Security & Trust</td>
+                    <td>Any breach or misuse of customer data can erode trust and invite regulatory scrutiny, impacting
+                        adoption and platform reputation.</td>
+                    <td>All large platforms and data-heavy business models</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>15. Opportunities & Future Outlook</h1>
+        <p>The Indian consumer e-commerce sector is positioned for continued expansion over the next three years, with
+            growth shifting from purely volume-led to value and habit-led.</p>
+        <h2>15.1 Key Growth Opportunities</h2>
+        <div class="table-wrapper">
+            <table class="plain-table">
+                <tr>
+                    <th>Opportunity Area</th>
+                    <th>Drivers</th>
+                    <th>Strategic Implication</th>
+                </tr>
+                <tr>
+                    <td>High-Frequency Categories to Outpace Big-Ticket Purchases</td>
+                    <td>Daily/weekly purchase habits in grocery, beauty, personal care and small household essentials;
+                        convenience and time-saving; quick-commerce expansion</td>
+                    <td>Platforms that deepen presence in high-frequency baskets can build stronger engagement, richer
+                        data and more resilient revenue streams</td>
+                </tr>
+                <tr>
+                    <td>Tier-2+ & “Bharat” Consumer Expansion</td>
+                    <td>Rising aspirations and digital adoption outside metros; improving logistics reach; local
+                        language content and social discovery</td>
+                    <td>Brands and platforms that adapt assortments, price points and content to regional needs will
+                        capture disproportionate share of new shoppers</td>
+                </tr>
+                <tr>
+                    <td>D2C & Digital-First Brands</td>
+                    <td>Lower barriers to launching brands; ability to micro-target niches; use of performance marketing
+                        and creator ecosystems</td>
+                    <td>Strong potential for consolidation and strategic partnerships; brands that manage unit economics
+                        and retention will become attractive M&A targets</td>
+                </tr>
+                <tr>
+                    <td>Personalisation & AI-Driven Commerce</td>
+                    <td>Availability of rich behavioural data; advances in recommendation engines, generative AI and
+                        agentic shopping assistants</td>
+                    <td>AI-led merchandising and service can increase conversion, basket size and customer stickiness,
+                        especially in crowded categories</td>
+                </tr>
+                <tr>
+                    <td>Monetisation Beyond Physical Product</td>
+                    <td>Platform advertising, memberships, financial services and logistics for sellers</td>
+                    <td>Significant profit pools to offset thin retail margins; players with strong traffic and data
+                        advantages will lead here</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>15.2 Structural Tailwinds Supporting Growth</h2>
+        <ul>
+            <li>A young, digital-native population that is comfortable discovering, evaluating and buying online.</li>
+            <li>Rising household incomes and a gradual shift from essential to discretionary consumption in many
+                segments.</li>
+            <li>Deepening smartphone and data penetration into smaller towns, supported by affordable tariffs.</li>
+            <li>Mature digital payments infrastructure that makes small-ticket and recurring online purchases seamless.
+            </li>
+            <li>Expansion of organised warehousing and logistics capacity tied closely to e-commerce corridors.</li>
+        </ul>
+        <p>Together, these tailwinds suggest that e-retail penetration will continue to climb across categories, with
+            high-frequency verticals contributing a large share of incremental growth.</p>
+
+        <h1>16. Conclusion</h1>
+        <p>India’s consumer e-commerce sector is entering a phase where value creation will be shaped less by raw GMV
+            growth alone and more by depth of engagement, supply-chain sophistication and monetisation beyond basic
+            product sales.</p>
+        <p>Platforms and brands that:</p>
+        <ul>
+            <li>build strong positions in high-frequency, habit-forming categories;</li>
+            <li>invest in differentiated assortments, private labels and trend-first offerings;</li>
+            <li>leverage AI-driven personalisation and rich first-party data; and</li>
+            <li>maintain trust through reliable fulfilment, transparent policies and responsible use of data</li>
+        </ul>
+        <p>are likely to lead margin expansion and market share gains.</p>
+        <p>The sector remains structurally resilient—with powerful digital and demographic tailwinds—but the next wave
+            of winners will be those that treat e-commerce not just as a discount-driven sales channel, but as a
+            foundational consumer infrastructure and brand-building engine within India’s broader digital economy.</p>
+        <div
+            style="margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <a href="https://get.tofler.in/wp-content/uploads/2026/04/Digital-Retail-India-2026.pdf" target="_blank"
+                class="btn-primary" style="margin: 0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+            <div class="authors-section" style="width: 100%; max-width: 800px; margin-top: 32px;">
+                <style>
+                    .authors-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                        width: 100%;
+                    }
+                    .author-card {
+                        background: #ffffff;
+                        border: 1px solid #E2E8F0;
+                        border-radius: 16px;
+                        padding: 24px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        gap: 24px;
+                        text-align: left;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .author-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 4px;
+                        height: 100%;
+                        background: linear-gradient(180deg, #5E3BE1, #8B5CF6);
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    .author-card:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 12px 20px -8px rgba(94, 59, 225, 0.12), 0 4px 6px -2px rgba(94, 59, 225, 0.04);
+                        border-color: #D8B4FE;
+                    }
+                    .author-card:hover::before {
+                        opacity: 1;
+                    }
+                    .author-img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #F1F5F9;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+                        flex-shrink: 0;
+                        transition: transform 0.3s ease;
+                    }
+                    .author-card:hover .author-img {
+                        transform: scale(1.03);
+                        border-color: #5E3BE1;
+                    }
+                    .author-info {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                    }
+                    .author-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 16px;
+                    }
+                    .author-title-area {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 6px;
+                    }
+                    .author-role-badge {
+                        font-size: 10px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        font-weight: 700;
+                        color: #475569;
+                        background: #F1F5F9;
+                        padding: 3px 8px;
+                        border-radius: 4px;
+                    }
+                    .author-name {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: #0F172A;
+                        margin: 0;
+                    }
+                    .author-role {
+                        color: #5E3BE1;
+                        background: rgba(94, 59, 225, 0.08);
+                        padding: 4px 10px;
+                        border-radius: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        display: inline-block;
+                    }
+                    .author-bio {
+                        font-size: 14.5px;
+                        line-height: 1.6;
+                        color: #475569;
+                        margin: 0;
+                    }
+                    .author-linkedin-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        color: #ffffff;
+                        background-color: #0077B5;
+                        padding: 8px 16px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        transition: all 0.2s ease;
+                        box-shadow: 0 2px 4px rgba(0, 119, 181, 0.15);
+                        flex-shrink: 0;
+                    }
+                    .author-linkedin-btn:hover {
+                        background-color: #005E93;
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 8px rgba(0, 119, 181, 0.25);
+                    }
+                    .author-linkedin-btn svg {
+                        width: 14px;
+                        height: 14px;
+                        fill: currentColor;
+                    }
+                    @media (max-width: 600px) {
+                        .author-card {
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                            padding: 20px;
+                        }
+                        .author-header {
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 12px;
+                            width: 100%;
+                        }
+                        .author-title-area {
+                            align-items: center;
+                        }
+                        .author-linkedin-btn {
+                            width: 100%;
+                            justify-content: center;
+                        }
+                    }
+                </style>
+                <div class="authors-list">
+                    <!-- Sayan Ghosh Profile -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/03/Make_this_a_202603251659.jpeg" alt="Sayan Ghosh">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Authored By</span>
+                                    <h3 class="author-name">Sayan Ghosh</h3>
+                                    <div class="author-role">Marketing Manager, Tofler</div>
+                                </div>
+                                <a href="https://linkedin.com/in/sayan-ghosh-844524151" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Data-backed marketer creating research-led content that turns industry, company, and market insights into clear business narratives.</p>
+                        </div>
+                    </div>
+                    <!-- Anchal Agarwal Profile -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/05/1766386611595.jpg" alt="Anchal Agarwal">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Supervised By</span>
+                                    <h3 class="author-name">Anchal Agarwal</h3>
+                                    <div class="author-role">Co-founder & CEO, Tofler</div>
+                                </div>
+                                <a href="https://www.linkedin.com/in/anchal-agarwal-ind12/" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Chartered Accountant and finance professional specializing in due diligence, credit risk management, benchmarking, and business intelligence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer_wrapper hide-on-print">
+        <div class="container text-white">
+            <div class="footer_container">
+                <!-- Brand & Help -->
+                <div class="flex-col gap-32">
+                    <img class="logo" src="https://get.tofler.in/wp-content/uploads/2026/03/Untitled-design-27.png" alt="Tofler Logo" style="width: 140px; height: auto;">
+                    <p class="text-sm font-light footer_desc">All trademarks, service marks, trade names and logos appearing on the site are the property of their respective owners.</p>
+                    <div class="flex-col gap-4 font-regular">
+                        <p class="text-sm">Need any help? Email us at:</p>
+                        <p class="text-sm" style="color: #ffffff; font-weight: 600;">support@tofler.in</p>
+                    </div>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="flex" style="gap: 60px; justify-content: flex-start;">
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">QUICK LINKS</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/about">About us</a></li>
+                            <li><a href="https://www.tofler.in/blog">Blogs</a></li>
+                            <li><a href="https://www.tofler.in/industry-reports">Industry Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-col gap-24" style="margin-left: 5px;">
+                        <h3 class="text-white text-md">LEGAL</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/tos">Terms</a></li>
+                            <li><a href="https://www.tofler.in/privacy">Privacy</a></li>
+                            <li><a href="https://www.tofler.in/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Details & Social -->
+                <div class="flex-col gap-32">
+                    <div class="font-regular flex-col gap-4 text-sm" style="color: #ffffff;">
+                        <p>TWS Systems Private Limited (Tofler)</p>
+                        <p>Gurgaon, Haryana - 122002</p>
+                        <p>(CIN: U72502DL2013PTC261372)</p>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">FOLLOW US ON:</h3>
+                        <div class="flex gap-24">
+                            <a href="https://www.facebook.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9a5 5 0 0 1 5-5h3v3h-2c-1.1 0-2 .9-2 2v2h4l-1 3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tofler/" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@tofler8107" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C1 8.1 1 12 1 12s0 3.9.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C23 15.9 23 12 23 12s0-3.9-.46-5.58zM9.54 15.22V8.78L15.3 12l-5.76 3.22z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container pb-40">
+            <div class="low_footer text-sm" style="justify-content: center;">
+                <p style="margin: 0;">© TWS Systems Private Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav) nav.classList.toggle('active');
+        }
+
+        function toggleExpand(targetId, btn, textExpand, textCollapse) {
+            const target = document.getElementById(targetId);
+            if (target.classList.contains('expanded')) {
+                target.classList.remove('expanded');
+                btn.innerHTML = textExpand + ' &darr;';
+                setTimeout(() => {
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 50);
+            } else {
+                target.classList.add('expanded');
+                btn.innerHTML = textCollapse + ' &uarr;';
+            }
+        }
+    </script>
+</body>
+
+</html>

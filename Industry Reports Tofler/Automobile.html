@@ -1,0 +1,3423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tofler: Automobile Benchmarking Report</title>
+    <link rel="icon" type="image/png" href="https://get.tofler.in/wp-content/uploads/2025/08/faviconlogo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1440px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            height: 52px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-left-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-item {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #5E3BE1;
+        }
+
+        .nav-link-outline {
+            color: #5E3BE1;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 1px solid #5E3BE1;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-outline:hover {
+            background-color: rgba(94, 59, 225, 0.05);
+        }
+
+        .nav-btn-solid {
+            background-color: #5E3BE1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-solid:hover {
+            background-color: #4b2eb5;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #5E3BE1;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 24px 0 0 0;
+        }
+
+        .hero-card {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            gap: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            flex: 0 0 45%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hero-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #E2E8F0;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+
+        .hero-date {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: 0px;
+        }
+
+        .hero-button {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        /* SHARE SECTION */
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .share-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #F1F5F9;
+            color: #475569;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .share-icon-btn:hover {
+            background-color: #E2E8F0;
+            color: #5E3BE1;
+            transform: translateY(-2px);
+        }
+
+        .share-icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-button:hover {
+            background-color: #333;
+        }
+
+        /* MOBILE DROPDOWN */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 16px 40px;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 992px) {
+
+            .nav-item,
+            .nav-link-outline,
+            .nav-btn-solid {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar .container {
+                padding: 0 20px;
+            }
+
+            .hero-card {
+                flex-direction: column;
+                gap: 32px;
+                padding: 24px;
+            }
+
+            .hero-image-wrapper {
+                flex: 0 0 100%;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+
+        /* INFO SECTION STYLES */
+        .info-section {
+            padding: 24px 0 24px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .about-headline {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 32px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 24px;
+        }
+
+        .highlight-text {
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .speaker-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            height: fit-content;
+            background: linear-gradient(135deg, #ffffff 0%, #FAFAFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .speaker-heading-icon {
+            width: 16px;
+            height: 16px;
+            color: #5E3BE1;
+        }
+
+        .speaker-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #F1F5F9;
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 24px;
+        }
+
+        .speaker-linkedin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #5E3BE1;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 20px;
+            background-color: rgba(94, 59, 225, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .speaker-linkedin:hover {
+            background-color: rgba(94, 59, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-box {
+                padding: 32px 24px;
+            }
+        }
+
+        .action-container {
+            margin-top: 24px;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 10px 0 40px 0;
+        }
+
+        .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.02);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #5E3BE1 !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #5E3BE1 !important;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* LIGHTBOX STYLES */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-lightbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* FOOTER STYLES */
+        .footer_wrapper {
+            background-color: #27184F;
+            padding: 80px 0 40px 0;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .footer_wrapper .container {
+            display: block !important;
+            max-width: 1500px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 18px !important;
+        }
+
+
+        .footer_container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .flex-col { display: flex; flex-direction: column; }
+        .flex { display: flex; }
+        .gap-4 { gap: 4px; }
+        .gap-8 { gap: 8px; }
+        .gap-24 { gap: 24px; }
+        .gap-32 { gap: 32px; }
+        .gap-80 { gap: 80px; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+
+        .footer_desc {
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer_wrapper p {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-dark { color: #0F172A; }
+        .font-light { font-weight: 300; }
+        .font-regular { font-weight: 400; }
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 18px; font-weight: 700; }
+
+        .footer_wrapper a {
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer_wrapper a:hover {
+            color: #ffffff !important;
+            opacity: 0.8;
+        }
+
+        .low_footer {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #0F172A;
+            font-weight: 600;
+        }
+
+        .low_footer p {
+            color: #0F172A !important;
+        }
+
+        @media (max-width: 992px) {
+            .footer_container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .low_footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        .footer_social_icon {
+            width: 24px;
+            height: 24px;
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            transition: opacity 0.2s;
+        }
+
+        .footer_social_icon:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #475569;
+        }
+
+        .modal-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0F172A;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+        }
+
+        .modal-subheading {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #334155;
+            letter-spacing: 0.2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background-color: #F8FAFC;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #5E3BE1;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(94, 59, 225, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #5E3BE1;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #4b2eb5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:disabled {
+            background-color: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+
+        :root {
+            --primary: #613dc1;
+            --secondary: #dbd4ee;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        .report-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+
+        .report-content h1,
+        .report-content h2,
+        .report-content h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #0F172A;
+        }
+
+        .report-content h1 {
+            font-size: 32px;
+            margin-top: 24px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        .report-content h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        .report-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .report-content ul:not(.company-list) {
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .report-content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .report-img {
+            width: 100%;
+            margin: 40px 0;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        /* Grid layout for companies to save vertical space */
+        .company-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .company-list li {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 0 !important;
+        }
+
+        .company-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: var(--secondary);
+        }
+
+        .company-list .title-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .company-list h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F172A;
+            line-height: 1.4;
+        }
+
+        .company-list .index {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .company-list .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .comp-cin {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .comp-link {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .comp-link:hover {
+            text-decoration: underline;
+            color: #4f30a0;
+        }
+
+
+        /* Tofler Table Style updated */
+        .table-wrapper {
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.03));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 32px 0;
+            background: #fff;
+        }
+
+        .tofler-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .tofler-table th,
+        .tofler-table td {
+            padding: 16px 20px;
+            font-weight: 400 !important;
+        }
+
+        .tofler-table th {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 600 !important;
+            font-size: 15px;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .tofler-table th:first-child {
+            text-align: left;
+        }
+
+        .tofler-table td:first-child {
+            text-align: left;
+            color: #334155;
+        }
+
+        .tofler-table td {
+            color: #1e293b;
+            border: none;
+        }
+
+        .tofler-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .tofler-table tr:nth-child(odd) {
+            background-color: #f7f5fb;
+        }
+
+        /* Plain Table for text heavy sections */
+        .plain-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            white-space: normal;
+        }
+
+        .plain-table th,
+        .plain-table td {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .plain-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+            border-bottom: 2px solid var(--border);
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .plain-table td {
+            font-weight: 400;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .plain-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .plain-table tr:nth-child(odd) {
+            background-color: #f7f5fb;
+        }
+
+        /* Desktop-specific table name wrapping fix */
+        @media (min-width: 769px) {
+            .tofler-table td:first-child {
+                white-space: normal !important;
+                min-width: 250px;
+            }
+        }
+
+
+        /* Responsive Toggle Logic for Desktop and Mobile */
+        .expandable-list:not(.expanded) li:nth-child(n+7) {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .expandable-list:not(.expanded) li:nth-child(n+4) {
+                display: none !important;
+            }
+        }
+
+        .expandable-table:not(.expanded) tr:nth-child(n+12) {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .expandable-table:not(.expanded) tr:nth-child(n+7) {
+                display: none !important;
+            }
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-top: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+            margin-top: -16px;
+            margin-bottom: 24px;
+        }
+
+        .toggle-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .table-wrapper .toggle-btn {
+            margin-top: 0;
+            margin-bottom: 0;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .view-all-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+        }
+
+        .view-all-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .hero-banner {
+            position: relative;
+            padding: 120px 20px;
+            text-align: center;
+            color: #fff;
+            background-image: url('https://get.tofler.in/wp-content/uploads/2026/04/Automobile.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(97, 61, 193, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(219, 212, 238, 0.95);
+            color: #5e3be1;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-banner h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-banner p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            color: #ffffff;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            font-weight: 500;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #4f30a0;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
+
+        /* Highlights Component */
+        strong.hl {
+            color: #0f172a;
+            font-weight: 700;
+            background: none;
+            padding: 0;
+        }
+
+        /* Mobile Responsiveness Rules */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-banner {
+                padding: 60px 16px 50px;
+            }
+
+            .hero-tag {
+                font-size: 11px;
+                padding: 6px 12px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                line-height: 1.4;
+                letter-spacing: 0.5px;
+                max-width: 95%;
+            }
+
+            .hero-banner h1 {
+                font-size: 30px;
+                margin-bottom: 16px;
+                line-height: 1.3;
+            }
+
+            .hero-banner p {
+                font-size: 16px;
+                margin-bottom: 24px;
+                padding: 0 4px;
+            }
+
+            .hero-p-desktop {
+                display: none !important;
+            }
+
+            .hero-p-mobile {
+                display: block !important;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .report-content {
+                padding: 40px 16px;
+            }
+
+            .report-content h1 {
+                font-size: 24px;
+                margin-top: 32px;
+                margin-bottom: 16px;
+            }
+
+            .report-content h2 {
+                font-size: 20px;
+                margin-top: 24px;
+                margin-bottom: 12px;
+            }
+
+            .report-content p,
+            .report-content li {
+                font-size: 15px;
+            }
+
+            .tofler-table th,
+            .tofler-table td,
+            .plain-table th,
+            .plain-table td {
+                padding: 12px 10px;
+                font-size: 13px !important;
+            }
+
+            .tofler-table th,
+            .plain-table th {
+                font-size: 12px !important;
+            }
+
+            .tofler-table td:first-child {
+                min-width: 150px;
+            }
+
+            .company-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin: 16px 0;
+            }
+
+            .company-list li {
+                padding: 12px;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .company-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-banner h1 {
+                font-size: 28px;
+            }
+
+            .report-content h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left-group">
+                <a href="https://www.tofler.in/">
+                    <img src="https://get.tofler.in/wp-content/uploads/2025/11/Untitled-design-15-1.jpg"
+                        alt="Tofler Logo" class="logo">
+                </a>
+            </div>
+
+            <div class="nav-right-group">
+                <a href="https://tofler.in/our-story" class="nav-item">Our Story</a>
+                <a href="https://www.tofler.in/benefits" class="nav-item">Benefits</a>
+                <a href="https://www.tofler.in/price-and-plans" class="nav-link-outline">See Price & Plans</a>
+                <a href="https://www.tofler.in/login" class="nav-btn-solid">Login</a>
+                <button class="menu-toggle" onclick="toggleMobileNav()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="https://tofler.in/our-story" class="nav-item" style="display: block;">Our Story</a>
+            <a href="https://www.tofler.in/benefits" class="nav-item" style="display: block;">Benefits</a>
+            <a href="https://www.tofler.in/price-and-plans" class="nav-item" style="display: block;">See Price &
+                Plans</a>
+            <a href="https://www.tofler.in/login" class="nav-item" style="display: block;">Login</a>
+        </div>
+    </nav>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <div class="hero-tag">A Five-Year Financial Benchmarking Study</div>
+            <h1>India's Automobile Industry Outlook</h1>
+            <p class="hero-p-desktop">Assessing financial performance, margins, and capital structure across India’s top
+                30 OEMs and mobility players.</p>
+            <p class="hero-p-mobile" style="display: none;">Assessing the financial performance across India’s top 30
+                OEMs and mobility players.</p>
+            <a href="https://get.tofler.in/wp-content/uploads/2026/04/India-Automobile-Industry-Outlook_-A-Five-Year-Financial-Benchmarking-Study.pdf"
+                target="_blank" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+        </div>
+    </div>
+
+    <div class="report-content">
+
+        <h1>1. Executive Summary</h1>
+        <p>India’s automobile sector has evolved from cyclical manufacturing-led growth to a core driver of national
+            industrial output, supported by rising <b>consumer demand</b>, <b>expanding model portfolios</b>, and
+            <b>continued investment in electrification and advanced mobility technologies</b>. The sector contributes
+            significantly to GDP, energizes supply chains spanning steel, electronics, and logistics, and supports
+            millions of jobs across manufacturing, dealerships, after-sales networks, and mobility services.</p>
+        <p>Our analysis of <b>30 leading automobile companies</b> indicates a phase of robust scale expansion
+            accompanied by a sharp <b>profitability expansion</b> through FY23–FY24, followed by stabilization in FY25.
+            The sector continues to deploy substantial capital into capacity expansion, EV platforms, and R&D
+            capabilities, resulting in a steadily strengthening balance sheet and rising asset intensity.</p>
+
+        <h2>Revenue and Profit Trends</h2>
+        <ul>
+            <li>The sector has delivered strong multi-year growth, with sales nearly doubling from <strong
+                    class="hl">₹3,53,526 crore in FY21 to ₹7,10,554 crore in FY25</strong>.</li>
+            <li>Cost of goods and operating expenses rose alongside growth, but at a more controlled pace, driving
+                meaningful profitability expansion.</li>
+            <li>Operating profit increased significantly from <strong class="hl">₹23,082 crore in FY21 to ₹81,367 crore
+                    in FY25</strong>, reflecting improved operating leverage.</li>
+            <li>Net profit saw a sharp rise from ₹9,296 crore in FY21 to a peak of <strong class="hl">₹57,213
+                    crore</strong> in FY24, before moderating slightly to ₹54,521 crore in FY25.</li>
+            <li>Borrowings remained relatively stable over the period, moving from <strong class="hl">₹56,962 crore to
+                    ₹65,296 crore</strong>, indicating disciplined leverage despite expansion.</li>
+            <li>Net worth strengthened consistently, growing from <strong class="hl">₹1,77,775 crore in FY21 to
+                    ₹2,94,412 crore in FY25</strong>, supported by sustained profitability.</li>
+            <li>Total assets expanded from <strong class="hl">₹3,63,836 crore to ₹5,43,553 crore</strong>, reflecting
+                continued investment in growth of EV.</li>
+            <li>Margins improved materially over the period: <strong class="hl">Operating margin expanded from ~6.5% to
+                    ~11.5%</strong> with Net margin increasing from ~2.6% to ~7.7%</li>
+            <li>Overall, the sector demonstrates a clear shift from <b>scale-led growth to profitable growth</b>, with
+                stronger margins and balance sheet resilience.</li>
+        </ul>
+
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>35,352.6</td>
+                    <td>42,785.4</td>
+                    <td>57,988.9</td>
+                    <td>67,421.1</td>
+                    <td>71,055.4</td>
+                </tr>
+                <tr>
+                    <td>Operating profit</td>
+                    <td>2,308.1</td>
+                    <td>2,798.4</td>
+                    <td>5,239.4</td>
+                    <td>7,827.9</td>
+                    <td>8,136.6</td>
+                </tr>
+                <tr>
+                    <td>Net profit</td>
+                    <td>929.5</td>
+                    <td>1,288.9</td>
+                    <td>3,620.4</td>
+                    <td>5,721.2</td>
+                    <td>5,452.1</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>17,777.5</td>
+                    <td>19,363.2</td>
+                    <td>21,661.9</td>
+                    <td>25,493.8</td>
+                    <td>29,441.2</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>5,696.1</td>
+                    <td>6,398.9</td>
+                    <td>6,632.3</td>
+                    <td>6,136.4</td>
+                    <td>6,529.5</td>
+                </tr>
+                <tr>
+                    <td>Assets</td>
+                    <td>36,383.6</td>
+                    <td>39,090.7</td>
+                    <td>43,003.3</td>
+                    <td>48,726.7</td>
+                    <td>54,355.3</td>
+                </tr>
+                <tr>
+                    <td>Operating Margin</td>
+                    <td>6.53%</td>
+                    <td>6.54%</td>
+                    <td>9.04%</td>
+                    <td>11.61%</td>
+                    <td>11.45%</td>
+                </tr>
+                <tr>
+                    <td>Net Margin</td>
+                    <td>2.63%</td>
+                    <td>3.01%</td>
+                    <td>6.24%</td>
+                    <td>8.49%</td>
+                    <td>7.67%</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <h1>2. Methodology</h1>
+        <p>This analysis is based on a comprehensive financial and structural review of <strong class="hl">30 leading
+                companies</strong> in India’s Automobile sector, covering both listed and unlisted players across
+            passenger vehicles, commercial vehicles, two-wheelers, three-wheelers, and emerging electric mobility
+            platforms. The objective was to evaluate sector-wide performance trends, profitability dynamics,
+            balance-sheet health, and long-term competitiveness using standardized financial metrics and comparable
+            company data.</p>
+
+        <h2>2.1 Data Sources</h2>
+        <p>All financial information used in this study was sourced exclusively from <a href="https://www.tofler.in"
+                target="_blank"
+                style="color: var(--primary); font-weight: 700; text-decoration: underline;">Tofler.in</a>, including:
+        </p>
+        <ul>
+            <li>Profit & Loss Statements</li>
+            <li>Balance Sheets</li>
+            <li>Cash Flow Statements</li>
+            <li>Financial Highlights</li>
+            <li>Ratios & Margins</li>
+        </ul>
+        <p>Only audited financials were considered for the analysis.</p>
+
+        <h2>2.2 Company Selection</h2>
+        <p>The study covers 30 major companies representing the organized automobile manufacturing and mobility value
+            chain. Companies were selected based on:</p>
+        <ul>
+            <li><b>Scale</b> of operations (revenue/asset base)</li>
+            <li><b>Market presence</b> across the entire automobile industry.</li>
+            <li><b>Mix</b> of listed and unlisted entities to reflect the sector’s true structure</li>
+            <li><b>Geographic</b> and <b>product</b> diversity of operations</li>
+            <li><b>Availability</b> of consistent financial data for FY21–FY25</li>
+        </ul>
+
+        <p><b>Companies Used for Analysis:</b></p>
+        <ul class="company-list expandable-list" id="companies-list">
+            <li>
+                <div class="title-row">
+                    <span class="index">1.</span>
+                    <h4>HONDA CARS INDIA LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U15114UP1995PLC099377</span>
+                    <a href="https://www.tofler.in/honda-cars-india-limited/company/U15114UP1995PLC099377"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">2.</span>
+                    <h4>JBM ELECTRIC VEHICLES PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34100DL2020PTC363195</span>
+                    <a href="https://www.tofler.in/jbm-electric-vehicles-private-limited/company/U34100DL2020PTC363195"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">3.</span>
+                    <h4>TATA PASSENGER ELECTRIC MOBILITY LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34100MH2021PLC373648</span>
+                    <a href="https://www.tofler.in/tata-passenger-electric-mobility-limited/company/U34100MH2021PLC373648"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">4.</span>
+                    <h4>TOYOTA KIRLOSKAR MOTOR PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34101KA1997PTC022858</span>
+                    <a href="https://www.tofler.in/toyota-kirloskar-motor-private-limited/company/U34101KA1997PTC022858"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">5.</span>
+                    <h4>CLASSIC LEGENDS PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34101MH2015PTC265665</span>
+                    <a href="https://www.tofler.in/classic-legends-private-limited/company/U34101MH2015PTC265665"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">6.</span>
+                    <h4>ULTRAVIOLETTE AUTOMOTIVE PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34102KA2015PTC084804</span>
+                    <a href="https://www.tofler.in/ultraviolette-automotive-private-limited/company/U34102KA2015PTC084804"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">7.</span>
+                    <h4>MERCEDES-BENZ INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34102PN1994PTC083160</span>
+                    <a href="https://www.tofler.in/mercedes-benz-india-private-limited/company/U34102PN1994PTC083160"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">8.</span>
+                    <h4>FORD INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34103TN2000PTC045537</span>
+                    <a href="https://www.tofler.in/ford-india-private-limited/company/U34103TN2000PTC045537"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">9.</span>
+                    <h4>DAIMLER INDIA COMMERCIAL VEHICLES PVT LTD</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34200TN2007PTC072876</span>
+                    <a href="https://www.tofler.in/daimler-india-commercial-vehicles-private-limited/company/U34200TN2007PTC072876"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">10.</span>
+                    <h4>ISUZU MOTORS INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U35990TN2012FTC087295</span>
+                    <a href="https://www.tofler.in/isuzu-motors-india-private-limited/company/U35990TN2012FTC087295"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">11.</span>
+                    <h4>BMW INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U35991HR1997PTC037496</span>
+                    <a href="https://www.tofler.in/bmw-india-private-limited/company/U35991HR1997PTC037496"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">12.</span>
+                    <h4>SCANIA COMMERCIAL VEHICLES INDIA PVT LTD</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U35999KA2011FTC056984</span>
+                    <a href="https://www.tofler.in/scania-commercial-vehicles-india-private-limited/company/U35999KA2011FTC056984"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">13.</span>
+                    <h4>SKODA AUTO VOLKSWAGEN INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U70102PN2007FTC133117</span>
+                    <a href="https://www.tofler.in/skoda-auto-volkswagen-india-private-limited/company/U70102PN2007FTC133117"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">14.</span>
+                    <h4>EULER MOTORS PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U72900DL2015PTC275513</span>
+                    <a href="https://www.tofler.in/euler-motors-private-limited/company/U72900DL2015PTC275513"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">15.</span>
+                    <h4>TATA MOTORS PASSENGER VEHICLES LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L28920MH1945PLC004520</span>
+                    <a href="https://www.tofler.in/tata-motors-passenger-vehicles-limited/company/L28920MH1945PLC004520"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">16.</span>
+                    <h4>HYUNDAI MOTOR INDIA LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L29309TN1996PLC035377</span>
+                    <a href="https://www.tofler.in/hyundai-motor-india-limited/company/L29309TN1996PLC035377"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">17.</span>
+                    <h4>VST TILLERS TRACTORS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L34101KA1967PLC001706</span>
+                    <a href="https://www.tofler.in/vst-tillers-tractors-limited/company/L34101KA1967PLC001706"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">18.</span>
+                    <h4>ASHOK LEYLAND LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L34101TN1948PLC000105</span>
+                    <a href="https://www.tofler.in/ashok-leyland-limited/company/L34101TN1948PLC000105" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">19.</span>
+                    <h4>EICHER MOTORS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L34102DL1982PLC129877</span>
+                    <a href="https://www.tofler.in/eicher-motors-limited/company/L34102DL1982PLC129877" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">20.</span>
+                    <h4>FORCE MOTORS LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L34102PN1958PLC011172</span>
+                    <a href="https://www.tofler.in/force-motors-limited/company/L34102PN1958PLC011172" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">21.</span>
+                    <h4>MARUTI SUZUKI INDIA LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L34103DL1981PLC011375</span>
+                    <a href="https://www.tofler.in/maruti-suzuki-india-limited/company/L34103DL1981PLC011375"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">22.</span>
+                    <h4>HERO MOTOCORP LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L35911DL1984PLC017354</span>
+                    <a href="https://www.tofler.in/hero-motocorp-limited/company/L35911DL1984PLC017354" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">23.</span>
+                    <h4>TVS MOTOR COMPANY LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L35921TN1992PLC022845</span>
+                    <a href="https://www.tofler.in/tvs-motor-company-limited/company/L35921TN1992PLC022845"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">24.</span>
+                    <h4>SML MAHINDRA LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L50101PB1983PLC005516</span>
+                    <a href="https://www.tofler.in/sml-mahindra-limited/company/L50101PB1983PLC005516" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">25.</span>
+                    <h4>ATUL AUTO LTD</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L54100GJ1986PLC016999</span>
+                    <a href="https://www.tofler.in/atul-auto-ltd/company/L54100GJ1986PLC016999" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">26.</span>
+                    <h4>BAJAJ AUTO LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">L65993PN2007PLC130076</span>
+                    <a href="https://www.tofler.in/bajaj-auto-limited/company/L65993PN2007PLC130076" target="_blank"
+                        class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">27.</span>
+                    <h4>KIA INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U29309AP2017FTC105878</span>
+                    <a href="https://www.tofler.in/kia-india-private-limited/company/U29309AP2017FTC105878"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">28.</span>
+                    <h4>RENAULT INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34100TN2005FTC078835</span>
+                    <a href="https://www.tofler.in/renault-india-private-limited/company/U34100TN2005FTC078835"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">29.</span>
+                    <h4>JSW MG MOTOR INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34100HR2017FTC072429</span>
+                    <a href="https://www.tofler.in/jsw-mg-motor-india-private-limited/company/U34100HR2017FTC072429"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+            <li>
+                <div class="title-row">
+                    <span class="index">30.</span>
+                    <h4>NISSAN MOTOR INDIA PRIVATE LIMITED</h4>
+                </div>
+                <div class="bottom-row">
+                    <span class="comp-cin">U34100TN2005PTC073897</span>
+                    <a href="https://www.tofler.in/nissan-motor-india-private-limited/company/U34100TN2005PTC073897"
+                        target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" style="margin-left:2px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg></a>
+                </div>
+            </li>
+        </ul>
+        <button class="toggle-btn" style="border-radius:12px; margin-top:-8px; border:1px solid var(--border);"
+            onclick="toggleExpand('companies-list', this, 'View All Companies', 'Collapse')">View All Companies
+            &darr;</button>
+        <p>These companies together offer a representative view of India’s structured automotive ecosystem, spanning ICE
+            and EV platforms, mass-market and premium segments, and both passenger and commercial mobility categories.
+        </p>
+
+        <h2>2.3 Scope of Analysis & Metrics Used</h2>
+        <p>This study covers five years of audited financial data (FY21–FY25) for 30 major automobile companies, with
+            the objective of assessing sector-wide growth, profitability patterns, balance-sheet health, and efficiency
+            trends.</p>
+
+        <p><b>Key Metrics Analyzed:</b></p>
+        <ul>
+            <li><b>Growth Metrics:</b> Sales CAGR, EBITDA CAGR</li>
+            <li><b>Profitability Metrics:</b> Gross Margin, Operating Margin, Net Margin, Operating Profit, Net Profit,
+                EBITDA</li>
+            <li><b>Cost Structure Metrics:</b> Sales, COGS, Employee Costs, Other Operating Costs</li>
+            <li><b>Balance Sheet Metrics:</b> Borrowings (short-term & long-term), Networth, Total Assets, Debt/Equity
+            </li>
+            <li><b>Efficiency Metrics:</b> Asset Turnover, Days Receivable, Days Inventory, Days Payable, Working
+                Capital Days, Cash Conversion Cycle</li>
+        </ul>
+
+        <p><b>Analytical Approach:</b></p>
+        <ul>
+            <li>Aggregating financials of all companies to compute sector-level totals</li>
+            <li>Comparing year-on-year performance across FY21–FY25</li>
+            <li>Calculating 3-year CAGRs to capture medium-term growth</li>
+            <li>Benchmarking ratios using sector medians for realistic comparisons</li>
+            <li>Diagnosing margin drivers, leverage trends, and cash cycle efficiency</li>
+        </ul>
+
+        <h1>3. Industry Aggregates And Trends</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>3,53,526.2</td>
+                    <td>4,27,854.0</td>
+                    <td>5,79,889.3</td>
+                    <td>6,74,211.5</td>
+                    <td>7,10,554.0</td>
+                </tr>
+                <tr>
+                    <td>Expenses</td>
+                    <td>3,51,466.2</td>
+                    <td>4,19,295.0</td>
+                    <td>5,48,525.4</td>
+                    <td>6,20,917.1</td>
+                    <td>6,54,394.8</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Sales-vs-Expenses-Trendline-Over-the-Years.svg"
+            class="report-img" alt="Sales vs Expenses">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>EBITDA</td>
+                    <td>23,081.7</td>
+                    <td>27,984.8</td>
+                    <td>52,394.9</td>
+                    <td>78,279.5</td>
+                    <td>81,366.8</td>
+                </tr>
+                <tr>
+                    <td>Net Profit</td>
+                    <td>9,295.6</td>
+                    <td>12,889.5</td>
+                    <td>36,204.2</td>
+                    <td>57,212.7</td>
+                    <td>54,521.2</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>1,77,775.3</td>
+                    <td>1,93,632.3</td>
+                    <td>2,16,619.8</td>
+                    <td>2,54,938.0</td>
+                    <td>2,94,412.4</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/EBITDA-vs-PAT-vs-Networth-Trendline-Over-the-Years.svg"
+            class="report-img" alt="EBITDA vs PAT">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Fixed Assets</td>
+                    <td>1,11,211.6</td>
+                    <td>98,865.5</td>
+                    <td>1,06,160.0</td>
+                    <td>1,22,561.8</td>
+                    <td>1,35,112.6</td>
+                </tr>
+                <tr>
+                    <td>Current Assets</td>
+                    <td>1,53,141.0</td>
+                    <td>1,59,889.4</td>
+                    <td>1,67,551.9</td>
+                    <td>1,91,014.8</td>
+                    <td>2,24,079.1</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>56,961.8</td>
+                    <td>63,989.0</td>
+                    <td>66,323.8</td>
+                    <td>61,364.7</td>
+                    <td>65,295.8</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Fixed-_Current-Assets-vs-Borrowings-Trendline-Over-the-Years.svg"
+            class="report-img" alt="Assets vs Borrowings">
+
+
+        <h1>4. Three Year Sales CAGR of the companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="sales-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>2022</th>
+                    <th>2025</th>
+                    <th>3 Year Sales CAGR</th>
+                </tr>
+                <tr>
+                    <td>HONDA CARS INDIA LIMITED</td>
+                    <td>12442.9</td>
+                    <td>17219.3</td>
+                    <td>11.44%</td>
+                </tr>
+                <tr>
+                    <td>JBM ELECTRIC VEHICLES PRIVATE LIMITED</td>
+                    <td>0</td>
+                    <td>1650.9</td>
+                    <td>NA</td>
+                </tr>
+                <tr>
+                    <td>TATA PASSENGER ELECTRIC MOBILITY LIMITED</td>
+                    <td>8.6</td>
+                    <td>14590</td>
+                    <td>1092.67%</td>
+                </tr>
+                <tr>
+                    <td>TOYOTA KIRLOSKAR MOTOR PRIVATE LIMITED</td>
+                    <td>19563.4</td>
+                    <td>64865.3</td>
+                    <td>49.12%</td>
+                </tr>
+                <tr>
+                    <td>CLASSIC LEGENDS PRIVATE LIMITED</td>
+                    <td>595.8</td>
+                    <td>648.2</td>
+                    <td>2.85%</td>
+                </tr>
+                <tr>
+                    <td>ULTRAVIOLETTE AUTOMOTIVE PRIVATE LIMITED</td>
+                    <td>0</td>
+                    <td>32.3</td>
+                    <td>NA</td>
+                </tr>
+                <tr>
+                    <td>MERCEDES-BENZ INDIA PRIVATE LIMITED</td>
+                    <td>6188.5</td>
+                    <td>13175.4</td>
+                    <td>28.64%</td>
+                </tr>
+                <tr>
+                    <td>FORD INDIA PRIVATE LIMITED</td>
+                    <td>10201.7</td>
+                    <td>4995.4</td>
+                    <td>-21.18%</td>
+                </tr>
+                <tr>
+                    <td>DAIMLER INDIA COMMERCIAL VEHICLES PRIVATE LIMITED</td>
+                    <td>8216.6</td>
+                    <td>10430.9</td>
+                    <td>8.28%</td>
+                </tr>
+                <tr>
+                    <td>ISUZU MOTORS INDIA PRIVATE LIMITED</td>
+                    <td>2436.3</td>
+                    <td>3431.9</td>
+                    <td>12.10%</td>
+                </tr>
+                <tr>
+                    <td>BMW INDIA PRIVATE LIMITED</td>
+                    <td>4351.8</td>
+                    <td>9435.8</td>
+                    <td>29.43%</td>
+                </tr>
+                <tr>
+                    <td>SCANIA COMMERCIAL VEHICLES INDIA PRIVATE LIMITED</td>
+                    <td>375.4</td>
+                    <td>199</td>
+                    <td>-19.07%</td>
+                </tr>
+                <tr>
+                    <td>SKODA AUTO VOLKSWAGEN INDIA PRIVATE LIMITED</td>
+                    <td>12410.5</td>
+                    <td>19053</td>
+                    <td>15.36%</td>
+                </tr>
+                <tr>
+                    <td>EULER MOTORS PRIVATE LIMITED</td>
+                    <td>25.2</td>
+                    <td>191.5</td>
+                    <td>96.60%</td>
+                </tr>
+                <tr>
+                    <td>TATA MOTORS PASSENGER VEHICLES LIMITED</td>
+                    <td>47263.7</td>
+                    <td>69419</td>
+                    <td>13.67%</td>
+                </tr>
+                <tr>
+                    <td>HYUNDAI MOTOR INDIA LIMITED</td>
+                    <td>47042.8</td>
+                    <td>67653.8</td>
+                    <td>12.88%</td>
+                </tr>
+                <tr>
+                    <td>VST TILLERS TRACTORS LIMITED</td>
+                    <td>853.9</td>
+                    <td>994.5</td>
+                    <td>5.21%</td>
+                </tr>
+                <tr>
+                    <td>ASHOK LEYLAND LIMITED</td>
+                    <td>21688.3</td>
+                    <td>38752.7</td>
+                    <td>21.35%</td>
+                </tr>
+                <tr>
+                    <td>EICHER MOTORS LIMITED</td>
+                    <td>10122.9</td>
+                    <td>18451.5</td>
+                    <td>22.15%</td>
+                </tr>
+                <tr>
+                    <td>FORCE MOTORS LIMITED</td>
+                    <td>3240.4</td>
+                    <td>8071.7</td>
+                    <td>35.56%</td>
+                </tr>
+                <tr>
+                    <td>MARUTI SUZUKI INDIA LIMITED</td>
+                    <td>88329.8</td>
+                    <td>152913</td>
+                    <td>20.07%</td>
+                </tr>
+                <tr>
+                    <td>HERO MOTOCORP LIMITED</td>
+                    <td>29551.3</td>
+                    <td>40923.4</td>
+                    <td>11.46%</td>
+                </tr>
+                <tr>
+                    <td>TVS MOTOR COMPANY LIMITED</td>
+                    <td>24355.3</td>
+                    <td>44089</td>
+                    <td>21.87%</td>
+                </tr>
+                <tr>
+                    <td>SML MAHINDRA LIMITED</td>
+                    <td>924.2</td>
+                    <td>2399</td>
+                    <td>37.43%</td>
+                </tr>
+                <tr>
+                    <td>ATUL AUTO LTD</td>
+                    <td>315.3</td>
+                    <td>722.7</td>
+                    <td>31.85%</td>
+                </tr>
+                <tr>
+                    <td>BAJAJ AUTO LIMITED</td>
+                    <td>33144.7</td>
+                    <td>50994.6</td>
+                    <td>15.44%</td>
+                </tr>
+                <tr>
+                    <td>KIA INDIA PRIVATE LIMITED</td>
+                    <td>25300.3</td>
+                    <td>33264.8</td>
+                    <td>9.55%</td>
+                </tr>
+                <tr>
+                    <td>RENAULT INDIA PRIVATE LIMITED</td>
+                    <td>7343</td>
+                    <td>4455.2</td>
+                    <td>-15.34%</td>
+                </tr>
+                <tr>
+                    <td>JSW MG MOTOR INDIA PRIVATE LIMITED</td>
+                    <td>5255.7</td>
+                    <td>8648.4</td>
+                    <td>18.06%</td>
+                </tr>
+                <tr>
+                    <td>NISSAN MOTOR INDIA PRIVATE LIMITED</td>
+                    <td>6272.3</td>
+                    <td>8881.8</td>
+                    <td>12.29%</td>
+                </tr>
+
+            </table>
+            <button class="toggle-btn"
+                onclick="toggleExpand('sales-table', this, 'View All Companies', 'Collapse')">View All Companies
+                &darr;</button>
+        </div>
+
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/3-Year-Sales-CAGR-Analysis.svg" class="report-img"
+            alt="Sales CAGR Chart">
+
+        <h1>5. Three Year EBITDA CAGR of the companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="ebitda-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>2022</th>
+                    <th>2025</th>
+                    <th>3 Year EBITDA CAGR</th>
+                </tr>
+                <tr>
+                    <td>HONDA CARS INDIA LIMITED</td>
+                    <td>1134.3</td>
+                    <td>1607.5</td>
+                    <td>13.91%</td>
+                </tr>
+                <tr>
+                    <td>JBM ELECTRIC VEHICLES PRIVATE LIMITED</td>
+                    <td>-0.8</td>
+                    <td>168.2</td>
+                    <td>7041.67%</td>
+                </tr>
+                <tr>
+                    <td>TATA PASSENGER ELECTRIC MOBILITY LIMITED</td>
+                    <td>-69.1</td>
+                    <td>-225</td>
+                    <td>-75.21%</td>
+                </tr>
+                <tr>
+                    <td>TOYOTA KIRLOSKAR MOTOR PRIVATE LIMITED</td>
+                    <td>1057.5</td>
+                    <td>7727.5</td>
+                    <td>210.24%</td>
+                </tr>
+                <tr>
+                    <td>CLASSIC LEGENDS PRIVATE LIMITED</td>
+                    <td>-53.1</td>
+                    <td>-144.8</td>
+                    <td>-57.56%</td>
+                </tr>
+                <tr>
+                    <td>ULTRAVIOLETTE AUTOMOTIVE PRIVATE LIMITED</td>
+                    <td>-3.9</td>
+                    <td>-128.4</td>
+                    <td>-1064.10%</td>
+                </tr>
+                <tr>
+                    <td>MERCEDES-BENZ INDIA PRIVATE LIMITED</td>
+                    <td>688.4</td>
+                    <td>582.7</td>
+                    <td>-5.12%</td>
+                </tr>
+                <tr>
+                    <td>FORD INDIA PRIVATE LIMITED</td>
+                    <td>-2981.8</td>
+                    <td>-524</td>
+                    <td>27.48%</td>
+                </tr>
+                <tr>
+                    <td>DAIMLER INDIA COMMERCIAL VEHICLES PRIVATE LIMITED</td>
+                    <td>332.9</td>
+                    <td>588.9</td>
+                    <td>25.63%</td>
+                </tr>
+                <tr>
+                    <td>ISUZU MOTORS INDIA PRIVATE LIMITED</td>
+                    <td>-152.6</td>
+                    <td>60.6</td>
+                    <td>46.57%</td>
+                </tr>
+                <tr>
+                    <td>BMW INDIA PRIVATE LIMITED</td>
+                    <td>225.7</td>
+                    <td>329.6</td>
+                    <td>15.34%</td>
+                </tr>
+                <tr>
+                    <td>SCANIA COMMERCIAL VEHICLES INDIA PRIVATE LIMITED</td>
+                    <td>-5.8</td>
+                    <td>-14.9</td>
+                    <td>-52.30%</td>
+                </tr>
+                <tr>
+                    <td>SKODA AUTO VOLKSWAGEN INDIA PRIVATE LIMITED</td>
+                    <td>-286.4</td>
+                    <td>52.8</td>
+                    <td>39.48%</td>
+                </tr>
+                <tr>
+                    <td>EULER MOTORS PRIVATE LIMITED</td>
+                    <td>-37.6</td>
+                    <td>-177.6</td>
+                    <td>-124.11%</td>
+                </tr>
+                <tr>
+                    <td>TATA MOTORS PASSENGER VEHICLES LIMITED</td>
+                    <td>1498.9</td>
+                    <td>8011</td>
+                    <td>144.82%</td>
+                </tr>
+                <tr>
+                    <td>HYUNDAI MOTOR INDIA LIMITED</td>
+                    <td>5409.5</td>
+                    <td>8748</td>
+                    <td>20.57%</td>
+                </tr>
+                <tr>
+                    <td>VST TILLERS TRACTORS LIMITED</td>
+                    <td>124.2</td>
+                    <td>111.1</td>
+                    <td>-3.52%</td>
+                </tr>
+                <tr>
+                    <td>ASHOK LEYLAND LIMITED</td>
+                    <td>994.5</td>
+                    <td>4930.6</td>
+                    <td>131.93%</td>
+                </tr>
+                <tr>
+                    <td>EICHER MOTORS LIMITED</td>
+                    <td>2113.6</td>
+                    <td>4768</td>
+                    <td>41.86%</td>
+                </tr>
+                <tr>
+                    <td>FORCE MOTORS LIMITED</td>
+                    <td>50.5</td>
+                    <td>1093.2</td>
+                    <td>688.25%</td>
+                </tr>
+                <tr>
+                    <td>MARUTI SUZUKI INDIA LIMITED</td>
+                    <td>5706.2</td>
+                    <td>20156.3</td>
+                    <td>84.41%</td>
+                </tr>
+                <tr>
+                    <td>HERO MOTOCORP LIMITED</td>
+                    <td>3444.8</td>
+                    <td>5945.8</td>
+                    <td>24.20%</td>
+                </tr>
+                <tr>
+                    <td>TVS MOTOR COMPANY LIMITED</td>
+                    <td>2757.1</td>
+                    <td>6648.7</td>
+                    <td>47.05%</td>
+                </tr>
+                <tr>
+                    <td>SML MAHINDRA LIMITED</td>
+                    <td>-41.2</td>
+                    <td>234.6</td>
+                    <td>223.14%</td>
+                </tr>
+                <tr>
+                    <td>ATUL AUTO LTD</td>
+                    <td>-16.4</td>
+                    <td>52.3</td>
+                    <td>139.63%</td>
+                </tr>
+                <tr>
+                    <td>BAJAJ AUTO LIMITED</td>
+                    <td>5249.9</td>
+                    <td>10467.7</td>
+                    <td>33.13%</td>
+                </tr>
+                <tr>
+                    <td>KIA INDIA PRIVATE LIMITED</td>
+                    <td>2206.8</td>
+                    <td>2398.2</td>
+                    <td>2.89%</td>
+                </tr>
+                <tr>
+                    <td>RENAULT INDIA PRIVATE LIMITED</td>
+                    <td>334.8</td>
+                    <td>-961.5</td>
+                    <td>-129.06%</td>
+                </tr>
+                <tr>
+                    <td>JSW MG MOTOR INDIA PRIVATE LIMITED</td>
+                    <td>-558.5</td>
+                    <td>-431.2</td>
+                    <td>7.60%</td>
+                </tr>
+                <tr>
+                    <td>NISSAN MOTOR INDIA PRIVATE LIMITED</td>
+                    <td>-793</td>
+                    <td>-709.1</td>
+                    <td>3.53%</td>
+                </tr>
+
+            </table>
+            <button class="toggle-btn"
+                onclick="toggleExpand('ebitda-table', this, 'View All Companies', 'Collapse')">View All Companies
+                &darr;</button>
+        </div>
+
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/3-Year-Absolute-EBITDA-CAGR-Analysis.svg"
+            class="report-img" alt="EBITDA CAGR Chart">
+
+        <h1>6. Cash Efficiency Comparison Between Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="cash-table">
+                <tr>
+                    <th>Companies</th>
+                    <th>Cash Conversion Cycle</th>
+                    <th>Working Capital Days</th>
+                </tr>
+                <tr>
+                    <td>HONDA CARS INDIA LIMITED</td>
+                    <td>-7</td>
+                    <td>39</td>
+                </tr>
+                <tr>
+                    <td>JBM ELECTRIC VEHICLES PRIVATE LIMITED</td>
+                    <td>-155</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>TATA PASSENGER ELECTRIC MOBILITY LIMITED</td>
+                    <td>-36</td>
+                    <td>73</td>
+                </tr>
+                <tr>
+                    <td>TOYOTA KIRLOSKAR MOTOR PRIVATE LIMITED</td>
+                    <td>-7</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>CLASSIC LEGENDS PRIVATE LIMITED</td>
+                    <td>-59</td>
+                    <td>-128</td>
+                </tr>
+                <tr>
+                    <td>ULTRAVIOLETTE AUTOMOTIVE PRIVATE LIMITED</td>
+                    <td>220</td>
+                    <td>1217</td>
+                </tr>
+                <tr>
+                    <td>MERCEDES-BENZ INDIA PRIVATE LIMITED</td>
+                    <td>105</td>
+                    <td>93</td>
+                </tr>
+                <tr>
+                    <td>FORD INDIA PRIVATE LIMITED</td>
+                    <td>97</td>
+                    <td>102</td>
+                </tr>
+                <tr>
+                    <td>DAIMLER INDIA COMMERCIAL VEHICLES PRIVATE LIMITED</td>
+                    <td>-37</td>
+                    <td>65</td>
+                </tr>
+                <tr>
+                    <td>ISUZU MOTORS INDIA PRIVATE LIMITED</td>
+                    <td>2</td>
+                    <td>81</td>
+                </tr>
+                <tr>
+                    <td>BMW INDIA PRIVATE LIMITED</td>
+                    <td>118</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>SCANIA COMMERCIAL VEHICLES INDIA PRIVATE LIMITED</td>
+                    <td>-333</td>
+                    <td>-766</td>
+                </tr>
+                <tr>
+                    <td>SKODA AUTO VOLKSWAGEN INDIA PRIVATE LIMITED</td>
+                    <td>-18</td>
+                    <td>-37</td>
+                </tr>
+                <tr>
+                    <td>EULER MOTORS PRIVATE LIMITED</td>
+                    <td>26</td>
+                    <td>-61</td>
+                </tr>
+                <tr>
+                    <td>TATA MOTORS PASSENGER VEHICLES LIMITED</td>
+                    <td>-66</td>
+                    <td>-50</td>
+                </tr>
+                <tr>
+                    <td>HYUNDAI MOTOR INDIA LIMITED</td>
+                    <td>-14</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td>VST TILLERS TRACTORS LIMITED</td>
+                    <td>76</td>
+                    <td>281</td>
+                </tr>
+                <tr>
+                    <td>ASHOK LEYLAND LIMITED</td>
+                    <td>-31</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>EICHER MOTORS LIMITED</td>
+                    <td>-27</td>
+                    <td>55</td>
+                </tr>
+                <tr>
+                    <td>FORCE MOTORS LIMITED</td>
+                    <td>33</td>
+                    <td>39</td>
+                </tr>
+                <tr>
+                    <td>MARUTI SUZUKI INDIA LIMITED</td>
+                    <td>-30</td>
+                    <td>-2</td>
+                </tr>
+                <tr>
+                    <td>HERO MOTOCORP LIMITED</td>
+                    <td>-20</td>
+                    <td>53</td>
+                </tr>
+                <tr>
+                    <td>TVS MOTOR COMPANY LIMITED</td>
+                    <td>-56</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td>SML MAHINDRA LIMITED</td>
+                    <td>82</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>ATUL AUTO LTD</td>
+                    <td>42</td>
+                    <td>61</td>
+                </tr>
+                <tr>
+                    <td>BAJAJ AUTO LIMITED</td>
+                    <td>-29</td>
+                    <td>56</td>
+                </tr>
+                <tr>
+                    <td>KIA INDIA PRIVATE LIMITED</td>
+                    <td>-26</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>RENAULT INDIA PRIVATE LIMITED</td>
+                    <td>-54</td>
+                    <td>51</td>
+                </tr>
+                <tr>
+                    <td>JSW MG MOTOR INDIA PRIVATE LIMITED</td>
+                    <td>-59</td>
+                    <td>-41</td>
+                </tr>
+                <tr>
+                    <td>NISSAN MOTOR INDIA PRIVATE LIMITED</td>
+                    <td>-15</td>
+                    <td>-7</td>
+                </tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('cash-table', this, 'View All Companies', 'Collapse')">View
+                All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Cash-Conversion-Cycle-and-Working-Capital-Days.svg"
+            class="report-img" alt="Cash Conversion Cycle">
+
+        <h1>7. Ratios And Benchmarks</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table" style="white-space: normal;">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mean Benchmark</th>
+                    <th>Median Benchmark</th>
+                    <th>Minimum Value</th>
+                    <th>Maximum Value</th>
+                </tr>
+                <tr>
+                    <td>Total Debt/Equity</td>
+                    <td>16.8</td>
+                    <td>0.1</td>
+                    <td>-15.9</td>
+                    <td>503.2</td>
+                </tr>
+                <tr>
+                    <td>Current Ratio</td>
+                    <td>1.5</td>
+                    <td>1.5</td>
+                    <td>0.3</td>
+                    <td>4.8</td>
+                </tr>
+                <tr>
+                    <td>Gross Margin</td>
+                    <td>21.4</td>
+                    <td>24.7</td>
+                    <td>-1.9</td>
+                    <td>45.1</td>
+                </tr>
+                <tr>
+                    <td>Return on Equity</td>
+                    <td>-595.5</td>
+                    <td>14.0</td>
+                    <td>-17690.5</td>
+                    <td>55.0</td>
+                </tr>
+                <tr>
+                    <td>Pre-tax ROCE</td>
+                    <td>24.0</td>
+                    <td>13.9</td>
+                    <td>-336.6</td>
+                    <td>828.8</td>
+                </tr>
+                <tr>
+                    <td>Cash Conversion Cycle</td>
+                    <td>-9.3</td>
+                    <td>-19.0</td>
+                    <td>-333.0</td>
+                    <td>220.0</td>
+                </tr>
+                <tr>
+                    <td>Working Capital Days</td>
+                    <td>45.3</td>
+                    <td>39.0</td>
+                    <td>-766.0</td>
+                    <td>1217.0</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>8. Borrowings Trend (Short Term vs Long Term)</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Short Term Borrowings</td>
+                    <td>13343.9</td>
+                    <td>25860.2</td>
+                    <td>29963</td>
+                    <td>33561.1</td>
+                    <td>32472.3</td>
+                </tr>
+                <tr>
+                    <td>Long Term Borrowings</td>
+                    <td>43617.9</td>
+                    <td>38128.6</td>
+                    <td>36360.7</td>
+                    <td>27803.7</td>
+                    <td>32823.4</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>56961.8</td>
+                    <td>63989</td>
+                    <td>66323.8</td>
+                    <td>61364.7</td>
+                    <td>65295.8</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/04/Borrowings-Trend-Short-Term-vs-Long-Term.svg"
+            class="report-img" alt="Borrowings Trend Chart">
+
+        <h1>9. Top 3 Companies by Metrics (As of March 2025)</h1>
+
+        <h2>9.1 Top 3 Companies by Gross Margin</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales</th>
+                    <th>Net Profit</th>
+                    <th>Gross Margin</th>
+                </tr>
+                <tr>
+                    <td>EICHER MOTORS LIMITED</td>
+                    <td>18451.5</td>
+                    <td>4279.3</td>
+                    <td>45.1</td>
+                </tr>
+                <tr>
+                    <td>TVS MOTOR COMPANY LIMITED</td>
+                    <td>44089</td>
+                    <td>2379.8</td>
+                    <td>39.4</td>
+                </tr>
+                <tr>
+                    <td>HERO MOTOCORP LIMITED</td>
+                    <td>40923.4</td>
+                    <td>4375.8</td>
+                    <td>34.2</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.2 Top 3 Companies by Sales</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales</th>
+                    <th>Net Profit</th>
+                    <th>EBITDA</th>
+                </tr>
+                <tr>
+                    <td>MARUTI SUZUKI INDIA LIMITED</td>
+                    <td>152913</td>
+                    <td>14500.2</td>
+                    <td>20156.3</td>
+                </tr>
+                <tr>
+                    <td>TATA MOTORS PASSENGER VEHICLES LIMITED</td>
+                    <td>69419</td>
+                    <td>5452</td>
+                    <td>8011</td>
+                </tr>
+                <tr>
+                    <td>HYUNDAI MOTOR INDIA LIMITED</td>
+                    <td>67653.8</td>
+                    <td>5492.2</td>
+                    <td>8748</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.3 Top 3 Companies by Borrowings</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales</th>
+                    <th>Net Profit</th>
+                    <th>Borrowings</th>
+                </tr>
+                <tr>
+                    <td>TVS MOTOR COMPANY LIMITED</td>
+                    <td>44089</td>
+                    <td>2379.8</td>
+                    <td>27615.8</td>
+                </tr>
+                <tr>
+                    <td>BAJAJ AUTO LIMITED</td>
+                    <td>50994.6</td>
+                    <td>7324.7</td>
+                    <td>9364.2</td>
+                </tr>
+                <tr>
+                    <td>TATA MOTORS PASSENGER VEHICLES LIMITED</td>
+                    <td>69419</td>
+                    <td>5452</td>
+                    <td>8608</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>10. Industry Context & Market Landscape</h1>
+        <h2>10.1 Market Landscape (National View)</h2>
+        <p>India’s automobile sector is a large, multi-segment market that combines mass-volume two-wheelers with a
+            fast-growing passenger-vehicle market and expanding commercial fleets. This sector is driven by rising
+            incomes, vehicle affordability, policy incentives for electrification and continued expansion of road
+            infrastructure. Two-wheelers remain the largest volume pool, while passenger vehicles (especially
+            SUVs/crossovers) are the fastest-growing segment.</p>
+        <p><b>Core national characteristics:</b></p>
+        <ul>
+            <li><b>Dominant vehicle mix:</b> Two-wheelers account for the majority of unit volumes; passenger cars and
+                commercial vehicles capture growing value.</li>
+            <li><b>Electrification momentum:</b> Battery electric vehicles (BEVs) are the fastest-growing fuel category,
+                supported by FAME/PLI-style policies and falling battery costs. Hybrids act as a bridge where charging
+                infrastructure is limited.</li>
+            <li><b>Tech & digital adoption:</b> Connected-car features, ADAS, over-the-air updates and GenAI/edge
+                compute investments are rising, changing feature sets and after-sales economics.</li>
+        </ul>
+        <p><b>Why this matters</b></p>
+        <ul>
+            <li><b>Scale & demand:</b> a large youth population and rising Tier-2/3 incomes mean vehicle park and
+                used-car markets will expand materially, creating aftermarket and financing opportunities.</li>
+        </ul>
+
+        <h2>10.2 Regional / Tier-Wise Adoption Landscape</h2>
+        <p><b>Metros & Tier-1</b></p>
+        <ul>
+            <li>Demand: premium features, higher take-rates for SUVs and EVs; emphasis on retail experience and
+                after-sales.</li>
+            <li>Supply: dense dealer networks, early charging corridors and digital retail pilots.</li>
+        </ul>
+        <p><b>Tier-2 & Tier-3</b></p>
+        <ul>
+            <li>Demand: fastest incremental unit growth (two-wheelers → entry cars); affordability and financing matter
+                most.</li>
+            <li>Supply: rising dealer expansion, LCV demand for local logistics, and micro-finance penetration.</li>
+        </ul>
+        <p><b>Smaller towns / hinterlands</b></p>
+        <ul>
+            <li>Role: large volume potential but lower ASP; slower EV adoption until charging & financing improve.</li>
+        </ul>
+        <p>Regional differences in specialisation: South (Tamil Nadu, Karnataka) focuses on R&D, EV pilots and exports;
+            West (Gujarat, Maharashtra) on scale & exports; North/NCR is a large buyer base with congestion and
+            regulatory challenges.</p>
+
+        <h1>11. Industry Structure And Business Model</h1>
+        <p>India’s automobile value chain is layered: OEMs → Tier-1/Tier-2 suppliers → distribution (dealers/online) →
+            after-sales & used car. New value pools — software, subscriptions, mobility services and battery value
+            chains — are increasingly important.</p>
+
+        <h2>11.1 Industry Structure Overview</h2>
+        <div class="table-wrapper" style="overflow-x:visible;">
+            <table class="plain-table">
+                <tr>
+                    <th>Segment</th>
+                    <th>Role / Examples</th>
+                    <th>Core strengths</th>
+                    <th>Limitations</th>
+                </tr>
+                <tr>
+                    <td>Two-wheelers & Three-wheelers</td>
+                    <td>Mass personal transport; last-mile delivery fleets</td>
+                    <td>High volume, low price point, fast replacement cycle</td>
+                    <td>Low ASP, high price sensitivity.</td>
+                </tr>
+                <tr>
+                    <td>Passenger Vehicles (Cars & SUVs)</td>
+                    <td>Personal mobility; fastest ASP growth</td>
+                    <td>Higher margins, scope for feature monetisation (connected features, ADAS)</td>
+                    <td>Regulatory safety & emission upgrades (capex for compliance).</td>
+                </tr>
+                <tr>
+                    <td>Commercial Vehicles (LCV/Truck/Bus)</td>
+                    <td>Freight & passenger transport backbone</td>
+                    <td>Growing with e-commerce & infrastructure; telematics improves utilisation</td>
+                    <td>Cyclical with infrastructure & freight demand; diesel still dominant.</td>
+                </tr>
+                <tr>
+                    <td>Aftermarket & Used Cars</td>
+                    <td>Service, parts, resale channel</td>
+                    <td>High lifetime revenue; formalisation opportunity</td>
+                    <td>Large informal segment; regional fragmentation.</td>
+                </tr>
+                <tr>
+                    <td>Platform & Software Services</td>
+                    <td>OTA, fleet telematics, subscriptions</td>
+                    <td>Asset-light, high margin</td>
+                    <td>Requires scale and trust; data governance needs.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>11.2 Value Chain Model</h2>
+        <p>Typical flows: Supplier → OEM assembly → Regional distribution → Retail / fleet / corporate buyer →
+            After-sales & resale. Key operational levers: platform modularity, localization of components,
+            semiconductors & battery sourcing, dealer footprint and digital retailing.</p>
+
+        <h2>11.3 Margin & Revenue Pools (high level)</h2>
+        <ul>
+            <li><b>Vehicle sales (volume):</b> large pool but margin compressed in entry segments.</li>
+            <li><b>Feature & software monetisation:</b> subscriptions, data & OTA updates — growing high-margin pool.
+            </li>
+            <li><b>Aftermarket & fleet services:</b> resilient revenue in mature parc markets.</li>
+        </ul>
+
+        <h1>12. Innovation And Upcoming Business Models</h1>
+        <h2>12.1 Electrified architectures & battery localisation</h2>
+        <p>OEMs + suppliers are investing in battery JV, cell assembly and pack integration to shorten cost curves and
+            improve export competitiveness. Policy push (PLI / FAME) accelerates investments.</p>
+        <h2>12.2 Subscription & shared ownership</h2>
+        <p>Digitally native consumers and corporate fleets are adopting subscription models (insurance + maintenance
+            included) — this shifts revenue to lifecycle/service streams and supports residual value management.</p>
+        <h2>12.3 Software-defined vehicles & data services</h2>
+        <p>Connected features, ADAS and OTA monetisation create recurring revenue lines; OEMs aim to capture service
+            margins rather than just hardware. Telematics and predictive maintenance are key for commercial fleets.</p>
+        <h2>12.4 New distribution: omnichannel & direct-to-consumer</h2>
+        <p>EV brands and some OEMs are scaling direct stores and digital retail to compress costs and control the
+            customer journey; traditional dealers evolve into omnichannel fulfilment centres.</p>
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Companies</th>
+                    <th>Sales in Cr. (2023)</th>
+                    <th>Sales in Cr. (2024)</th>
+                    <th>Sales in Cr. (2025)</th>
+                </tr>
+                <tr>
+                    <td>ATHER</td>
+                    <td>1,783.60</td>
+                    <td>1,753.80</td>
+                    <td>2,255.00</td>
+                </tr>
+                <tr>
+                    <td>OBEN ELECTRIC</td>
+                    <td>0</td>
+                    <td>1.2</td>
+                    <td>20.4</td>
+                </tr>
+                <tr>
+                    <td>OLA ELECTRIC</td>
+                    <td>17,015.00</td>
+                    <td>8,157.00</td>
+                    <td>300</td>
+                </tr>
+                <tr>
+                    <td>EULER MOTORS</td>
+                    <td>48.7</td>
+                    <td>172.2</td>
+                    <td>191.5</td>
+                </tr>
+                <tr>
+                    <td>EMFLUX MOTORS</td>
+                    <td>31.6</td>
+                    <td>68.1</td>
+                    <td>65.2</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>13. Policy, Schemes & Recent Developments</h1>
+        <h2>13.1 FAME (Faster Adoption and Manufacturing of EVs) & state add-ons</h2>
+        <p>FAME-II and state incentives continue to support e-2W/e-3W and e-4W adoption and have materially shortened
+            payback periods in supported segments. Future revisions (FAME-III) aim to broaden support into heavier
+            segments.</p>
+        <h2>13.2 Production-Linked Incentive (PLI) & localisation push</h2>
+        <p>PLI schemes target value-chain localisation (batteries, semiconductors, components) and aim to attract
+            capital & manufacturing scale. These programs underpin battery and cell investments.</p>
+        <h2>13.3 Automotive mission plans & GVC ambitions (NITI Aayog)</h2>
+        <p>National reports and plans set targets for rising component output and export share (e.g., ambitions to grow
+            component production and GVC share). These policy directions emphasise skilling, R&D, cluster development
+            and export competitiveness.</p>
+        <h2>13.4 Regulatory safety & emission norms</h2>
+        <p>Adoption of stricter norms (fuel / safety) increases product development and compliance costs, pushing
+            consolidation and platform standardisation.</p>
+
+        <h1>14. Sector Challenges & Risks</h1>
+        <div class="table-wrapper" style="overflow-x:visible;">
+            <table class="plain-table">
+                <tr>
+                    <th>Challenge</th>
+                    <th>Impact on the Sector</th>
+                    <th>Who is Most Affected</th>
+                </tr>
+                <tr>
+                    <td>Semiconductor supply volatility</td>
+                    <td>Production delays, higher working capital & lost sales</td>
+                    <td>OEMs and electronics-heavy models.</td>
+                </tr>
+                <tr>
+                    <td>High initial cost of EVs & charging coverage gap</td>
+                    <td>Slower EV uptake outside metros; price sensitivity</td>
+                    <td>Personal buyers in Tier-2/3, fleet operators in low-density routes.</td>
+                </tr>
+                <tr>
+                    <td>Regulatory / compliance capex (BS-VII, safety mandates)</td>
+                    <td>Higher product development costs; smaller players squeezed</td>
+                    <td>Small assemblers & niche players.</td>
+                </tr>
+                <tr>
+                    <td>Fragmented aftermarket & used-car market</td>
+                    <td>Difficulties in national warranty / service roll-outs</td>
+                    <td>Retail networks, OEMs seeking lifetime value capture.</td>
+                </tr>
+                <tr>
+                    <td>Urban congestion & usage restrictions</td>
+                    <td>Limits on vehicle use, push to shared mobility</td>
+                    <td>Urban vehicle ownership models.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>15. Opportunities & Future Outlook</h1>
+        <h2>15.1 Growth pockets</h2>
+        <ul>
+            <li><b>Passenger vehicles (SUVs / compact SUVs)</b> — continued ASP expansion and fastest CAGR among vehicle
+                types.</li>
+            <li><b>Light commercial vehicles & last-mile electric LCVs</b> — e-commerce growth supports demand and
+                electrification pilots.</li>
+            <li><b>Two-wheeler electrification</b> — large volume base and fast-moving price reductions in batteries
+                make EV two-wheelers a high-impact segment.</li>
+        </ul>
+        <h2>15.2 Strategic plays for companies</h2>
+        <ul>
+            <li>Vertical integration in batteries & semiconductors to control margins and supply risks.</li>
+            <li>Platform + service bundles (telemetry, financing, subscriptions) to lift lifetime value.</li>
+            <li>Geographic diversification: Move fulfillment and aftermarket closer to Tier-2/3 demand to reduce
+                cost-to-serve and speed deliveries.</li>
+        </ul>
+
+        <h1>16. Conclusion</h1>
+        <p>The Indian automobile industry sits at a strategic inflection: policy (FAME, PLI, mission plans) and
+            infrastructure investment create a growth path for electrification, modular platforms and software
+            monetisation. The near-term winners will be those that manage supply-chain risks (semiconductors &
+            batteries), capture aftermarket & digital services, and adapt distribution to regional economics. Over the
+            medium term, localisation of cells/components and smarter ownership models (subscriptions, fleet
+            electrification) will define who scales profitably in India’s large, diverse mobility market.</p>
+
+        <div
+            style="margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <a href="https://get.tofler.in/wp-content/uploads/2026/04/India-Automobile-Industry-Outlook_-A-Five-Year-Financial-Benchmarking-Study.pdf"
+                target="_blank" class="btn-primary" style="margin: 0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+            <div class="authors-section" style="width: 100%; max-width: 800px; margin-top: 32px;">
+                <style>
+                    .authors-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                        width: 100%;
+                    }
+                    .author-card {
+                        background: #ffffff;
+                        border: 1px solid #E2E8F0;
+                        border-radius: 16px;
+                        padding: 24px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        gap: 24px;
+                        text-align: left;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .author-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 4px;
+                        height: 100%;
+                        background: linear-gradient(180deg, #5E3BE1, #8B5CF6);
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    .author-card:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 12px 20px -8px rgba(94, 59, 225, 0.12), 0 4px 6px -2px rgba(94, 59, 225, 0.04);
+                        border-color: #D8B4FE;
+                    }
+                    .author-card:hover::before {
+                        opacity: 1;
+                    }
+                    .author-img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #F1F5F9;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+                        flex-shrink: 0;
+                        transition: transform 0.3s ease;
+                    }
+                    .author-card:hover .author-img {
+                        transform: scale(1.03);
+                        border-color: #5E3BE1;
+                    }
+                    .author-info {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                    }
+                    .author-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 16px;
+                    }
+                    .author-title-area {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 6px;
+                    }
+                    .author-role-badge {
+                        font-size: 10px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        font-weight: 700;
+                        color: #475569;
+                        background: #F1F5F9;
+                        padding: 3px 8px;
+                        border-radius: 4px;
+                    }
+                    .author-name {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: #0F172A;
+                        margin: 0;
+                    }
+                    .author-role {
+                        color: #5E3BE1;
+                        background: rgba(94, 59, 225, 0.08);
+                        padding: 4px 10px;
+                        border-radius: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        display: inline-block;
+                    }
+                    .author-bio {
+                        font-size: 14.5px;
+                        line-height: 1.6;
+                        color: #475569;
+                        margin: 0;
+                    }
+                    .author-linkedin-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        color: #ffffff;
+                        background-color: #0077B5;
+                        padding: 8px 16px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        transition: all 0.2s ease;
+                        box-shadow: 0 2px 4px rgba(0, 119, 181, 0.15);
+                        flex-shrink: 0;
+                    }
+                    .author-linkedin-btn:hover {
+                        background-color: #005E93;
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 8px rgba(0, 119, 181, 0.25);
+                    }
+                    .author-linkedin-btn svg {
+                        width: 14px;
+                        height: 14px;
+                        fill: currentColor;
+                    }
+                    @media (max-width: 600px) {
+                        .author-card {
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                            padding: 20px;
+                        }
+                        .author-header {
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 12px;
+                            width: 100%;
+                        }
+                        .author-title-area {
+                            align-items: center;
+                        }
+                        .author-linkedin-btn {
+                            width: 100%;
+                            justify-content: center;
+                        }
+                    }
+                </style>
+                <div class="authors-list">
+                    <!-- Sayan Ghosh Profile -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/03/Make_this_a_202603251659.jpeg" alt="Sayan Ghosh">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Authored By</span>
+                                    <h3 class="author-name">Sayan Ghosh</h3>
+                                    <div class="author-role">Marketing Manager, Tofler</div>
+                                </div>
+                                <a href="https://linkedin.com/in/sayan-ghosh-844524151" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Data-backed marketer creating research-led content that turns industry, company, and market insights into clear business narratives.</p>
+                        </div>
+                    </div>
+                    <!-- Anchal Agarwal Profile -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/05/1766386611595.jpg" alt="Anchal Agarwal">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Supervised By</span>
+                                    <h3 class="author-name">Anchal Agarwal</h3>
+                                    <div class="author-role">Co-founder & CEO, Tofler</div>
+                                </div>
+                                <a href="https://www.linkedin.com/in/anchal-agarwal-ind12/" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Chartered Accountant and finance professional specializing in due diligence, credit risk management, benchmarking, and business intelligence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer_wrapper hide-on-print">
+        <div class="container text-white">
+            <div class="footer_container">
+                <!-- Brand & Help -->
+                <div class="flex-col gap-32">
+                    <img class="logo" src="https://get.tofler.in/wp-content/uploads/2026/03/Untitled-design-27.png" alt="Tofler Logo" style="width: 140px; height: auto;">
+                    <p class="text-sm font-light footer_desc">All trademarks, service marks, trade names and logos appearing on the site are the property of their respective owners.</p>
+                    <div class="flex-col gap-4 font-regular">
+                        <p class="text-sm">Need any help? Email us at:</p>
+                        <p class="text-sm" style="color: #ffffff; font-weight: 600;">support@tofler.in</p>
+                    </div>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="flex" style="gap: 60px; justify-content: flex-start;">
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">QUICK LINKS</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/about">About us</a></li>
+                            <li><a href="https://www.tofler.in/blog">Blogs</a></li>
+                            <li><a href="https://www.tofler.in/industry-reports">Industry Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-col gap-24" style="margin-left: 5px;">
+                        <h3 class="text-white text-md">LEGAL</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/tos">Terms</a></li>
+                            <li><a href="https://www.tofler.in/privacy">Privacy</a></li>
+                            <li><a href="https://www.tofler.in/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Details & Social -->
+                <div class="flex-col gap-32">
+                    <div class="font-regular flex-col gap-4 text-sm" style="color: #ffffff;">
+                        <p>TWS Systems Private Limited (Tofler)</p>
+                        <p>Gurgaon, Haryana - 122002</p>
+                        <p>(CIN: U72502DL2013PTC261372)</p>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">FOLLOW US ON:</h3>
+                        <div class="flex gap-24">
+                            <a href="https://www.facebook.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9a5 5 0 0 1 5-5h3v3h-2c-1.1 0-2 .9-2 2v2h4l-1 3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tofler/" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@tofler8107" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C1 8.1 1 12 1 12s0 3.9.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C23 15.9 23 12 23 12s0-3.9-.46-5.58zM9.54 15.22V8.78L15.3 12l-5.76 3.22z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container pb-40">
+            <div class="low_footer text-sm" style="justify-content: center;">
+                <p style="margin: 0;">© TWS Systems Private Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav) nav.classList.toggle('active');
+        }
+
+        function toggleExpand(targetId, btn, textExpand, textCollapse) {
+            const target = document.getElementById(targetId);
+            if (target.classList.contains('expanded')) {
+                target.classList.remove('expanded');
+                btn.innerHTML = textExpand + ' &darr;';
+                setTimeout(() => {
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 50);
+            } else {
+                target.classList.add('expanded');
+                btn.innerHTML = textCollapse + ' &uarr;';
+            }
+        }
+    </script>
+</body>
+
+</html>
