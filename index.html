@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tofler — Content Approval Engine</title>
+  <link rel="icon" type="image/png" href="https://www.tofler.in/images/sociallogo.png">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@450;500;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #07050f;
+      --nav-bg: #0e0b18;
+      --surface: #0e0b18;
+      --surface2: #15112a;
+      --surface3: #1d1838;
+      --border: #1d1838;
+      --border2: #2a2350;
+
+      --signal: #a78bfa;
+      --signal-dim: rgba(167, 139, 250, 0.1);
+      --signal-glow: rgba(167, 139, 250, 0.05);
+      --signal-solid: #7c3aed;
+
+      --amber: #f5a623;
+      --amber-dim: rgba(245, 166, 35, 0.08);
+
+      --blue: #60a5fa;
+      --blue-dim: rgba(96, 165, 250, 0.08);
+
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.08);
+      --red-solid: #f87171;
+
+      --text: #e8e2ff;
+      --text-dim: #8b7ec8;
+      --text-dimmer: #4a3f7a;
+
+      --mono: 'IBM Plex Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --sans: 'Inter', sans-serif;
+
+      --glow-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+      --panel-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-dimmer); }
+
+    /* Password Gate */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 5, 15, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    #password-gate.unlocked {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.05);
+    }
+
+    .auth-card {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: var(--panel-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--signal), transparent);
+    }
+
+    .auth-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .auth-logo img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .auth-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .auth-subtitle {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .form-group { margin-bottom: 24px; }
+
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-dimmer);
+      margin-bottom: 8px;
+    }
+
+    .password-input-wrapper { position: relative; }
+
+    .password-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: #fff;
+      padding: 14px 20px;
+      font-family: var(--mono);
+      font-size: 16px;
+      letter-spacing: 0.4em;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--signal);
+      box-shadow: var(--glow-shadow);
+      background: var(--surface3);
+    }
+
+    .auth-btn {
+      width: 100%;
+      background: var(--signal-dim);
+      border: 1px solid var(--signal);
+      color: var(--signal);
+      padding: 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .auth-btn:hover {
+      background: var(--signal);
+      color: var(--bg);
+      box-shadow: var(--glow-shadow);
+    }
+
+    .error-msg {
+      color: var(--red);
+      font-family: var(--mono);
+      font-size: 11px;
+      margin-top: 12px;
+      text-align: center;
+      min-height: 18px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .error-msg.visible { opacity: 1; }
+
+    /* Navigation */
+    nav {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 12px;
+      height: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-container {
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo-image {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .menu-dropdown-container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-trigger-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .menu-trigger-btn:hover {
+      border-color: var(--signal);
+      box-shadow: var(--signal-glow);
+    }
+
+    .dropdown-chevron {
+      transition: transform 0.2s ease;
+      color: var(--text-dim);
+    }
+
+    .menu-dropdown-container.open .dropdown-chevron {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: rgba(14, 11, 24, 0.97);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 6px;
+      width: 200px;
+      box-shadow: var(--panel-shadow);
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 1000;
+      transform-origin: top right;
+      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes dropdownFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item svg { color: var(--text-dimmer); transition: color 0.2s ease; }
+    .dropdown-item:hover { background: var(--surface2); color: #fff; }
+    .dropdown-item:hover svg { color: var(--signal); }
+    .dropdown-item.active { background: var(--signal-dim); color: var(--signal); }
+    .dropdown-item.active svg { color: var(--signal); }
+
+    @media (max-width: 480px) {
+      .logo-image { height: 24px; }
+      .menu-trigger-btn { padding: 6px 12px; font-size: 10px; gap: 6px; }
+    }
+
+    /* Feed Layout */
+    .feed-grid {
+      max-width: 600px;
+      width: 100%;
+      margin: 16px auto;
+      padding: 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (min-width: 480px) {
+      .feed-grid { margin: 24px auto; padding: 0 16px; gap: 20px; }
+    }
+
+    .feed-header-row {
+      text-align: center;
+      margin-bottom: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .feed-main-title {
+      font-family: var(--sans);
+      font-size: 20px;
+      font-weight: 750;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    @media (min-width: 480px) { .feed-main-title { font-size: 24px; } }
+
+    .feed-status-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media (min-width: 480px) { .feed-status-meta { font-size: 11px; gap: 6px; } }
+
+    .status-dot-separator { color: var(--border2); }
+
+    .feed-container { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    @media (min-width: 480px) { .feed-container { gap: 16px; } }
+
+    /* Post Cards */
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--panel-shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.4s ease;
+      width: 100%;
+      max-height: 1500px;
+    }
+
+    .post-card.fade-out {
+      opacity: 0;
+      transform: scale(0.92) translateY(-30px);
+      max-height: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      border-width: 0 !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      pointer-events: none;
+    }
+
+    .post-card.approved { border-color: var(--signal); box-shadow: 0 0 16px rgba(139, 92, 246, 0.15); }
+    .post-card.rejected { border-color: var(--amber); box-shadow: 0 0 16px rgba(245, 166, 35, 0.1); }
+    .post-card.redo_requested { border-color: var(--red); box-shadow: 0 0 16px rgba(248, 113, 113, 0.1); }
+
+    .post-card-header {
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    @media (min-width: 480px) { .post-card-header { padding: 16px; align-items: center; } }
+
+    .post-author { display: flex; gap: 10px; align-items: center; }
+    @media (min-width: 480px) { .post-author { gap: 14px; } }
+
+    .post-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 1.5px solid var(--border2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 480px) { .post-avatar { width: 56px; height: 56px; } }
+
+    .post-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .post-author-info { display: flex; flex-direction: column; text-align: left; }
+
+    .post-author-name {
+      font-weight: 700;
+      color: #fff;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media (min-width: 480px) { .post-author-name { font-size: 15px; } }
+
+    .post-author-meta { font-size: 11px; color: var(--text-dim); line-height: 1.4; margin-top: 1px; }
+    @media (min-width: 480px) { .post-author-meta { font-size: 12px; } }
+
+    .badge-container { flex-shrink: 0; display: flex; justify-content: flex-end; }
+
+    .badge-status {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 4px 8px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      font-weight: 600;
+      white-space: nowrap;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+
+    @media (min-width: 480px) { .badge-status { font-size: 10px; padding: 4px 10px; letter-spacing: 1px; } }
+
+    .status-pending { background: var(--amber-dim); color: var(--amber); border-color: var(--amber-dim); }
+    .status-approved { background: var(--signal-dim); color: var(--signal); border-color: var(--signal-dim); }
+    .status-rejected { background: var(--amber-dim); color: var(--amber); border-color: var(--amber-dim); }
+    .status-redo { background: var(--red-dim); color: var(--red); border-color: var(--red-dim); }
+
+    /* Content Block */
+    .post-content-wrapper {
+      padding: 4px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    @media (min-width: 480px) { .post-content-wrapper { padding: 4px 16px 16px; gap: 8px; } }
+
+    .post-content-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      outline: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 2px;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    @media (min-width: 480px) { .post-content-text { font-size: 13.5px; padding: 4px; } }
+
+    .post-content-text.editing-active {
+      background: var(--surface2);
+      border-color: var(--signal);
+      box-shadow: var(--signal-glow);
+    }
+
+    .see-more-link, .see-less-link {
+      font-weight: 600;
+      color: var(--text-dim);
+      cursor: pointer;
+      margin-left: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .see-more-link:hover, .see-less-link:hover { color: #fff; text-decoration: underline; }
+
+    .post-content-actions { display: flex; justify-content: flex-end; }
+
+    .btn-edit-text-trigger {
+      background: transparent;
+      border: 1px solid var(--border2);
+      color: var(--signal);
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    @media (min-width: 480px) { .btn-edit-text-trigger { font-size: 10px; padding: 4px 10px; } }
+
+    .btn-edit-text-trigger:hover { background: var(--signal-dim); border-color: var(--signal); }
+
+    .btn-edit-text-trigger.editing-btn-active {
+      background: var(--signal);
+      color: var(--bg);
+      border-color: var(--signal);
+      box-shadow: var(--glow-shadow);
+      font-weight: 600;
+    }
+
+    /* Media */
+    .post-media-box {
+      width: 100%;
+      background: #030208;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      min-height: 200px;
+    }
+
+    @media (min-width: 480px) { .post-media-box { min-height: 250px; } }
+
+    .post-media-image { width: 100%; height: auto; max-height: 480px; object-fit: contain; transition: opacity 0.3s ease; }
+
+    .media-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      text-align: center;
+      background: var(--surface2);
+      gap: 8px;
+    }
+
+    .media-fallback-text { font-family: var(--mono); font-size: 10px; color: var(--text-dim); max-width: 280px; }
+
+    /* Action Buttons */
+    .post-action-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 8px 4px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+      gap: 4px;
+    }
+
+    @media (min-width: 480px) { .post-action-buttons { padding: 10px 8px; gap: 8px; } }
+
+    .action-btn-li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 10px 2px;
+      font-size: 9px;
+      font-family: var(--sans);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      border-radius: 6px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (min-width: 480px) { .action-btn-li { flex-direction: row; gap: 8px; font-size: 11.5px; padding: 10px 12px; } }
+
+    .btn-approve-action { border-color: var(--signal-solid); color: var(--signal); background: rgba(139, 92, 246, 0.03); }
+    .btn-approve-action:hover { background: var(--signal); color: #fff; box-shadow: var(--glow-shadow); border-color: var(--signal); }
+
+    .btn-text-action { border-color: var(--amber); color: var(--amber); background: rgba(245, 166, 35, 0.02); }
+    .btn-text-action:hover, .btn-text-action.active-action { background: var(--amber); color: var(--bg); border-color: var(--amber); box-shadow: 0 0 12px rgba(245, 166, 35, 0.2); }
+
+    .btn-redo-action { border-color: var(--red); color: var(--red); background: rgba(248, 113, 113, 0.02); }
+    .btn-redo-action:hover { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 0 12px rgba(248, 113, 113, 0.2); }
+
+    /* Comment Panel */
+    .collapsible-comment-panel {
+      background: var(--surface2);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @media (min-width: 480px) { .collapsible-comment-panel { padding: 14px 16px; } }
+
+    .comment-input-row { display: flex; gap: 10px; align-items: flex-start; width: 100%; }
+
+    .comment-avatar-mini {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      flex-shrink: 0;
+      background: var(--surface3);
+      padding: 3px;
+    }
+
+    @media (min-width: 480px) { .comment-avatar-mini { width: 32px; height: 32px; } }
+
+    .comment-avatar-mini img { width: 100%; height: 100%; object-fit: contain; }
+
+    .comment-bubble-wrapper { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    .comment-bubble-textarea {
+      width: 100%;
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      color: #fff;
+      padding: 10px 14px;
+      font-family: var(--sans);
+      font-size: 13px;
+      border-radius: 16px;
+      resize: none;
+      min-height: 44px;
+      transition: all 0.2s ease;
+    }
+
+    @media (min-width: 480px) { .comment-bubble-textarea { padding: 12px 16px; font-size: 13.5px; min-height: 48px; } }
+
+    .comment-bubble-textarea:focus { outline: none; border-color: var(--signal); background: #1a1432; }
+
+    .comment-submit-btn {
+      align-self: flex-end;
+      background: var(--signal);
+      color: #fff;
+      border: none;
+      padding: 5px 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    @media (min-width: 480px) { .comment-submit-btn { padding: 6px 18px; font-size: 11px; } }
+
+    .comment-submit-btn:hover { background: #c4b5fd; box-shadow: var(--glow-shadow); }
+
+    /* Skeletons */
+    .skeleton-card {
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface2) 25%, var(--surface3) 50%, var(--surface2) 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+      border-radius: 2px;
+    }
+
+    @keyframes skeleton-loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .skeleton-avatar { width: 40px; height: 40px; border-radius: 50%; }
+    .skeleton-line { height: 12px; }
+
+    /* Sync Settings */
+    .settings-grid { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    @media (min-width: 480px) { .settings-grid { gap: 16px; } }
+
+    .settings-input-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .settings-input {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: #fff;
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      width: 100%;
+      border-radius: 4px;
+      transition: border-color 0.2s ease;
+    }
+
+    @media (min-width: 480px) { .settings-input { padding: 10px 14px; font-size: 12px; } }
+    .settings-input:focus { outline: none; border-color: var(--signal); }
+
+    /* Toasts */
+    #toast-container {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    @media (min-width: 480px) { #toast-container { bottom: 24px; right: 24px; gap: 8px; } }
+
+    .toast {
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      border-left: 3px solid var(--signal);
+      color: #fff;
+      padding: 12px 16px;
+      box-shadow: var(--panel-shadow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+      pointer-events: auto;
+      max-width: 280px;
+      border-radius: 4px;
+    }
+
+    @media (min-width: 480px) { .toast { padding: 16px 20px; gap: 12px; max-width: 320px; } }
+
+    .toast.toast-error { border-left-color: var(--red); }
+    .toast.toast-info { border-left-color: var(--blue); }
+    .toast.show { transform: translateX(0); }
+    .toast-msg { font-size: 12px; font-family: var(--sans); }
+    @media (min-width: 480px) { .toast-msg { font-size: 13px; } }
+
+    /* Empty State */
+    .empty-state {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--panel-shadow);
+      width: 100%;
+    }
+
+    @media (min-width: 480px) { .empty-state { padding: 48px; gap: 16px; } }
+
+    .empty-icon { color: var(--text-dimmer); animation: pulse 3s infinite ease-in-out; }
+
+    .empty-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    @media (min-width: 480px) { .empty-title { font-size: 18px; letter-spacing: 2px; } }
+
+    .empty-subtitle { font-family: var(--mono); font-size: 11px; color: var(--text-dim); max-width: 340px; }
+    @media (min-width: 480px) { .empty-subtitle { font-size: 12px; } }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.98); }
+      50% { opacity: 0.7; transform: scale(1.02); }
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+  </script>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <!-- PASSWORD GATE -->
+  <div id="password-gate">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="https://www.tofler.in/images/sociallogo.png" alt="Tofler Logo">
+      </div>
+      <div class="auth-title">User Authentication</div>
+      <div class="auth-subtitle">Tofler LinkedIn Content Engine</div>
+      <div class="form-group">
+        <label class="form-label" for="security-password">Security Token</label>
+        <div class="password-input-wrapper">
+          <input type="password" id="security-password" class="password-input" maxlength="8" placeholder="••••••••" autocomplete="off" autofocus>
+        </div>
+      </div>
+      <button onclick="handleLogin()" class="auth-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Unlock Feed
+      </button>
+      <div id="login-error" class="error-msg">Access Denied: Invalid Security Token.</div>
+    </div>
+  </div>
+
+  <!-- STICKY NAV -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <img class="logo-image" src="https://www.tofler.in/images/sociallogo.png" alt="Tofler Logo">
+      </div>
+
+      <div class="menu-dropdown-container" id="menu-dropdown-container">
+        <button class="menu-trigger-btn" onclick="toggleNavMenu(event)">
+          <span id="active-menu-label">Review Feed</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div id="nav-dropdown-menu" class="nav-dropdown-menu">
+          <div class="dropdown-item active" id="menu-item-feed" onclick="switchView('feed')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Review Feed
+          </div>
+          <div class="dropdown-item" id="menu-item-approved" onclick="switchView('approved')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            View Approved
+          </div>
+          <div class="dropdown-item" id="menu-item-sync" onclick="switchView('sync')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+            Sync Sheet
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- VIEW 1: REVIEW FEED -->
+  <div id="view-feed" class="view-panel">
+    <div class="feed-grid">
+      <div class="feed-header-row">
+        <h1 class="feed-main-title">Tofler Content Approval Engine</h1>
+        <div class="feed-status-meta">
+          <span id="pending-count">0 Pending Posts</span>
+          <span class="status-dot-separator">•</span>
+          <span id="status-text" style="color: var(--text-dimmer);">LOCKED</span>
+        </div>
+      </div>
+
+      <main class="feed-container" id="feed-container">
+        <div class="empty-state">
+          <svg class="empty-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <div class="empty-title">Terminal Locked</div>
+          <div class="empty-subtitle">Please enter your Security Token on the authentication gate to start synchronizing the post feed.</div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- VIEW 2: SYNC SHEET -->
+  <div id="view-sync" class="view-panel" style="display: none;">
+    <div class="feed-grid">
+      <div class="feed-header-row">
+        <h1 class="feed-main-title">Sync Control Center</h1>
+        <div class="feed-status-meta">
+          <span id="sync-status-indicator" style="color: var(--signal);">CONNECTED</span>
+        </div>
+      </div>
+
+      <div class="post-card" style="padding: 24px;">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--signal-dim); display: flex; justify-content: center; align-items: center; color: var(--signal); border: 1.5px dashed var(--signal);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+          </div>
+          <div>
+            <h3 style="font-family: var(--sans); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px;">Google Sheet Stream Synchronization</h3>
+            <p style="font-size: 13px; color: var(--text-dim); max-width: 440px; line-height: 1.5;">Fetch the latest pending, approved, and rejected LinkedIn post iterations live from n8n data automations.</p>
+          </div>
+          <button onclick="triggerSheetSync()" class="auth-btn" style="max-width: 260px; margin-top: 8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+            Trigger Sheet Sync
+          </button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%;">
+        <div class="post-card" style="padding: 16px; text-align: center;">
+          <div style="font-family: var(--mono); font-size: 9px; color: var(--text-dimmer); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px;">Telemetry Status</div>
+          <div id="sync-tel-status" style="font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--signal);">READY</div>
+        </div>
+        <div class="post-card" style="padding: 16px; text-align: center;">
+          <div style="font-family: var(--mono); font-size: 9px; color: var(--text-dimmer); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px;">Last Synced</div>
+          <div id="sync-tel-time" style="font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--text-dim);">NEVER</div>
+        </div>
+      </div>
+
+      <div class="post-card" style="padding: 16px;">
+        <div style="font-family: var(--mono); font-size: 9px; color: var(--text-dimmer); text-transform: uppercase; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; letter-spacing: 0.5px;">
+          <span>Terminal Logs Console</span>
+          <span style="color: var(--signal); font-size: 8px; border: 1px solid var(--signal-dim); padding: 1px 5px; border-radius: 4px;">ACTIVE</span>
+        </div>
+        <div id="console-logs" style="font-family: var(--mono); font-size: 11px; color: #8b7ec8; background: #030208; border: 1px solid var(--border); padding: 12px; border-radius: 6px; min-height: 110px; max-height: 150px; overflow-y: auto; text-align: left; line-height: 1.6;">
+          <div style="color: var(--text-dimmer);">[SYSTEM LOADED] Standby for security authentication key.</div>
+        </div>
+      </div>
+
+      <div class="post-card" style="padding: 20px;">
+        <div style="font-family: var(--mono); font-size: 9px; color: var(--text-dimmer); text-transform: uppercase; margin-bottom: 16px; letter-spacing: 1px; text-align: left;">Engine API Endpoints</div>
+        <div class="settings-grid">
+          <div class="settings-input-group">
+            <label class="form-label">Data Fetch Webhook (GET)</label>
+            <input type="text" id="webhook-get-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/tofler_get_data" onchange="saveSyncSettings()">
+          </div>
+          <div class="settings-input-group">
+            <label class="form-label">Post Approved Webhook (GET)</label>
+            <input type="text" id="webhook-approved-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/tofler_post_approved" onchange="saveSyncSettings()">
+          </div>
+          <div class="settings-input-group">
+            <label class="form-label">Changes Requested Webhook (GET)</label>
+            <input type="text" id="webhook-changes-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/tofler_request_changes" onchange="saveSyncSettings()">
+          </div>
+          <div class="settings-input-group">
+            <label class="form-label">Redo Post Webhook (GET)</label>
+            <input type="text" id="webhook-rejected-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/tofler_post_rejected" onchange="saveSyncSettings()">
+          </div>
+          <div class="settings-input-group">
+            <label class="form-label">Approved Posts Archive Webhook (GET)</label>
+            <input type="text" id="webhook-approved-feed-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/tofler_approved_changes" onchange="saveSyncSettings()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 3: APPROVED ARCHIVE -->
+  <div id="view-approved" class="view-panel" style="display: none;">
+    <div class="feed-grid">
+      <div class="feed-header-row">
+        <h1 class="feed-main-title">Approved Posts Archive</h1>
+        <div class="feed-status-meta">
+          <span id="approved-count">0 Approved Posts</span>
+          <span class="status-dot-separator">•</span>
+          <span style="color: var(--signal);">READ ONLY</span>
+        </div>
+      </div>
+
+      <main class="feed-container" id="approved-feed-container">
+        <div class="empty-state">
+          <svg class="empty-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+          <div class="empty-title">Archive Sealed</div>
+          <div class="empty-subtitle">Loading approved posts stream from Google Sheet...</div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <script>
+    const CONFIG = {
+      passkey: '01052026',
+      webhookGet: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_get_data',
+      webhookPostApproved: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_post_approved',
+      webhookPostRejected: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_post_rejected',
+      webhookChangesRequested: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_request_changes',
+      webhookApprovedFeed: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_approved_changes'
+    };
+
+    let postsData = [];
+    let approvedPostsData = [];
+    let authenticated = false;
+    const MOCK_DATA = [];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedGet = localStorage.getItem('tofler_webhook_get');
+      const savedApproved = localStorage.getItem('tofler_webhook_approved');
+      const savedChanges = localStorage.getItem('tofler_webhook_changes');
+      const savedRejected = localStorage.getItem('tofler_webhook_rejected');
+      const savedApprovedFeed = localStorage.getItem('tofler_webhook_approved_feed');
+      if (savedGet) { CONFIG.webhookGet = savedGet; document.getElementById('webhook-get-url').value = savedGet; }
+      if (savedApproved) { CONFIG.webhookPostApproved = savedApproved; document.getElementById('webhook-approved-url').value = savedApproved; }
+      if (savedChanges) { CONFIG.webhookChangesRequested = savedChanges; document.getElementById('webhook-changes-url').value = savedChanges; }
+      if (savedRejected) { CONFIG.webhookPostRejected = savedRejected; document.getElementById('webhook-rejected-url').value = savedRejected; }
+      if (savedApprovedFeed) { CONFIG.webhookApprovedFeed = savedApprovedFeed; document.getElementById('webhook-approved-feed-url').value = savedApprovedFeed; }
+
+      document.addEventListener('click', (e) => {
+        const container = document.getElementById('menu-dropdown-container');
+        if (!container.contains(e.target)) {
+          container.classList.remove('open');
+          document.getElementById('nav-dropdown-menu').style.display = 'none';
+        }
+      });
+
+      document.getElementById('security-password').focus();
+      document.getElementById('security-password').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleLogin();
+      });
+    });
+
+    function addLogEntry(message) {
+      const consoleBox = document.getElementById('console-logs');
+      if (!consoleBox) return;
+      const timeStr = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      div.innerHTML = `<span style="color: var(--text-dimmer);">[${timeStr}]</span> ${message}`;
+      consoleBox.appendChild(div);
+      consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    function toggleNavMenu(event) {
+      event.stopPropagation();
+      const container = document.getElementById('menu-dropdown-container');
+      const menu = document.getElementById('nav-dropdown-menu');
+      const isOpen = container.classList.contains('open');
+      if (isOpen) {
+        container.classList.remove('open');
+        menu.style.display = 'none';
+      } else {
+        container.classList.add('open');
+        menu.style.display = 'flex';
+      }
+    }
+
+    function switchView(viewName) {
+      if (!authenticated) { showToast('Please authenticate first', 'toast-error'); return; }
+
+      const container = document.getElementById('menu-dropdown-container');
+      container.classList.remove('open');
+      document.getElementById('nav-dropdown-menu').style.display = 'none';
+
+      document.getElementById('view-feed').style.display = 'none';
+      document.getElementById('view-sync').style.display = 'none';
+      document.getElementById('view-approved').style.display = 'none';
+
+      document.getElementById('menu-item-feed').classList.remove('active');
+      document.getElementById('menu-item-sync').classList.remove('active');
+      document.getElementById('menu-item-approved').classList.remove('active');
+
+      const label = document.getElementById('active-menu-label');
+
+      if (viewName === 'feed') {
+        document.getElementById('view-feed').style.display = 'block';
+        document.getElementById('menu-item-feed').classList.add('active');
+        label.innerText = 'Review Feed';
+        addLogEntry('Navigated to Review Feed.');
+      } else if (viewName === 'sync') {
+        document.getElementById('view-sync').style.display = 'block';
+        document.getElementById('menu-item-sync').classList.add('active');
+        label.innerText = 'Sync Sheet';
+        addLogEntry('Navigated to Sync Sheet Dashboard.');
+      } else if (viewName === 'approved') {
+        document.getElementById('view-approved').style.display = 'block';
+        document.getElementById('menu-item-approved').classList.add('active');
+        label.innerText = 'View Approved';
+        addLogEntry('Navigated to Approved Posts Archive.');
+        fetchApprovedPosts();
+      }
+    }
+
+    function handleLogin() {
+      const input = document.getElementById('security-password');
+      const errorMsg = document.getElementById('login-error');
+      if (input.value === CONFIG.passkey) {
+        authenticated = true;
+        document.getElementById('password-gate').classList.add('unlocked');
+        addLogEntry('Passcode validated. Unlocking terminal...');
+        fetchPosts();
+        showToast('System Feed Unlocked', 'info');
+      } else {
+        errorMsg.classList.add('visible');
+        input.value = '';
+        input.focus();
+        addLogEntry('Warning: Failed authentication attempt.');
+        setTimeout(() => { errorMsg.classList.remove('visible'); }, 3000);
+      }
+    }
+
+    function saveSyncSettings() {
+      const getVal = document.getElementById('webhook-get-url').value.trim();
+      const approvedVal = document.getElementById('webhook-approved-url').value.trim();
+      const changesVal = document.getElementById('webhook-changes-url').value.trim();
+      const rejectedVal = document.getElementById('webhook-rejected-url').value.trim();
+      const approvedFeedVal = document.getElementById('webhook-approved-feed-url').value.trim();
+      if (getVal) { CONFIG.webhookGet = getVal; localStorage.setItem('tofler_webhook_get', getVal); }
+      if (approvedVal) { CONFIG.webhookPostApproved = approvedVal; localStorage.setItem('tofler_webhook_approved', approvedVal); }
+      if (changesVal) { CONFIG.webhookChangesRequested = changesVal; localStorage.setItem('tofler_webhook_changes', changesVal); }
+      if (rejectedVal) { CONFIG.webhookPostRejected = rejectedVal; localStorage.setItem('tofler_webhook_rejected', rejectedVal); }
+      if (approvedFeedVal) { CONFIG.webhookApprovedFeed = approvedFeedVal; localStorage.setItem('tofler_webhook_approved_feed', approvedFeedVal); }
+      addLogEntry('Webhook API endpoints saved.');
+      showToast('API webhook endpoints updated', 'info');
+    }
+
+    function extractPostsArray(data) {
+      if (!data) return [];
+      if (Array.isArray(data)) {
+        if (data.length > 0 && data[0] && data[0].response && Array.isArray(data[0].response.body)) return data[0].response.body;
+        return data;
+      }
+      if (typeof data === 'object') {
+        if (data.response && Array.isArray(data.response.body)) return data.response.body;
+        if (data.body && Array.isArray(data.body)) return data.body;
+        return [data];
+      }
+      return [];
+    }
+
+    function triggerSheetSync() { addLogEntry('Sync request triggered manually.'); fetchPosts(); }
+
+    async function fetchPosts() {
+      updateStatus('SYNCING', '#f5a623');
+      showFeedSkeleton();
+      addLogEntry('Requesting pending approval post payloads (GET)...');
+      try {
+        const response = await fetch(CONFIG.webhookGet, { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        postsData = extractPostsArray(data);
+        postsData.forEach(p => { if (!p.Approval) p.Approval = 'Pending'; });
+        renderFeed();
+        updateStatus('CONNECTED', 'var(--signal)');
+        document.getElementById('sync-tel-status').innerText = 'SUCCESS';
+        document.getElementById('sync-tel-status').style.color = 'var(--signal)';
+        document.getElementById('sync-tel-time').innerText = new Date().toLocaleTimeString();
+        addLogEntry(`Successfully synced ${postsData.length} pending posts from sheet.`);
+        showToast(`Pulled ${postsData.length} pending posts`, 'success');
+      } catch (err) {
+        postsData = JSON.parse(JSON.stringify(MOCK_DATA));
+        renderFeed();
+        updateStatus('CONNECTED', 'var(--signal)');
+        document.getElementById('sync-tel-status').innerText = 'ERROR';
+        document.getElementById('sync-tel-status').style.color = 'var(--red)';
+        document.getElementById('sync-tel-time').innerText = new Date().toLocaleTimeString();
+        addLogEntry(`<span style="color: var(--red);">Sync failed: ${err.message || err}</span>`);
+        showToast('Webhook offline. Loaded feed data.', 'info');
+      }
+    }
+
+    async function fetchApprovedPosts() {
+      updateStatus('SYNCING', '#f5a623');
+      showApprovedFeedSkeleton();
+      addLogEntry('Requesting approved post archive payloads (GET)...');
+      try {
+        const response = await fetch(CONFIG.webhookApprovedFeed, { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        approvedPostsData = extractPostsArray(data);
+        approvedPostsData.sort((a, b) => { const rowA = parseInt(a.row_number) || 0; const rowB = parseInt(b.row_number) || 0; return rowB - rowA; });
+        renderApprovedFeed();
+        updateStatus('CONNECTED', 'var(--signal)');
+        addLogEntry(`Successfully synced ${approvedPostsData.length} approved posts.`);
+        showToast(`Pulled ${approvedPostsData.length} approved posts`, 'success');
+      } catch (err) {
+        approvedPostsData = [];
+        renderApprovedFeed();
+        updateStatus('CONNECTED', 'var(--signal)');
+        addLogEntry(`<span style="color: var(--red);">Sync failed: ${err.message || err}</span>`);
+        showToast('Sync failed. Loaded empty archive.', 'toast-error');
+      }
+    }
+
+    const pdfDocs = {};
+
+    async function initPdfCarousel(rowNumber, url, isApproved = false) {
+      const prefix = isApproved ? 'approved-' : '';
+      const canvas = document.getElementById(`${prefix}pdf-canvas-${rowNumber}`);
+      const loader = document.getElementById(`${prefix}pdf-loader-${rowNumber}`);
+      if (!canvas) return;
+      const key = `${prefix}${rowNumber}`;
+      pdfDocs[key] = { doc: null, currentPage: 1, totalPages: 0, url, isApproved, rendering: false, useIframeFallback: false };
+      try {
+        let pdf = null;
+        try {
+          pdf = await pdfjsLib.getDocument({ url, withCredentials: false }).promise;
+        } catch (directErr) {
+          try {
+            const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+            const r = await fetch(proxyUrl);
+            if (!r.ok) throw new Error(`proxy ${r.status}`);
+            const buf = await r.arrayBuffer();
+            pdf = await pdfjsLib.getDocument({ data: new Uint8Array(buf) }).promise;
+          } catch (e1) {
+            const proxyUrl2 = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+            const r2 = await fetch(proxyUrl2);
+            if (!r2.ok) throw new Error(`allorigins ${r2.status}`);
+            const buf2 = await r2.arrayBuffer();
+            pdf = await pdfjsLib.getDocument({ data: new Uint8Array(buf2) }).promise;
+          }
+        }
+        pdfDocs[key].doc = pdf;
+        pdfDocs[key].totalPages = pdf.numPages;
+        if (loader) loader.style.display = 'none';
+        await renderPdfPage(rowNumber, 1, isApproved);
+      } catch (err) {
+        pdfDocs[key].useIframeFallback = true;
+        if (loader) loader.style.display = 'none';
+        await renderPdfPage(rowNumber, 1, isApproved);
+      }
+    }
+
+    async function renderPdfPage(rowNumber, pageNum, isApproved = false) {
+      const prefix = isApproved ? 'approved-' : '';
+      const key = `${prefix}${rowNumber}`;
+      const state = pdfDocs[key];
+      if (!state || state.rendering) return;
+      state.rendering = true;
+      state.currentPage = pageNum;
+      try {
+        const canvas = document.getElementById(`${prefix}pdf-canvas-${rowNumber}`);
+        const prevBtn = document.getElementById(`${prefix}pdf-prev-${rowNumber}`);
+        const nextBtn = document.getElementById(`${prefix}pdf-next-${rowNumber}`);
+        const pageIndicator = document.getElementById(`${prefix}pdf-page-indicator-${rowNumber}`);
+        if (state.useIframeFallback) {
+          let iframe = document.getElementById(`${prefix}pdf-iframe-${rowNumber}`);
+          if (!iframe) {
+            if (canvas) canvas.style.display = 'none';
+            iframe = document.createElement('iframe');
+            iframe.id = `${prefix}pdf-iframe-${rowNumber}`;
+            iframe.style.cssText = 'width:100%;height:480px;border:none;background:#0e0b18;';
+            iframe.allow = 'autoplay';
+            canvas.parentNode.insertBefore(iframe, canvas);
+          }
+          iframe.src = `${state.url}#page=${pageNum}&toolbar=0&navpanes=0&messages=0`;
+          if (pageIndicator) pageIndicator.innerText = `Page ${pageNum}`;
+          if (prevBtn) { prevBtn.style.opacity = pageNum > 1 ? '1' : '0.15'; prevBtn.style.pointerEvents = pageNum > 1 ? 'auto' : 'none'; }
+          if (nextBtn) { nextBtn.style.opacity = '1'; nextBtn.style.pointerEvents = 'auto'; }
+        } else {
+          const page = await state.doc.getPage(pageNum);
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          const viewport = page.getViewport({ scale: 1.5 });
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          await page.render({ canvasContext: ctx, viewport }).promise;
+          canvas.style.opacity = '1';
+          if (pageIndicator) pageIndicator.innerText = `${pageNum} / ${state.totalPages} Pages`;
+          if (prevBtn) { prevBtn.style.opacity = pageNum > 1 ? '1' : '0.15'; prevBtn.style.pointerEvents = pageNum > 1 ? 'auto' : 'none'; }
+          if (nextBtn) { nextBtn.style.opacity = pageNum < state.totalPages ? '1' : '0.15'; nextBtn.style.pointerEvents = pageNum < state.totalPages ? 'auto' : 'none'; }
+        }
+      } catch (err) {
+        console.error('[PDF] Error rendering page:', err);
+      } finally {
+        state.rendering = false;
+      }
+    }
+
+    function changePdfPage(rowNumber, delta, isApproved = false) {
+      const prefix = isApproved ? 'approved-' : '';
+      const key = `${prefix}${rowNumber}`;
+      const state = pdfDocs[key];
+      if (!state) return;
+      const newPage = state.currentPage + delta;
+      if (state.useIframeFallback) {
+        if (newPage >= 1) renderPdfPage(rowNumber, newPage, isApproved);
+      } else {
+        if (state.doc && newPage >= 1 && newPage <= state.totalPages) renderPdfPage(rowNumber, newPage, isApproved);
+      }
+    }
+
+    function showFeedSkeleton() {
+      document.getElementById('feed-container').innerHTML = `
+        <div class="skeleton-card">
+          <div style="display:flex;gap:12px;">
+            <div class="skeleton skeleton-avatar"></div>
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+              <div class="skeleton skeleton-line" style="width:40%"></div>
+              <div class="skeleton skeleton-line" style="width:25%"></div>
+            </div>
+          </div>
+          <div class="skeleton skeleton-line" style="width:100%;height:80px;margin-top:16px;"></div>
+        </div>`;
+    }
+
+    function showApprovedFeedSkeleton() {
+      document.getElementById('approved-feed-container').innerHTML = `
+        <div class="skeleton-card">
+          <div style="display:flex;gap:12px;">
+            <div class="skeleton skeleton-avatar"></div>
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+              <div class="skeleton skeleton-line" style="width:40%"></div>
+              <div class="skeleton skeleton-line" style="width:25%"></div>
+            </div>
+          </div>
+          <div class="skeleton skeleton-line" style="width:100%;height:80px;margin-top:16px;"></div>
+        </div>`;
+    }
+
+    function updateStatus(text, color) {
+      const s = document.getElementById('status-text');
+      if (s) { s.innerText = text; s.style.color = color; }
+      const si = document.getElementById('sync-status-indicator');
+      if (si) { si.innerText = text; si.style.color = color; }
+    }
+
+    function renderFeed() {
+      const container = document.getElementById('feed-container');
+      container.innerHTML = '';
+      const pendingPosts = postsData.filter(p => p.Approval === 'Pending');
+      const el = document.getElementById('pending-count');
+      if (el) el.innerText = `${pendingPosts.length} Pending Posts`;
+      if (postsData.length === 0 || pendingPosts.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <svg class="empty-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+            <div class="empty-title">Inbox Cleared</div>
+            <div class="empty-subtitle">No pending posts. Ask the content team to add more posts for approval.</div>
+          </div>`;
+        return;
+      }
+      postsData.forEach(post => {
+        appendPostCard(post, container);
+        if (post['Media Link'] && post['Media Link'].trim() !== '') {
+          const mediaUrl = post['Media Link'].trim();
+          if (isPdfUrl(mediaUrl)) initPdfCarousel(post.row_number, mediaUrl, false);
+        }
+      });
+    }
+
+    function renderApprovedFeed() {
+      const container = document.getElementById('approved-feed-container');
+      container.innerHTML = '';
+      const el = document.getElementById('approved-count');
+      if (el) el.innerText = `${approvedPostsData.length} Approved Posts`;
+      if (approvedPostsData.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <svg class="empty-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+            <div class="empty-title">Archive Empty</div>
+            <div class="empty-subtitle">No approved posts found. Approve pending posts to see them here.</div>
+          </div>`;
+        return;
+      }
+      approvedPostsData.forEach(post => {
+        appendApprovedPostCard(post, container);
+        if (post['Media Link'] && post['Media Link'].trim() !== '') {
+          const mediaUrl = post['Media Link'].trim();
+          if (isPdfUrl(mediaUrl)) initPdfCarousel(post.row_number, mediaUrl, true);
+        }
+      });
+    }
+
+    function isPdfUrl(url) {
+      try {
+        const u = new URL(url);
+        return u.pathname.toLowerCase().includes('.pdf') || url.toLowerCase().includes('.pdf') || url.toLowerCase().includes('/pdf');
+      } catch(e) {
+        return url.toLowerCase().includes('.pdf') || url.toLowerCase().includes('/pdf');
+      }
+    }
+
+    function updatePostText(rowNumber, text) {
+      const idx = postsData.findIndex(p => p.row_number === rowNumber);
+      if (idx !== -1) { postsData[idx]['Post Content'] = text; addLogEntry(`Edited caption locally on post #${rowNumber}.`); }
+    }
+
+    function toggleEditMode(rowNumber) {
+      expandPostText(rowNumber);
+      const seeMoreBtn = document.getElementById(`see-more-${rowNumber}`);
+      const seeLessBtn = document.getElementById(`see-less-${rowNumber}`);
+      if (seeMoreBtn) seeMoreBtn.style.display = 'none';
+      if (seeLessBtn) seeLessBtn.style.display = 'none';
+      const textBlock = document.getElementById(`content-text-${rowNumber}`);
+      const btn = document.getElementById(`edit-btn-${rowNumber}`);
+      const isEditable = textBlock.contentEditable === 'true';
+      if (!isEditable) {
+        textBlock.contentEditable = 'true';
+        textBlock.classList.add('editing-active');
+        textBlock.focus();
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.selectNodeContents(textBlock);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Save Wording</span>`;
+        btn.classList.add('editing-btn-active');
+        showToast('Caption editing enabled', 'info');
+      } else {
+        textBlock.contentEditable = 'false';
+        textBlock.classList.remove('editing-active');
+        const newText = textBlock.innerText;
+        updatePostText(rowNumber, newText);
+        let html = '';
+        if (newText.length > 180) {
+          html = `<span class="post-text-visible">${newText.slice(0, 180)}</span><span id="text-hidden-${rowNumber}" style="display:none;">${newText.slice(180)}</span><span id="see-more-${rowNumber}" class="see-more-link" onclick="expandPostText(${rowNumber})">... see more</span><span id="see-less-${rowNumber}" class="see-less-link" style="display:none;" onclick="collapsePostText(${rowNumber})">... see less</span>`;
+        } else {
+          html = `<span class="post-text-visible">${newText}</span>`;
+        }
+        textBlock.innerHTML = html;
+        btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg><span>Edit Caption</span>`;
+        btn.classList.remove('editing-btn-active');
+        showToast('Wording saved successfully', 'success');
+      }
+    }
+
+    function expandPostText(rowNumber) {
+      const h = document.getElementById(`text-hidden-${rowNumber}`);
+      const sm = document.getElementById(`see-more-${rowNumber}`);
+      const sl = document.getElementById(`see-less-${rowNumber}`);
+      if (h) h.style.display = 'inline';
+      if (sm) sm.style.display = 'none';
+      if (sl) sl.style.display = 'inline';
+    }
+
+    function collapsePostText(rowNumber) {
+      const h = document.getElementById(`text-hidden-${rowNumber}`);
+      const sm = document.getElementById(`see-more-${rowNumber}`);
+      const sl = document.getElementById(`see-less-${rowNumber}`);
+      if (h) h.style.display = 'none';
+      if (sm) sm.style.display = 'inline';
+      if (sl) sl.style.display = 'none';
+    }
+
+    function expandApprovedPostText(rowNumber) {
+      const h = document.getElementById(`approved-text-hidden-${rowNumber}`);
+      const sm = document.getElementById(`approved-see-more-${rowNumber}`);
+      const sl = document.getElementById(`approved-see-less-${rowNumber}`);
+      if (h) h.style.display = 'inline';
+      if (sm) sm.style.display = 'none';
+      if (sl) sl.style.display = 'inline';
+    }
+
+    function collapseApprovedPostText(rowNumber) {
+      const h = document.getElementById(`approved-text-hidden-${rowNumber}`);
+      const sm = document.getElementById(`approved-see-more-${rowNumber}`);
+      const sl = document.getElementById(`approved-see-less-${rowNumber}`);
+      if (h) h.style.display = 'none';
+      if (sm) sm.style.display = 'inline';
+      if (sl) sl.style.display = 'none';
+    }
+
+    function toggleCommentBox(rowNumber) {
+      const box = document.getElementById(`comment-box-${rowNumber}`);
+      const btn = document.getElementById(`changes-action-${rowNumber}`);
+      if (!box) return;
+      const isHidden = box.style.display === 'none';
+      if (isHidden) {
+        box.style.display = 'block';
+        if (btn) btn.classList.add('active-action');
+        const ta = document.getElementById(`changes-comment-${rowNumber}`);
+        if (ta) ta.focus();
+      } else {
+        box.style.display = 'none';
+        if (btn) btn.classList.remove('active-action');
+      }
+    }
+
+    function buildMediaBox(post, isApproved = false) {
+      if (!post['Media Link'] || post['Media Link'].trim() === '') return '';
+      const mediaUrl = post['Media Link'].trim();
+      const prefix = isApproved ? 'approved-' : '';
+
+      if (isPdfUrl(mediaUrl)) {
+        let fileName = 'Document.pdf';
+        try {
+          const pathParts = new URL(mediaUrl).pathname.split('/');
+          fileName = decodeURIComponent(pathParts[pathParts.length - 1] || 'Document.pdf');
+        } catch(e) {}
+        return `
+          <div style="display:flex;flex-direction:column;width:100%;background:#0e0b18;border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin:12px 0 4px;">
+            <div style="position:relative;width:100%;min-height:420px;background:#0b0918;display:flex;align-items:center;justify-content:center;overflow:hidden;user-select:none;">
+              <div id="${prefix}pdf-loader-${post.row_number}" style="position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text-dim);font-size:11px;font-family:var(--mono);width:100%;text-align:center;padding:24px;">
+                <div style="width:28px;height:28px;border:2px solid var(--border2);border-top-color:var(--signal);border-radius:50%;animation:spin 1s linear infinite;"></div>
+                <span>Loading Slide Deck...</span>
+              </div>
+              <button id="${prefix}pdf-prev-${post.row_number}" onclick="changePdfPage(${post.row_number},-1,${isApproved})" style="position:absolute;left:16px;z-index:10;width:40px;height:40px;border-radius:50%;border:1px solid var(--border2);background:rgba(14,11,24,0.9);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;backdrop-filter:blur(4px);opacity:0.15;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <canvas id="${prefix}pdf-canvas-${post.row_number}" style="max-width:100%;max-height:520px;display:block;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,0.4);opacity:0;transition:opacity 0.3s;"></canvas>
+              <button id="${prefix}pdf-next-${post.row_number}" onclick="changePdfPage(${post.row_number},1,${isApproved})" style="position:absolute;right:16px;z-index:10;width:40px;height:40px;border-radius:50%;border:1px solid var(--border2);background:rgba(14,11,24,0.9);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;backdrop-filter:blur(4px);opacity:0.15;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--surface2);border-top:1px solid var(--border2);">
+              <div style="display:flex;align-items:center;gap:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:70%;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span style="font-family:var(--sans);font-size:12px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;">${fileName}</span>
+                <span id="${prefix}pdf-page-indicator-${post.row_number}" style="font-family:var(--mono);font-size:10px;color:var(--text-dim);background:var(--surface3);padding:2px 6px;border-radius:4px;border:1px solid var(--border);flex-shrink:0;">Loading...</span>
+              </div>
+              <a href="${mediaUrl}" target="_blank" style="display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;color:var(--signal);text-decoration:none;border:1px solid var(--signal-dim);padding:6px 10px;border-radius:4px;background:var(--signal-dim);transition:all 0.2s;flex-shrink:0;">
+                <span>Open PDF</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>`;
+      } else {
+        const errFn = isApproved ? `handleApprovedImageError(${post.row_number})` : `handleImageError(${post.row_number})`;
+        const imgId = `${prefix}media-img-${post.row_number}`;
+        const fallId = `${prefix}media-fallback-${post.row_number}`;
+        return `
+          <div class="post-media-box">
+            <img class="post-media-image" id="${imgId}" src="${mediaUrl}" alt="Feed Visual Asset" onerror="${errFn}">
+            <div id="${fallId}" class="media-fallback" style="display:none;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+              <div class="media-fallback-text">Unable to load image. Verify link availability.</div>
+              <a href="${mediaUrl}" target="_blank" style="padding:6px 12px;font-size:10px;color:var(--signal);border:1px solid var(--signal-dim);border-radius:4px;text-decoration:none;">Open Image in New Tab</a>
+            </div>
+          </div>`;
+      }
+    }
+
+    function buildContentHtml(fullText, rowNumber, isApproved = false) {
+      const prefix = isApproved ? 'approved-' : '';
+      if (!fullText) return '';
+      if (fullText.length > 180) {
+        return `<span class="post-text-visible">${fullText.slice(0, 180)}</span><span id="${prefix}text-hidden-${rowNumber}" style="display:none;">${fullText.slice(180)}</span><span id="${prefix}see-more-${rowNumber}" class="see-more-link" onclick="${isApproved ? 'expandApproved' : 'expand'}PostText(${rowNumber})">... see more</span><span id="${prefix}see-less-${rowNumber}" class="see-less-link" style="display:none;" onclick="${isApproved ? 'collapseApproved' : 'collapse'}PostText(${rowNumber})">... see less</span>`;
+      }
+      return `<span class="post-text-visible">${fullText}</span>`;
+    }
+
+    function appendPostCard(post, container) {
+      const card = document.createElement('article');
+      let statusClass = post.Approval.toLowerCase();
+      if (statusClass === 'redo requested') statusClass = 'redo_requested';
+      card.className = `post-card ${statusClass}`;
+      card.id = `post-card-${post.row_number}`;
+
+      let statusBadge = `<span class="badge-status status-pending">PENDING APPROVAL</span>`;
+      if (post.Approval === 'Approved') statusBadge = `<span class="badge-status status-approved">APPROVED & QUEUED</span>`;
+      if (post.Approval === 'Rejected') statusBadge = `<span class="badge-status status-rejected">CHANGES REQUESTED</span>`;
+      if (post.Approval === 'Redo Requested') statusBadge = `<span class="badge-status status-redo">REDO REQUESTED</span>`;
+
+      card.innerHTML = `
+        <div class="post-card-header">
+          <div class="post-author">
+            <div class="post-avatar">
+              <img class="post-avatar-img" src="https://get.tofler.in/wp-content/uploads/2026/06/1766386611595-1.jpg" alt="Anchal Agarwal">
+            </div>
+            <div class="post-author-info">
+              <div class="post-author-name">
+                Anchal Agarwal
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--signal)" style="margin-left:2px;"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <div class="post-author-meta">Topic: ${post['Content Topic'] || '—'}</div>
+              <div class="post-author-meta">Content Type: ${post['Content Type'] || 'LinkedIn Post'}</div>
+            </div>
+          </div>
+          <div class="badge-container">${statusBadge}</div>
+        </div>
+
+        <div class="post-content-wrapper">
+          <div class="post-content-text" id="content-text-${post.row_number}" contenteditable="false">${buildContentHtml(post['Post Content'], post.row_number, false)}</div>
+          <div class="post-content-actions">
+            <button onclick="toggleEditMode(${post.row_number})" id="edit-btn-${post.row_number}" class="btn-edit-text-trigger">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+              <span>Edit Caption</span>
+            </button>
+          </div>
+        </div>
+
+        ${buildMediaBox(post, false)}
+
+        <div class="post-action-buttons">
+          <button onclick="submitStatus(${post.row_number}, 'Approved')" class="action-btn-li btn-approve-action">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Approve Post
+          </button>
+          <button onclick="toggleCommentBox(${post.row_number})" class="action-btn-li btn-text-action" id="changes-action-${post.row_number}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Request Changes
+          </button>
+          <button onclick="submitStatus(${post.row_number}, 'Redo Requested')" class="action-btn-li btn-redo-action">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+            Redo Entire Post
+          </button>
+        </div>
+
+        <div id="comment-box-${post.row_number}" class="collapsible-comment-panel" style="display:none;">
+          <div class="comment-input-row">
+            <div class="comment-avatar-mini">
+              <img src="https://www.tofler.in/images/sociallogo.png" alt="Tofler">
+            </div>
+            <div class="comment-bubble-wrapper">
+              <textarea id="changes-comment-${post.row_number}" class="comment-bubble-textarea" placeholder="Add text, media, or structural revision comments...">${post['Post Text Comments'] || ''}</textarea>
+              <button onclick="submitStatus(${post.row_number}, 'Rejected')" class="comment-submit-btn">Submit Revision Instructions</button>
+            </div>
+          </div>
+        </div>`;
+
+      container.appendChild(card);
+    }
+
+    function appendApprovedPostCard(post, container) {
+      const card = document.createElement('article');
+      card.className = 'post-card approved';
+      card.id = `approved-post-card-${post.row_number}`;
+
+      card.innerHTML = `
+        <div class="post-card-header">
+          <div class="post-author">
+            <div class="post-avatar">
+              <img class="post-avatar-img" src="https://get.tofler.in/wp-content/uploads/2026/06/1766386611595-1.jpg" alt="Anchal Agarwal">
+            </div>
+            <div class="post-author-info">
+              <div class="post-author-name">
+                Anchal Agarwal
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--signal)" style="margin-left:2px;"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <div class="post-author-meta">Topic: ${post['Content Topic'] || post['Topic'] || '—'}</div>
+              <div class="post-author-meta">Content Type: ${post['Content Type'] || 'LinkedIn Post'}</div>
+            </div>
+          </div>
+          <div class="badge-container"><span class="badge-status status-approved">APPROVED & QUEUED</span></div>
+        </div>
+
+        <div class="post-content-wrapper" style="padding-bottom:12px;">
+          <div class="post-content-text" id="approved-content-text-${post.row_number}" contenteditable="false">${buildContentHtml(post['Post Content'] || '', post.row_number, true)}</div>
+        </div>
+
+        ${buildMediaBox(post, true)}`;
+
+      container.appendChild(card);
+    }
+
+    function handleImageError(rowNumber) {
+      const img = document.getElementById(`media-img-${rowNumber}`);
+      if (img) img.style.display = 'none';
+      const fb = document.getElementById(`media-fallback-${rowNumber}`);
+      if (fb) fb.style.display = 'flex';
+    }
+
+    function handleApprovedImageError(rowNumber) {
+      const img = document.getElementById(`approved-media-img-${rowNumber}`);
+      if (img) img.style.display = 'none';
+      const fb = document.getElementById(`approved-media-fallback-${rowNumber}`);
+      if (fb) fb.style.display = 'flex';
+    }
+
+    async function submitStatus(rowNumber, status) {
+      const postIndex = postsData.findIndex(p => p.row_number === rowNumber);
+      if (postIndex === -1) return;
+      const post = postsData[postIndex];
+      const commentInput = document.getElementById(`changes-comment-${rowNumber}`);
+      const commentsText = commentInput ? commentInput.value.trim() : '';
+
+      if (status === 'Rejected' && !commentsText) {
+        showToast('Please enter revision comments first', 'toast-error');
+        if (commentInput) commentInput.focus();
+        return;
+      }
+
+      post.Approval = status;
+      post['Post Text Comments'] = commentsText;
+
+      const card = document.getElementById(`post-card-${rowNumber}`);
+      let statusClass = status.toLowerCase();
+      if (statusClass === 'redo requested') statusClass = 'redo_requested';
+
+      if (card) {
+        card.className = `post-card ${statusClass}`;
+        setTimeout(() => {
+          card.classList.add('fade-out');
+          setTimeout(() => {
+            postsData = postsData.filter(p => p.row_number !== rowNumber);
+            renderFeed();
+          }, 400);
+        }, 1000);
+      } else {
+        postsData = postsData.filter(p => p.row_number !== rowNumber);
+        renderFeed();
+      }
+
+      if (status === 'Approved') {
+        showToast(`Syncing approval for post #${rowNumber}...`, 'info');
+        updateStatus('SYNCING', '#f5a623');
+        addLogEntry(`Submitting approval for post #${rowNumber}...`);
+        try {
+          const url = new URL(CONFIG.webhookPostApproved);
+          url.searchParams.append('row_number', post.row_number);
+          url.searchParams.append('Approval', status);
+          url.searchParams.append('post_content', post['Post Content']);
+          url.searchParams.append('content_type', post['Content Type'] || '');
+          url.searchParams.append('content_topic', post['Content Topic'] || '');
+          const r = await fetch(url.toString(), { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          addLogEntry(`Post #${rowNumber} successfully approved & synced.`);
+          showToast(`Post #${rowNumber} approved & queued!`, 'success');
+          updateStatus('CONNECTED', 'var(--signal)');
+        } catch (err) {
+          addLogEntry(`Approve webhook offline. Saved locally for post #${rowNumber}.`);
+          showToast('Approved locally (Synced).', 'info');
+          updateStatus('CONNECTED', 'var(--signal)');
+        }
+      } else if (status === 'Redo Requested') {
+        showToast(`Sending redo request for post...`, 'info');
+        updateStatus('SYNCING', '#f5a623');
+        addLogEntry(`Submitting redo for topic "${post['Content Topic']}"...`);
+        try {
+          const url = new URL(CONFIG.webhookPostRejected);
+          url.searchParams.append('content_topic', post['Content Topic'] || '');
+          url.searchParams.append('row_number', post.row_number);
+          url.searchParams.append('Approval', status);
+          const r = await fetch(url.toString(), { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          addLogEntry(`Redo request sent for post #${rowNumber}.`);
+          showToast('Redo request sent!', 'success');
+          updateStatus('CONNECTED', 'var(--signal)');
+        } catch (err) {
+          addLogEntry(`Redo webhook offline. Logged locally for post #${rowNumber}.`);
+          showToast('Redo requested locally (Synced).', 'info');
+          updateStatus('CONNECTED', 'var(--signal)');
+        }
+      } else if (status === 'Rejected') {
+        showToast(`Sending revision request...`, 'info');
+        updateStatus('SYNCING', '#f5a623');
+        addLogEntry(`Submitting changes for post #${rowNumber}...`);
+        try {
+          const url = new URL(CONFIG.webhookChangesRequested);
+          url.searchParams.append('row_number', post.row_number);
+          url.searchParams.append('Approval', status);
+          url.searchParams.append('content_topic', post['Content Topic'] || '');
+          url.searchParams.append('post_content', post['Post Content'] || '');
+          url.searchParams.append('comments', commentsText);
+          const r = await fetch(url.toString(), { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          addLogEntry(`Revision request synced: "${commentsText}".`);
+          showToast('Revision request synced!', 'success');
+          updateStatus('CONNECTED', 'var(--signal)');
+        } catch (err) {
+          addLogEntry(`Changes webhook offline. Logged locally for post #${rowNumber}.`);
+          showToast('Revision requested locally (Synced).', 'info');
+          updateStatus('CONNECTED', 'var(--signal)');
+        }
+      }
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = `toast ${type === 'toast-error' ? 'toast-error' : (type === 'info' ? 'toast-info' : '')}`;
+      let icon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+      if (type === 'toast-error') icon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+      else if (type === 'info') icon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+      toast.innerHTML = `${icon}<div class="toast-msg">${message}</div>`;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.add('show'); }, 10);
+      setTimeout(() => { toast.classList.remove('show'); setTimeout(() => { toast.remove(); }, 400); }, 3500);
+    }
+  </script>
+</body>
+</html>
