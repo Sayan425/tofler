@@ -844,6 +844,119 @@
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* View Chooser */
+    #view-chooser {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 5, 15, 0.97);
+      backdrop-filter: blur(12px);
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 12px;
+      padding: 24px;
+    }
+
+    #view-chooser.visible {
+      display: flex;
+      animation: fadeInUp 0.4s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .chooser-heading {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dimmer);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .chooser-title {
+      font-family: var(--display);
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .chooser-grid {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      max-width: 680px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .chooser-card {
+      flex: 1 1 260px;
+      max-width: 320px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chooser-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--signal), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .chooser-card:hover { border-color: var(--signal); background: var(--surface2); transform: translateY(-2px); }
+    .chooser-card:hover::before { opacity: 1; }
+
+    .chooser-icon {
+      width: 40px; height: 40px;
+      background: var(--signal-dim);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--signal);
+    }
+
+    .chooser-card-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .chooser-card-desc {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .chooser-arrow {
+      margin-top: auto;
+      color: var(--signal);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      align-self: flex-end;
+    }
+
+    .chooser-card:hover .chooser-arrow { opacity: 1; transform: translateX(4px); }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script>
@@ -875,6 +988,34 @@
     </div>
   </div>
 
+  <!-- VIEW CHOOSER -->
+  <div id="view-chooser">
+    <div class="chooser-heading">Tofler Internal Portal</div>
+    <div class="chooser-title">What would you like to view?</div>
+    <div class="chooser-grid">
+      <div class="chooser-card" onclick="switchView('feed')">
+        <div class="chooser-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </div>
+        <div class="chooser-card-title">Content Approval Engine</div>
+        <div class="chooser-card-desc">Review, approve, or reject LinkedIn content posts. Manage the editorial pipeline and sync with Google Sheets.</div>
+        <div class="chooser-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </div>
+      <div class="chooser-card" onclick="switchView('reports')">
+        <div class="chooser-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div class="chooser-card-title">Industry Reports</div>
+        <div class="chooser-card-desc">Browse and read all published Tofler industry outlook reports — automobiles, e-commerce, IT, pharma, and more.</div>
+        <div class="chooser-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- STICKY NAV -->
   <nav>
     <div class="nav-container">
@@ -899,6 +1040,11 @@
           <div class="dropdown-item" id="menu-item-sync" onclick="switchView('sync')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
             Sync Sheet
+          </div>
+          <div style="height: 1px; background: var(--border); margin: 4px 0;"></div>
+          <div class="dropdown-item" id="menu-item-reports" onclick="switchView('reports')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Industry Reports
           </div>
         </div>
       </div>
@@ -1024,6 +1170,11 @@
     </div>
   </div>
 
+  <!-- VIEW 4: INDUSTRY REPORTS -->
+  <div id="view-reports" class="view-panel" style="display: none; height: calc(100vh - 56px);">
+    <iframe src="Industry Reports Tofler/industry_report_index.html" style="width: 100%; height: 100%; border: none; display: block;"></iframe>
+  </div>
+
   <!-- TOAST CONTAINER -->
   <div id="toast-container"></div>
 
@@ -1095,6 +1246,8 @@
     function switchView(viewName) {
       if (!authenticated) { showToast('Please authenticate first', 'toast-error'); return; }
 
+      document.getElementById('view-chooser').classList.remove('visible');
+
       const container = document.getElementById('menu-dropdown-container');
       container.classList.remove('open');
       document.getElementById('nav-dropdown-menu').style.display = 'none';
@@ -1102,10 +1255,12 @@
       document.getElementById('view-feed').style.display = 'none';
       document.getElementById('view-sync').style.display = 'none';
       document.getElementById('view-approved').style.display = 'none';
+      document.getElementById('view-reports').style.display = 'none';
 
       document.getElementById('menu-item-feed').classList.remove('active');
       document.getElementById('menu-item-sync').classList.remove('active');
       document.getElementById('menu-item-approved').classList.remove('active');
+      document.getElementById('menu-item-reports').classList.remove('active');
 
       const label = document.getElementById('active-menu-label');
 
@@ -1114,6 +1269,7 @@
         document.getElementById('menu-item-feed').classList.add('active');
         label.innerText = 'Review Feed';
         addLogEntry('Navigated to Review Feed.');
+        fetchPosts();
       } else if (viewName === 'sync') {
         document.getElementById('view-sync').style.display = 'block';
         document.getElementById('menu-item-sync').classList.add('active');
@@ -1125,6 +1281,11 @@
         label.innerText = 'View Approved';
         addLogEntry('Navigated to Approved Posts Archive.');
         fetchApprovedPosts();
+      } else if (viewName === 'reports') {
+        document.getElementById('view-reports').style.display = 'block';
+        document.getElementById('menu-item-reports').classList.add('active');
+        label.innerText = 'Industry Reports';
+        addLogEntry('Navigated to Industry Reports.');
       }
     }
 
@@ -1135,8 +1296,10 @@
         authenticated = true;
         document.getElementById('password-gate').classList.add('unlocked');
         addLogEntry('Passcode validated. Unlocking terminal...');
-        fetchPosts();
-        showToast('System Feed Unlocked', 'info');
+        setTimeout(() => {
+          document.getElementById('view-chooser').classList.add('visible');
+        }, 350);
+        showToast('Authenticated — select a view', 'info');
       } else {
         errorMsg.classList.add('visible');
         input.value = '';

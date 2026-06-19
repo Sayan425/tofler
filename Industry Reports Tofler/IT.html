@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tofler: India IT Industry Benchmarking Report</title>
+    <link rel="icon" type="image/png" href="https://get.tofler.in/wp-content/uploads/2025/08/faviconlogo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1440px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            height: 52px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-left-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-item {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #5E3BE1;
+        }
+
+        .nav-link-outline {
+            color: #5E3BE1;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 1px solid #5E3BE1;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-outline:hover {
+            background-color: rgba(94, 59, 225, 0.05);
+        }
+
+        .nav-btn-solid {
+            background-color: #5E3BE1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-solid:hover {
+            background-color: #4b2eb5;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #5E3BE1;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 24px 0 0 0;
+        }
+
+        .hero-card {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            gap: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            flex: 0 0 45%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hero-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #E2E8F0;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+
+        .hero-date {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: 0px;
+        }
+
+        .hero-button {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        /* SHARE SECTION */
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .share-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #F1F5F9;
+            color: #475569;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .share-icon-btn:hover {
+            background-color: #E2E8F0;
+            color: #5E3BE1;
+            transform: translateY(-2px);
+        }
+
+        .share-icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-button:hover {
+            background-color: #333;
+        }
+
+        /* MOBILE DROPDOWN */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 16px 40px;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 992px) {
+
+            .nav-item,
+            .nav-link-outline,
+            .nav-btn-solid {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar .container {
+                padding: 0 20px;
+            }
+
+            .hero-card {
+                flex-direction: column;
+                gap: 32px;
+                padding: 24px;
+            }
+
+            .hero-image-wrapper {
+                flex: 0 0 100%;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+
+        /* INFO SECTION STYLES */
+        .info-section {
+            padding: 24px 0 24px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .about-headline {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 32px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 24px;
+        }
+
+        .highlight-text {
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .speaker-box {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            height: fit-content;
+            background: linear-gradient(135deg, #ffffff 0%, #FAFAFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .speaker-heading-icon {
+            width: 16px;
+            height: 16px;
+            color: #5E3BE1;
+        }
+
+        .speaker-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #F1F5F9;
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 24px;
+        }
+
+        .speaker-linkedin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #5E3BE1;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 20px;
+            background-color: rgba(94, 59, 225, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .speaker-linkedin:hover {
+            background-color: rgba(94, 59, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-box {
+                padding: 32px 24px;
+            }
+        }
+
+        .action-container {
+            margin-top: 24px;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 10px 0 40px 0;
+        }
+
+        .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.02);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #5E3BE1 !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #5E3BE1 !important;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* LIGHTBOX STYLES */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-lightbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* FOOTER STYLES */
+        .footer_wrapper {
+            background-color: #27184F;
+            padding: 80px 0 40px 0;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .footer_wrapper .container {
+            display: block !important;
+            max-width: 1500px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 18px !important;
+        }
+
+
+        .footer_container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .flex-col { display: flex; flex-direction: column; }
+        .flex { display: flex; }
+        .gap-4 { gap: 4px; }
+        .gap-8 { gap: 8px; }
+        .gap-24 { gap: 24px; }
+        .gap-32 { gap: 32px; }
+        .gap-80 { gap: 80px; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+
+        .footer_desc {
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer_wrapper p {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-dark { color: #0F172A; }
+        .font-light { font-weight: 300; }
+        .font-regular { font-weight: 400; }
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 18px; font-weight: 700; }
+
+        .footer_wrapper a {
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer_wrapper a:hover {
+            color: #ffffff !important;
+            opacity: 0.8;
+        }
+
+        .low_footer {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #0F172A;
+            font-weight: 600;
+        }
+
+        .low_footer p {
+            color: #0F172A !important;
+        }
+
+        @media (max-width: 992px) {
+            .footer_container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .low_footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        .footer_social_icon {
+            width: 24px;
+            height: 24px;
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            transition: opacity 0.2s;
+        }
+
+        .footer_social_icon:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #475569;
+        }
+
+        .modal-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0F172A;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+        }
+
+        .modal-subheading {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #334155;
+            letter-spacing: 0.2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background-color: #F8FAFC;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #5E3BE1;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(94, 59, 225, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #5E3BE1;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #4b2eb5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:disabled {
+            background-color: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+
+        :root {
+            --primary: #613dc1;
+            --secondary: #dbd4ee;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        .report-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+
+        .report-content h1,
+        .report-content h2,
+        .report-content h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #0F172A;
+        }
+
+        .report-content h1 {
+            font-size: 32px;
+            margin-top: 24px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        .report-content h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        .report-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .report-content ul:not(.company-list) {
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .report-content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .report-img {
+            width: 100%;
+            margin: 40px 0;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        /* Grid layout for companies to save vertical space */
+        .company-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .company-list li {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 0 !important;
+        }
+
+        .company-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: var(--secondary);
+        }
+
+        .company-list .title-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .company-list h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F172A;
+            line-height: 1.4;
+        }
+
+        .company-list .index {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .company-list .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .comp-cin {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .comp-link {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .comp-link:hover {
+            text-decoration: underline;
+            color: #4f30a0;
+        }
+
+
+        /* Tofler Table Style updated */
+        .table-wrapper {
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.03));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 32px 0;
+            background: #fff;
+        }
+
+        .tofler-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .tofler-table th,
+        .tofler-table td {
+            padding: 16px 20px;
+            font-weight: 400 !important;
+        }
+
+        .tofler-table th {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 600 !important;
+            font-size: 15px;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .tofler-table th:first-child {
+            text-align: left;
+        }
+
+        .tofler-table td:first-child {
+            text-align: left;
+            color: #334155;
+        }
+
+        .tofler-table td {
+            color: #1e293b;
+            border: none;
+        }
+
+        .tofler-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .tofler-table tr:nth-child(odd) {
+            background-color: #f7f5fb;
+        }
+
+        /* Plain Table for text heavy sections */
+        .plain-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            white-space: normal;
+        }
+
+        .plain-table th,
+        .plain-table td {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .plain-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+            border-bottom: 2px solid var(--border);
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .plain-table td {
+            font-weight: 400;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .plain-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .plain-table tr:nth-child(odd) {
+            background-color: #f7f5fb;
+        }
+
+        /* Desktop-specific table name wrapping fix */
+        @media (min-width: 769px) {
+            .tofler-table td:first-child {
+                white-space: normal !important;
+                min-width: 250px;
+            }
+        }
+
+
+        /* Responsive Toggle Logic for Desktop and Mobile */
+        .expandable-list:not(.expanded) li:nth-child(n+7) {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .expandable-list:not(.expanded) li:nth-child(n+4) {
+                display: none !important;
+            }
+        }
+
+        .expandable-table:not(.expanded) tr:nth-child(n+12) {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .expandable-table:not(.expanded) tr:nth-child(n+7) {
+                display: none !important;
+            }
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-top: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+            margin-top: -16px;
+            margin-bottom: 24px;
+        }
+
+        .toggle-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .table-wrapper .toggle-btn {
+            margin-top: 0;
+            margin-bottom: 0;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .view-all-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+        }
+
+        .view-all-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .hero-banner {
+            position: relative;
+            padding: 120px 20px;
+            text-align: center;
+            color: #fff;
+            background-image: url('https://get.tofler.in/wp-content/uploads/2026/06/7d92263e04f38b96a4eb5e71292af6b2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(97, 61, 193, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(219, 212, 238, 0.95);
+            color: #5e3be1;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-banner h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-banner p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            color: #ffffff;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            font-weight: 500;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #4f30a0;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
+
+        /* Highlights Component */
+        strong.hl {
+            color: #0f172a;
+            font-weight: 700;
+            background: none;
+            padding: 0;
+        }
+
+        /* Mobile Responsiveness Rules */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-banner {
+                padding: 60px 16px 50px;
+            }
+
+            .hero-tag {
+                font-size: 11px;
+                padding: 6px 12px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                line-height: 1.4;
+                letter-spacing: 0.5px;
+                max-width: 95%;
+            }
+
+            .hero-banner h1 {
+                font-size: 30px;
+                margin-bottom: 16px;
+                line-height: 1.3;
+            }
+
+            .hero-banner p {
+                font-size: 16px;
+                margin-bottom: 24px;
+                padding: 0 4px;
+            }
+
+            .hero-p-desktop {
+                display: none !important;
+            }
+
+            .hero-p-mobile {
+                display: block !important;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .report-content {
+                padding: 40px 16px;
+            }
+
+            .report-content h1 {
+                font-size: 24px;
+                margin-top: 32px;
+                margin-bottom: 16px;
+            }
+
+            .report-content h2 {
+                font-size: 20px;
+                margin-top: 24px;
+                margin-bottom: 12px;
+            }
+
+            .report-content p,
+            .report-content li {
+                font-size: 15px;
+            }
+
+            .tofler-table th,
+            .tofler-table td,
+            .plain-table th,
+            .plain-table td {
+                padding: 12px 10px;
+                font-size: 13px !important;
+            }
+
+            .tofler-table th,
+            .plain-table th {
+                font-size: 12px !important;
+            }
+
+            .tofler-table td:first-child {
+                min-width: 150px;
+            }
+
+            .company-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin: 16px 0;
+            }
+
+            .company-list li {
+                padding: 12px;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .company-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-banner h1 {
+                font-size: 28px;
+            }
+
+            .report-content h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left-group">
+                <a href="https://www.tofler.in/">
+                    <img src="https://get.tofler.in/wp-content/uploads/2025/11/Untitled-design-15-1.jpg"
+                        alt="Tofler Logo" class="logo">
+                </a>
+            </div>
+
+            <div class="nav-right-group">
+                <a href="https://tofler.in/our-story" class="nav-item">Our Story</a>
+                <a href="https://www.tofler.in/benefits" class="nav-item">Benefits</a>
+                <a href="https://www.tofler.in/price-and-plans" class="nav-link-outline">See Price &amp; Plans</a>
+                <a href="https://www.tofler.in/login" class="nav-btn-solid">Login</a>
+                <button class="menu-toggle" onclick="toggleMobileNav()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="https://tofler.in/our-story" class="nav-item" style="display: block;">Our Story</a>
+            <a href="https://www.tofler.in/benefits" class="nav-item" style="display: block;">Benefits</a>
+            <a href="https://www.tofler.in/price-and-plans" class="nav-item" style="display: block;">See Price &amp;
+                Plans</a>
+            <a href="https://www.tofler.in/login" class="nav-item" style="display: block;">Login</a>
+        </div>
+    </nav>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <div class="hero-tag">A Five-Year Financial Benchmarking Study</div>
+            <h1>India's IT Industry Outlook</h1>
+            <p class="hero-p-desktop">Assessing financial performance, margins, and business model evolution across India's top 30 IT and technology services companies.</p>
+            <p class="hero-p-mobile" style="display: none;">Assessing financial performance across India's top 30 IT and technology services companies.</p>
+            <a href="https://get.tofler.in/wp-content/uploads/2026/06/India-IT-Industry-Outlook.pdf"
+                target="_blank" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+        </div>
+    </div>
+
+    <div class="report-content">
+
+        <h1>1. Executive Summary</h1>
+        <p>India's IT sector has built one of the world's largest technology services industries over three decades, covering everything from large-scale software services and business process outsourcing to engineering R&amp;D and enterprise software products. This benchmarking study tracks <b>30 leading companies</b> across these segments, spanning both listed and unlisted entities, and covers five years of audited financial data from FY21 through FY25.</p>
+        <p>Combined revenues for the sample grew from <strong class="hl">₹3,79,399 crore in FY21 to ₹6,13,894 crore in FY25</strong>, a four-year compound growth rate of approximately 12.8%. The sector's capital-light structure and strong cash generation are reflected in near-zero debt levels throughout the period, with total borrowings for all 30 companies amounting to just ₹7,647 crore in FY25.</p>
+
+        <h2>Revenue and Profit Trends</h2>
+        <ul>
+            <li>Sector revenues grew <strong class="hl">61.8% in four years</strong>, with particularly strong momentum in FY22 and FY23 as global digital transformation spending accelerated post-pandemic.</li>
+            <li>Operating profit expanded from <strong class="hl">₹1,07,631 crore in FY21 to ₹1,46,386 crore in FY25</strong>, though operating margins compressed from 28.4% to 23.9% as companies absorbed elevated hiring and salary inflation costs during FY22 and FY23.</li>
+            <li>Net profit grew consistently, rising from <strong class="hl">₹80,331 crore in FY21 to ₹1,17,883 crore in FY25</strong>, with net margins recovering to approximately 19.2% in FY25 after a dip to 18.1% in FY23.</li>
+            <li>The sector is <strong class="hl">structurally near-debt-free</strong>: total borrowings across all 30 companies peaked at ₹8,927 crore in FY22 and stood at ₹7,647 crore in FY25, with most companies carrying zero long-term debt.</li>
+            <li>Networth strengthened from <strong class="hl">₹2,96,955 crore to ₹3,54,762 crore</strong>, funded entirely by retained earnings rather than equity dilution.</li>
+            <li>Total assets expanded from <strong class="hl">₹4,08,679 crore to ₹5,35,135 crore</strong>, with current assets forming the dominant share throughout, a characteristic of services businesses that deploy capital through people and receivables rather than heavy fixed infrastructure.</li>
+            <li>Margin moderation through FY23 to FY25 reflects the transition from pandemic-era cost control to a normalised operating environment, with higher bench ratios, fresher cohort absorption, and competitive wage cycles weighing on near-term profitability.</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>3,79,398.5</td>
+                    <td>4,51,846.7</td>
+                    <td>5,50,684.9</td>
+                    <td>5,76,549.4</td>
+                    <td>6,13,894.4</td>
+                </tr>
+                <tr>
+                    <td>Operating profit</td>
+                    <td>1,07,631.2</td>
+                    <td>1,19,751.0</td>
+                    <td>1,32,122.0</td>
+                    <td>1,37,444.4</td>
+                    <td>1,46,386.1</td>
+                </tr>
+                <tr>
+                    <td>Net profit</td>
+                    <td>80,330.8</td>
+                    <td>97,482.0</td>
+                    <td>99,536.9</td>
+                    <td>1,07,893.8</td>
+                    <td>1,17,883.2</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>2,96,954.6</td>
+                    <td>3,10,870.7</td>
+                    <td>3,24,325.2</td>
+                    <td>3,34,912.0</td>
+                    <td>3,54,761.7</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>7,215.8</td>
+                    <td>8,926.9</td>
+                    <td>6,612.0</td>
+                    <td>5,305.8</td>
+                    <td>7,647.2</td>
+                </tr>
+                <tr>
+                    <td>Assets</td>
+                    <td>4,08,678.7</td>
+                    <td>4,47,164.1</td>
+                    <td>4,69,396.1</td>
+                    <td>4,88,020.8</td>
+                    <td>5,35,135.0</td>
+                </tr>
+                <tr>
+                    <td>Operating Margin</td>
+                    <td>28.37%</td>
+                    <td>26.50%</td>
+                    <td>23.99%</td>
+                    <td>23.84%</td>
+                    <td>23.85%</td>
+                </tr>
+                <tr>
+                    <td>Net Margin</td>
+                    <td>21.17%</td>
+                    <td>21.57%</td>
+                    <td>18.08%</td>
+                    <td>18.71%</td>
+                    <td>19.20%</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>2. Methodology</h1>
+        <p>This study is based on five years of audited financial data for <strong class="hl">30 leading IT companies</strong> in India, covering both listed and unlisted entities across IT services, engineering software, banking technology, BPO/ITeS, and software products. The objective was to evaluate sector-wide performance trends, profitability patterns, balance-sheet health, and efficiency metrics using standardised financial data and comparable benchmarks.</p>
+
+        <h2>2.1 Data Sources</h2>
+        <p>All financial data used in this study was sourced exclusively from <a href="https://www.tofler.in" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: underline;">Tofler.in</a>, including:</p>
+        <ul>
+            <li>Profit &amp; Loss Statements</li>
+            <li>Balance Sheets</li>
+            <li>Cash Flow Statements</li>
+            <li>Financial Highlights</li>
+            <li>Ratios &amp; Margins</li>
+        </ul>
+        <p>Only audited financials were considered for the analysis.</p>
+
+        <h2>2.2 Company Selection</h2>
+        <p>The study covers 30 companies representing the major segments of India's IT and technology services landscape. Companies were selected based on:</p>
+        <ul>
+            <li><b>Scale</b> of operations (revenue and asset base)</li>
+            <li><b>Representation</b> across the IT value chain: large-cap exporters, mid-tier specialists, engineering services, banking software, and platform companies</li>
+            <li><b>Mix</b> of listed and unlisted entities to reflect the sector's true structure</li>
+            <li><b>Subsector diversity</b>: IT services, BPO/ITeS, engineering R&amp;D, and software products</li>
+            <li><b>Availability</b> of consistent FY21 to FY25 audited financial data</li>
+        </ul>
+
+        <p><b>Companies Used for Analysis:</b></p>
+        <ul class="company-list expandable-list" id="companies-list">
+            <li>
+                <div class="title-row"><span class="index">1.</span><h4>TATA CONSULTANCY SERVICES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L22210MH1995PLC084781</span><a href="https://www.tofler.in/tata-consultancy-services-limited/company/L22210MH1995PLC084781" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">2.</span><h4>MPHASIS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L30007KA1992PLC025294</span><a href="https://www.tofler.in/mphasis-limited/company/L30007KA1992PLC025294" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">3.</span><h4>WIPRO LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L32102KA1945PLC020800</span><a href="https://www.tofler.in/wipro-limited/company/L32102KA1945PLC020800" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">4.</span><h4>TECH MAHINDRA LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L64200MH1986PLC041370</span><a href="https://www.tofler.in/tech-mahindra-limited/company/L64200MH1986PLC041370" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">5.</span><h4>3I INFOTECH LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L67120MH1993PLC074411</span><a href="https://www.tofler.in/3i-infotech-limited/company/L67120MH1993PLC074411" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">6.</span><h4>YASH TECHNOLOGIES PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U72200MP2002PTC015480</span><a href="https://www.tofler.in/yash-technologies-private-limited/company/U72200MP2002PTC015480" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">7.</span><h4>FLUENTGRID LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U72200AP1998PLC030617</span><a href="https://www.tofler.in/fluentgrid-limited/company/U72200AP1998PLC030617" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">8.</span><h4>ORACLE FINANCIAL SERVICES SOFTWARE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200MH1989PLC053666</span><a href="https://www.tofler.in/oracle-financial-services-software-limited/company/L72200MH1989PLC053666" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">9.</span><h4>SONATA SOFTWARE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200MH1994PLC082110</span><a href="https://www.tofler.in/sonata-software-limited/company/L72200MH1994PLC082110" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">10.</span><h4>TATA TECHNOLOGIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200PN1994PLC013313</span><a href="https://www.tofler.in/tata-technologies-limited/company/L72200PN1994PLC013313" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">11.</span><h4>CYIENT LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200TG1991PLC013134</span><a href="https://www.tofler.in/cyient-limited/company/L72200TG1991PLC013134" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">12.</span><h4>PERSISTENT SYSTEMS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72300PN1990PLC056696</span><a href="https://www.tofler.in/persistent-systems-limited/company/L72300PN1990PLC056696" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">13.</span><h4>RAMCO SYSTEMS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72300TN1997PLC037550</span><a href="https://www.tofler.in/ramco-systems-limited/company/L72300TN1997PLC037550" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">14.</span><h4>KELLTON TECH SOLUTIONS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200TG1993PLC016819</span><a href="https://www.tofler.in/kellton-tech-solutions-limited/company/L72200TG1993PLC016819" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">15.</span><h4>LTIMINDTREE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72900MH1996PLC104693</span><a href="https://www.tofler.in/ltimindtree-limited/company/L72900MH1996PLC104693" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">16.</span><h4>L&amp;T TECHNOLOGY SERVICES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72900MH2012PLC232169</span><a href="https://www.tofler.in/l-and-t-technology-services-limited/company/L72900MH2012PLC232169" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">17.</span><h4>HCL TECHNOLOGIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L74140DL1991PLC046369</span><a href="https://www.tofler.in/hcl-technologies-limited/company/L74140DL1991PLC046369" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">18.</span><h4>KPIT TECHNOLOGIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L74999PN2018PLC174192</span><a href="https://www.tofler.in/kpit-technologies-limited/company/L74999PN2018PLC174192" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">19.</span><h4>INFOSYS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L85110KA1981PLC013115</span><a href="https://www.tofler.in/infosys-limited/company/L85110KA1981PLC013115" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">20.</span><h4>TATA ELXSI LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L85110KA1989PLC009968</span><a href="https://www.tofler.in/tata-elxsi-limited/company/L85110KA1989PLC009968" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">21.</span><h4>DOTSQUARES TECHNOLOGIES INDIA PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U72200RJ2006PTC022891</span><a href="https://www.tofler.in/dotsquares-technologies-india-private-limited/company/U72200RJ2006PTC022891" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">22.</span><h4>SARVATRA TECHNOLOGIES PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U72309PN2000PTC015028</span><a href="https://www.tofler.in/sarvatra-technologies-private-limited/company/U72309PN2000PTC015028" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">23.</span><h4>MICROLAND LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U85110KA1989PLC014450</span><a href="https://www.tofler.in/microland-limited/company/U85110KA1989PLC014450" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">24.</span><h4>NEWGEN SOFTWARE TECHNOLOGIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200DL1992PLC049074</span><a href="https://www.tofler.in/newgen-software-technologies-limited/company/L72200DL1992PLC049074" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">25.</span><h4>HAPPIEST MINDS TECHNOLOGIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72900KA2011PLC057931</span><a href="https://www.tofler.in/happiest-minds-technologies-limited/company/L72900KA2011PLC057931" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">26.</span><h4>NUCLEUS SOFTWARE EXPORTS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L74899DL1989PLC034594</span><a href="https://www.tofler.in/nucleus-software-exports-limited/company/L74899DL1989PLC034594" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">27.</span><h4>BRILLIO TECHNOLOGIES PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U22190KA1997FTC022250</span><a href="https://www.tofler.in/brillio-technologies-private-limited/company/U22190KA1997FTC022250" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">28.</span><h4>BIRLASOFT LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L72200PN1990PLC059594</span><a href="https://www.tofler.in/birlasoft-limited/company/L72200PN1990PLC059594" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">29.</span><h4>CYBAGE SOFTWARE PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U72200MH1996PTC104374</span><a href="https://www.tofler.in/cybage-software-private-limited/company/U72200MH1996PTC104374" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">30.</span><h4>MASTEK LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L74140GJ1982PLC005215</span><a href="https://www.tofler.in/mastek-limited/company/L74140GJ1982PLC005215" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+        </ul>
+        <button class="toggle-btn" style="border-radius:12px; margin-top:-8px; border:1px solid var(--border);" onclick="toggleExpand('companies-list', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        <p>These companies together represent the full range of India's technology services landscape, from large-cap offshore exporters and engineering R&amp;D specialists to banking technology platforms and digital transformation firms, spanning both listed and unlisted players.</p>
+
+        <h2>2.3 Scope of Analysis &amp; Metrics Used</h2>
+        <p>This study covers five years of audited financial data (FY21 to FY25) for 30 major IT companies, with the objective of assessing sector-wide growth, profitability patterns, balance-sheet health, and operational efficiency.</p>
+        <p><b>Key Metrics Analyzed:</b></p>
+        <ul>
+            <li><b>Growth Metrics:</b> Sales CAGR, EBITDA CAGR (3-year, FY22 to FY25)</li>
+            <li><b>Profitability Metrics:</b> Gross Margin, Operating Margin, Net Margin, EBITDA, Net Profit</li>
+            <li><b>Cost Structure:</b> Employee Costs, Cost of Goods, Other Operating Costs</li>
+            <li><b>Balance Sheet Metrics:</b> Borrowings (short-term and long-term), Networth, Total Assets, Debt/Equity</li>
+            <li><b>Efficiency Metrics:</b> Asset Turnover, Days Receivable, Days Payable, Working Capital Days, Cash Conversion Cycle</li>
+        </ul>
+        <p><b>Analytical Approach:</b></p>
+        <ul>
+            <li>Aggregating all 30 companies to compute sector-level totals and trends across FY21 to FY25</li>
+            <li>Computing 3-year CAGRs (FY22 to FY25) for sales and EBITDA at the individual company level</li>
+            <li>Benchmarking ratios using sector means and medians for realistic cross-company comparisons</li>
+            <li>Analysing cash efficiency through cash conversion cycle and working capital day metrics</li>
+        </ul>
+
+        <h1>3. Industry Aggregates And Trends</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>3,79,398.5</td>
+                    <td>4,51,846.7</td>
+                    <td>5,50,684.9</td>
+                    <td>5,76,549.4</td>
+                    <td>6,13,894.4</td>
+                </tr>
+                <tr>
+                    <td>Expenses</td>
+                    <td>2,85,021.7</td>
+                    <td>3,45,706.6</td>
+                    <td>4,34,391.1</td>
+                    <td>4,55,594.7</td>
+                    <td>4,84,497.7</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Sales-vs-Expenses-Trendline-Over-the-Years.png" class="report-img" alt="Sales vs Expenses Trendline">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>EBITDA</td>
+                    <td>1,07,631.2</td>
+                    <td>1,19,751.0</td>
+                    <td>1,32,122.0</td>
+                    <td>1,37,444.4</td>
+                    <td>1,46,386.1</td>
+                </tr>
+                <tr>
+                    <td>Net Profit</td>
+                    <td>80,330.8</td>
+                    <td>97,482.0</td>
+                    <td>99,536.9</td>
+                    <td>1,07,893.8</td>
+                    <td>1,17,883.2</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>2,96,954.6</td>
+                    <td>3,10,870.7</td>
+                    <td>3,24,325.2</td>
+                    <td>3,34,912.0</td>
+                    <td>3,54,761.7</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/EBITDA-vs-PAT-vs-Networth-Trendline-Over-the-Years.png" class="report-img" alt="EBITDA vs PAT vs Networth Trendline">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Fixed Assets</td>
+                    <td>65,884.5</td>
+                    <td>66,887.6</td>
+                    <td>68,078.6</td>
+                    <td>64,638.0</td>
+                    <td>66,566.6</td>
+                </tr>
+                <tr>
+                    <td>Current Assets</td>
+                    <td>2,57,365.3</td>
+                    <td>2,77,957.0</td>
+                    <td>2,90,895.9</td>
+                    <td>3,15,714.8</td>
+                    <td>3,47,888.7</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>7,215.8</td>
+                    <td>8,926.9</td>
+                    <td>6,612.0</td>
+                    <td>5,305.8</td>
+                    <td>7,647.2</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Fixed-_Current-Assets-vs-Borrowings-Trendline-Over-the-Years.png" class="report-img" alt="Fixed and Current Assets vs Borrowings Trendline">
+
+        <h1>4. Three Year Sales CAGR of the Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="sales-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>FY2022 (INR Cr.)</th>
+                    <th>FY2025 (INR Cr.)</th>
+                    <th>3-Year Sales CAGR</th>
+                </tr>
+                <tr><td>TATA CONSULTANCY SERVICES LIMITED</td><td>1,60,341.0</td><td>2,14,853.0</td><td>10.25%</td></tr>
+                <tr><td>MPHASIS LIMITED</td><td>7,389.6</td><td>9,271.0</td><td>7.85%</td></tr>
+                <tr><td>WIPRO LIMITED</td><td>59,574.4</td><td>67,292.8</td><td>4.14%</td></tr>
+                <tr><td>TECH MAHINDRA LIMITED</td><td>34,726.1</td><td>44,617.2</td><td>8.71%</td></tr>
+                <tr><td>3I INFOTECH LIMITED</td><td>212.0</td><td>364.6</td><td>19.81%</td></tr>
+                <tr><td>YASH TECHNOLOGIES PRIVATE LIMITED</td><td>843.5</td><td>1,178.2</td><td>11.78%</td></tr>
+                <tr><td>FLUENTGRID LIMITED</td><td>305.8</td><td>202.2</td><td>-12.88%</td></tr>
+                <tr><td>ORACLE FINANCIAL SERVICES SOFTWARE LIMITED</td><td>3,896.1</td><td>5,099.1</td><td>9.38%</td></tr>
+                <tr><td>SONATA SOFTWARE LIMITED</td><td>758.1</td><td>991.3</td><td>9.35%</td></tr>
+                <tr><td>TATA TECHNOLOGIES LIMITED</td><td>1,730.8</td><td>3,024.5</td><td>20.45%</td></tr>
+                <tr><td>CYIENT LIMITED</td><td>1,750.5</td><td>2,413.6</td><td>11.30%</td></tr>
+                <tr><td>PERSISTENT SYSTEMS LIMITED</td><td>3,575.5</td><td>11,728.0</td><td>48.58%</td></tr>
+                <tr><td>RAMCO SYSTEMS LIMITED</td><td>279.6</td><td>325.0</td><td>5.14%</td></tr>
+                <tr><td>KELLTON TECH SOLUTIONS LIMITED</td><td>123.2</td><td>188.9</td><td>15.31%</td></tr>
+                <tr><td>LTIMINDTREE LIMITED</td><td>14,406.4</td><td>36,682.5</td><td>36.55%</td></tr>
+                <tr><td>L&amp;T TECHNOLOGY SERVICES LIMITED</td><td>5,873.7</td><td>9,533.1</td><td>17.52%</td></tr>
+                <tr><td>HCL TECHNOLOGIES LIMITED</td><td>40,638.0</td><td>51,105.0</td><td>7.94%</td></tr>
+                <tr><td>KPIT TECHNOLOGIES LIMITED</td><td>1,181.0</td><td>2,563.9</td><td>29.48%</td></tr>
+                <tr><td>INFOSYS LIMITED</td><td>1,03,940.0</td><td>1,36,592.0</td><td>9.53%</td></tr>
+                <tr><td>TATA ELXSI LIMITED</td><td>2,470.8</td><td>3,729.0</td><td>14.71%</td></tr>
+                <tr><td>DOTSQUARES TECHNOLOGIES INDIA PRIVATE LIMITED</td><td>62.0</td><td>106.4</td><td>19.72%</td></tr>
+                <tr><td>SARVATRA TECHNOLOGIES PRIVATE LIMITED</td><td>82.8</td><td>211.4</td><td>36.68%</td></tr>
+                <tr><td>MICROLAND LIMITED</td><td>1,019.0</td><td>1,517.7</td><td>14.20%</td></tr>
+                <tr><td>NEWGEN SOFTWARE TECHNOLOGIES LIMITED</td><td>710.8</td><td>1,354.4</td><td>23.97%</td></tr>
+                <tr><td>HAPPIEST MINDS TECHNOLOGIES LIMITED</td><td>1,093.7</td><td>2,060.8</td><td>23.51%</td></tr>
+                <tr><td>NUCLEUS SOFTWARE EXPORTS LIMITED</td><td>448.1</td><td>768.7</td><td>19.71%</td></tr>
+                <tr><td>BRILLIO TECHNOLOGIES PRIVATE LIMITED</td><td>663.6</td><td>1,162.7</td><td>20.56%</td></tr>
+                <tr><td>BIRLASOFT LIMITED</td><td>2,049.4</td><td>2,657.9</td><td>9.05%</td></tr>
+                <tr><td>CYBAGE SOFTWARE PRIVATE LIMITED</td><td>1,444.5</td><td>1,813.2</td><td>7.87%</td></tr>
+                <tr><td>MASTEK LIMITED</td><td>256.7</td><td>486.3</td><td>23.74%</td></tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('sales-table', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/3-Year-Sales-CAGR-Analysis.png" class="report-img" alt="3-Year Sales CAGR Analysis">
+
+        <h1>5. Three Year EBITDA CAGR of the Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="ebitda-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>FY2022 (INR Cr.)</th>
+                    <th>FY2025 (INR Cr.)</th>
+                    <th>3-Year EBITDA CAGR</th>
+                </tr>
+                <tr><td>TATA CONSULTANCY SERVICES LIMITED</td><td>46,245.0</td><td>57,929.0</td><td>7.80%</td></tr>
+                <tr><td>MPHASIS LIMITED</td><td>1,705.1</td><td>2,095.8</td><td>7.12%</td></tr>
+                <tr><td>WIPRO LIMITED</td><td>12,411.2</td><td>12,998.3</td><td>1.55%</td></tr>
+                <tr><td>TECH MAHINDRA LIMITED</td><td>5,485.3</td><td>4,258.0</td><td>-8.10%</td></tr>
+                <tr><td>3I INFOTECH LIMITED</td><td>-3.8</td><td>8.9</td><td>NA</td></tr>
+                <tr><td>YASH TECHNOLOGIES PRIVATE LIMITED</td><td>86.6</td><td>119.0</td><td>11.18%</td></tr>
+                <tr><td>FLUENTGRID LIMITED</td><td>61.0</td><td>47.3</td><td>-8.13%</td></tr>
+                <tr><td>ORACLE FINANCIAL SERVICES SOFTWARE LIMITED</td><td>2,191.3</td><td>2,650.2</td><td>6.54%</td></tr>
+                <tr><td>SONATA SOFTWARE LIMITED</td><td>142.3</td><td>76.8</td><td>-18.58%</td></tr>
+                <tr><td>TATA TECHNOLOGIES LIMITED</td><td>309.5</td><td>616.6</td><td>25.83%</td></tr>
+                <tr><td>CYIENT LIMITED</td><td>512.8</td><td>569.9</td><td>3.58%</td></tr>
+                <tr><td>PERSISTENT SYSTEMS LIMITED</td><td>870.2</td><td>1,615.9</td><td>22.91%</td></tr>
+                <tr><td>RAMCO SYSTEMS LIMITED</td><td>5.8</td><td>87.4</td><td>147.00%</td></tr>
+                <tr><td>KELLTON TECH SOLUTIONS LIMITED</td><td>22.8</td><td>33.0</td><td>13.12%</td></tr>
+                <tr><td>LTIMINDTREE LIMITED</td><td>2,777.5</td><td>6,169.9</td><td>30.48%</td></tr>
+                <tr><td>L&amp;T TECHNOLOGY SERVICES LIMITED</td><td>1,319.1</td><td>1,792.4</td><td>10.76%</td></tr>
+                <tr><td>HCL TECHNOLOGIES LIMITED</td><td>15,112.0</td><td>17,716.0</td><td>5.44%</td></tr>
+                <tr><td>KPIT TECHNOLOGIES LIMITED</td><td>291.7</td><td>689.9</td><td>33.23%</td></tr>
+                <tr><td>INFOSYS LIMITED</td><td>27,828.0</td><td>33,499.0</td><td>6.38%</td></tr>
+                <tr><td>TATA ELXSI LIMITED</td><td>765.7</td><td>972.9</td><td>8.31%</td></tr>
+                <tr><td>DOTSQUARES TECHNOLOGIES INDIA PRIVATE LIMITED</td><td>4.3</td><td>15.9</td><td>54.64%</td></tr>
+                <tr><td>SARVATRA TECHNOLOGIES PRIVATE LIMITED</td><td>-7.3</td><td>35.6</td><td>NA</td></tr>
+                <tr><td>MICROLAND LIMITED</td><td>115.7</td><td>331.9</td><td>42.09%</td></tr>
+                <tr><td>NEWGEN SOFTWARE TECHNOLOGIES LIMITED</td><td>181.1</td><td>348.6</td><td>24.40%</td></tr>
+                <tr><td>HAPPIEST MINDS TECHNOLOGIES LIMITED</td><td>257.7</td><td>354.4</td><td>11.21%</td></tr>
+                <tr><td>NUCLEUS SOFTWARE EXPORTS LIMITED</td><td>36.4</td><td>160.1</td><td>63.84%</td></tr>
+                <tr><td>BRILLIO TECHNOLOGIES PRIVATE LIMITED</td><td>89.2</td><td>154.0</td><td>19.96%</td></tr>
+                <tr><td>BIRLASOFT LIMITED</td><td>401.9</td><td>333.1</td><td>-6.07%</td></tr>
+                <tr><td>CYBAGE SOFTWARE PRIVATE LIMITED</td><td>499.1</td><td>622.6</td><td>7.65%</td></tr>
+                <tr><td>MASTEK LIMITED</td><td>33.8</td><td>83.7</td><td>35.29%</td></tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('ebitda-table', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/3-Year-EBITDA-CAGR-Analysis.png" class="report-img" alt="3-Year EBITDA CAGR Analysis">
+
+        <h1>6. Cash Efficiency Comparison Between Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="cash-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Cash Conversion Cycle (Days)</th>
+                    <th>Working Capital Days</th>
+                </tr>
+                <tr><td>TATA CONSULTANCY SERVICES LIMITED</td><td>-1,32,704</td><td>92</td></tr>
+                <tr><td>MPHASIS LIMITED</td><td>71</td><td>123</td></tr>
+                <tr><td>WIPRO LIMITED</td><td>-11,164</td><td>205</td></tr>
+                <tr><td>TECH MAHINDRA LIMITED</td><td>81</td><td>57</td></tr>
+                <tr><td>3I INFOTECH LIMITED</td><td>46</td><td>-128</td></tr>
+                <tr><td>YASH TECHNOLOGIES PRIVATE LIMITED</td><td>-350</td><td>159</td></tr>
+                <tr><td>FLUENTGRID LIMITED</td><td>344</td><td>136</td></tr>
+                <tr><td>ORACLE FINANCIAL SERVICES SOFTWARE LIMITED</td><td>62</td><td>405</td></tr>
+                <tr><td>SONATA SOFTWARE LIMITED</td><td>-11,022</td><td>239</td></tr>
+                <tr><td>TATA TECHNOLOGIES LIMITED</td><td>-84</td><td>120</td></tr>
+                <tr><td>CYIENT LIMITED</td><td>149</td><td>292</td></tr>
+                <tr><td>PERSISTENT SYSTEMS LIMITED</td><td>51</td><td>99</td></tr>
+                <tr><td>RAMCO SYSTEMS LIMITED</td><td>-1,06,998</td><td>16</td></tr>
+                <tr><td>KELLTON TECH SOLUTIONS LIMITED</td><td>-24,324</td><td>154</td></tr>
+                <tr><td>LTIMINDTREE LIMITED</td><td>56</td><td>143</td></tr>
+                <tr><td>L&amp;T TECHNOLOGY SERVICES LIMITED</td><td>86</td><td>119</td></tr>
+                <tr><td>HCL TECHNOLOGIES LIMITED</td><td>-9,547</td><td>107</td></tr>
+                <tr><td>KPIT TECHNOLOGIES LIMITED</td><td>-46,686</td><td>68</td></tr>
+                <tr><td>INFOSYS LIMITED</td><td>71</td><td>121</td></tr>
+                <tr><td>TATA ELXSI LIMITED</td><td>-92</td><td>222</td></tr>
+                <tr><td>DOTSQUARES TECHNOLOGIES INDIA PRIVATE LIMITED</td><td>11</td><td>-49</td></tr>
+                <tr><td>SARVATRA TECHNOLOGIES PRIVATE LIMITED</td><td>169</td><td>96</td></tr>
+                <tr><td>MICROLAND LIMITED</td><td>-9,010</td><td>156</td></tr>
+                <tr><td>NEWGEN SOFTWARE TECHNOLOGIES LIMITED</td><td>97</td><td>294</td></tr>
+                <tr><td>HAPPIEST MINDS TECHNOLOGIES LIMITED</td><td>63</td><td>140</td></tr>
+                <tr><td>NUCLEUS SOFTWARE EXPORTS LIMITED</td><td>61</td><td>106</td></tr>
+                <tr><td>BRILLIO TECHNOLOGIES PRIVATE LIMITED</td><td>165</td><td>145</td></tr>
+                <tr><td>BIRLASOFT LIMITED</td><td>-488</td><td>115</td></tr>
+                <tr><td>CYBAGE SOFTWARE PRIVATE LIMITED</td><td>-492</td><td>195</td></tr>
+                <tr><td>MASTEK LIMITED</td><td>67</td><td>60</td></tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('cash-table', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Cash-Conversion-Cycle-and-Working-Capital-Days.png" class="report-img" alt="Cash Conversion Cycle and Working Capital Days">
+
+        <h1>7. Financial Ratios And Benchmarks</h1>
+        <p>The tables below present sector-wide benchmarks across key financial ratios for FY25, computed as the <strong class="hl">mean</strong> and <strong class="hl">median</strong> across all 30 companies, alongside the minimum and maximum observed values. These serve as reference points for evaluating individual company performance relative to the broader IT sector.</p>
+
+        <h2>7.1 Solvency</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Total Debt / Equity</td><td>0.10</td><td>0.00</td><td>0.00</td><td>0.70</td></tr>
+                <tr><td>Net Debt / Equity</td><td>0.08</td><td>0.00</td><td>0.00</td><td>0.70</td></tr>
+                <tr><td>Total Debt / Assets</td><td>0.05</td><td>0.00</td><td>0.00</td><td>0.30</td></tr>
+                <tr><td>Total Assets / Equity</td><td>1.53</td><td>1.40</td><td>1.10</td><td>3.20</td></tr>
+            </table>
+        </div>
+
+        <h2>7.2 Liquidity</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Current Ratio</td><td>3.30</td><td>2.30</td><td>0.40</td><td>11.80</td></tr>
+                <tr><td>Quick Ratio</td><td>3.29</td><td>2.30</td><td>0.40</td><td>11.80</td></tr>
+                <tr><td>Interest Coverage</td><td>119.08</td><td>31.55</td><td>1.30</td><td>2,038.60</td></tr>
+            </table>
+        </div>
+
+        <h2>7.3 Performance</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Gross Margin</td><td>98.44%</td><td>100.00%</td><td>77.30%</td><td>100.00%</td></tr>
+                <tr><td>Operating Margin</td><td>20.62%</td><td>19.85%</td><td>2.40%</td><td>52.00%</td></tr>
+                <tr><td>Net Margin</td><td>16.85%</td><td>15.70%</td><td>-3.10%</td><td>49.10%</td></tr>
+            </table>
+        </div>
+
+        <h2>7.4 Return</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Return on Equity (ROE)</td><td>24.42%</td><td>22.70%</td><td>-1.30%</td><td>63.50%</td></tr>
+                <tr><td>Pre-tax ROCE</td><td>30.74%</td><td>32.35%</td><td>-68.60%</td><td>83.20%</td></tr>
+                <tr><td>Return on Assets (ROA)</td><td>16.35%</td><td>15.25%</td><td>-1.10%</td><td>40.20%</td></tr>
+                <tr><td>Pre-tax ROIC</td><td>22.10%</td><td>20.60%</td><td>-9.20%</td><td>71.00%</td></tr>
+            </table>
+        </div>
+
+        <h2>7.5 Efficiency</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Days Receivable</td><td>90.40 days</td><td>71.00 days</td><td>11 days</td><td>344 days</td></tr>
+                <tr><td>Fixed Asset Turnover</td><td>10.45</td><td>7.45</td><td>0.90</td><td>43.30</td></tr>
+                <tr><td>Total Asset Turnover</td><td>0.97</td><td>1.00</td><td>0.30</td><td>2.10</td></tr>
+                <tr><td>Working Capital Days</td><td>133.57 days</td><td>122 days</td><td>-128 days</td><td>405 days</td></tr>
+            </table>
+        </div>
+
+        <h1>8. Borrowings Trend (Short Term vs Long Term)</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Short Term Borrowings</td>
+                    <td>6,244.1</td>
+                    <td>8,444.3</td>
+                    <td>6,026.5</td>
+                    <td>4,763.8</td>
+                    <td>7,082.9</td>
+                </tr>
+                <tr>
+                    <td>Long Term Borrowings</td>
+                    <td>971.8</td>
+                    <td>482.6</td>
+                    <td>585.4</td>
+                    <td>541.9</td>
+                    <td>564.4</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>7,215.8</td>
+                    <td>8,926.9</td>
+                    <td>6,612.0</td>
+                    <td>5,305.8</td>
+                    <td>7,647.2</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Borrowings-Trend-Short-Term-vs-Long-Term.png" class="report-img" alt="Borrowings Trend Short Term vs Long Term">
+
+        <h1>9. Top 3 Companies by Metrics (As of March 2025)</h1>
+
+        <h2>9.1 Top 3 Companies by Net Margin</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales (INR Cr.)</th>
+                    <th>Net Profit (INR Cr.)</th>
+                    <th>Net Margin (%)</th>
+                </tr>
+                <tr>
+                    <td>ORACLE FINANCIAL SERVICES SOFTWARE LIMITED</td>
+                    <td>5,099.1</td>
+                    <td>3,350.7</td>
+                    <td>49.1%</td>
+                </tr>
+                <tr>
+                    <td>CYIENT LIMITED</td>
+                    <td>2,413.6</td>
+                    <td>1,124.6</td>
+                    <td>45.1%</td>
+                </tr>
+                <tr>
+                    <td>CYBAGE SOFTWARE PRIVATE LIMITED</td>
+                    <td>1,813.2</td>
+                    <td>958.5</td>
+                    <td>38.3%</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.2 Top 3 Companies by Sales</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales (INR Cr.)</th>
+                    <th>Net Profit (INR Cr.)</th>
+                    <th>EBITDA (INR Cr.)</th>
+                </tr>
+                <tr>
+                    <td>TATA CONSULTANCY SERVICES LIMITED</td>
+                    <td>2,14,853.0</td>
+                    <td>48,057.0</td>
+                    <td>57,929.0</td>
+                </tr>
+                <tr>
+                    <td>INFOSYS LIMITED</td>
+                    <td>1,36,592.0</td>
+                    <td>25,568.0</td>
+                    <td>33,499.0</td>
+                </tr>
+                <tr>
+                    <td>WIPRO LIMITED</td>
+                    <td>67,292.8</td>
+                    <td>10,792.4</td>
+                    <td>12,998.3</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.3 Top 3 Companies by Borrowings</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales (INR Cr.)</th>
+                    <th>Net Profit (INR Cr.)</th>
+                    <th>Borrowings (INR Cr.)</th>
+                </tr>
+                <tr>
+                    <td>WIPRO LIMITED</td>
+                    <td>67,292.8</td>
+                    <td>10,792.4</td>
+                    <td>6,050.0</td>
+                </tr>
+                <tr>
+                    <td>HAPPIEST MINDS TECHNOLOGIES LIMITED</td>
+                    <td>2,060.8</td>
+                    <td>184.7</td>
+                    <td>1,160.9</td>
+                </tr>
+                <tr>
+                    <td>YASH TECHNOLOGIES PRIVATE LIMITED</td>
+                    <td>1,178.2</td>
+                    <td>72.0</td>
+                    <td>143.6</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>10. Industry Context &amp; Market Landscape</h1>
+        <h2>10.1 Market Landscape (National View)</h2>
+        <p>India's IT sector has grown from a niche export business in the 1990s into one of the country's <strong class="hl">defining economic pillars</strong> &ndash; among the largest contributors to GDP, its biggest source of foreign exchange, and one of the largest formal employment generators in the country.</p>
+        <p>Growth moderated in FY24 and FY25 after the post-pandemic highs of FY22&ndash;FY23, as clients in <em>North America and Europe pulled back on discretionary technology spending</em>. Sector revenues for the 30 companies tracked here grew from <strong class="hl">₹3,79,399 crore in FY21 to ₹6,13,894 crore in FY25</strong> &ndash; a four-year expansion of over <strong class="hl">60%</strong>. Operating margins narrowed from <strong class="hl">28.4% to 23.9%</strong> over the same period, reflecting wage inflation absorbed during the FY22&ndash;FY23 hiring surge.</p>
+        <ul>
+            <li><b>Export dominance:</b> <em>North America</em> is the primary revenue market, with <em>BFSI</em> as the largest vertical. Europe is the second-largest geography.</li>
+            <li><b>Capital-light structure:</b> Total borrowings across all 30 companies stood at just <strong class="hl">₹7,647 crore in FY25</strong>, with most companies carrying negligible or zero long-term debt.</li>
+            <li><b>Employment engine:</b> The sector provides one of the largest pools of <em>formal, salaried employment</em> in India, spanning tier-1 cities and, increasingly, tier-2 towns.</li>
+            <li><b>AI transition underway:</b> The shift from <em>labour-arbitrage delivery</em> to <em>value-added, outcome-oriented services</em> is reshaping hiring patterns, pricing models, and margin structures across the sector.</li>
+        </ul>
+
+        <h2>10.2 Regional Distribution</h2>
+        <p><b>Tier-1 IT Hubs</b></p>
+        <ul>
+            <li>Established clusters &ndash; <strong class="hl">Bengaluru, Hyderabad, Pune, Chennai, Delhi-NCR, and Mumbai</strong> &ndash; host the large majority of GCC operations and large-scale IT services delivery.</li>
+            <li><em>Bengaluru</em> remains the dominant technology hub, with the highest concentration of GCCs, R&amp;D labs, and AI delivery centres in the country.</li>
+            <li><em>Hyderabad</em> has grown rapidly as a tier-1 hub with notable strength in BFSI and cloud services delivery.</li>
+            <li><em>Chennai</em> anchors embedded software and automotive R&amp;D, with strong linkages to manufacturing and semiconductor clients.</li>
+        </ul>
+        <p><b>Tier-2 and Emerging Hubs</b></p>
+        <ul>
+            <li>Cities like <em>Coimbatore, Jaipur, Nagpur, and Indore</em> are recording <strong class="hl">materially faster hiring growth</strong> than established metros.</li>
+            <li>Significantly lower talent costs and real estate make these cities attractive for <em>cost-disciplined delivery expansion</em>.</li>
+            <li>Government-backed IT parks and infrastructure incentives are <em>accelerating new centre openings</em> across these cities.</li>
+        </ul>
+
+        <h1>11. Industry Structure And Business Model</h1>
+        <p>India's IT industry operates through <strong class="hl">four primary segments</strong> serving different parts of the global technology delivery chain. The <em>offshore model</em> &ndash; pairing cost-competitive Indian talent with client-facing onshore teams &ndash; remains the structural backbone, evolving from pure cost arbitrage toward <em>platform-based delivery and outcome-based contracts</em>.</p>
+
+        <h2>11.1 Industry Structure Overview</h2>
+        <div class="table-wrapper" style="overflow-x:visible;">
+            <table class="plain-table">
+                <tr>
+                    <th>Segment</th>
+                    <th>Role / Examples</th>
+                    <th>Core Strengths</th>
+                    <th>Limitations</th>
+                </tr>
+                <tr>
+                    <td>IT Services Companies</td>
+                    <td>Application development, managed services, infrastructure, testing, consulting for global clients</td>
+                    <td>Deep client relationships, multi-vertical expertise, large talent pool, scale delivery</td>
+                    <td>Commoditisation pressure in legacy services; pricing compression as automation rises</td>
+                </tr>
+                <tr>
+                    <td>BPO / ITeS Companies</td>
+                    <td>Finance and accounting, customer support, HR operations, KPO, data annotation</td>
+                    <td>Cost efficiency at scale; recurring revenue; strong process depth in regulated verticals</td>
+                    <td>High headcount intensity; vulnerable to automation of routine process work</td>
+                </tr>
+                <tr>
+                    <td>Global Capability Centers (GCCs)</td>
+                    <td>Wholly owned offshore units of multinationals delivering R&amp;D, engineering, AI, and corporate functions</td>
+                    <td>High-value work with direct parent mandate; stronger margin retention; faster decision cycles</td>
+                    <td>Intense talent competition with large IT services firms; complex cross-timezone governance</td>
+                </tr>
+                <tr>
+                    <td>Software Product &amp; SaaS Companies</td>
+                    <td>Proprietary software sold on licence or subscription; India-built products competing in global markets</td>
+                    <td>High margins, recurring revenue, global scalability without proportional headcount growth</td>
+                    <td>Require sustained R&amp;D investment; compete against deep-pocketed global product companies</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>11.2 Value Chain and Delivery Model</h2>
+        <p>The IT services value chain runs from <em>client engagement onshore → solution design → offshore development and testing → QA and deployment → managed services</em>. The <strong class="hl">offshore leverage ratio</strong> is the primary margin driver &ndash; firms with a higher share of offshore delivery consistently achieve better operating margins, reflected in the wide range across this sample from <strong class="hl">2.4% to 52.0%</strong>.</p>
+        <p>The model has evolved from pure offshore to a hybrid: <em>onshore teams handle client proximity</em>, while <em>offshore teams execute development and run-and-maintain work</em>. Leading firms now blend offshore efficiency with local agility across multiple delivery geographies.</p>
+
+        <h2>11.3 Margin Pools by Service Type</h2>
+        <ul>
+            <li><b>Legacy application maintenance and support:</b> Large in volume, <em>lowest in margin</em>. Under increasing pressure from automation tooling and productivity-linked pricing.</li>
+            <li><b>Application development and testing:</b> Mid-range margin. Shifting toward <em>platform-based delivery</em> to improve cycle times and reuse.</li>
+            <li><b>Digital and cloud transformation:</b> <em>Higher margin</em>; strong deal flow from enterprise cloud migration across BFSI, retail, and manufacturing.</li>
+            <li><b>Engineering R&amp;D and embedded software:</b> <strong class="hl">Premium margins</strong>; harder to commoditise; high demand from GCCs, semiconductor, and automotive clients.</li>
+            <li><b>AI and GenAI-integrated services:</b> <strong class="hl">Fastest-growing pool</strong>; outcome-priced; highest margin upside but still a small share of total revenue.</li>
+        </ul>
+
+        <h1>12. Innovation And Upcoming Business Models</h1>
+        <h2>12.1 GenAI-native Delivery and Agentic AI</h2>
+        <p>India's IT sector is moving from <em>AI-assisted delivery</em> to <strong class="hl">AI-native delivery</strong>. GenAI tools are being embedded into software development pipelines, automated testing, and customer support. <em>Agentic AI</em> &ndash; autonomous systems executing multi-step workflows with limited human intervention &ndash; is being piloted in finance automation, code generation, infrastructure monitoring, and document processing.</p>
+        <p>Hybrid teams of engineers working alongside AI agents are expanding throughput <em>without proportional headcount growth</em>. This puts pressure on the traditional pyramid model but opens better margin profiles for firms that manage the transition well.</p>
+
+        <h2>12.2 Platform Engineering and Outcome-Based Contracts</h2>
+        <p>The shift from <em>time-and-materials billing</em> to <strong class="hl">outcome-priced contracts</strong> is one of the most significant structural changes underway. Clients increasingly pay for delivered outputs &ndash; a working module, a measurable reduction in incident volume &ndash; rather than person-hours. <em>Platform engineering</em>, where reusable components are assembled rather than built from scratch, compresses timelines and shifts the margin equation toward software-defined value.</p>
+
+        <h2>12.3 GCCs Evolving into Innovation Centres</h2>
+        <p>India hosts one of the <strong class="hl">world's largest concentrations of GCCs</strong>, and their mandate is changing fast. These centres are progressively taking on <em>product ownership, AI centre of excellence mandates</em>, and end-to-end engineering responsibilities that previously sat at parent company HQs. The shift from <em>execution to ownership</em> is the defining trend in this segment, creating sustained demand for talent, real estate, and IT services support.</p>
+
+        <h2>12.4 India-Built Software Product Companies</h2>
+        <p>India's software product segment is producing <em>globally competitive companies</em>. Several mid-size companies in our sample &ndash; particularly those in banking software and enterprise automation &ndash; are growing well above the sector average, as seen in the 3-year Sales CAGR data in Section 4. The broader shift is clear: <strong class="hl">India is increasingly an origination point for enterprise software</strong>, not only a delivery location.</p>
+
+        <h1>13. Policy, Schemes &amp; Recent Developments</h1>
+        <h2>13.1 IndiaAI Mission</h2>
+        <p>The <strong class="hl">IndiaAI Mission</strong> is deploying computing infrastructure through public-private partnerships and funding indigenous AI foundational model development. <em>GPU availability</em> under the mission is being expanded in phases, with a focus on making compute accessible to academic institutions and startups alongside large enterprises. This is directly relevant as demand for <em>AI-integrated IT delivery</em> accelerates.</p>
+
+        <h2>13.2 STPI, SEZs, and PLI</h2>
+        <p><strong class="hl">Software Technology Parks of India (STPI)</strong> provide export-oriented status, tax benefits, and shared infrastructure &ndash; particularly valuable for small and mid-size IT exporters. <em>Special Economic Zones</em> offer additional duty exemptions and simplified compliance. <em>PLI schemes for IT hardware</em> aim to reduce India's dependence on imported server and networking infrastructure.</p>
+
+        <h2>13.3 Digital Personal Data Protection (DPDP) Act</h2>
+        <p>The <strong class="hl">DPDP Act</strong>, notified in late 2025, introduces: <em>contractual liability for data processors</em> handling global client data, cross-border data transfer restrictions that may affect offshore delivery models, and compliance requirements falling more heavily on smaller BPO and data-handling firms. The <em>compliance gap across the industry</em> is likely to drive near-term demand for privacy readiness services.</p>
+
+        <h2>13.4 Digital India and Broader Policy Framework</h2>
+        <p>India's public digital infrastructure &ndash; <strong class="hl">UPI, Account Aggregator, ONDC, DigiLocker</strong> &ndash; continues to create platform-level opportunities for IT companies. The <em>IndiaStack ecosystem</em> is a structural differentiator that global technology firms increasingly seek access to, and its continued expansion underpins domestic IT services demand.</p>
+
+        <h1>14. Sector Challenges &amp; Risks</h1>
+        <div class="table-wrapper" style="overflow-x:visible;">
+            <table class="plain-table">
+                <tr>
+                    <th>Challenge</th>
+                    <th>Impact on the Sector</th>
+                    <th>Who is Most Affected</th>
+                </tr>
+                <tr>
+                    <td><b>US immigration policy and visa constraints</b></td>
+                    <td>Tightening of work visa availability and rising salary thresholds are <em>constraining onshore delivery capacity</em> and increasing client-proximity costs for Indian IT firms in North America.</td>
+                    <td>Large IT services firms with high North America revenue dependence and significant onshore delivery teams.</td>
+                </tr>
+                <tr>
+                    <td><b>AI disruption to the headcount-led growth model</b></td>
+                    <td>GenAI tools are compressing person-hours per project. Outcome-based pricing <em>reduces topline revenue per engagement</em> even as productivity improves. The traditional pyramid model is under <strong class="hl">structural pressure</strong>.</td>
+                    <td>Tier-1 IT services firms and BPOs with large entry-level workforces and high run-the-business revenue mix.</td>
+                </tr>
+                <tr>
+                    <td><b>Talent attrition and AI reskilling gap</b></td>
+                    <td>Roles in <em>AI, cloud architecture, and cybersecurity</em> see elevated churn. The skills gap is widening faster than training programmes can close it, creating delivery risk and wage inflation in niche profiles.</td>
+                    <td>All IT segments; most acute for mid-tier firms that cannot match compensation of large IT firms and hyperscalers.</td>
+                </tr>
+                <tr>
+                    <td><b>Currency risk on margins</b></td>
+                    <td>Revenue is <em>foreign-currency-denominated</em> while costs are predominantly INR-based. <strong class="hl">Rupee appreciation erodes margins</strong> and is difficult to fully hedge &ndash; a key factor in the operating margin compression from FY21 to FY25.</td>
+                    <td>Large pure-play exporters, including TCS, Infosys, Wipro, and HCL Technologies.</td>
+                </tr>
+                <tr>
+                    <td><b>DPDP compliance and data localisation uncertainty</b></td>
+                    <td>Evolving data protection rules create compliance costs and delivery model uncertainty. Tighter <em>cross-border data flow restrictions</em> could require restructuring of offshore pipelines for clients in regulated sectors.</td>
+                    <td>BPO and ITeS firms with global data-handling mandates; IT services companies serving BFSI and healthcare clients.</td>
+                </tr>
+                <tr>
+                    <td><b>Pricing pressure in legacy services</b></td>
+                    <td>Application maintenance, helpdesk, and routine testing face <em>structural pricing compression</em> as AI-assisted coding and hyperscaler tooling reduce the value of traditional labour-intensive delivery.</td>
+                    <td>Companies with a high share of application management services, especially mid-tier IT services.</td>
+                </tr>
+                <tr>
+                    <td><b>Revenue concentration in North America</b></td>
+                    <td>A <strong class="hl">high share of IT export revenues</strong> comes from North American clients. Any macro slowdown or trade friction amplifies earnings impact on firms with limited geographic diversification.</td>
+                    <td>Broad-based IT services exporters; smaller firms without meaningful Europe or Asia-Pacific revenue.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>15. Opportunities &amp; Future Outlook</h1>
+        <h2>15.1 Growth Areas</h2>
+        <ul>
+            <li><b>GCC expansion:</b> India's GCC ecosystem continues to grow rapidly, with new formations accelerating across <em>BFSI, technology, retail, and manufacturing</em> &ndash; including from mid-market global companies setting up India centres for the first time. This creates sustained demand for <strong class="hl">build-operate-transfer services</strong>, talent, and IT infrastructure.</li>
+            <li><b>AI infrastructure:</b> Large hyperscalers and domestic players are investing significantly in <em>Indian data centre capacity</em>, building the compute substrate for AI-native delivery at scale. IT companies with data centre management and cloud services capabilities stand to benefit.</li>
+            <li><b>Engineering R&amp;D and embedded software:</b> <em>Automotive electrification, industrial automation, semiconductor design, and connected devices</em> are driving strong demand for embedded software. Companies like <strong class="hl">KPIT Technologies and Tata Elxsi</strong> have recorded among the highest Sales CAGRs in this study's sample.</li>
+            <li><b>Domestic IT spending:</b> <em>BFSI digitisation, government technology programmes, and retail modernisation</em> are growing above the sector's export headline &ndash; a second growth engine that reduces dependence on North American client budgets.</li>
+        </ul>
+
+        <h2>15.2 Strategic Priorities</h2>
+        <ul>
+            <li><b>Build AI-augmented delivery:</b> Firms demonstrating <em>measurable AI-driven productivity gains</em> are winning larger transformation mandates. This is now a <strong class="hl">near-term competitive requirement</strong>, not a longer-term option.</li>
+            <li><b>Move toward products and platforms:</b> Services companies building <em>proprietary platforms</em> capture higher and more stable margins than pure services delivery, while reducing earnings volatility tied to client budget cycles.</li>
+            <li><b>Expand tier-2 delivery:</b> Lower-cost talent in <em>Coimbatore, Jaipur, Nagpur, and Indore</em> reduces delivery cost and attrition relative to saturated metro markets, de-risking over-concentration in Bengaluru and Hyderabad.</li>
+            <li><b>GCC advisory and build-operate-transfer:</b> Helping new GCC entrants set up and transition to self-managed operations is a <em>growing professional services line</em> with strong downstream attachment for managed services and staffing.</li>
+        </ul>
+
+        <h1>16. Conclusion</h1>
+        <p>The data in this report tells a clear story. Across 30 companies and five years, combined revenues grew from <strong class="hl">₹3,79,399 crore to ₹6,13,894 crore</strong>, net profit expanded from <strong class="hl">₹80,331 crore to ₹1,17,883 crore</strong>, and total borrowings across the entire sample <em>remained below ₹9,000 crore throughout</em>. This is a sector with strong underlying economics: <strong class="hl">high margins, near-zero leverage</strong>, and cash generation that funds growth without dilution.</p>
+        <p>The structural challenges are real. <em>Margin compression, the shift to outcome-based pricing, AI pressure on traditional revenue models, and visa constraints</em> will all shape the next phase of sector growth. But the companies navigating these well &ndash; as evidenced by the wide CAGR and margin spread across this sample &ndash; are doing so through <strong class="hl">specialisation, platform investment, and early AI-integrated delivery</strong>.</p>
+        <p>The sector's <em>capital-light model, talent depth, and cost position</em> remain structural advantages that are difficult to replicate. The question for each company is not whether the market opportunity is there &ndash; it is whether the <strong class="hl">business model is positioned to capture it profitably</strong>.</p>
+
+        <div
+            style="margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <a href="https://get.tofler.in/wp-content/uploads/2026/06/India-IT-Industry-Outlook.pdf"
+                target="_blank" class="btn-primary" style="margin: 0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+            <div class="authors-section" style="width: 100%; max-width: 800px; margin-top: 32px;">
+                <style>
+                    .authors-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                        width: 100%;
+                    }
+                    .author-card {
+                        background: #ffffff;
+                        border: 1px solid #E2E8F0;
+                        border-radius: 16px;
+                        padding: 24px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        gap: 24px;
+                        text-align: left;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .author-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 4px;
+                        height: 100%;
+                        background: linear-gradient(180deg, #5E3BE1, #8B5CF6);
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    .author-card:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 12px 20px -8px rgba(94, 59, 225, 0.12), 0 4px 6px -2px rgba(94, 59, 225, 0.04);
+                        border-color: #D8B4FE;
+                    }
+                    .author-card:hover::before {
+                        opacity: 1;
+                    }
+                    .author-img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #F1F5F9;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+                        flex-shrink: 0;
+                        transition: transform 0.3s ease;
+                    }
+                    .author-card:hover .author-img {
+                        transform: scale(1.03);
+                        border-color: #5E3BE1;
+                    }
+                    .author-info {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                    }
+                    .author-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 16px;
+                    }
+                    .author-title-area {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 6px;
+                    }
+                    .author-role-badge {
+                        font-size: 10px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        font-weight: 700;
+                        color: #475569;
+                        background: #F1F5F9;
+                        padding: 3px 8px;
+                        border-radius: 4px;
+                    }
+                    .author-name {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: #0F172A;
+                        margin: 0;
+                    }
+                    .author-role {
+                        color: #5E3BE1;
+                        background: rgba(94, 59, 225, 0.08);
+                        padding: 4px 10px;
+                        border-radius: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        display: inline-block;
+                    }
+                    .author-bio {
+                        font-size: 14.5px;
+                        line-height: 1.6;
+                        color: #475569;
+                        margin: 0;
+                    }
+                    .author-linkedin-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        color: #ffffff;
+                        background-color: #0077B5;
+                        padding: 8px 16px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        transition: all 0.2s ease;
+                        box-shadow: 0 2px 4px rgba(0, 119, 181, 0.15);
+                        flex-shrink: 0;
+                    }
+                    .author-linkedin-btn:hover {
+                        background-color: #005E93;
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 8px rgba(0, 119, 181, 0.25);
+                    }
+                    .author-linkedin-btn svg {
+                        width: 14px;
+                        height: 14px;
+                        fill: currentColor;
+                    }
+                    @media (max-width: 600px) {
+                        .author-card {
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                            padding: 20px;
+                        }
+                        .author-header {
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 12px;
+                            width: 100%;
+                        }
+                        .author-title-area {
+                            align-items: center;
+                        }
+                        .author-linkedin-btn {
+                            width: 100%;
+                            justify-content: center;
+                        }
+                    }
+                </style>
+                <div class="authors-list">
+                    <!-- Sayan Ghosh Profile -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/03/Make_this_a_202603251659.jpeg" alt="Sayan Ghosh">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Authored By</span>
+                                    <h3 class="author-name">Sayan Ghosh</h3>
+                                    <div class="author-role">Marketing Manager, Tofler</div>
+                                </div>
+                                <a href="https://linkedin.com/in/sayan-ghosh-844524151" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Data-backed marketer creating research-led content that turns industry, company, and market insights into clear business narratives.</p>
+                        </div>
+                    </div>
+                    <!-- Anchal Agarwal Profile -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/05/1766386611595.jpg" alt="Anchal Agarwal">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Supervised By</span>
+                                    <h3 class="author-name">Anchal Agarwal</h3>
+                                    <div class="author-role">Co-founder &amp; CEO, Tofler</div>
+                                </div>
+                                <a href="https://www.linkedin.com/in/anchal-agarwal-ind12/" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Chartered Accountant and finance professional specializing in due diligence, credit risk management, benchmarking, and business intelligence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer_wrapper hide-on-print">
+        <div class="container text-white">
+            <div class="footer_container">
+                <!-- Brand & Help -->
+                <div class="flex-col gap-32">
+                    <img class="logo" src="https://get.tofler.in/wp-content/uploads/2026/03/Untitled-design-27.png" alt="Tofler Logo" style="width: 140px; height: auto;">
+                    <p class="text-sm font-light footer_desc">All trademarks, service marks, trade names and logos appearing on the site are the property of their respective owners.</p>
+                    <div class="flex-col gap-4 font-regular">
+                        <p class="text-sm">Need any help? Email us at:</p>
+                        <p class="text-sm" style="color: #ffffff; font-weight: 600;">support@tofler.in</p>
+                    </div>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="flex" style="gap: 60px; justify-content: flex-start;">
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">QUICK LINKS</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/about">About us</a></li>
+                            <li><a href="https://www.tofler.in/blog">Blogs</a></li>
+                            <li><a href="https://www.tofler.in/industry-reports">Industry Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-col gap-24" style="margin-left: 5px;">
+                        <h3 class="text-white text-md">LEGAL</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style: none; padding: 0;">
+                            <li><a href="https://www.tofler.in/tos">Terms</a></li>
+                            <li><a href="https://www.tofler.in/privacy">Privacy</a></li>
+                            <li><a href="https://www.tofler.in/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Details & Social -->
+                <div class="flex-col gap-32">
+                    <div class="font-regular flex-col gap-4 text-sm" style="color: #ffffff;">
+                        <p>TWS Systems Private Limited (Tofler)</p>
+                        <p>Gurgaon, Haryana - 122002</p>
+                        <p>(CIN: U72502DL2013PTC261372)</p>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">FOLLOW US ON:</h3>
+                        <div class="flex gap-24">
+                            <a href="https://www.facebook.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9a5 5 0 0 1 5-5h3v3h-2c-1.1 0-2 .9-2 2v2h4l-1 3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tofler/" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@tofler8107" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C1 8.1 1 12 1 12s0 3.9.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C23 15.9 23 12 23 12s0-3.9-.46-5.58zM9.54 15.22V8.78L15.3 12l-5.76 3.22z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pb-40">
+            <div class="low_footer text-sm" style="justify-content: center;">
+                <p style="margin: 0;">© TWS Systems Private Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav) nav.classList.toggle('active');
+        }
+
+        function toggleExpand(targetId, btn, textExpand, textCollapse) {
+            const target = document.getElementById(targetId);
+            if (target.classList.contains('expanded')) {
+                target.classList.remove('expanded');
+                btn.innerHTML = textExpand + ' &darr;';
+                setTimeout(() => {
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 50);
+            } else {
+                target.classList.add('expanded');
+                btn.innerHTML = textCollapse + ' &uarr;';
+            }
+        }
+    </script>
+</body>
+
+</html>

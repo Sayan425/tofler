@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tofler: India Pharma Industry Benchmarking Report</title>
+    <link rel="icon" type="image/png" href="https://get.tofler.in/wp-content/uploads/2025/08/faviconlogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1440px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            height: 52px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-left-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-item {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #5E3BE1;
+        }
+
+        .nav-link-outline {
+            color: #5E3BE1;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 1px solid #5E3BE1;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-outline:hover {
+            background-color: rgba(94, 59, 225, 0.05);
+        }
+
+        .nav-btn-solid {
+            background-color: #5E3BE1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-solid:hover {
+            background-color: #4b2eb5;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #5E3BE1;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* MOBILE NAV */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 16px 40px;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        @media (max-width: 992px) {
+            .nav-item,
+            .nav-link-outline,
+            .nav-btn-solid {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .navbar .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            position: relative;
+            padding: 120px 20px;
+            text-align: center;
+            color: #fff;
+            background-image: url('https://get.tofler.in/wp-content/uploads/2026/06/healthcare-mutual-funds-1080x675-1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.55), rgba(97, 61, 193, 0.55));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(219, 212, 238, 0.95);
+            color: #5e3be1;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-banner h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-banner p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            color: #ffffff;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            font-weight: 500;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: #613dc1;
+            color: #fff !important;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #4f30a0;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                padding: 60px 16px 50px;
+            }
+            .hero-banner h1 {
+                font-size: 30px;
+                margin-bottom: 16px;
+                line-height: 1.3;
+            }
+            .hero-banner p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            .hero-p-desktop { display: none !important; }
+            .hero-p-mobile { display: block !important; }
+            .btn-primary { width: 100%; text-align: center; }
+        }
+
+        /* REPORT CONTENT */
+        :root {
+            --primary: #613dc1;
+            --secondary: #dbd4ee;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        .report-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+
+        .report-content h1,
+        .report-content h2,
+        .report-content h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #0F172A;
+        }
+
+        .report-content h1 {
+            font-size: 32px;
+            margin-top: 56px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        .report-content h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        .report-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .report-content ul:not(.company-list) {
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .report-content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        strong.hl {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .report-img {
+            width: 100%;
+            margin: 40px 0;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        /* Company Grid */
+        .company-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .company-list li {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 0 !important;
+        }
+
+        .company-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: var(--secondary);
+        }
+
+        .company-list .title-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .company-list h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F172A;
+            line-height: 1.4;
+        }
+
+        .company-list .index {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .company-list .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .comp-cin {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .comp-link {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .comp-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.03));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 32px 0;
+            background: #fff;
+        }
+
+        .tofler-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .tofler-table th,
+        .tofler-table td {
+            padding: 16px 20px;
+            font-weight: 400 !important;
+        }
+
+        .tofler-table th {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 600 !important;
+            font-size: 15px;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .tofler-table th:first-child { text-align: left; }
+        .tofler-table td:first-child { text-align: left; color: #334155; }
+        .tofler-table td { color: #1e293b; border: none; }
+        .tofler-table tr:nth-child(even) { background-color: #ffffff; }
+        .tofler-table tr:nth-child(odd) { background-color: #f7f5fb; }
+
+        @media (min-width: 769px) {
+            .tofler-table td:first-child {
+                white-space: normal !important;
+                min-width: 250px;
+            }
+        }
+
+        .plain-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            white-space: normal;
+        }
+
+        .plain-table th,
+        .plain-table td {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .plain-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+            border-bottom: 2px solid var(--border);
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .plain-table td { font-weight: 400; color: #334155; line-height: 1.6; }
+        .plain-table tr:nth-child(even) { background-color: #ffffff; }
+        .plain-table tr:nth-child(odd) { background-color: #f7f5fb; }
+
+        /* Expand/Collapse */
+        .expandable-list:not(.expanded) li:nth-child(n+7) { display: none !important; }
+        @media (max-width: 768px) {
+            .expandable-list:not(.expanded) li:nth-child(n+4) { display: none !important; }
+        }
+        .expandable-table:not(.expanded) tr:nth-child(n+12) { display: none !important; }
+        @media (max-width: 768px) {
+            .expandable-table:not(.expanded) tr:nth-child(n+7) { display: none !important; }
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-top: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 0 0 12px 12px;
+            transition: background 0.2s;
+            margin-top: -16px;
+            margin-bottom: 24px;
+        }
+
+        .toggle-btn:hover { background: #f1f5f9; }
+
+        .table-wrapper .toggle-btn {
+            margin-top: 0;
+            margin-bottom: 0;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .report-content { padding: 40px 16px; }
+            .report-content h1 { font-size: 24px; margin-top: 32px; margin-bottom: 16px; }
+            .report-content h2 { font-size: 20px; margin-top: 24px; margin-bottom: 12px; }
+            .report-content p, .report-content li { font-size: 15px; }
+            .tofler-table th, .tofler-table td,
+            .plain-table th, .plain-table td { padding: 12px 10px; font-size: 13px !important; }
+            .tofler-table th, .plain-table th { font-size: 12px !important; }
+            .tofler-table td:first-child { min-width: 150px; }
+            .company-list { grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+            .company-list li { padding: 12px; gap: 12px; }
+        }
+
+        @media (max-width: 600px) {
+            .company-list { grid-template-columns: 1fr; }
+            .hero-banner h1 { font-size: 28px; }
+            .report-content h1 { font-size: 22px; }
+        }
+
+        /* FOOTER */
+        .footer_wrapper {
+            background-color: #27184F;
+            padding: 80px 0 40px 0;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer_wrapper .container {
+            display: block !important;
+            max-width: 1500px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 18px !important;
+        }
+
+        .footer_container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .flex-col { display: flex; flex-direction: column; }
+        .flex { display: flex; }
+        .gap-4 { gap: 4px; }
+        .gap-8 { gap: 8px; }
+        .gap-24 { gap: 24px; }
+        .gap-32 { gap: 32px; }
+
+        .footer_desc { line-height: 1.6; max-width: 300px; }
+        .footer_wrapper p { color: #ffffff !important; opacity: 1 !important; }
+        .text-white { color: #ffffff; }
+        .font-light { font-weight: 300; }
+        .font-regular { font-weight: 400; }
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 18px; font-weight: 700; }
+
+        .footer_wrapper a {
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer_wrapper a:hover {
+            color: #ffffff !important;
+            opacity: 0.8;
+        }
+
+        .low_footer {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #0F172A;
+            font-weight: 600;
+        }
+
+        .low_footer p { color: #0F172A !important; }
+
+        .footer_social_icon {
+            width: 24px;
+            height: 24px;
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            transition: opacity 0.2s;
+        }
+
+        .footer_social_icon:hover { opacity: 0.8; }
+
+        @media (max-width: 992px) {
+            .footer_container { grid-template-columns: 1fr; gap: 48px; }
+            .low_footer { flex-direction: column; text-align: center; gap: 8px; }
+        }
+
+        /* AUTHORS */
+        .authors-section { width: 100%; max-width: 800px; margin-top: 32px; }
+
+        .authors-list { display: flex; flex-direction: column; gap: 24px; width: 100%; }
+
+        .author-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 24px;
+            text-align: left;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .author-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #5E3BE1, #8B5CF6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .author-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -8px rgba(94, 59, 225, 0.12), 0 4px 6px -2px rgba(94, 59, 225, 0.04);
+            border-color: #D8B4FE;
+        }
+
+        .author-card:hover::before { opacity: 1; }
+
+        .author-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #F1F5F9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .author-card:hover .author-img {
+            transform: scale(1.03);
+            border-color: #5E3BE1;
+        }
+
+        .author-info { flex-grow: 1; display: flex; flex-direction: column; gap: 12px; }
+
+        .author-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .author-title-area { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+
+        .author-role-badge {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #475569;
+            background: #F1F5F9;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .author-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin: 0;
+        }
+
+        .author-role {
+            color: #5E3BE1;
+            background: rgba(94, 59, 225, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .author-bio { font-size: 14.5px; line-height: 1.6; color: #475569; margin: 0; }
+
+        .author-linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #0077B5;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 119, 181, 0.15);
+            flex-shrink: 0;
+        }
+
+        .author-linkedin-btn:hover {
+            background-color: #005E93 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 119, 181, 0.25);
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+
+        .author-linkedin-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+        @media (max-width: 600px) {
+            .author-card { flex-direction: column; align-items: center; text-align: center; padding: 20px; }
+            .author-header { flex-direction: column; align-items: center; gap: 12px; width: 100%; }
+            .author-title-area { align-items: center; }
+            .author-linkedin-btn { width: 100%; justify-content: center; }
+        }
+
+        .hide-on-print { }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left-group">
+                <a href="https://www.tofler.in/">
+                    <img src="https://get.tofler.in/wp-content/uploads/2025/11/Untitled-design-15-1.jpg" alt="Tofler Logo" class="logo">
+                </a>
+            </div>
+            <div class="nav-right-group">
+                <a href="https://tofler.in/our-story" class="nav-item">Our Story</a>
+                <a href="https://www.tofler.in/benefits" class="nav-item">Benefits</a>
+                <a href="https://www.tofler.in/price-and-plans" class="nav-link-outline">See Price &amp; Plans</a>
+                <a href="https://www.tofler.in/login" class="nav-btn-solid">Login</a>
+                <button class="menu-toggle" onclick="toggleMobileNav()">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="https://tofler.in/our-story" class="nav-item" style="display:block;">Our Story</a>
+            <a href="https://www.tofler.in/benefits" class="nav-item" style="display:block;">Benefits</a>
+            <a href="https://www.tofler.in/price-and-plans" class="nav-item" style="display:block;">See Price &amp; Plans</a>
+            <a href="https://www.tofler.in/login" class="nav-item" style="display:block;">Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <div class="hero-content">
+            <div class="hero-tag">A Five-Year Financial Benchmarking Study</div>
+            <h1>India's Pharma Industry Outlook</h1>
+            <p class="hero-p-desktop">Assessing financial performance, margins, and business model evolution across India's top 30 pharmaceutical companies.</p>
+            <p class="hero-p-mobile" style="display:none;">Assessing financial performance across India's top 30 pharmaceutical companies.</p>
+            <a href="https://get.tofler.in/wp-content/uploads/2026/06/India-Pharma-Industry-Outlook.pdf" target="_blank" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+        </div>
+    </div>
+
+    <!-- Report Content placeholder -->
+    <div class="report-content">
+
+        <h1>1. Executive Summary</h1>
+        <p>India's pharmaceutical sector has built one of the world's largest generic drug industries, supplying medicines across regulated and emerging markets globally. This benchmarking study tracks <b>30 leading companies</b> across API manufacturing, formulations, CDMOs, and branded domestic pharmaceuticals, spanning both listed and unlisted entities, and covers five years of audited financial data from FY21 through FY25.</p>
+        <p>Combined revenues for the sample grew from <strong class="hl">₹1,14,649 crore in FY21 to ₹1,54,008.7 crore in FY25</strong>, a four-year compound growth rate of approximately 7.6%. Unlike India's capital-light IT sector, pharma is a manufacturing-intensive industry &ndash; total borrowings across the 30 companies stood at ₹27,762.4 crore in FY25, reflecting the sustained capital investment required in plant compliance, capacity, and product development.</p>
+
+        <h2>Revenue and Profit Trends</h2>
+        <ul>
+            <li>Sector revenues grew <strong class="hl">34.3% over four years</strong>, with meaningful acceleration in FY23 as domestic market demand and export recovery gained momentum.</li>
+            <li>Operating profit expanded from <strong class="hl">₹30,196.9 crore in FY21 to ₹39,054.8 crore in FY25</strong>, though operating margins compressed sharply from 26.3% to 21.0% in FY22 as API input cost inflation and US generics pricing pressure weighed heavily on profitability.</li>
+            <li>Net margins dipped from <strong class="hl">19.5% in FY21 to 13.1% in FY23</strong>, before recovering to 20.9% in FY25 &ndash; the strongest net margin in the five-year period &ndash; as input costs eased, US compliance records improved, and complex generics contributed more meaningfully to the revenue mix.</li>
+            <li>Net profit grew from <strong class="hl">₹22,314.9 crore in FY21 to ₹32,153.5 crore in FY25</strong>, with the sharpest recovery coming in FY24 and FY25.</li>
+            <li>Networth strengthened from <strong class="hl">₹1,39,994.9 crore to ₹1,95,600.5 crore</strong>, funded by retained earnings as profitability recovered.</li>
+            <li>Total assets expanded from <strong class="hl">₹1,91,456.9 crore to ₹2,61,821.9 crore</strong>, with fixed assets growing from ₹44,274.4 crore to ₹54,529.5 crore &ndash; reflecting the sector's ongoing investment in manufacturing capacity and USFDA-compliant infrastructure.</li>
+            <li>Total borrowings grew from <strong class="hl">₹19,007.6 crore to ₹27,762.4 crore</strong>, a 46% increase, driven by capital expenditure and working capital requirements as the sector scaled operations.</li>
+        </ul>
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>1,14,649.0</td>
+                    <td>1,21,214.5</td>
+                    <td>1,35,997.1</td>
+                    <td>1,41,374.4</td>
+                    <td>1,54,008.7</td>
+                </tr>
+                <tr>
+                    <td>Operating Profit</td>
+                    <td>30,196.9</td>
+                    <td>25,495.1</td>
+                    <td>29,457.1</td>
+                    <td>33,255.0</td>
+                    <td>39,054.8</td>
+                </tr>
+                <tr>
+                    <td>Net Profit</td>
+                    <td>22,314.9</td>
+                    <td>17,196.2</td>
+                    <td>17,782.6</td>
+                    <td>24,495.0</td>
+                    <td>32,153.5</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>1,39,994.9</td>
+                    <td>1,46,778.7</td>
+                    <td>1,57,030.4</td>
+                    <td>1,75,030.9</td>
+                    <td>1,95,600.5</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>19,007.6</td>
+                    <td>18,079.8</td>
+                    <td>20,695.5</td>
+                    <td>25,370.8</td>
+                    <td>27,762.4</td>
+                </tr>
+                <tr>
+                    <td>Assets</td>
+                    <td>1,91,456.9</td>
+                    <td>2,00,400.8</td>
+                    <td>2,14,231.8</td>
+                    <td>2,34,214.8</td>
+                    <td>2,61,821.9</td>
+                </tr>
+                <tr>
+                    <td>Operating Margin</td>
+                    <td>26.34%</td>
+                    <td>21.03%</td>
+                    <td>21.66%</td>
+                    <td>23.52%</td>
+                    <td>25.36%</td>
+                </tr>
+                <tr>
+                    <td>Net Margin</td>
+                    <td>19.46%</td>
+                    <td>14.19%</td>
+                    <td>13.08%</td>
+                    <td>17.33%</td>
+                    <td>20.88%</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>2. Methodology</h1>
+        <p>This study is based on five years of audited financial data for <strong class="hl">30 leading pharmaceutical companies</strong> in India, covering both listed and unlisted entities across API manufacturing, formulation, CDMO, and branded domestic pharmaceuticals. The objective was to evaluate sector-wide performance trends, profitability patterns, balance-sheet health, and efficiency metrics using standardised financial data and comparable benchmarks.</p>
+
+        <h2>2.1 Data Sources</h2>
+        <p>All financial data used in this study was sourced exclusively from <a href="https://www.tofler.in" target="_blank" style="color:var(--primary); font-weight:700; text-decoration:underline;">Tofler.in</a>, including:</p>
+        <ul>
+            <li>Profit &amp; Loss Statements</li>
+            <li>Balance Sheets</li>
+            <li>Cash Flow Statements</li>
+            <li>Financial Highlights</li>
+            <li>Ratios &amp; Margins</li>
+        </ul>
+        <p>Only audited financials were considered for the analysis.</p>
+
+        <h2>2.2 Company Selection</h2>
+        <p>The study covers 30 companies representing the major segments of India's pharmaceutical landscape. Companies were selected based on:</p>
+        <ul>
+            <li><b>Scale</b> of operations (revenue and asset base)</li>
+            <li><b>Representation</b> across the pharma value chain: API manufacturers, formulation companies, CDMOs, and branded domestic players</li>
+            <li><b>Mix</b> of listed and unlisted entities to reflect the sector's true structure</li>
+            <li><b>Subsector diversity</b>: regulated market exporters, domestic-focused brands, and contract manufacturers</li>
+            <li><b>Availability</b> of consistent FY21 to FY25 audited financial data</li>
+        </ul>
+
+        <p><b>Companies Used for Analysis:</b></p>
+        <ul class="company-list expandable-list" id="companies-list">
+            <li>
+                <div class="title-row"><span class="index">1.</span><h4>ZUVENTUS HEALTHCARE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U85320PN2002PLC018324</span><a href="https://www.tofler.in/zuventus-healthcare-limited/company/U85320PN2002PLC018324" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">2.</span><h4>ARISTO PHARMACEUTICALS PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24239MH1971PTC015425</span><a href="https://www.tofler.in/aristo-pharmaceuticals-private-limited/company/U24239MH1971PTC015425" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">3.</span><h4>CENTAUR PHARMACEUTICALS PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24230MH1980PTC023291</span><a href="https://www.tofler.in/centaur-pharmaceuticals-private-limited/company/U24230MH1980PTC023291" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">4.</span><h4>BLUE CROSS LABORATORIES PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24230MH1980PTC022825</span><a href="https://www.tofler.in/blue-cross-laboratories-private-limited/company/U24230MH1980PTC022825" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">5.</span><h4>MEDLEY PHARMACEUTICALS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24230MH1975PLC018296</span><a href="https://www.tofler.in/medley-pharmaceuticals-limited/company/U24230MH1975PLC018296" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">6.</span><h4>INDOCO REMEDIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L85190MH1947PLC005913</span><a href="https://www.tofler.in/indoco-remedies-limited/company/L85190MH1947PLC005913" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">7.</span><h4>AUROBINDO PHARMA LTD</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24239TG1986PLC015190</span><a href="https://www.tofler.in/aurobindo-pharma-ltd/company/L24239TG1986PLC015190" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">8.</span><h4>CIPLA LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24239MH1935PLC002380</span><a href="https://www.tofler.in/cipla-limited/company/L24239MH1935PLC002380" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">9.</span><h4>GRANULES INDIA LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24110TG1991PLC012471</span><a href="https://www.tofler.in/granules-india-limited/company/L24110TG1991PLC012471" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">10.</span><h4>ALKEM LABORATORIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L00305MH1973PLC174201</span><a href="https://www.tofler.in/alkem-laboratories-limited/company/L00305MH1973PLC174201" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">11.</span><h4>ORCHID PHARMA LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24222TN1992PLC022994</span><a href="https://www.tofler.in/orchid-pharma-limited/company/L24222TN1992PLC022994" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">12.</span><h4>INTAS PHARMACEUTICALS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24231GJ1985PLC007866</span><a href="https://www.tofler.in/intas-pharmaceuticals-limited/company/U24231GJ1985PLC007866" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">13.</span><h4>SUN PHARMACEUTICAL INDUSTRIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24230GJ1993PLC019050</span><a href="https://www.tofler.in/sun-pharmaceutical-industries-limited/company/L24230GJ1993PLC019050" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">14.</span><h4>ENCUBE ETHICALS PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24230MH1995PTC092485</span><a href="https://www.tofler.in/encube-ethicals-private-limited/company/U24230MH1995PTC092485" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">15.</span><h4>ALEMBIC PHARMACEUTICALS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24230GJ2010PLC061123</span><a href="https://www.tofler.in/alembic-pharmaceuticals-limited/company/L24230GJ2010PLC061123" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">16.</span><h4>DR. REDDY'S LABORATORIES LTD</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L85195TG1984PLC004507</span><a href="https://www.tofler.in/dr-reddy-s-laboratories-ltd/company/L85195TG1984PLC004507" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">17.</span><h4>AJANTA PHARMA LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24230MH1979PLC022059</span><a href="https://www.tofler.in/ajanta-pharma-limited/company/L24230MH1979PLC022059" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">18.</span><h4>JENBURKT PHARMACEUTICALS LTD</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24230MH1985PLC036541</span><a href="https://www.tofler.in/jenburkt-pharmaceuticals-ltd/company/L24230MH1985PLC036541" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">19.</span><h4>GALPHA LABORATORIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24230BR1986PLC002323</span><a href="https://www.tofler.in/galpha-laboratories-limited/company/U24230BR1986PLC002323" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">20.</span><h4>CORAL LABORATORIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24231MH1997PLC422233</span><a href="https://www.tofler.in/coral-laboratories-limited/company/L24231MH1997PLC422233" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">21.</span><h4>EMCURE PHARMACEUTICALS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24231PN1981PLC024251</span><a href="https://www.tofler.in/emcure-pharmaceuticals-limited/company/L24231PN1981PLC024251" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">22.</span><h4>STRIDES PHARMA SCIENCE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24230MH1990PLC057062</span><a href="https://www.tofler.in/strides-pharma-science-limited/company/L24230MH1990PLC057062" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">23.</span><h4>KOPRAN LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24230MH1958PLC011078</span><a href="https://www.tofler.in/kopran-limited/company/L24230MH1958PLC011078" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">24.</span><h4>ERIS LIFESCIENCES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24232GJ2007PLC049867</span><a href="https://www.tofler.in/eris-lifesciences-limited/company/L24232GJ2007PLC049867" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">25.</span><h4>MACLEODS PHARMACEUTICALS LTD</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U24239MH1989PLC052049</span><a href="https://www.tofler.in/macleods-pharmaceuticals-ltd/company/U24239MH1989PLC052049" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">26.</span><h4>IPCA LABORATORIES LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24239MH1949PLC007837</span><a href="https://www.tofler.in/ipca-laboratories-limited/company/L24239MH1949PLC007837" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">27.</span><h4>KHANDELWAL LABORATORIES PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U74999MH1945PTC004554</span><a href="https://www.tofler.in/khandelwal-laboratories-private-limited/company/U74999MH1945PTC004554" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">28.</span><h4>J B CHEMICALS AND PHARMACEUTICALS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L24390MH1976PLC019380</span><a href="https://www.tofler.in/j-b-chemicals-and-pharmaceuticals-limited/company/L24390MH1976PLC019380" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">29.</span><h4>JAGSON PAL PHARMACEUTICALS LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">L74899DL1978PLC009181</span><a href="https://www.tofler.in/jagson-pal-pharmaceuticals-limited/company/L74899DL1978PLC009181" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+            <li>
+                <div class="title-row"><span class="index">30.</span><h4>SYSTOPIC LABORATORIES PRIVATE LIMITED</h4></div>
+                <div class="bottom-row"><span class="comp-cin">U85110DL1982PTC014342</span><a href="https://www.tofler.in/systopic-laboratories-private-limited/company/U85110DL1982PTC014342" target="_blank" class="comp-link">Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+            </li>
+        </ul>
+        <button class="toggle-btn" style="border-radius:12px; margin-top:-8px; border:1px solid var(--border);" onclick="toggleExpand('companies-list', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        <p>These companies together represent the full range of India's pharmaceutical landscape, from large-cap exporters and CDMO specialists to branded domestic players and API manufacturers, spanning both listed and unlisted entities.</p>
+
+        <h2>2.3 Scope of Analysis &amp; Metrics Used</h2>
+        <p>This study covers five years of audited financial data (FY21 to FY25) for 30 major pharmaceutical companies, with the objective of assessing sector-wide growth, profitability patterns, balance-sheet health, and operational efficiency.</p>
+        <p><b>Key Metrics Analyzed:</b></p>
+        <ul>
+            <li><b>Growth Metrics:</b> Sales CAGR, EBITDA CAGR (3-year, FY22 to FY25)</li>
+            <li><b>Profitability Metrics:</b> Gross Margin, Operating Margin, Net Margin, EBITDA, Net Profit</li>
+            <li><b>Cost Structure:</b> Cost of Goods, Employee Costs, Other Operating Costs</li>
+            <li><b>Balance Sheet Metrics:</b> Borrowings (short-term and long-term), Networth, Total Assets, Fixed Assets, Debt/Equity</li>
+            <li><b>Efficiency Metrics:</b> Asset Turnover, Days Receivable, Days Payable, Days Inventory, Working Capital Days, Cash Conversion Cycle</li>
+        </ul>
+        <p><b>Analytical Approach:</b></p>
+        <ul>
+            <li>Aggregating all 30 companies to compute sector-level totals and trends across FY21 to FY25</li>
+            <li>Computing 3-year CAGRs (FY22 to FY25) for sales and EBITDA at the individual company level</li>
+            <li>Benchmarking ratios using sector means and medians for realistic cross-company comparisons</li>
+            <li>Analysing cash efficiency through cash conversion cycle and working capital day metrics</li>
+        </ul>
+
+        <h1>3. Industry Aggregates And Trends</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>1,14,649.0</td>
+                    <td>1,21,214.5</td>
+                    <td>1,35,997.1</td>
+                    <td>1,41,374.4</td>
+                    <td>1,54,008.7</td>
+                </tr>
+                <tr>
+                    <td>Expenses</td>
+                    <td>89,803.1</td>
+                    <td>1,02,019.4</td>
+                    <td>1,13,917.4</td>
+                    <td>1,16,047.9</td>
+                    <td>1,23,016.2</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Sales-vs-Expenses-Trendline-Over-the-Years-1.png" class="report-img" alt="Sales vs Expenses Trendline">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>EBITDA</td>
+                    <td>30,196.9</td>
+                    <td>25,495.1</td>
+                    <td>29,457.1</td>
+                    <td>33,255.0</td>
+                    <td>39,054.8</td>
+                </tr>
+                <tr>
+                    <td>Net Profit</td>
+                    <td>22,314.9</td>
+                    <td>17,196.2</td>
+                    <td>17,782.6</td>
+                    <td>24,495.0</td>
+                    <td>32,153.5</td>
+                </tr>
+                <tr>
+                    <td>Networth</td>
+                    <td>1,39,994.9</td>
+                    <td>1,46,778.7</td>
+                    <td>1,57,030.4</td>
+                    <td>1,75,030.9</td>
+                    <td>1,95,600.5</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/EBITDA-vs-PAT-vs-Networth-Trendline-Over-the-Years-1.png" class="report-img" alt="EBITDA vs PAT vs Networth Trendline">
+
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Fixed Assets</td>
+                    <td>44,274.4</td>
+                    <td>49,197.3</td>
+                    <td>50,465.7</td>
+                    <td>50,356.6</td>
+                    <td>54,529.5</td>
+                </tr>
+                <tr>
+                    <td>Current Assets</td>
+                    <td>88,002.4</td>
+                    <td>86,513.0</td>
+                    <td>1,00,325.3</td>
+                    <td>1,08,529.3</td>
+                    <td>1,16,966.8</td>
+                </tr>
+                <tr>
+                    <td>Borrowings</td>
+                    <td>19,007.6</td>
+                    <td>18,079.8</td>
+                    <td>20,695.5</td>
+                    <td>25,370.8</td>
+                    <td>27,762.4</td>
+                </tr>
+            </table>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Fixed-_Current-Assets-vs-Borrowings-Trendline-Over-the-Years-1.png" class="report-img" alt="Fixed and Current Assets vs Borrowings Trendline">
+
+        <h1>4. Three Year Sales CAGR of the Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="sales-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>FY2022 (INR Cr.)</th>
+                    <th>FY2025 (INR Cr.)</th>
+                    <th>3-Year Sales CAGR</th>
+                </tr>
+                <tr><td>ZUVENTUS HEALTHCARE LIMITED</td><td>1,051.4</td><td>1,085.0</td><td>1.05%</td></tr>
+                <tr><td>ARISTO PHARMACEUTICALS PRIVATE LIMITED</td><td>4,098.7</td><td>4,941.2</td><td>6.43%</td></tr>
+                <tr><td>CENTAUR PHARMACEUTICALS PRIVATE LIMITED</td><td>925.1</td><td>1,034.4</td><td>3.79%</td></tr>
+                <tr><td>BLUE CROSS LABORATORIES PRIVATE LIMITED</td><td>873.6</td><td>1,001.3</td><td>4.65%</td></tr>
+                <tr><td>MEDLEY PHARMACEUTICALS LIMITED</td><td>755.7</td><td>888.4</td><td>5.54%</td></tr>
+                <tr><td>INDOCO REMEDIES LIMITED</td><td>1,539.7</td><td>1,518.2</td><td>-0.47%</td></tr>
+                <tr><td>AUROBINDO PHARMA LTD</td><td>11,287.1</td><td>10,933.3</td><td>-1.06%</td></tr>
+                <tr><td>CIPLA LIMITED</td><td>13,091.8</td><td>19,044.8</td><td>13.31%</td></tr>
+                <tr><td>GRANULES INDIA LIMITED</td><td>3,238.4</td><td>3,030.2</td><td>-2.19%</td></tr>
+                <tr><td>ALKEM LABORATORIES LIMITED</td><td>8,829.8</td><td>8,813.4</td><td>-0.06%</td></tr>
+                <tr><td>ORCHID PHARMA LIMITED</td><td>557.0</td><td>921.9</td><td>18.29%</td></tr>
+                <tr><td>INTAS PHARMACEUTICALS LIMITED</td><td>12,653.5</td><td>13,154.0</td><td>1.30%</td></tr>
+                <tr><td>SUN PHARMACEUTICAL INDUSTRIES LIMITED</td><td>15,586.0</td><td>23,003.3</td><td>13.85%</td></tr>
+                <tr><td>ENCUBE ETHICALS PRIVATE LIMITED</td><td>642.9</td><td>1,311.6</td><td>26.83%</td></tr>
+                <tr><td>ALEMBIC PHARMACEUTICALS LIMITED</td><td>5,035.4</td><td>6,032.6</td><td>6.21%</td></tr>
+                <tr><td>DR. REDDY'S LABORATORIES LTD</td><td>14,405.2</td><td>23,115.4</td><td>17.07%</td></tr>
+                <tr><td>AJANTA PHARMA LIMITED</td><td>3,140.6</td><td>4,322.0</td><td>11.23%</td></tr>
+                <tr><td>JENBURKT PHARMACEUTICALS LTD</td><td>124.0</td><td>151.7</td><td>6.95%</td></tr>
+                <tr><td>GALPHA LABORATORIES LIMITED</td><td>383.3</td><td>293.0</td><td>-8.57%</td></tr>
+                <tr><td>CORAL LABORATORIES LIMITED</td><td>75.6</td><td>115.0</td><td>15.01%</td></tr>
+                <tr><td>EMCURE PHARMACEUTICALS LIMITED</td><td>3,387.2</td><td>4,381.9</td><td>8.96%</td></tr>
+                <tr><td>STRIDES PHARMA SCIENCE LIMITED</td><td>1,979.0</td><td>2,139.4</td><td>2.63%</td></tr>
+                <tr><td>KOPRAN LIMITED</td><td>204.5</td><td>271.0</td><td>9.84%</td></tr>
+                <tr><td>ERIS LIFESCIENCES LIMITED</td><td>1,215.7</td><td>1,697.8</td><td>11.78%</td></tr>
+                <tr><td>MACLEODS PHARMACEUTICALS LTD</td><td>7,462.7</td><td>8,991.4</td><td>6.41%</td></tr>
+                <tr><td>IPCA LABORATORIES LIMITED</td><td>5,399.4</td><td>6,677.9</td><td>7.34%</td></tr>
+                <tr><td>KHANDELWAL LABORATORIES PRIVATE LIMITED</td><td>198.3</td><td>239.6</td><td>6.51%</td></tr>
+                <tr><td>J B CHEMICALS AND PHARMACEUTICALS LIMITED</td><td>2,189.9</td><td>3,722.9</td><td>19.35%</td></tr>
+                <tr><td>JAGSON PAL PHARMACEUTICALS LIMITED</td><td>226.1</td><td>268.7</td><td>5.92%</td></tr>
+                <tr><td>SYSTOPIC LABORATORIES PRIVATE LIMITED</td><td>656.9</td><td>907.4</td><td>11.37%</td></tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('sales-table', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/3-Year-Sales-CAGR-Analysis-1.png" class="report-img" alt="3-Year Sales CAGR Analysis">
+
+        <h1>5. Three Year EBITDA CAGR of the Companies</h1>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="ebitda-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>FY2022 (INR Cr.)</th>
+                    <th>FY2025 (INR Cr.)</th>
+                    <th>3-Year EBITDA CAGR</th>
+                </tr>
+                <tr><td>ZUVENTUS HEALTHCARE LIMITED</td><td>273.1</td><td>192.3</td><td>-11.03%</td></tr>
+                <tr><td>ARISTO PHARMACEUTICALS PRIVATE LIMITED</td><td>1,457.8</td><td>1,939.5</td><td>9.98%</td></tr>
+                <tr><td>CENTAUR PHARMACEUTICALS PRIVATE LIMITED</td><td>272.7</td><td>268.0</td><td>-0.58%</td></tr>
+                <tr><td>BLUE CROSS LABORATORIES PRIVATE LIMITED</td><td>262.8</td><td>332.4</td><td>8.15%</td></tr>
+                <tr><td>MEDLEY PHARMACEUTICALS LIMITED</td><td>159.1</td><td>287.1</td><td>21.75%</td></tr>
+                <tr><td>INDOCO REMEDIES LIMITED</td><td>327.0</td><td>128.0</td><td>-26.85%</td></tr>
+                <tr><td>AUROBINDO PHARMA LTD</td><td>1,473.4</td><td>2,557.6</td><td>20.18%</td></tr>
+                <tr><td>CIPLA LIMITED</td><td>3,366.5</td><td>5,778.4</td><td>19.73%</td></tr>
+                <tr><td>GRANULES INDIA LIMITED</td><td>644.6</td><td>564.8</td><td>-4.31%</td></tr>
+                <tr><td>ALKEM LABORATORIES LIMITED</td><td>1,810.4</td><td>2,156.2</td><td>6.00%</td></tr>
+                <tr><td>ORCHID PHARMA LIMITED</td><td>57.3</td><td>123.5</td><td>29.17%</td></tr>
+                <tr><td>INTAS PHARMACEUTICALS LIMITED</td><td>3,094.4</td><td>1,580.6</td><td>-20.06%</td></tr>
+                <tr><td>SUN PHARMACEUTICAL INDUSTRIES LIMITED</td><td>2,907.5</td><td>6,792.6</td><td>32.69%</td></tr>
+                <tr><td>ENCUBE ETHICALS PRIVATE LIMITED</td><td>182.9</td><td>463.0</td><td>36.29%</td></tr>
+                <tr><td>ALEMBIC PHARMACEUTICALS LIMITED</td><td>908.8</td><td>901.4</td><td>-0.27%</td></tr>
+                <tr><td>DR. REDDY'S LABORATORIES LTD</td><td>2,594.1</td><td>7,381.8</td><td>41.71%</td></tr>
+                <tr><td>AJANTA PHARMA LIMITED</td><td>890.9</td><td>1,204.7</td><td>10.58%</td></tr>
+                <tr><td>JENBURKT PHARMACEUTICALS LTD</td><td>27.3</td><td>40.4</td><td>13.96%</td></tr>
+                <tr><td>GALPHA LABORATORIES LIMITED</td><td>14.1</td><td>-15.7</td><td>NA</td></tr>
+                <tr><td>CORAL LABORATORIES LIMITED</td><td>8.2</td><td>26.2</td><td>47.29%</td></tr>
+                <tr><td>EMCURE PHARMACEUTICALS LIMITED</td><td>794.7</td><td>646.8</td><td>-6.63%</td></tr>
+                <tr><td>STRIDES PHARMA SCIENCE LIMITED</td><td>76.6</td><td>262.4</td><td>50.75%</td></tr>
+                <tr><td>KOPRAN LIMITED</td><td>15.4</td><td>38.7</td><td>35.96%</td></tr>
+                <tr><td>ERIS LIFESCIENCES LIMITED</td><td>484.0</td><td>486.6</td><td>0.18%</td></tr>
+                <tr><td>MACLEODS PHARMACEUTICALS LTD</td><td>1,559.0</td><td>2,246.2</td><td>12.95%</td></tr>
+                <tr><td>IPCA LABORATORIES LIMITED</td><td>1,243.5</td><td>1,525.0</td><td>7.04%</td></tr>
+                <tr><td>KHANDELWAL LABORATORIES PRIVATE LIMITED</td><td>9.0</td><td>11.1</td><td>7.24%</td></tr>
+                <tr><td>J B CHEMICALS AND PHARMACEUTICALS LIMITED</td><td>508.9</td><td>1,017.9</td><td>26.00%</td></tr>
+                <tr><td>JAGSON PAL PHARMACEUTICALS LIMITED</td><td>25.8</td><td>51.1</td><td>25.58%</td></tr>
+                <tr><td>SYSTOPIC LABORATORIES PRIVATE LIMITED</td><td>45.3</td><td>66.2</td><td>13.48%</td></tr>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('ebitda-table', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/3-Year-EBITDA-CAGR-Analysis-1.png" class="report-img" alt="3-Year EBITDA CAGR Analysis">
+
+        <h1>6. Cash Efficiency of the Companies</h1>
+        <p>Cash efficiency reflects how effectively a company converts its operating activities into cash. The <strong class="hl">Cash Conversion Cycle (CCC)</strong> and <strong class="hl">Working Capital Days</strong> show how quickly a company cycles through inventory, collects receivables, and pays suppliers. The mean CCC across the 30 companies was <strong class="hl">155.7 days</strong> (median: 162.5 days) and Working Capital Days averaged <strong class="hl">142.9 days</strong> (median: 124.5 days).</p>
+        <div class="table-wrapper">
+            <table class="tofler-table expandable-table" id="cash-eff-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Cash Conversion Cycle (Days)</th>
+                        <th>Working Capital Days</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ZUVENTUS HEALTHCARE LIMITED</td><td>104</td><td>59</td></tr>
+                    <tr><td>ARISTO PHARMACEUTICALS PRIVATE LIMITED</td><td>134</td><td>216</td></tr>
+                    <tr><td>CENTAUR PHARMACEUTICALS PRIVATE LIMITED</td><td>193</td><td>216</td></tr>
+                    <tr><td>BLUE CROSS LABORATORIES PRIVATE LIMITED</td><td>60</td><td>114</td></tr>
+                    <tr><td>MEDLEY PHARMACEUTICALS LIMITED</td><td>160</td><td>257</td></tr>
+                    <tr><td>INDOCO REMEDIES LIMITED</td><td>268</td><td>63</td></tr>
+                    <tr><td>AUROBINDO PHARMA LTD</td><td>178</td><td>42</td></tr>
+                    <tr><td>CIPLA LIMITED</td><td>189</td><td>291</td></tr>
+                    <tr><td>GRANULES INDIA LIMITED</td><td>165</td><td>83</td></tr>
+                    <tr><td>ALKEM LABORATORIES LIMITED</td><td>73</td><td>199</td></tr>
+                    <tr><td>ORCHID PHARMA LIMITED</td><td>201</td><td>217</td></tr>
+                    <tr><td>INTAS PHARMACEUTICALS LIMITED</td><td>210</td><td>239</td></tr>
+                    <tr><td>SUN PHARMACEUTICAL INDUSTRIES LIMITED</td><td>207</td><td>9</td></tr>
+                    <tr><td>ENCUBE ETHICALS PRIVATE LIMITED</td><td>204</td><td>218</td></tr>
+                    <tr><td>ALEMBIC PHARMACEUTICALS LIMITED</td><td>345</td><td>95</td></tr>
+                    <tr><td>DR. REDDY'S LABORATORIES LTD</td><td>249</td><td>124</td></tr>
+                    <tr><td>AJANTA PHARMA LIMITED</td><td>239</td><td>157</td></tr>
+                    <tr><td>JENBURKT PHARMACEUTICALS LTD</td><td>59</td><td>91</td></tr>
+                    <tr><td>GALPHA LABORATORIES LIMITED</td><td>41</td><td>2</td></tr>
+                    <tr><td>CORAL LABORATORIES LIMITED</td><td>129</td><td>481</td></tr>
+                    <tr><td>EMCURE PHARMACEUTICALS LIMITED</td><td>84</td><td>66</td></tr>
+                    <tr><td>STRIDES PHARMA SCIENCE LIMITED</td><td>230</td><td>88</td></tr>
+                    <tr><td>KOPRAN LIMITED</td><td>145</td><td>142</td></tr>
+                    <tr><td>ERIS LIFESCIENCES LIMITED</td><td>33</td><td>-79</td></tr>
+                    <tr><td>MACLEODS PHARMACEUTICALS LTD</td><td>177</td><td>244</td></tr>
+                    <tr><td>IPCA LABORATORIES LIMITED</td><td>267</td><td>129</td></tr>
+                    <tr><td>KHANDELWAL LABORATORIES PRIVATE LIMITED</td><td>149</td><td>125</td></tr>
+                    <tr><td>J B CHEMICALS AND PHARMACEUTICALS LIMITED</td><td>100</td><td>117</td></tr>
+                    <tr><td>JAGSON PAL PHARMACEUTICALS LIMITED</td><td>39</td><td>184</td></tr>
+                    <tr><td>SYSTOPIC LABORATORIES PRIVATE LIMITED</td><td>38</td><td>99</td></tr>
+                </tbody>
+            </table>
+            <button class="toggle-btn" onclick="toggleExpand('cash-eff-table', this, 'View All Companies', 'Collapse')">View All Companies &darr;</button>
+        </div>
+        <img src="https://get.tofler.in/wp-content/uploads/2026/06/Cash-Conversion-Cycle-and-Working-Capital-Days-1.png" class="report-img" alt="Cash Conversion Cycle and Working Capital Days">
+
+        <h1>7. Financial Ratios And Benchmarks</h1>
+        <p>The table below presents sector-wide benchmarks across key financial ratios for FY25, computed as the <strong class="hl">mean</strong> and <strong class="hl">median</strong> across all 30 companies, alongside the minimum and maximum observed values. These benchmarks serve as reference points for evaluating individual company performance relative to the broader pharma sector.</p>
+
+        <h2>7.1 Solvency</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Total Debt / Equity</td><td>0.02</td><td>0.00</td><td>-3.3</td><td>0.9</td></tr>
+                <tr><td>Net Debt / Equity</td><td>0.01</td><td>0.00</td><td>-3.2</td><td>0.8</td></tr>
+                <tr><td>Total Debt / Assets</td><td>0.10</td><td>0.00</td><td>0.0</td><td>0.8</td></tr>
+                <tr><td>Total Assets / Equity</td><td>1.2</td><td>1.3</td><td>-3.9</td><td>2.1</td></tr>
+            </table>
+        </div>
+
+        <h2>7.2 Liquidity</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Current Ratio</td><td>3.34</td><td>2.95</td><td>0.6</td><td>13.3</td></tr>
+                <tr><td>Quick Ratio</td><td>2.56</td><td>2.00</td><td>0.4</td><td>10.5</td></tr>
+                <tr><td>Interest Coverage</td><td>98.3</td><td>31.5</td><td>-2.1</td><td>382.4</td></tr>
+            </table>
+        </div>
+
+        <h2>7.3 Performance</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Gross Margin</td><td>64.09%</td><td>67.60%</td><td>40.9%</td><td>80.5%</td></tr>
+                <tr><td>Operating Margin</td><td>21.29%</td><td>23.10%</td><td>-5.3%</td><td>39.2%</td></tr>
+                <tr><td>Net Margin</td><td>16.42%</td><td>17.65%</td><td>-6.3%</td><td>57.6%</td></tr>
+            </table>
+        </div>
+
+        <h2>7.4 Return</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Return on Equity (ROE)</td><td>18.23%</td><td>16.15%</td><td>-0.8%</td><td>90.4%</td></tr>
+                <tr><td>Pre-tax ROCE</td><td>24.40%</td><td>22.40%</td><td>-65.5%</td><td>90.6%</td></tr>
+                <tr><td>Return on Assets (ROA)</td><td>13.45%</td><td>12.75%</td><td>-9.9%</td><td>57.4%</td></tr>
+                <tr><td>Pre-tax ROIC</td><td>16.67%</td><td>16.10%</td><td>-19.6%</td><td>92.8%</td></tr>
+            </table>
+        </div>
+
+        <h2>7.5 Efficiency</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Ratio</th>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr><td>Days Payable</td><td>116.3 days</td><td>116 days</td><td>33 days</td><td>210 days</td></tr>
+                <tr><td>Days Inventory</td><td>186.6 days</td><td>179.5 days</td><td>53 days</td><td>403 days</td></tr>
+                <tr><td>Days Receivable</td><td>85.4 days</td><td>86.5 days</td><td>2 days</td><td>248 days</td></tr>
+                <tr><td>Fixed Asset Turnover</td><td>8.44</td><td>2.85</td><td>0.7</td><td>128.9</td></tr>
+                <tr><td>Total Asset Turnover</td><td>0.82</td><td>0.70</td><td>0.3</td><td>2.7</td></tr>
+                <tr><td>Cash Conversion Cycle</td><td>155.7 days</td><td>162.5 days</td><td>33 days</td><td>345 days</td></tr>
+                <tr><td>Working Capital Days</td><td>142.9 days</td><td>124.5 days</td><td>-79 days</td><td>481 days</td></tr>
+            </table>
+        </div>
+        <h1>8. Borrowings Trend of the Companies</h1>
+        <p>Total borrowings across the 30 pharma companies grew from <strong class="hl">₹19,007.6 crore in FY21 to ₹27,762.4 crore in FY25</strong>, a 46% increase. The composition of borrowings shifted significantly &ndash; long-term debt declined from ₹7,695.9 crore to ₹3,639.1 crore, while short-term borrowings surged from ₹11,311.5 crore to ₹24,123.5 crore, reflecting increased working capital financing needs as trade receivables and inventories expanded alongside revenue growth.</p>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Particulars (INR Cr.)</th>
+                    <th>Mar-2021</th>
+                    <th>Mar-2022</th>
+                    <th>Mar-2023</th>
+                    <th>Mar-2024</th>
+                    <th>Mar-2025</th>
+                </tr>
+                <tr>
+                    <td>Short Term Borrowings</td>
+                    <td>11,311.5</td>
+                    <td>11,593.5</td>
+                    <td>10,438.9</td>
+                    <td>12,148.4</td>
+                    <td>24,123.5</td>
+                </tr>
+                <tr>
+                    <td>Long Term Borrowings</td>
+                    <td>7,695.9</td>
+                    <td>6,486.3</td>
+                    <td>10,256.4</td>
+                    <td>13,222.2</td>
+                    <td>3,639.1</td>
+                </tr>
+                <tr>
+                    <td>Total Borrowings</td>
+                    <td>19,007.6</td>
+                    <td>18,079.8</td>
+                    <td>20,695.5</td>
+                    <td>25,370.8</td>
+                    <td>27,762.4</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>9. Top 3 Companies By Key Metrics (FY25)</h1>
+        <p>The tables below spotlight the three highest-ranking companies across four key financial metrics in FY25 &ndash; Sales, EBITDA, Net Profit, and Gross Margin &ndash; drawing from the full sample of 30 companies.</p>
+
+        <h2>9.1 Top 3 by Sales</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales (INR Cr.)</th>
+                    <th>EBITDA (INR Cr.)</th>
+                    <th>Net Profit (INR Cr.)</th>
+                </tr>
+                <tr>
+                    <td>DR. REDDY'S LABORATORIES LTD</td>
+                    <td>23,115.4</td>
+                    <td>7,381.8</td>
+                    <td>5,349.4</td>
+                </tr>
+                <tr>
+                    <td>SUN PHARMACEUTICAL INDUSTRIES LIMITED</td>
+                    <td>23,003.3</td>
+                    <td>6,792.6</td>
+                    <td>4,282.6</td>
+                </tr>
+                <tr>
+                    <td>CIPLA LIMITED</td>
+                    <td>19,044.8</td>
+                    <td>5,778.4</td>
+                    <td>5,157.6</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.2 Top 3 by Borrowings</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales (INR Cr.)</th>
+                    <th>Net Profit (INR Cr.)</th>
+                    <th>Borrowings (INR Cr.)</th>
+                </tr>
+                <tr>
+                    <td>SUN PHARMACEUTICAL INDUSTRIES LIMITED</td>
+                    <td>23,003.3</td>
+                    <td>4,282.6</td>
+                    <td>10,954.5</td>
+                </tr>
+                <tr>
+                    <td>AUROBINDO PHARMA LTD</td>
+                    <td>10,933.3</td>
+                    <td>1,746.8</td>
+                    <td>4,625.1</td>
+                </tr>
+                <tr>
+                    <td>DR. REDDY'S LABORATORIES LTD</td>
+                    <td>23,115.4</td>
+                    <td>5,349.4</td>
+                    <td>3,385.5</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>9.3 Top 3 by Gross Margin</h2>
+        <div class="table-wrapper">
+            <table class="tofler-table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Sales (INR Cr.)</th>
+                    <th>Net Profit (INR Cr.)</th>
+                    <th>Gross Margin (%)</th>
+                </tr>
+                <tr>
+                    <td>JENBURKT PHARMACEUTICALS LTD</td>
+                    <td>151.7</td>
+                    <td>32.1</td>
+                    <td>80.5%</td>
+                </tr>
+                <tr>
+                    <td>MEDLEY PHARMACEUTICALS LIMITED</td>
+                    <td>888.4</td>
+                    <td>239.7</td>
+                    <td>77.3%</td>
+                </tr>
+                <tr>
+                    <td>AJANTA PHARMA LIMITED</td>
+                    <td>4,322.0</td>
+                    <td>916.9</td>
+                    <td>76.6%</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>10. Industry Context &amp; Market Landscape</h1>
+        <h2>10.1 Market Landscape (National View)</h2>
+        <p>India is the <strong class="hl">third-largest pharmaceutical producer by volume globally</strong> and the largest supplier of generic medicines &ndash; accounting for <em>~20% of global generic drug exports</em> and over <em>50% of global vaccine demand</em>. The 30 companies tracked in this report grew combined revenues from <strong class="hl">₹1,14,649 crore in FY21 to ₹1,54,008.7 crore in FY25</strong>, with operating margins recovering to <strong class="hl">25.4% by FY25</strong> after a trough in FY22.</p>
+        <ul>
+            <li><b>Generic export powerhouse:</b> India accounts for ~<em>47% of all ANDAs approved by the USFDA</em> annually, making it indispensable to the US healthcare supply chain.</li>
+            <li><b>Capital-intensive structure:</b> Unlike IT, pharma demands sustained capex in plant compliance and logistics. Total borrowings across this study's companies grew from <strong class="hl">₹19,008 crore to ₹27,762 crore</strong> between FY21 and FY25.</li>
+            <li><b>Domestic branded generics:</b> The Indian market runs on a <em>doctor-prescription-driven branded generics model</em>. Chronic categories &ndash; diabetes, cardiovascular, respiratory &ndash; are the dominant and fastest-growing segment.</li>
+            <li><b>CDMO &amp; API opportunity:</b> India is positioning as a <em>global CDMO hub</em>, with the PLI scheme accelerating domestic API production to reduce dependency on China.</li>
+            <li><b>Biosimilars platform:</b> Several companies have built dedicated biologics manufacturing to target regulated-market biosimilar opportunities as major biologic patents expire.</li>
+        </ul>
+
+        <h2>10.2 Regional Distribution</h2>
+        <p><b>Major Manufacturing Clusters</b></p>
+        <ul>
+            <li><strong class="hl">Gujarat (Ahmedabad, Vadodara, Ankleshwar):</strong> India's <em>largest pharma manufacturing hub</em> by concentration, with a high share of USFDA-approved facilities. Home to Sun Pharmaceutical and Alembic Pharmaceuticals.</li>
+            <li><strong class="hl">Telangana &amp; Andhra Pradesh (Hyderabad, Visakhapatnam):</strong> India's <em>dominant API hub</em> &ndash; Hyderabad is known as "Bulk Drug City." Headquarters of Dr. Reddy's Laboratories and Aurobindo Pharma.</li>
+            <li><strong class="hl">Maharashtra (Mumbai, Pune, Nashik):</strong> Centre for <em>domestic branded generics</em>, corporate HQs, and regulatory affairs. Home to Cipla, Emcure, Medley, Encube Ethicals, and others.</li>
+            <li><strong class="hl">Himachal Pradesh &amp; Uttarakhand (Baddi, Haridwar):</strong> Tax-incentive-driven formulation clusters. Baddi is one of <em>Asia's largest pharma manufacturing towns</em> by plant count.</li>
+        </ul>
+        <p><b>Emerging Clusters</b></p>
+        <ul>
+            <li><em>Sikkim and the Northeast</em> are growing as formulation hubs on the back of government incentives for pharmaceutical investment.</li>
+            <li><em>Tamil Nadu (Chennai, Hosur)</em> is emerging as a centre for injectables, medical devices, and API contract manufacturing.</li>
+            <li><em>Bulk Drug Parks</em> under PLI are being developed in Andhra Pradesh, Himachal Pradesh, and Gujarat to domestically source APIs currently imported from China.</li>
+        </ul>
+
+        <h1>11. Industry Structure And Business Model</h1>
+        <p>India's pharmaceutical industry operates through four core segments &ndash; <strong class="hl">API manufacturers, formulation companies, CDMOs, and branded domestic players</strong> &ndash; with most large listed companies active across more than one. The sector's fundamental edge is producing high-quality medicines at a fraction of Western cost.</p>
+
+        <h2>11.1 Industry Structure Overview</h2>
+        <div class="table-wrapper">
+            <table class="plain-table">
+                <tr>
+                    <th>Segment</th>
+                    <th>Role / Examples</th>
+                    <th>Core Strengths</th>
+                    <th>Limitations</th>
+                </tr>
+                <tr>
+                    <td>API Manufacturers</td>
+                    <td>Produce the active chemical ingredient; supply formulation companies globally and domestically</td>
+                    <td>Low cost, process chemistry expertise, bulk volume capabilities</td>
+                    <td>Dependent on Chinese starting materials; exposed to raw material price cycles</td>
+                </tr>
+                <tr>
+                    <td>Formulation Companies</td>
+                    <td>Convert APIs into finished dosage forms (tablets, injectables, capsules) for domestic and export markets</td>
+                    <td>Scale, multi-geography regulatory approvals, established distribution</td>
+                    <td>USFDA compliance costs; pricing pressure from generics competition</td>
+                </tr>
+                <tr>
+                    <td>CDMO / Contract Research</td>
+                    <td>Manufacture drugs on behalf of innovator or generic companies; handle process development and scale-up</td>
+                    <td>Recurring revenue, growing global outsourcing trend, maximises asset utilisation</td>
+                    <td>High capex; customer concentration risk; IP stays with client</td>
+                </tr>
+                <tr>
+                    <td>Branded Domestic Players</td>
+                    <td>Sell branded generics to Indian patients through prescription and retail pharmacy channels</td>
+                    <td>Brand recall, doctor relationships, recurring demand from chronic therapy</td>
+                    <td>DPCO limits pricing power; doctor detailing is a significant, recurring cost</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>11.2 Value Chain and Delivery Model</h2>
+        <p>The value chain runs from <em>chemical synthesis → API manufacturing → formulation &amp; packaging → domestic or export distribution</em>. Indian companies have built their strongest positions at the <strong class="hl">formulation stage</strong> &ndash; the highest-value step in the generic drug chain. For the US market, USFDA-approved plants are non-negotiable, creating a meaningful cost floor that separates globally ambitious companies from domestic-only players. In the domestic market, <em>doctors are the primary decision-maker</em>, giving companies with large field-force networks a durable structural advantage.</p>
+
+        <h2>11.3 Margin Pools by Segment</h2>
+        <ul>
+            <li><b>Regulated market generics (US, EU, Australia):</b> High revenue per unit, but significant compliance overhead. Margin is driven by first-to-file wins and complex product mix. <em>Sun Pharma and Dr. Reddy's</em> derive the largest share of revenues here.</li>
+            <li><b>Domestic branded generics:</b> Stable, recurring demand with structurally higher gross margins. <em>Ajanta Pharma and Medley Pharmaceuticals</em> &ndash; both above <strong class="hl">75% gross margin in FY25</strong> &ndash; operate predominantly in this segment.</li>
+            <li><b>API supply:</b> Lower margins, cyclical, and volume-driven. Margins compress when Chinese producers resume full output after disruptions.</li>
+            <li><b>CDMO / contract manufacturing:</b> <em>Growing margin pool</em> as innovator companies outsource to India and diversify away from China.</li>
+        </ul>
+
+        <h1>12. Innovation And Upcoming Business Models</h1>
+
+        <h2>12.1 Biosimilars and Complex Biologics</h2>
+        <p>Indian pharma is moving beyond small-molecule generics into <strong class="hl">biosimilars</strong> &ndash; lower-cost versions of biologic drugs used to treat cancer, autoimmune conditions, and diabetes. Companies that secure early US/EU biosimilar approvals benefit from <em>limited-competition windows</em> that protect margins far better than commodity generics. Growing intangible assets and CWIP balances across the sample reflect this sustained R&amp;D investment.</p>
+
+        <h2>12.2 CDMO Expansion</h2>
+        <p>Global innovators are accelerating outsourcing of drug development and manufacturing, and <em>India is the primary destination</em>. Indian CDMOs offer lower labour costs, process chemistry depth, existing regulatory approvals, and strong capacity utilisation. The sector's fixed-asset base grew from <strong class="hl">₹44,274 crore to ₹54,529 crore</strong> between FY21 and FY25, partly reflecting this capacity build.</p>
+
+        <h2>12.3 Complex Generics and Specialty Pharma</h2>
+        <p>As commodity US generics face relentless price erosion, companies are deliberately pivoting to <strong class="hl">complex generics</strong> &ndash; modified-release formulations, transdermals, inhalation products, injectables, and ophthalmics. These require more sophisticated manufacturing, have fewer competitors at approval, and command <em>more durable margins</em> than standard oral solids.</p>
+
+        <h2>12.4 Digital Health and DTC Models</h2>
+        <p>Online pharmacy platforms have created a <em>parallel distribution channel</em> for prescription and OTC drugs. Companies are also investing in digital adherence tools and chronic disease management platforms. While the traditional field-force model stays dominant, digital engagement is increasingly shaping brand strategy, particularly in <strong class="hl">high-retention chronic therapy segments</strong>.</p>
+
+        <h1>13. Policy, Schemes &amp; Recent Developments</h1>
+
+        <h2>13.1 Production Linked Incentive (PLI) Scheme</h2>
+        <p>The PLI scheme for pharma runs across two tranches: one targeting <em>high-value generics and biopharmaceuticals</em>, the other targeting <strong class="hl">key starting materials and drug intermediates</strong> to cut dependence on Chinese API inputs. Incentives are incremental and sales-based &ndash; companies invest first, receive payouts over multiple years as they exceed a production threshold. The scheme has already prompted measurable investment in new API plants across <em>Telangana, Gujarat, and Himachal Pradesh</em>.</p>
+
+        <h2>13.2 Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP)</h2>
+        <p>The Jan Aushadhi programme sells generic drugs through dedicated outlets at <em>prices substantially below branded equivalents</em>. Its competitive impact on the larger companies in this study is limited &ndash; they operate through a <strong class="hl">doctor-prescription-driven channel</strong> that Jan Aushadhi's government-tender procurement model does not directly compete with.</p>
+
+        <h2>13.3 Drug Pricing and DPCO</h2>
+        <p>The <strong class="hl">Drug Price Control Order (DPCO)</strong> sets ceiling prices for drugs on the National List of Essential Medicines (NLEM). When a company's high-volume branded product gets added to NLEM, the revenue hit is <em>immediate and unavoidable</em>. Export-oriented companies are largely insulated; domestic-focused players face a structural constraint on pricing power that no volume growth can fully offset in the short term.</p>
+
+        <h2>13.4 USFDA Compliance</h2>
+        <p>India has <em>more USFDA-approved manufacturing plants outside the US than any other country</em>. Maintaining that standing requires continuous investment in quality systems, plant upgrades, and documentation. A single <strong class="hl">import alert or warning letter</strong> can block US shipments from a facility for years, with direct revenue impact &ndash; a key reason for the wide performance variance visible across companies in this study.</p>
+
+        <h1>14. Sector Challenges &amp; Risks</h1>
+        <div class="table-wrapper">
+            <table class="plain-table">
+                <tr>
+                    <th>Challenge</th>
+                    <th>Impact on the Sector</th>
+                    <th>Who is Most Affected</th>
+                </tr>
+                <tr>
+                    <td><b>API import dependence on China</b></td>
+                    <td>Disruptions &ndash; from regulatory shutdowns or geopolitical friction &ndash; translate into <em>raw material cost spikes and production delays</em> for formulators and API producers alike.</td>
+                    <td>API-heavy companies and those in molecules where China dominates global starting material supply.</td>
+                </tr>
+                <tr>
+                    <td><b>US generics pricing erosion</b></td>
+                    <td>Buyer consolidation among US pharmacy chains drives <em>persistent price erosion</em> on commodity oral solids. Companies absorb declines while simultaneously funding complex product pipelines.</td>
+                    <td>Large and mid-size exporters with high oral solid generics exposure in the US.</td>
+                </tr>
+                <tr>
+                    <td><b>USFDA compliance risk</b></td>
+                    <td>An import alert or warning letter <em>blocks all US shipments</em> from that plant. Compliance cost &ndash; plant upgrades, quality systems, consultants &ndash; is a significant recurring operating burden.</td>
+                    <td>All US-facing companies; risk is most concentrated where a single facility represents a large revenue share.</td>
+                </tr>
+                <tr>
+                    <td><b>Domestic price controls (DPCO)</b></td>
+                    <td>NLEM revisions impose immediate ceiling prices on included products, with <em>no short-term volume offset</em> available to the affected company.</td>
+                    <td>Domestic-focused branded generic companies in therapeutic categories periodically reviewed for price control.</td>
+                </tr>
+                <tr>
+                    <td><b>Input cost volatility</b></td>
+                    <td>Specialty chemical and solvent prices are volatile and <em>hard to pass through</em> in markets constrained by price controls or competitive dynamics. Gross margins in this study range from <strong class="hl">40.9% to 80.5%</strong>, partly reflecting differential exposure.</td>
+                    <td>API manufacturers most directly; vertically integrated formulators are better insulated.</td>
+                </tr>
+                <tr>
+                    <td><b>Leverage and borrowing risk</b></td>
+                    <td>Total borrowings grew from <strong class="hl">₹19,008 crore to ₹27,762 crore</strong> (FY21&ndash;FY25), with short-term borrowings nearly doubling. Rising rates increase the cost of this debt and raise refinancing risk.</td>
+                    <td>Companies with high leverage and recent large capex programmes not yet generating commensurate revenue.</td>
+                </tr>
+                <tr>
+                    <td><b>Currency risk</b></td>
+                    <td>Export revenues are in foreign currency; operating costs and debt are largely in INR. <em>Rupee appreciation erodes margins</em> on both the revenue and liability sides simultaneously.</td>
+                    <td>Large export-oriented companies with both US/EU revenues and INR-denominated borrowings.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h1>15. Opportunities &amp; Future Outlook</h1>
+
+        <h2>15.1 Growth Areas</h2>
+        <ul>
+            <li><b>Complex generics pipeline:</b> Each new USFDA approval on a <em>complex product with limited competition</em> represents a multi-year margin-protected revenue opportunity. Companies with clean regulatory records and a complex-product-heavy pipeline are best positioned.</li>
+            <li><b>Biosimilars in global markets:</b> Major biologics coming off patent in the US and EU are opening a <strong class="hl">structurally higher-margin opportunity</strong> than small-molecule generics, with higher barriers to entry. Indian companies with biologics manufacturing capability are well placed.</li>
+            <li><b>CDMO / outsourced manufacturing:</b> Global pharma companies are <em>accelerating outsourcing</em> and diversifying away from China. India's cost, process depth, and regulatory approvals make it the default destination. Fixed-asset growth in this study's aggregate data reflects the sector's capacity build for this demand.</li>
+            <li><b>Chronic disease domestic market:</b> Rising incidence of <em>diabetes, cardiovascular disease, and respiratory disorders</em> is driving steady domestic market growth. Branded generic companies with wide distribution and chronic therapy portfolios face less currency and compliance risk than their export peers.</li>
+            <li><b>Africa and emerging markets:</b> Several companies have established significant African and Southeast Asian businesses in <em>affordable generics</em> for public health programmes and private retail &ndash; a meaningful and underpenetrated growth runway.</li>
+        </ul>
+
+        <h2>15.2 Strategic Priorities</h2>
+        <ul>
+            <li><b>Shift toward complex and differentiated products:</b> <em>Commodity generics face structural pricing headwinds.</em> Companies invested in complex generics, specialty injectables, or biosimilars will sustain better margin stability.</li>
+            <li><b>Reduce API import dependency:</b> <strong class="hl">Backward-integrated API capacity</strong> reduces supply chain vulnerability. The PLI scheme financially incentivises this shift, and early movers gain a structural cost advantage.</li>
+            <li><b>Strengthen USFDA compliance:</b> <em>A single import alert can cost years of US revenue.</em> Continuous investment in plant quality systems and digital documentation is non-negotiable for companies with US ambitions.</li>
+            <li><b>Manage leverage prudently:</b> With borrowings up <strong class="hl">46% since FY21</strong> and rates still elevated, companies with strong operating cash flow and disciplined capital allocation are better placed to fund growth without excessive refinancing risk.</li>
+        </ul>
+
+        <h1>16. Conclusion</h1>
+        <p>The 30 companies in this study grew combined revenues from <strong class="hl">₹1,14,649 crore to ₹1,54,009 crore</strong> and net profit from <strong class="hl">₹22,315 crore to ₹32,154 crore</strong> over FY21&ndash;FY25. Operating margins, after a sharp dip to <em>21% in FY22</em> under input cost and US pricing pressure, have recovered to <strong class="hl">over 25% by FY25</strong> &ndash; reflecting a structural re-rating as companies shift toward complex generics, biosimilars, and higher-value export markets.</p>
+        <p>The sector's <em>growing borrowings and capital intensity</em> set it apart from capital-light industries. Generating enough operating cash flow to service debt while simultaneously funding pipeline investment is the <strong class="hl">central financial discipline challenge</strong> for pharma companies. Those that have managed this best &ndash; maintaining clean regulatory records, upgrading to complex products, and controlling working capital &ndash; have delivered the strongest five-year performance. That gap is unlikely to narrow.</p>
+
+        <!-- Bottom download + authors -->
+        <div style="margin-top:48px; border-top:1px solid var(--border); padding-top:32px; display:flex; flex-direction:column; align-items:center; gap:20px;">
+            <a href="https://get.tofler.in/wp-content/uploads/2026/06/India-Pharma-Industry-Outlook.pdf" target="_blank" class="btn-primary" style="margin:0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Full Report (PDF)
+            </a>
+
+            <div class="authors-section">
+                <div class="authors-list">
+                    <!-- Sayan Ghosh -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/03/Make_this_a_202603251659.jpeg" alt="Sayan Ghosh">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Authored By</span>
+                                    <h3 class="author-name">Sayan Ghosh</h3>
+                                    <div class="author-role">Marketing Manager, Tofler</div>
+                                </div>
+                                <a href="https://linkedin.com/in/sayan-ghosh-844524151" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Data-backed marketer creating research-led content that turns industry, company, and market insights into clear business narratives.</p>
+                        </div>
+                    </div>
+                    <!-- Anchal Agarwal -->
+                    <div class="author-card">
+                        <img class="author-img" src="https://get.tofler.in/wp-content/uploads/2026/05/1766386611595.jpg" alt="Anchal Agarwal">
+                        <div class="author-info">
+                            <div class="author-header">
+                                <div class="author-title-area">
+                                    <span class="author-role-badge">Supervised By</span>
+                                    <h3 class="author-name">Anchal Agarwal</h3>
+                                    <div class="author-role">Co-founder &amp; CEO, Tofler</div>
+                                </div>
+                                <a href="https://www.linkedin.com/in/anchal-agarwal-ind12/" target="_blank" class="author-linkedin-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                                    Connect
+                                </a>
+                            </div>
+                            <p class="author-bio">Chartered Accountant and finance professional specializing in due diligence, credit risk management, benchmarking, and business intelligence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer_wrapper hide-on-print">
+        <div class="container text-white">
+            <div class="footer_container">
+                <!-- Brand -->
+                <div class="flex-col gap-32">
+                    <img class="logo" src="https://get.tofler.in/wp-content/uploads/2026/03/Untitled-design-27.png" alt="Tofler Logo" style="width:140px; height:auto;">
+                    <p class="text-sm font-light footer_desc">All trademarks, service marks, trade names and logos appearing on the site are the property of their respective owners.</p>
+                    <div class="flex-col gap-4 font-regular">
+                        <p class="text-sm">Need any help? Email us at:</p>
+                        <p class="text-sm" style="color:#ffffff; font-weight:600;">support@tofler.in</p>
+                    </div>
+                </div>
+                <!-- Links -->
+                <div class="flex" style="gap:60px; justify-content:flex-start;">
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">QUICK LINKS</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style:none; padding:0;">
+                            <li><a href="https://www.tofler.in/about">About us</a></li>
+                            <li><a href="https://www.tofler.in/blog">Blogs</a></li>
+                            <li><a href="https://www.tofler.in/industry-reports">Industry Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-col gap-24" style="margin-left:5px;">
+                        <h3 class="text-white text-md">LEGAL</h3>
+                        <ul class="flex-col gap-8 font-light text-sm" style="list-style:none; padding:0;">
+                            <li><a href="https://www.tofler.in/tos">Terms</a></li>
+                            <li><a href="https://www.tofler.in/privacy">Privacy</a></li>
+                            <li><a href="https://www.tofler.in/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Company & Social -->
+                <div class="flex-col gap-32">
+                    <div class="font-regular flex-col gap-4 text-sm" style="color:#ffffff;">
+                        <p>TWS Systems Private Limited (Tofler)</p>
+                        <p>Gurgaon, Haryana - 122002</p>
+                        <p>(CIN: U72502DL2013PTC261372)</p>
+                    </div>
+                    <div class="flex-col gap-24">
+                        <h3 class="text-white text-md">FOLLOW US ON:</h3>
+                        <div class="flex gap-24">
+                            <a href="https://www.facebook.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9a5 5 0 0 1 5-5h3v3h-2c-1.1 0-2 .9-2 2v2h4l-1 3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tofler/" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/twstofler" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@tofler8107" target="_blank">
+                                <svg class="footer_social_icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C1 8.1 1 12 1 12s0 3.9.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C23 15.9 23 12 23 12s0-3.9-.46-5.58zM9.54 15.22V8.78L15.3 12l-5.76 3.22z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="low_footer text-sm" style="justify-content:center;">
+                <p style="margin:0;">© TWS Systems Private Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav) nav.classList.toggle('active');
+        }
+
+        function toggleExpand(targetId, btn, textExpand, textCollapse) {
+            const target = document.getElementById(targetId);
+            if (target.classList.contains('expanded')) {
+                target.classList.remove('expanded');
+                btn.innerHTML = textExpand + ' &darr;';
+                setTimeout(() => { btn.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+            } else {
+                target.classList.add('expanded');
+                btn.innerHTML = textCollapse + ' &uarr;';
+            }
+        }
+    </script>
+
+</body>
+</html>
