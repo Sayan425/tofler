@@ -13,11 +13,19 @@
     }
 
     if (msg.type === 'DO_SCROLL') {
-      const scrollAmt = window.innerHeight;
+      // Just scroll the page itself, nothing else.
+      const scrollAmt = window.innerHeight * 0.85; 
+      
       window.scrollBy({ top: scrollAmt, behavior: 'smooth' });
+
+      // Fallback in case smooth scroll is blocked
       setTimeout(() => {
+        if (window.scrollY === 0) {
+           window.scrollBy(0, scrollAmt);
+        }
         chrome.runtime.sendMessage({ type: 'SCROLL_DONE' });
       }, 700);
+      
       return true;
     }
 

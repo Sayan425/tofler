@@ -957,11 +957,210 @@
     }
 
     .chooser-card:hover .chooser-arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ============ LINKEDIN ANALYTICS ============ */
+    .an-wrap {
+      max-width: 1180px;
+      width: 100%;
+      margin: 16px auto;
+      padding: 0 14px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    @media (min-width: 480px) { .an-wrap { margin: 24px auto; padding: 0 20px 64px; gap: 22px; } }
+
+    .an-header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: center;
+      align-items: center;
+    }
+    .an-title { font-family: var(--sans); font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    @media (min-width: 480px) { .an-title { font-size: 26px; } }
+    .an-sub { font-family: var(--mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .an-sub b { color: var(--signal); font-weight: 600; }
+
+    /* Controls / filter bar */
+    .an-controls {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--panel-shadow);
+    }
+    .an-ctrl-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .an-ctrl-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dimmer); margin-right: 2px; min-width: 64px; }
+
+    .an-preset, .an-select, .an-date, .an-search {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .an-preset:hover { border-color: var(--signal); color: #fff; }
+    .an-preset.active { background: var(--signal-dim); border-color: var(--signal); color: var(--signal); font-weight: 600; }
+    .an-search { cursor: text; min-width: 180px; flex: 1; letter-spacing: 0; font-family: var(--sans); }
+    .an-search:focus, .an-select:focus, .an-date:focus { outline: none; border-color: var(--signal); }
+    .an-date { cursor: text; color-scheme: dark; }
+
+    .an-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 5px 11px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+    .an-chip:hover { border-color: var(--signal); color: #fff; }
+    .an-chip.active { background: var(--signal); border-color: var(--signal); color: #fff; font-weight: 600; box-shadow: var(--signal-glow); }
+    .an-chip-group { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .an-btn {
+      background: var(--signal-dim);
+      border: 1px solid var(--signal);
+      color: var(--signal);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      transition: all 0.18s ease;
+    }
+    .an-btn:hover { background: var(--signal); color: var(--bg); box-shadow: var(--glow-shadow); }
+    .an-btn.ghost { background: transparent; border-color: var(--border2); color: var(--text-dim); }
+    .an-btn.ghost:hover { border-color: var(--red); color: var(--red); background: var(--red-dim); box-shadow: none; }
+
+    /* KPI cards */
+    .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (min-width: 640px) { .kpi-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; } }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .kpi-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--signal); opacity: 0.6; }
+    .kpi-label { font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dimmer); }
+    .kpi-value { font-family: var(--display); font-size: 24px; font-weight: 800; color: #fff; line-height: 1.1; }
+    @media (min-width: 480px) { .kpi-value { font-size: 28px; } }
+    .kpi-foot { font-family: var(--mono); font-size: 9px; color: var(--text-dim); display: flex; align-items: center; gap: 4px; }
+    .kpi-delta { font-weight: 700; }
+    .kpi-delta.up { color: #4ade80; }
+    .kpi-delta.down { color: var(--red); }
+    .kpi-delta.flat { color: var(--text-dimmer); }
+
+    /* Section title */
+    .an-sect { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+    .an-sect h2 { font-family: var(--sans); font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
+    .an-sect .line { flex: 1; height: 1px; background: var(--border); }
+    .an-sect .tag { font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dimmer); border: 1px solid var(--border2); padding: 2px 7px; border-radius: 4px; }
+
+    /* Cards / charts */
+    .an-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: var(--panel-shadow);
+    }
+    .an-card-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .an-card-title .hint { color: var(--text-dimmer); font-size: 9px; letter-spacing: 0; text-transform: none; font-style: italic; }
+    .an-chart-box { position: relative; width: 100%; height: 260px; margin-top: 8px; }
+    .an-chart-box.tall { height: 300px; }
+    .an-grid-2 { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 820px) { .an-grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    /* Insights */
+    .insight-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 560px) { .insight-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .insight-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .insight-card {
+      background: linear-gradient(160deg, var(--surface2), var(--surface));
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .insight-ico { width: 32px; height: 32px; flex-shrink: 0; border-radius: 8px; background: var(--signal-dim); color: var(--signal); display: flex; align-items: center; justify-content: center; }
+    .insight-body { display: flex; flex-direction: column; gap: 2px; }
+    .insight-k { font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dimmer); }
+    .insight-v { font-family: var(--sans); font-size: 14px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .insight-d { font-family: var(--mono); font-size: 9.5px; color: var(--text-dim); line-height: 1.5; }
+
+    /* Group-by + data tables */
+    .an-table-scroll { width: 100%; overflow-x: auto; border-radius: 8px; }
+    table.an-table { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 560px; }
+    table.an-table th, table.an-table td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.an-table th:first-child, table.an-table td:first-child { text-align: left; position: sticky; left: 0; background: var(--surface); }
+    table.an-table thead th {
+      font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--text-dim); cursor: pointer; user-select: none; background: var(--surface2); position: sticky; top: 0; z-index: 2;
+    }
+    table.an-table thead th:first-child { z-index: 3; background: var(--surface2); }
+    table.an-table thead th:hover { color: var(--signal); }
+    table.an-table thead th .arr { color: var(--signal); font-size: 8px; margin-left: 2px; }
+    table.an-table tbody tr { transition: background 0.15s ease; }
+    table.an-table tbody tr:hover { background: var(--surface2); }
+    table.an-table tbody tr:hover td:first-child { background: var(--surface2); }
+    table.an-table td { font-family: var(--mono); color: var(--text); }
+    table.an-table td.pos { color: #4ade80; }
+    .an-tcell-topic { font-family: var(--sans); max-width: 240px; white-space: normal; color: var(--text); line-height: 1.4; }
+    .an-tcell-topic a { color: var(--signal); text-decoration: none; }
+    .an-tcell-topic a:hover { text-decoration: underline; }
+    .an-mini-pill { font-family: var(--mono); font-size: 9px; padding: 2px 7px; border-radius: 10px; background: var(--surface3); border: 1px solid var(--border2); color: var(--text-dim); }
+    .an-bar-cell { display: inline-block; height: 6px; border-radius: 3px; background: var(--signal); vertical-align: middle; margin-left: 6px; min-width: 2px; }
+
+    /* Leaderboard */
+    .lead-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 760px) { .lead-grid { grid-template-columns: repeat(3, 1fr); } }
+    .lead-item { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .lead-item:last-child { border-bottom: none; }
+    .lead-rank { font-family: var(--display); font-size: 15px; font-weight: 800; color: var(--signal); width: 20px; flex-shrink: 0; }
+    .lead-txt { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .lead-topic { font-size: 12px; color: var(--text); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lead-topic a { color: inherit; text-decoration: none; }
+    .lead-topic a:hover { color: var(--signal); }
+    .lead-meta { font-family: var(--mono); font-size: 9.5px; color: var(--text-dim); }
+    .lead-big { font-family: var(--display); font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+
+    .an-empty { text-align: center; padding: 48px 24px; color: var(--text-dim); font-family: var(--mono); font-size: 12px; }
+    .an-note { font-family: var(--mono); font-size: 10px; color: var(--text-dimmer); line-height: 1.6; background: var(--amber-dim); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; padding: 10px 14px; display: flex; gap: 8px; align-items: flex-start; }
+    .an-note svg { flex-shrink: 0; color: var(--amber); margin-top: 1px; }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="grid-bg"></div>
@@ -1013,6 +1212,16 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </div>
+      <div class="chooser-card" onclick="switchView('analytics')">
+        <div class="chooser-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+        <div class="chooser-card-title">LinkedIn Analytics</div>
+        <div class="chooser-card-desc">Live performance intelligence on every published post — impressions, engagement, virality, best days, formats &amp; categories to drive content decisions.</div>
+        <div class="chooser-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1045,6 +1254,10 @@
           <div class="dropdown-item" id="menu-item-reports" onclick="switchView('reports')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             Industry Reports
+          </div>
+          <div class="dropdown-item" id="menu-item-analytics" onclick="switchView('analytics')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            LinkedIn Analytics
           </div>
         </div>
       </div>
@@ -1143,6 +1356,10 @@
             <label class="form-label">Approved Posts Archive Webhook (GET)</label>
             <input type="text" id="webhook-approved-feed-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/tofler_approved_changes" onchange="saveSyncSettings()">
           </div>
+          <div class="settings-input-group">
+            <label class="form-label">LinkedIn Analytics Webhook (GET)</label>
+            <input type="text" id="webhook-analytics-url" class="settings-input" value="https://n8n.srv846064.hstgr.cloud/webhook/display-tofler-linkedin-analytics" onchange="saveSyncSettings()">
+          </div>
         </div>
       </div>
     </div>
@@ -1175,6 +1392,67 @@
     <iframe src="Industry Reports Tofler/industry_report_index.html" style="width: 100%; height: 100%; border: none; display: block;"></iframe>
   </div>
 
+  <!-- VIEW 5: LINKEDIN ANALYTICS -->
+  <div id="view-analytics" class="view-panel" style="display: none;">
+    <div class="an-wrap">
+      <div class="an-header-row">
+        <h1 class="an-title">LinkedIn Analytics</h1>
+        <div class="an-sub">
+          <span id="an-status">STANDBY</span>
+          <span class="status-dot-separator">•</span>
+          <span><b id="an-post-count">0</b> posts analyzed</span>
+          <span class="status-dot-separator">•</span>
+          <span id="an-range-label">All time</span>
+        </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="an-controls">
+        <div class="an-ctrl-row">
+          <span class="an-ctrl-label">Period</span>
+          <button class="an-preset active" data-preset="all" onclick="anSetPreset('all', this)">All time</button>
+          <button class="an-preset" data-preset="7" onclick="anSetPreset('7', this)">Last 7d</button>
+          <button class="an-preset" data-preset="30" onclick="anSetPreset('30', this)">Last 30d</button>
+          <button class="an-preset" data-preset="90" onclick="anSetPreset('90', this)">Last 90d</button>
+          <button class="an-preset" data-preset="thismonth" onclick="anSetPreset('thismonth', this)">This month</button>
+          <button class="an-preset" data-preset="lastmonth" onclick="anSetPreset('lastmonth', this)">Last month</button>
+          <input type="date" id="an-from" class="an-date" onchange="anCustomDate()" title="From date">
+          <span style="color:var(--text-dimmer);font-size:11px;">→</span>
+          <input type="date" id="an-to" class="an-date" onchange="anCustomDate()" title="To date">
+        </div>
+        <div class="an-ctrl-row" id="an-format-row">
+          <span class="an-ctrl-label">Format</span>
+          <div class="an-chip-group" id="an-format-chips"></div>
+        </div>
+        <div class="an-ctrl-row" id="an-cat-row">
+          <span class="an-ctrl-label">Category</span>
+          <div class="an-chip-group" id="an-cat-chips"></div>
+        </div>
+        <div class="an-ctrl-row" id="an-day-row">
+          <span class="an-ctrl-label">Day</span>
+          <div class="an-chip-group" id="an-day-chips"></div>
+        </div>
+        <div class="an-ctrl-row">
+          <span class="an-ctrl-label">Search</span>
+          <input type="text" id="an-search" class="an-search" placeholder="Filter by topic or post text…" oninput="anOnSearch()">
+          <button class="an-btn" onclick="fetchAnalytics()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>Refresh</button>
+          <button class="an-btn ghost" onclick="anResetFilters()">Reset</button>
+          <button class="an-btn ghost" onclick="anExportCsv()" style="border-color:var(--border2);color:var(--text-dim);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Export CSV</button>
+        </div>
+      </div>
+
+      <!-- BODY (rendered by JS) -->
+      <div id="an-body">
+        <div class="an-empty" id="an-loading">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+            <div style="width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--signal);border-radius:50%;animation:spin 1s linear infinite;"></div>
+            <span>Requesting analytics from data engine…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST CONTAINER -->
   <div id="toast-container"></div>
 
@@ -1185,7 +1463,8 @@
       webhookPostApproved: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_post_approved',
       webhookPostRejected: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_post_rejected',
       webhookChangesRequested: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_request_changes',
-      webhookApprovedFeed: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_approved_changes'
+      webhookApprovedFeed: 'https://n8n.srv846064.hstgr.cloud/webhook/tofler_approved_changes',
+      webhookAnalytics: 'https://n8n.srv846064.hstgr.cloud/webhook/display-tofler-linkedin-analytics'
     };
 
     let postsData = [];
@@ -1204,6 +1483,8 @@
       if (savedChanges) { CONFIG.webhookChangesRequested = savedChanges; document.getElementById('webhook-changes-url').value = savedChanges; }
       if (savedRejected) { CONFIG.webhookPostRejected = savedRejected; document.getElementById('webhook-rejected-url').value = savedRejected; }
       if (savedApprovedFeed) { CONFIG.webhookApprovedFeed = savedApprovedFeed; document.getElementById('webhook-approved-feed-url').value = savedApprovedFeed; }
+      const savedAnalytics = localStorage.getItem('tofler_webhook_analytics');
+      if (savedAnalytics) { CONFIG.webhookAnalytics = savedAnalytics; document.getElementById('webhook-analytics-url').value = savedAnalytics; }
 
       document.addEventListener('click', (e) => {
         const container = document.getElementById('menu-dropdown-container');
@@ -1256,11 +1537,13 @@
       document.getElementById('view-sync').style.display = 'none';
       document.getElementById('view-approved').style.display = 'none';
       document.getElementById('view-reports').style.display = 'none';
+      document.getElementById('view-analytics').style.display = 'none';
 
       document.getElementById('menu-item-feed').classList.remove('active');
       document.getElementById('menu-item-sync').classList.remove('active');
       document.getElementById('menu-item-approved').classList.remove('active');
       document.getElementById('menu-item-reports').classList.remove('active');
+      document.getElementById('menu-item-analytics').classList.remove('active');
 
       const label = document.getElementById('active-menu-label');
 
@@ -1286,6 +1569,12 @@
         document.getElementById('menu-item-reports').classList.add('active');
         label.innerText = 'Industry Reports';
         addLogEntry('Navigated to Industry Reports.');
+      } else if (viewName === 'analytics') {
+        document.getElementById('view-analytics').style.display = 'block';
+        document.getElementById('menu-item-analytics').classList.add('active');
+        label.innerText = 'LinkedIn Analytics';
+        addLogEntry('Navigated to LinkedIn Analytics.');
+        if (!analyticsLoaded) fetchAnalytics();
       }
     }
 
@@ -1320,6 +1609,9 @@
       if (changesVal) { CONFIG.webhookChangesRequested = changesVal; localStorage.setItem('tofler_webhook_changes', changesVal); }
       if (rejectedVal) { CONFIG.webhookPostRejected = rejectedVal; localStorage.setItem('tofler_webhook_rejected', rejectedVal); }
       if (approvedFeedVal) { CONFIG.webhookApprovedFeed = approvedFeedVal; localStorage.setItem('tofler_webhook_approved_feed', approvedFeedVal); }
+      const analyticsEl = document.getElementById('webhook-analytics-url');
+      const analyticsVal = analyticsEl ? analyticsEl.value.trim() : '';
+      if (analyticsVal) { CONFIG.webhookAnalytics = analyticsVal; localStorage.setItem('tofler_webhook_analytics', analyticsVal); }
       addLogEntry('Webhook API endpoints saved.');
       showToast('API webhook endpoints updated', 'info');
     }
@@ -1969,6 +2261,581 @@
       container.appendChild(toast);
       setTimeout(() => { toast.classList.add('show'); }, 10);
       setTimeout(() => { toast.classList.remove('show'); setTimeout(() => { toast.remove(); }, 400); }, 3500);
+    }
+
+    /* ===================================================================
+       LINKEDIN ANALYTICS ENGINE
+       =================================================================== */
+    let analyticsRaw = [];        // normalized post objects (all)
+    let analyticsFiltered = [];   // after filters applied
+    let analyticsLoaded = false;
+    let hasFollowerData = false;
+    const anCharts = {};          // Chart.js instances by id
+    const anFilters = { from: null, to: null, formats: new Set(), categories: new Set(), days: new Set(), search: '' };
+    let anSort = { key: 'dateObj', dir: 'desc' };
+    let anGroupDim = 'Day';
+    const DAY_ORDER = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+    // ---- helpers -------------------------------------------------------
+    function anNum(v) {
+      if (v === null || v === undefined || v === '') return 0;
+      if (typeof v === 'number') return v;
+      const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+      return isNaN(n) ? 0 : n;
+    }
+    function anGet(row, keys) {
+      for (const k of keys) {
+        if (row[k] !== undefined && row[k] !== null && String(row[k]).trim() !== '') return row[k];
+      }
+      return '';
+    }
+    function anParseDate(s) {
+      if (!s) return null;
+      const d = new Date(s);
+      if (!isNaN(d.getTime())) return d;
+      return null;
+    }
+    function fmtNum(n) {
+      n = Number(n) || 0;
+      if (Math.abs(n) >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+      if (Math.abs(n) >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+      return Math.round(n).toLocaleString('en-IN');
+    }
+    function fmtPct(n) { return (Number(n) || 0).toFixed(2) + '%'; }
+    function monthKey(d) { return d ? `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}` : 'Unknown'; }
+    function monthLabel(d) { return d ? d.toLocaleString('en-US', { month: 'short', year: 'numeric' }) : 'Unknown'; }
+    function weekStart(d) { const x = new Date(d); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day); x.setHours(0,0,0,0); return x; }
+    function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    // ---- fetch ---------------------------------------------------------
+    async function fetchAnalytics() {
+      analyticsLoaded = true;
+      document.getElementById('an-status').innerText = 'SYNCING';
+      document.getElementById('an-body').innerHTML = `<div class="an-empty"><div style="display:flex;flex-direction:column;align-items:center;gap:14px;"><div style="width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--signal);border-radius:50%;animation:spin 1s linear infinite;"></div><span>Requesting analytics from data engine…</span></div></div>`;
+      addLogEntry('Requesting LinkedIn analytics payload (GET)...');
+      try {
+        const response = await fetch(CONFIG.webhookAnalytics, { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const rows = extractPostsArray(data);
+        analyticsRaw = rows.map(normalizeAnalyticsRow).filter(r => r.impressions > 0 || r.engagements > 0 || r.dateObj);
+        analyticsRaw.sort((a, b) => (a.dateObj && b.dateObj) ? a.dateObj - b.dateObj : 0);
+        hasFollowerData = analyticsRaw.some(r => r.followers > 0 || r.followerGain !== 0);
+        document.getElementById('an-status').innerText = 'CONNECTED';
+        addLogEntry(`Analytics synced: ${analyticsRaw.length} posts.`);
+        showToast(`Loaded ${analyticsRaw.length} posts of analytics`, 'success');
+        buildFilterChips();
+        applyAnalyticsFilters();
+      } catch (err) {
+        analyticsRaw = [];
+        document.getElementById('an-status').innerText = 'OFFLINE';
+        addLogEntry(`<span style="color: var(--red);">Analytics sync failed: ${err.message || err}</span>`);
+        showToast('Analytics webhook offline.', 'toast-error');
+        document.getElementById('an-body').innerHTML = `<div class="an-empty"><div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><div style="color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;">Couldn't reach the analytics engine</div><div>${escapeHtml(err.message || String(err))}</div><button class="an-btn" onclick="fetchAnalytics()" style="margin-top:8px;">Retry</button></div></div>`;
+      }
+    }
+
+    function normalizeAnalyticsRow(r) {
+      const impressions = anNum(anGet(r, ['Impressions', 'impressions', 'Views', 'views']));
+      const likes = anNum(anGet(r, ['Likes', 'likes', 'Reactions', 'reactions']));
+      const comments = anNum(anGet(r, ['Comments', 'comments']));
+      const reposts = anNum(anGet(r, ['Reposts', 'reposts', 'Shares', 'shares']));
+      const followers = anNum(anGet(r, ['Followers', 'followers', 'Total Followers', 'total_followers']));
+      const followerGain = anNum(anGet(r, ['Follower Growth', 'follower_growth', 'New Followers', 'new_followers', 'Follower Gain', 'follower_gain']));
+      const engagements = likes + comments + reposts;
+      const dateStr = String(anGet(r, ['Date', 'date', 'Posted On', 'posted_on']));
+      const dateObj = anParseDate(dateStr);
+      let day = String(anGet(r, ['Day', 'day']));
+      if (!day && dateObj) day = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+      const link = String(anGet(r, ['Post Link', 'post_link', 'Link', 'link', 'URL', 'url']));
+      const media = String(anGet(r, ['Media Assets', 'Media Link', 'media_assets', 'media']));
+      const provVir = anNum(anGet(r, ['Virality Score', 'virality_score', 'Virality']));
+      const provEng = anNum(anGet(r, ['Engagement Score', 'engagement_score', 'Engagement Rate', 'engagement_rate']));
+      const engRate = impressions > 0 ? (engagements / impressions) * 100 : 0;
+      return {
+        dateStr, dateObj,
+        day: day || '—',
+        format: String(anGet(r, ['Format', 'format', 'Type', 'type']) || '—'),
+        category: String(anGet(r, ['Category', 'category', 'Theme', 'theme']) || '—'),
+        topics: String(anGet(r, ['Content Topics', 'Content Topic', 'content_topics', 'Topic', 'topic']) || '—'),
+        post: String(anGet(r, ['Final Post', 'Post Content', 'final_post', 'post', 'Caption']) || ''),
+        postKey: String(anGet(r, ['Post Key', 'post_key']) || ''),
+        media, link,
+        impressions, likes, comments, reposts, engagements,
+        followers, followerGain,
+        engRate,                                   // computed engagement rate %
+        engScore: provEng || engRate,              // provided engagement score (falls back to computed)
+        viralityScore: provVir                     // provided virality score
+      };
+    }
+
+    // ---- filter chips --------------------------------------------------
+    function uniqueSorted(key, order) {
+      const set = new Set(analyticsRaw.map(r => r[key]).filter(v => v && v !== '—'));
+      const arr = [...set];
+      if (order) arr.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+      else arr.sort();
+      return arr;
+    }
+    function buildFilterChips() {
+      renderChipGroup('an-format-chips', uniqueSorted('format'), anFilters.formats, 'formats');
+      renderChipGroup('an-cat-chips', uniqueSorted('category'), anFilters.categories, 'categories');
+      renderChipGroup('an-day-chips', uniqueSorted('day', DAY_ORDER), anFilters.days, 'days');
+    }
+    function renderChipGroup(elId, values, activeSet, filterKey) {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      if (values.length === 0) { el.innerHTML = '<span style="font-family:var(--mono);font-size:10px;color:var(--text-dimmer);">—</span>'; return; }
+      el.innerHTML = values.map(v =>
+        `<button class="an-chip ${activeSet.has(v) ? 'active' : ''}" onclick="anToggleChip('${filterKey}', this)" data-val="${escapeHtml(v)}">${escapeHtml(v)}</button>`
+      ).join('');
+    }
+    function anToggleChip(filterKey, btn) {
+      const val = btn.getAttribute('data-val');
+      const set = anFilters[filterKey];
+      if (set.has(val)) { set.delete(val); btn.classList.remove('active'); }
+      else { set.add(val); btn.classList.add('active'); }
+      applyAnalyticsFilters();
+    }
+    function anOnSearch() { anFilters.search = document.getElementById('an-search').value.trim().toLowerCase(); applyAnalyticsFilters(); }
+
+    // ---- date presets --------------------------------------------------
+    function anSetPreset(preset, btn) {
+      document.querySelectorAll('.an-preset').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const now = new Date(); now.setHours(23, 59, 59, 999);
+      let from = null, to = null;
+      if (preset === 'all') { from = null; to = null; }
+      else if (preset === '7' || preset === '30' || preset === '90') {
+        to = now; from = new Date(); from.setDate(from.getDate() - parseInt(preset)); from.setHours(0, 0, 0, 0);
+      } else if (preset === 'thismonth') {
+        from = new Date(now.getFullYear(), now.getMonth(), 1); to = now;
+      } else if (preset === 'lastmonth') {
+        from = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+        to = new Date(now.getFullYear(), now.getMonth(), 0); to.setHours(23, 59, 59, 999);
+      }
+      anFilters.from = from; anFilters.to = to;
+      document.getElementById('an-from').value = from ? from.toISOString().slice(0, 10) : '';
+      document.getElementById('an-to').value = to ? to.toISOString().slice(0, 10) : '';
+      applyAnalyticsFilters();
+    }
+    function anCustomDate() {
+      document.querySelectorAll('.an-preset').forEach(b => b.classList.remove('active'));
+      const f = document.getElementById('an-from').value, t = document.getElementById('an-to').value;
+      anFilters.from = f ? new Date(f + 'T00:00:00') : null;
+      anFilters.to = t ? new Date(t + 'T23:59:59') : null;
+      applyAnalyticsFilters();
+    }
+    function anResetFilters() {
+      anFilters.from = null; anFilters.to = null; anFilters.search = '';
+      anFilters.formats.clear(); anFilters.categories.clear(); anFilters.days.clear();
+      document.getElementById('an-from').value = ''; document.getElementById('an-to').value = '';
+      document.getElementById('an-search').value = '';
+      document.querySelectorAll('.an-preset').forEach(b => b.classList.remove('active'));
+      const allBtn = document.querySelector('.an-preset[data-preset="all"]'); if (allBtn) allBtn.classList.add('active');
+      buildFilterChips();
+      applyAnalyticsFilters();
+    }
+
+    // ---- apply filters -------------------------------------------------
+    function applyAnalyticsFilters() {
+      analyticsFiltered = analyticsRaw.filter(r => {
+        if (anFilters.from && (!r.dateObj || r.dateObj < anFilters.from)) return false;
+        if (anFilters.to && (!r.dateObj || r.dateObj > anFilters.to)) return false;
+        if (anFilters.formats.size && !anFilters.formats.has(r.format)) return false;
+        if (anFilters.categories.size && !anFilters.categories.has(r.category)) return false;
+        if (anFilters.days.size && !anFilters.days.has(r.day)) return false;
+        if (anFilters.search) {
+          const hay = (r.topics + ' ' + r.post + ' ' + r.category + ' ' + r.format).toLowerCase();
+          if (!hay.includes(anFilters.search)) return false;
+        }
+        return true;
+      });
+      renderAnalytics();
+    }
+
+    // ---- aggregation helpers ------------------------------------------
+    function totals(rows) {
+      const t = { posts: rows.length, impressions: 0, likes: 0, comments: 0, reposts: 0, engagements: 0, followerGain: 0 };
+      rows.forEach(r => { t.impressions += r.impressions; t.likes += r.likes; t.comments += r.comments; t.reposts += r.reposts; t.engagements += r.engagements; t.followerGain += r.followerGain; });
+      t.engRate = t.impressions ? (t.engagements / t.impressions) * 100 : 0;
+      t.avgImpr = t.posts ? t.impressions / t.posts : 0;
+      t.avgEng = t.posts ? t.engagements / t.posts : 0;
+      t.avgVir = t.posts ? rows.reduce((s, r) => s + r.viralityScore, 0) / t.posts : 0;
+      return t;
+    }
+    function groupBy(rows, keyFn) {
+      const m = new Map();
+      rows.forEach(r => { const k = keyFn(r); if (!m.has(k)) m.set(k, []); m.get(k).push(r); });
+      return m;
+    }
+    // mean of 2nd half vs 1st half (chronological) -> % change, for trend deltas
+    function halfDelta(rows, valFn) {
+      if (rows.length < 4) return null;
+      const sorted = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
+      if (sorted.length < 4) return null;
+      const mid = Math.floor(sorted.length / 2);
+      const first = sorted.slice(0, mid), second = sorted.slice(mid);
+      const m1 = first.reduce((s, r) => s + valFn(r), 0) / first.length;
+      const m2 = second.reduce((s, r) => s + valFn(r), 0) / second.length;
+      if (m1 === 0) return null;
+      return ((m2 - m1) / Math.abs(m1)) * 100;
+    }
+
+    // ---- main render ---------------------------------------------------
+    function renderAnalytics() {
+      const rows = analyticsFiltered;
+      document.getElementById('an-post-count').innerText = rows.length;
+      document.getElementById('an-range-label').innerText =
+        (anFilters.from || anFilters.to)
+          ? `${anFilters.from ? anFilters.from.toLocaleDateString('en-GB') : '…'} → ${anFilters.to ? anFilters.to.toLocaleDateString('en-GB') : '…'}`
+          : 'All time';
+
+      const body = document.getElementById('an-body');
+      if (analyticsRaw.length === 0) { body.innerHTML = `<div class="an-empty">No analytics data returned by the webhook yet.</div>`; return; }
+      if (rows.length === 0) { body.innerHTML = `<div class="an-empty">No posts match the current filters.<br><button class="an-btn" style="margin-top:14px;" onclick="anResetFilters()">Clear filters</button></div>`; return; }
+
+      const t = totals(rows);
+      body.innerHTML =
+        kpiSection(rows, t) +
+        followerNote() +
+        insightsSection(rows) +
+        `<div class="an-sect"><h2>Growth Over Time</h2><span class="line"></span><span class="tag">trend</span></div>
+         <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagement</span><span class="hint">are we growing?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div></div>` +
+        `<div class="an-grid-2" style="margin-top:0;">
+           <div class="an-card"><div class="an-card-title"><span>Per-Post Impressions Timeline</span></div><div class="an-chart-box"><canvas id="ch-timeline"></canvas></div></div>
+           <div class="an-card"><div class="an-card-title"><span>Engagement Rate Over Time</span><span class="hint">%</span></div><div class="an-chart-box"><canvas id="ch-engtime"></canvas></div></div>
+         </div>` +
+        `<div class="an-sect"><h2>What Works Best</h2><span class="line"></span><span class="tag">decisions</span></div>
+         <div class="an-grid-2">
+           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div></div>
+           <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div></div>
+         </div>` +
+        groupSection(rows) +
+        leaderboardSection(rows) +
+        tableSection(rows);
+
+      // draw charts after DOM exists
+      requestAnimationFrame(() => { drawAllCharts(rows); });
+    }
+
+    // ---- KPI section ---------------------------------------------------
+    function deltaHtml(pct) {
+      if (pct === null || !isFinite(pct)) return `<span class="kpi-delta flat">—</span> trend`;
+      const cls = pct > 1 ? 'up' : (pct < -1 ? 'down' : 'flat');
+      const arrow = pct > 1 ? '▲' : (pct < -1 ? '▼' : '▬');
+      return `<span class="kpi-delta ${cls}">${arrow} ${Math.abs(pct).toFixed(0)}%</span> vs earlier`;
+    }
+    function kpiCard(label, value, foot) {
+      return `<div class="kpi-card"><div class="kpi-label">${label}</div><div class="kpi-value">${value}</div><div class="kpi-foot">${foot}</div></div>`;
+    }
+    function kpiSection(rows, t) {
+      return `<div class="kpi-grid">
+        ${kpiCard('Posts Published', fmtNum(t.posts), `${(rows.filter(r=>r.dateObj).length)} dated`)}
+        ${kpiCard('Total Impressions', fmtNum(t.impressions), deltaHtml(halfDelta(rows, r => r.impressions)))}
+        ${kpiCard('Total Engagements', fmtNum(t.engagements), `${fmtNum(t.likes)} likes · ${fmtNum(t.comments)} comments`)}
+        ${kpiCard('Avg Engagement Rate', fmtPct(t.engRate), deltaHtml(halfDelta(rows, r => r.engRate)))}
+        ${kpiCard('Avg Impressions / Post', fmtNum(t.avgImpr), deltaHtml(halfDelta(rows, r => r.impressions)))}
+        ${kpiCard('Total Comments', fmtNum(t.comments), `${fmtNum(t.reposts)} reposts`)}
+        ${kpiCard('Avg Virality Score', t.avgVir.toFixed(1), deltaHtml(halfDelta(rows, r => r.viralityScore)))}
+        ${hasFollowerData ? kpiCard('Follower Growth', '+' + fmtNum(t.followerGain), 'in selected period') : kpiCard('Reposts (Shares)', fmtNum(t.reposts), `amplification signal`)}
+      </div>`;
+    }
+    function followerNote() {
+      if (hasFollowerData) return '';
+      return `<div class="an-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span><b>Follower growth isn't in the data feed yet.</b> This dashboard auto-detects a <code>Followers</code> or <code>Follower Growth</code> column from the webhook and will surface follower-growth KPIs &amp; charts automatically once your n8n sheet includes it. Everything below is computed from impressions, likes, comments, reposts &amp; the virality/engagement scores you currently send.</span></div>`;
+    }
+
+    // ---- insights ------------------------------------------------------
+    function bestGroup(rows, keyFn, metricFn, minPosts) {
+      const groups = groupBy(rows, keyFn);
+      let best = null;
+      groups.forEach((g, k) => {
+        if (k === '—' || k === 'Unknown') return;
+        if (g.length < (minPosts || 1)) return;
+        const v = metricFn(g);
+        if (best === null || v > best.v) best = { k, v, n: g.length };
+      });
+      return best;
+    }
+    function insightCard(ico, k, v, d) {
+      return `<div class="insight-card"><div class="insight-ico">${ico}</div><div class="insight-body"><div class="insight-k">${k}</div><div class="insight-v">${v}</div><div class="insight-d">${d}</div></div></div>`;
+    }
+    function insightsSection(rows) {
+      const avgRate = g => { const t = totals(g); return t.engRate; };
+      const avgImpr = g => totals(g).avgImpr;
+      const I = {
+        bolt: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+        cal: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+        layers: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>`,
+        tag: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`,
+        fire: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-1 .5-2 .5-2S6 11 6 14a6 6 0 0 0 12 0c0-5-6-12-6-12z"></path></svg>`,
+        chat: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
+        trend: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>`,
+        star: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
+      };
+      const cards = [];
+
+      const bestDay = bestGroup(rows, r => r.day, avgRate, 1);
+      if (bestDay) cards.push(insightCard(I.cal, 'Best day to post', bestDay.k, `Avg engagement rate of <b>${fmtPct(bestDay.v)}</b> across ${bestDay.n} post(s). Prioritise this day in the calendar.`));
+
+      const bestFmt = bestGroup(rows, r => r.format, avgRate, 1);
+      if (bestFmt) cards.push(insightCard(I.layers, 'Top-performing format', bestFmt.k, `Highest engagement rate (<b>${fmtPct(bestFmt.v)}</b>) over ${bestFmt.n} post(s). Lean into this format.`));
+
+      const bestCat = bestGroup(rows, r => r.category, avgRate, 1);
+      if (bestCat) cards.push(insightCard(I.tag, 'Best content category', bestCat.k, `Drives the best engagement rate (<b>${fmtPct(bestCat.v)}</b>). Produce more of this theme.`));
+
+      const reachCat = bestGroup(rows, r => r.category, avgImpr, 1);
+      if (reachCat) cards.push(insightCard(I.bolt, 'Best for reach', reachCat.k, `Highest avg impressions per post (<b>${fmtNum(reachCat.v)}</b>). Use for awareness pushes.`));
+
+      const topPost = [...rows].sort((a, b) => b.impressions - a.impressions)[0];
+      if (topPost) cards.push(insightCard(I.star, 'Top post by reach', fmtNum(topPost.impressions) + ' impressions', `${escapeHtml((topPost.topics || topPost.postKey || 'post').slice(0, 70))} — ${fmtNum(topPost.engagements)} engagements (${fmtPct(topPost.engRate)}).`));
+
+      const viral = [...rows].sort((a, b) => b.viralityScore - a.viralityScore)[0];
+      if (viral && viral.viralityScore > 0) cards.push(insightCard(I.fire, 'Most viral post', 'Score ' + viral.viralityScore.toFixed(1), `${escapeHtml((viral.topics || viral.postKey || 'post').slice(0, 70))} spread furthest beyond the immediate audience.`));
+
+      const convo = [...rows].sort((a, b) => b.comments - a.comments)[0];
+      if (convo && convo.comments > 0) cards.push(insightCard(I.chat, 'Best conversation starter', fmtNum(convo.comments) + ' comments', `${escapeHtml((convo.topics || convo.postKey || 'post').slice(0, 70))} — replicate this hook to drive discussion.`));
+
+      const imprTrend = halfDelta(rows, r => r.impressions);
+      if (imprTrend !== null) {
+        const up = imprTrend >= 0;
+        cards.push(insightCard(I.trend, up ? 'Reach is trending up' : 'Reach is cooling off', (up ? '+' : '') + imprTrend.toFixed(0) + '%', `Average impressions per post are ${up ? 'rising' : 'falling'} over the selected period (latter half vs earlier half).`));
+      }
+
+      return `<div class="an-sect"><h2>Key Insights &amp; Decisions</h2><span class="line"></span><span class="tag">auto</span></div><div class="insight-grid">${cards.join('')}</div>`;
+    }
+
+    // ---- group-by section ---------------------------------------------
+    function groupSection(rows) {
+      return `<div class="an-sect"><h2>Break It Down</h2><span class="line"></span>
+        <select class="an-select" id="an-group-dim" onchange="anChangeGroup(this.value)">
+          <option value="Day">By Day of Week</option>
+          <option value="Format">By Format</option>
+          <option value="Category">By Category</option>
+          <option value="Month">By Month</option>
+          <option value="Week">By Week</option>
+          <option value="Topic">By Content Topic</option>
+        </select></div>
+        <div class="an-card"><div class="an-table-scroll"><div id="an-group-table"></div></div></div>`;
+    }
+    function anChangeGroup(dim) { anGroupDim = dim; renderGroupTable(analyticsFiltered); }
+    function groupKeyFn(dim) {
+      if (dim === 'Day') return r => r.day;
+      if (dim === 'Format') return r => r.format;
+      if (dim === 'Category') return r => r.category;
+      if (dim === 'Topic') return r => (r.topics || '—').slice(0, 48);
+      if (dim === 'Month') return r => monthKey(r.dateObj);
+      if (dim === 'Week') return r => r.dateObj ? weekStart(r.dateObj).toISOString().slice(0, 10) : 'Unknown';
+      return r => r[dim];
+    }
+    function renderGroupTable(rows) {
+      const el = document.getElementById('an-group-table');
+      if (!el) return;
+      const dim = anGroupDim;
+      const groups = groupBy(rows, groupKeyFn(dim));
+      let arr = [];
+      groups.forEach((g, k) => { const t = totals(g); arr.push({ k, t }); });
+      // order
+      if (dim === 'Day') arr.sort((a, b) => DAY_ORDER.indexOf(a.k) - DAY_ORDER.indexOf(b.k));
+      else if (dim === 'Month' || dim === 'Week') arr.sort((a, b) => String(a.k).localeCompare(String(b.k)));
+      else arr.sort((a, b) => b.t.engagements - a.t.engagements);
+      const maxImpr = Math.max(...arr.map(x => x.t.impressions), 1);
+      const label = k => (dim === 'Month') ? monthLabel(anParseDate(k + '-01')) : (dim === 'Week' ? 'Week of ' + new Date(k).toLocaleDateString('en-GB') : k);
+      const rowsHtml = arr.map(x => {
+        const t = x.t;
+        const barW = Math.max(2, (t.impressions / maxImpr) * 70);
+        return `<tr>
+          <td title="${escapeHtml(String(x.k))}">${escapeHtml(label(x.k))}</td>
+          <td>${t.posts}</td>
+          <td>${fmtNum(t.impressions)}<span class="an-bar-cell" style="width:${barW}px;"></span></td>
+          <td>${fmtNum(t.avgImpr)}</td>
+          <td>${fmtNum(t.engagements)}</td>
+          <td class="pos">${fmtPct(t.engRate)}</td>
+          <td>${t.avgVir.toFixed(1)}</td>
+        </tr>`;
+      }).join('');
+      el.innerHTML = `<table class="an-table"><thead><tr>
+        <th>${dim}</th><th>Posts</th><th>Impressions</th><th>Avg / Post</th><th>Engagements</th><th>Eng. Rate</th><th>Avg Virality</th>
+      </tr></thead><tbody>${rowsHtml}</tbody></table>`;
+    }
+
+    // ---- leaderboards --------------------------------------------------
+    function leaderList(rows, sortFn, valFn, valLabel) {
+      const top = [...rows].sort(sortFn).slice(0, 5);
+      return top.map((r, i) => {
+        const topic = escapeHtml((r.topics && r.topics !== '—' ? r.topics : (r.postKey || 'Untitled post')).slice(0, 60));
+        const inner = r.link ? `<a href="${escapeHtml(r.link)}" target="_blank" rel="noopener">${topic}</a>` : topic;
+        return `<div class="lead-item"><div class="lead-rank">${i + 1}</div><div class="lead-txt"><div class="lead-topic">${inner}</div><div class="lead-meta">${r.dateObj ? r.dateObj.toLocaleDateString('en-GB') : r.dateStr} · ${escapeHtml(r.format)}</div></div><div class="lead-big">${valLabel(r)}</div></div>`;
+      }).join('');
+    }
+    function leaderboardSection(rows) {
+      return `<div class="an-sect"><h2>Leaderboards</h2><span class="line"></span><span class="tag">top 5</span></div>
+        <div class="lead-grid">
+          <div class="an-card"><div class="an-card-title"><span>🏆 By Impressions</span></div>${leaderList(rows, (a, b) => b.impressions - a.impressions, r => r.impressions, r => fmtNum(r.impressions))}</div>
+          <div class="an-card"><div class="an-card-title"><span>💜 By Engagement Rate</span></div>${leaderList(rows, (a, b) => b.engRate - a.engRate, r => r.engRate, r => fmtPct(r.engRate))}</div>
+          <div class="an-card"><div class="an-card-title"><span>🔥 By Virality Score</span></div>${leaderList(rows, (a, b) => b.viralityScore - a.viralityScore, r => r.viralityScore, r => r.viralityScore.toFixed(1))}</div>
+        </div>`;
+    }
+
+    // ---- full data table ----------------------------------------------
+    const AN_COLS = [
+      { key: 'dateObj', label: 'Date', align: 'left', get: r => r.dateObj ? r.dateObj.toLocaleDateString('en-GB') : (r.dateStr || '—') },
+      { key: 'topics', label: 'Topic / Post', align: 'left', topic: true },
+      { key: 'format', label: 'Format', align: 'left', get: r => `<span class="an-mini-pill">${escapeHtml(r.format)}</span>` },
+      { key: 'category', label: 'Category', align: 'left', get: r => `<span class="an-mini-pill">${escapeHtml(r.category)}</span>` },
+      { key: 'impressions', label: 'Impr.', get: r => fmtNum(r.impressions) },
+      { key: 'likes', label: 'Likes', get: r => fmtNum(r.likes) },
+      { key: 'comments', label: 'Comments', get: r => fmtNum(r.comments) },
+      { key: 'reposts', label: 'Reposts', get: r => fmtNum(r.reposts) },
+      { key: 'engRate', label: 'Eng. Rate', cls: 'pos', get: r => fmtPct(r.engRate) },
+      { key: 'viralityScore', label: 'Virality', get: r => r.viralityScore.toFixed(1) }
+    ];
+    function tableSection(rows) {
+      return `<div class="an-sect"><h2>All Posts</h2><span class="line"></span><span class="tag" id="an-table-count">${rows.length} rows</span></div>
+        <div class="an-card" style="padding:0;"><div class="an-table-scroll"><div id="an-data-table"></div></div></div>`;
+    }
+    function anSortBy(key) {
+      if (anSort.key === key) anSort.dir = anSort.dir === 'desc' ? 'asc' : 'desc';
+      else { anSort.key = key; anSort.dir = (key === 'topics' || key === 'format' || key === 'category') ? 'asc' : 'desc'; }
+      renderDataTable(analyticsFiltered);
+    }
+    function renderDataTable(rows) {
+      const el = document.getElementById('an-data-table');
+      if (!el) return;
+      const sorted = [...rows].sort((a, b) => {
+        let va = a[anSort.key], vb = b[anSort.key];
+        if (anSort.key === 'dateObj') { va = a.dateObj ? a.dateObj.getTime() : 0; vb = b.dateObj ? b.dateObj.getTime() : 0; }
+        if (typeof va === 'string') { va = va.toLowerCase(); vb = String(vb).toLowerCase(); return anSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va); }
+        return anSort.dir === 'asc' ? (va - vb) : (vb - va);
+      });
+      const head = AN_COLS.map(c => {
+        const arrow = anSort.key === c.key ? `<span class="arr">${anSort.dir === 'asc' ? '▲' : '▼'}</span>` : '';
+        return `<th onclick="anSortBy('${c.key}')" ${c.align === 'left' ? '' : ''}>${c.label}${arrow}</th>`;
+      }).join('');
+      const body = sorted.map(r => {
+        const cells = AN_COLS.map(c => {
+          if (c.topic) {
+            const topic = escapeHtml((r.topics && r.topics !== '—' ? r.topics : (r.postKey || 'Untitled')).slice(0, 90));
+            const inner = r.link ? `<a href="${escapeHtml(r.link)}" target="_blank" rel="noopener">${topic} ↗</a>` : topic;
+            return `<td class="an-tcell-topic">${inner}</td>`;
+          }
+          return `<td class="${c.cls || ''}">${c.get(r)}</td>`;
+        }).join('');
+        return `<tr>${cells}</tr>`;
+      }).join('');
+      el.innerHTML = `<table class="an-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+      const cnt = document.getElementById('an-table-count'); if (cnt) cnt.innerText = `${rows.length} rows`;
+    }
+
+    // ---- charts --------------------------------------------------------
+    function destroyChart(id) { if (anCharts[id]) { anCharts[id].destroy(); delete anCharts[id]; } }
+    const AN_C = { signal: '#a78bfa', signal2: '#7c3aed', blue: '#60a5fa', amber: '#f5a623', green: '#4ade80', red: '#f87171', grid: 'rgba(167,139,250,0.08)', text: '#8b7ec8' };
+    function baseOpts(extra) {
+      return Object.assign({
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 12 } }, tooltip: { backgroundColor: '#15112a', borderColor: '#2a2350', borderWidth: 1, titleColor: '#fff', bodyColor: '#e8e2ff' } },
+        scales: { x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 }, maxRotation: 60, minRotation: 0 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true } }
+      }, extra || {});
+    }
+    function drawAllCharts(rows) {
+      if (typeof Chart === 'undefined') return;
+      drawMonthChart(rows); drawTimelineChart(rows); drawEngTimeChart(rows);
+      drawGroupChart(rows, 'ch-day', r => r.day, DAY_ORDER, AN_C.signal);
+      drawGroupChart(rows, 'ch-format', r => r.format, null, AN_C.blue);
+      drawGroupChart(rows, 'ch-cat', r => r.category, null, AN_C.amber);
+      drawScatter(rows);
+      renderGroupTable(rows);
+      renderDataTable(rows);
+    }
+    function drawMonthChart(rows) {
+      destroyChart('ch-month');
+      const groups = groupBy(rows.filter(r => r.dateObj), r => monthKey(r.dateObj));
+      const keys = [...groups.keys()].sort();
+      const labels = keys.map(k => monthLabel(anParseDate(k + '-01')));
+      const impr = keys.map(k => totals(groups.get(k)).impressions);
+      const eng = keys.map(k => totals(groups.get(k)).engagements);
+      const ctx = document.getElementById('ch-month'); if (!ctx) return;
+      anCharts['ch-month'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [
+          { label: 'Impressions', data: impr, backgroundColor: 'rgba(124,58,237,0.55)', borderColor: AN_C.signal, borderWidth: 1, yAxisID: 'y', order: 2 },
+          { label: 'Engagements', data: eng, type: 'line', borderColor: AN_C.green, backgroundColor: AN_C.green, tension: 0.3, yAxisID: 'y1', pointRadius: 3, order: 1 }
+        ] },
+        options: baseOpts({ scales: {
+          x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 } }, grid: { color: AN_C.grid } },
+          y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } },
+          y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Engagements', color: AN_C.green, font: { size: 9 } } }
+        } })
+      });
+    }
+    function drawTimelineChart(rows) {
+      destroyChart('ch-timeline');
+      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
+      const labels = dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
+      const ctx = document.getElementById('ch-timeline'); if (!ctx) return;
+      anCharts['ch-timeline'] = new Chart(ctx, {
+        type: 'line',
+        data: { labels, datasets: [{ label: 'Impressions', data: dated.map(r => r.impressions), borderColor: AN_C.signal, backgroundColor: 'rgba(167,139,250,0.12)', fill: true, tension: 0.25, pointRadius: 2, pointHoverRadius: 5 }] },
+        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: (c) => { const r = dated[c.dataIndex]; return (r.topics || r.postKey || '').slice(0, 50); } } } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 12 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+      });
+    }
+    function drawEngTimeChart(rows) {
+      destroyChart('ch-engtime');
+      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
+      const labels = dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
+      const ctx = document.getElementById('ch-engtime'); if (!ctx) return;
+      anCharts['ch-engtime'] = new Chart(ctx, {
+        type: 'line',
+        data: { labels, datasets: [{ label: 'Engagement Rate %', data: dated.map(r => +r.engRate.toFixed(2)), borderColor: AN_C.green, backgroundColor: 'rgba(74,222,128,0.12)', fill: true, tension: 0.25, pointRadius: 2, pointHoverRadius: 5 }] },
+        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 12 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+      });
+    }
+    function drawGroupChart(rows, id, keyFn, order, color) {
+      destroyChart(id);
+      const groups = groupBy(rows, keyFn);
+      let arr = [];
+      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; arr.push({ k, rate: totals(g).engRate, n: g.length, impr: totals(g).avgImpr }); });
+      if (order) arr.sort((a, b) => order.indexOf(a.k) - order.indexOf(b.k));
+      else arr.sort((a, b) => b.rate - a.rate);
+      const ctx = document.getElementById(id); if (!ctx) return;
+      anCharts[id] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: arr.map(x => x.k), datasets: [{ label: 'Avg Eng. Rate %', data: arr.map(x => +x.rate.toFixed(2)), backgroundColor: color + '99', borderColor: color, borderWidth: 1, borderRadius: 4 }] },
+        options: baseOpts({ indexAxis: order ? 'x' : 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: (c) => `${arr[c.dataIndex].n} post(s) · ${fmtNum(arr[c.dataIndex].impr)} avg impr.` } } }, scales: order ? { x: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true } } : { x: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } } } })
+      });
+    }
+    function drawScatter(rows) {
+      destroyChart('ch-scatter');
+      const ctx = document.getElementById('ch-scatter'); if (!ctx) return;
+      const pts = rows.map(r => ({ x: r.impressions, y: +r.engRate.toFixed(2), t: (r.topics || r.postKey || '').slice(0, 40) }));
+      anCharts['ch-scatter'] = new Chart(ctx, {
+        type: 'scatter',
+        data: { datasets: [{ label: 'Posts', data: pts, backgroundColor: 'rgba(167,139,250,0.6)', borderColor: AN_C.signal, pointRadius: 5, pointHoverRadius: 7 }] },
+        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.t} — ${fmtNum(c.raw.x)} impr, ${c.raw.y}%` } } }, scales: { x: { type: 'linear', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement Rate', color: AN_C.text, font: { size: 9 } } } } })
+      });
+    }
+
+    // ---- CSV export ----------------------------------------------------
+    function anExportCsv() {
+      const rows = analyticsFiltered;
+      if (!rows.length) { showToast('Nothing to export', 'toast-error'); return; }
+      const cols = ['Date', 'Day', 'Format', 'Category', 'Content Topics', 'Impressions', 'Likes', 'Comments', 'Reposts', 'Engagements', 'Engagement Rate %', 'Virality Score', 'Engagement Score', 'Post Link'];
+      const esc = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+      const lines = [cols.join(',')];
+      [...rows].sort((a, b) => (a.dateObj && b.dateObj) ? a.dateObj - b.dateObj : 0).forEach(r => {
+        lines.push([r.dateStr, r.day, r.format, r.category, r.topics, r.impressions, r.likes, r.comments, r.reposts, r.engagements, r.engRate.toFixed(2), r.viralityScore, r.engScore.toFixed(2), r.link].map(esc).join(','));
+      });
+      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `tofler-linkedin-analytics-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast(`Exported ${rows.length} posts to CSV`, 'success');
+      addLogEntry(`Exported ${rows.length} analytics rows to CSV.`);
     }
   </script>
 </body>

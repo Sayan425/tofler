@@ -5,7 +5,8 @@ const progressView = document.getElementById('progress-view');
 const btnStart     = document.getElementById('btn-start');
 const btnReset     = document.getElementById('btn-reset');
 const scrollInput  = document.getElementById('scroll-count');
-const delaySelect  = document.getElementById('delay-select');
+const delayInput   = document.getElementById('delay-input');
+const formatSelect = document.getElementById('format-select');
 const progressBar  = document.getElementById('progress-bar');
 const progressLabel= document.getElementById('progress-label');
 const statusMsg    = document.getElementById('status-msg');
@@ -38,10 +39,17 @@ function updateProgress(current, total) {
 
 btnStart.addEventListener('click', async () => {
   const count = parseInt(scrollInput.value, 10);
-  const delay = parseInt(delaySelect.value, 10);
+  const delay = Math.round(parseFloat(delayInput.value) * 1000);
+  const format = formatSelect.value;
 
-  if (!count || count < 1 || count > 200) {
-    errorMsg.textContent  = 'Enter a number between 1 and 200.';
+  if (!count || count < 1) {
+    errorMsg.textContent  = 'Enter a valid number of scrolls (1 or more).';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  if (!delay || delay < 100) {
+    errorMsg.textContent  = 'Enter a valid delay (at least 0.1 seconds).';
     errorMsg.style.display = 'block';
     return;
   }
@@ -66,8 +74,10 @@ btnStart.addEventListener('click', async () => {
   chrome.runtime.sendMessage({
     type: 'START_CAPTURE',
     tabId: tab.id,
+    url: tab.url,
     count,
-    delay
+    delay,
+    format
   });
 });
 

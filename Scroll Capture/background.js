@@ -5,7 +5,7 @@ let captureSession = null;
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'START_CAPTURE') {
-    startCapture(msg.tabId, msg.count, msg.delay);
+    startCapture(msg.tabId, msg.url, msg.count, msg.delay, msg.format);
   }
   if (msg.type === 'SCROLL_DONE') {
     if (captureSession) captureSession.scrollResolve?.();
@@ -25,8 +25,8 @@ async function ensureContentScript(tabId) {
   if (!resp?.ok) throw new Error('Content script failed. Please refresh the page and try again.');
 }
 
-async function startCapture(tabId, count, delay) {
-  captureSession = { tabId, count, delay, screenshots: [], scrollResolve: null };
+async function startCapture(tabId, url, count, delay, format) {
+  captureSession = { tabId, url, count, delay, format, screenshots: [], scrollResolve: null };
 
   try {
     await ensureContentScript(tabId);
@@ -38,17 +38,26 @@ async function startCapture(tabId, count, delay) {
       chrome.runtime.sendMessage({ type: 'PROGRESS', current: i + 1, total: count }).catch(() => {});
 
       if (i < count - 1) {
+        let didScroll = false;
         await new Promise((resolve) => {
-          captureSession.scrollResolve = resolve;
-          chrome.tabs.sendMessage(tabId, { type: 'DO_SCROLL' });
+          captureSession.scrollResolve = () => { didScroll = true; resolve(); };
+          chrome.tabs.sendMessage(tabId, { type: 'DO_SCROLL' }).catch(() => {});
           setTimeout(resolve, delay + 2000);
         });
+        
+        if (!didScroll) {
+          throw new Error('The page connection broke. Please refresh this page (press F5) and try again!');
+        }
         await sleep(delay);
       }
     }
 
     chrome.runtime.sendMessage({ type: 'PROGRESS', current: count, total: count }).catch(() => {});
-    await buildAndDownloadPDF(captureSession.screenshots);
+    if (captureSession.format === 'image') {
+      await buildAndUploadImage(captureSession.screenshots, captureSession.url);
+    } else {
+      await buildAndDownloadPDF(captureSession.screenshots, captureSession.url);
+    }
     chrome.runtime.sendMessage({ type: 'DONE', total: captureSession.screenshots.length }).catch(() => {});
 
   } catch (err) {
@@ -59,7 +68,7 @@ async function startCapture(tabId, count, delay) {
   captureSession = null;
 }
 
-async function buildAndDownloadPDF(screenshots) {
+async function buildAndDownloadPDF(screenshots, sourceUrl) {
   const { jsPDF } = jspdf;
 
   // Get dimensions via createImageBitmap (works in service workers)
@@ -86,12 +95,71 @@ async function buildAndDownloadPDF(screenshots) {
   // output as base64 string — works fine in service workers
   const base64pdf = pdf.output('datauristring');
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+  const filename = `ScrollCapture_${timestamp}.pdf`;
 
-  await chrome.downloads.download({
-    url: base64pdf,
-    filename: `ScrollCapture_${timestamp}.pdf`,
-    saveAs: false
-  });
+  try {
+    // Convert base64 data URI to Blob for upload
+    const res = await fetch(base64pdf);
+    const blob = await res.blob();
+    
+    const formData = new FormData();
+    formData.append('file', blob, filename);
+    formData.append('timestamp', timestamp);
+    if (sourceUrl) formData.append('url', sourceUrl);
+    
+    const uploadRes = await fetch('https://n8n.srv846064.hstgr.cloud/webhook/linkedin_analytics_update', {
+      method: 'POST',
+      body: formData
+    });
+    
+    if (!uploadRes.ok) {
+      throw new Error(`Upload failed with status ${uploadRes.status}`);
+    }
+  } catch (error) {
+    throw new Error(`Webhook upload failed: ${error.message}`);
+  }
+}
+
+async function buildAndUploadImage(screenshots, sourceUrl) {
+  const firstBlob = await (await fetch(screenshots[0])).blob();
+  const firstBitmap = await createImageBitmap(firstBlob);
+  const imgW = firstBitmap.width;
+  const imgH = firstBitmap.height;
+  firstBitmap.close();
+
+  const totalHeight = imgH * screenshots.length;
+
+  const canvas = new OffscreenCanvas(imgW, totalHeight);
+  const ctx = canvas.getContext('2d');
+
+  for (let i = 0; i < screenshots.length; i++) {
+    const blob = await (await fetch(screenshots[i])).blob();
+    const bitmap = await createImageBitmap(blob);
+    ctx.drawImage(bitmap, 0, i * imgH, imgW, imgH);
+    bitmap.close();
+  }
+
+  const finalBlob = await canvas.convertToBlob({ type: 'image/png' });
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+  const filename = `ScrollCapture_${timestamp}.png`;
+
+  const formData = new FormData();
+  formData.append('file', finalBlob, filename);
+  formData.append('timestamp', timestamp);
+  if (sourceUrl) formData.append('url', sourceUrl);
+  
+  try {
+    const uploadRes = await fetch('https://n8n.srv846064.hstgr.cloud/webhook/linkedin_analytics_update', {
+      method: 'POST',
+      body: formData
+    });
+    
+    if (!uploadRes.ok) {
+      throw new Error(`Upload failed with status ${uploadRes.status}`);
+    }
+  } catch (error) {
+    throw new Error(`Webhook upload failed: ${error.message}`);
+  }
 }
 
 function sleep(ms) {

@@ -266,7 +266,7 @@
       <label>How many scrolls?</label>
       <div class="scroll-input-wrap">
         <span>↕</span>
-        <input type="number" id="scroll-count" value="10" min="1" max="200" />
+        <input type="number" id="scroll-count" value="10" min="1" />
         <span style="font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;">scrolls</span>
       </div>
       <div class="hint">Each scroll = 1 screenshot = 1 PDF page</div>
@@ -274,13 +274,20 @@
 
     <div class="section">
       <label>Delay between scrolls</label>
+      <div class="scroll-input-wrap">
+        <span>⏱</span>
+        <input type="number" id="delay-input" value="1.2" min="0.1" step="0.1" />
+        <span style="font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;">seconds</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Output Format</label>
       <div class="delay-row">
-        <span>⏱ Pause after each scroll</span>
-        <select id="delay-select">
-          <option value="800">0.8s</option>
-          <option value="1200" selected>1.2s</option>
-          <option value="2000">2.0s</option>
-          <option value="3000">3.0s</option>
+        <span>📄 File Type</span>
+        <select id="format-select">
+          <option value="pdf">Multi-page PDF</option>
+          <option value="image" selected>Long Stitched Image</option>
         </select>
       </div>
     </div>
