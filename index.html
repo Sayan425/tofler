@@ -1155,6 +1155,22 @@
     .an-empty { text-align: center; padding: 48px 24px; color: var(--text-dim); font-family: var(--mono); font-size: 12px; }
     .an-note { font-family: var(--mono); font-size: 10px; color: var(--text-dimmer); line-height: 1.6; background: var(--amber-dim); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; padding: 10px 14px; display: flex; gap: 8px; align-items: flex-start; }
     .an-note svg { flex-shrink: 0; color: var(--amber); margin-top: 1px; }
+
+    /* Analytics tab bar */
+    .an-tab-bar { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 16px; flex-wrap: wrap; }
+    .an-tab { display: flex; flex-direction: column; gap: 3px; padding: 11px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-dim); transition: all 0.2s; text-align: left; line-height: 1.4; min-width: 200px; }
+    .an-tab:hover { border-color: var(--border2); color: var(--text); }
+    .an-tab.active { background: rgba(124,58,237,0.12); border-color: var(--signal); color: var(--signal); }
+    .an-tab-icon { display: flex; align-items: center; gap: 6px; }
+    .an-tab-desc { font-size: 9.5px; font-family: var(--mono); color: var(--text-dimmer); font-weight: 400; line-height: 1.4; }
+    .an-tab.active .an-tab-desc { color: var(--text-dim); }
+    .an-post-only { transition: opacity 0.2s; }
+    .an-post-only.an-hidden { display: none !important; }
+
+    /* Account performance KPIs & description text */
+    .an-desc { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; }
+    .an-desc b { color: var(--text); }
+    .an-chart-desc { font-family: var(--mono); font-size: 9.5px; color: var(--text-dimmer); margin-top: 6px; line-height: 1.5; }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script>
@@ -1400,10 +1416,22 @@
         <div class="an-sub">
           <span id="an-status">STANDBY</span>
           <span class="status-dot-separator">•</span>
-          <span><b id="an-post-count">0</b> posts analyzed</span>
+          <span><b id="an-post-count">0</b> <span id="an-count-label">records</span></span>
           <span class="status-dot-separator">•</span>
           <span id="an-range-label">All time</span>
         </div>
+      </div>
+
+      <!-- TAB TOGGLE -->
+      <div class="an-tab-bar">
+        <button class="an-tab active" id="tab-btn-account" onclick="anSwitchTab('account')">
+          <div class="an-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Account Performance</div>
+          <span class="an-tab-desc">Daily followers gained, impressions &amp; profile-level engagement</span>
+        </button>
+        <button class="an-tab" id="tab-btn-post" onclick="anSwitchTab('post')">
+          <div class="an-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Post Performance</div>
+          <span class="an-tab-desc">Per-post reach, engagement rate, virality, format &amp; category deep-dive</span>
+        </button>
       </div>
 
       <!-- CONTROLS -->
@@ -1420,15 +1448,15 @@
           <span style="color:var(--text-dimmer);font-size:11px;">→</span>
           <input type="date" id="an-to" class="an-date" onchange="anCustomDate()" title="To date">
         </div>
-        <div class="an-ctrl-row" id="an-format-row">
+        <div class="an-ctrl-row an-post-only" id="an-format-row">
           <span class="an-ctrl-label">Format</span>
           <div class="an-chip-group" id="an-format-chips"></div>
         </div>
-        <div class="an-ctrl-row" id="an-cat-row">
+        <div class="an-ctrl-row an-post-only" id="an-cat-row">
           <span class="an-ctrl-label">Category</span>
           <div class="an-chip-group" id="an-cat-chips"></div>
         </div>
-        <div class="an-ctrl-row" id="an-day-row">
+        <div class="an-ctrl-row an-post-only" id="an-day-row">
           <span class="an-ctrl-label">Day</span>
           <div class="an-chip-group" id="an-day-chips"></div>
         </div>
@@ -1443,7 +1471,7 @@
 
       <!-- BODY (rendered by JS) -->
       <div id="an-body">
-        <div class="an-empty" id="an-loading">
+        <div class="an-empty">
           <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
             <div style="width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--signal);border-radius:50%;animation:spin 1s linear infinite;"></div>
             <span>Requesting analytics from data engine…</span>
@@ -2266,11 +2294,13 @@
     /* ===================================================================
        LINKEDIN ANALYTICS ENGINE
        =================================================================== */
-    let analyticsRaw = [];        // normalized post objects (all)
-    let analyticsFiltered = [];   // after filters applied
+    let accountRaw = [];
+    let accountFiltered = [];
+    let postRaw = [];
+    let postFiltered = [];
     let analyticsLoaded = false;
-    let hasFollowerData = false;
-    const anCharts = {};          // Chart.js instances by id
+    let anTab = 'account';
+    const anCharts = {};
     const anFilters = { from: null, to: null, formats: new Set(), categories: new Set(), days: new Set(), search: '' };
     let anSort = { key: 'dateObj', dir: 'desc' };
     let anGroupDim = 'Day';
@@ -2307,6 +2337,18 @@
     function weekStart(d) { const x = new Date(d); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day); x.setHours(0,0,0,0); return x; }
     function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
+    // ---- tab switch ----------------------------------------------------
+    function anSwitchTab(tab) {
+      anTab = tab;
+      document.getElementById('tab-btn-account').classList.toggle('active', tab === 'account');
+      document.getElementById('tab-btn-post').classList.toggle('active', tab === 'post');
+      document.querySelectorAll('.an-post-only').forEach(el => el.classList.toggle('an-hidden', tab === 'account'));
+      const lbl = document.getElementById('an-count-label');
+      if (lbl) lbl.innerText = tab === 'account' ? 'days tracked' : 'posts analyzed';
+      if (!analyticsLoaded) { fetchAnalytics(); return; }
+      if (tab === 'account') applyAccountFilters(); else applyAnalyticsFilters();
+    }
+
     // ---- fetch ---------------------------------------------------------
     async function fetchAnalytics() {
       analyticsLoaded = true;
@@ -2317,22 +2359,46 @@
         const response = await fetch(CONFIG.webhookAnalytics, { method: 'GET', mode: 'cors', headers: { 'Accept': 'application/json' } });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
-        const rows = extractPostsArray(data);
-        analyticsRaw = rows.map(normalizeAnalyticsRow).filter(r => r.impressions > 0 || r.engagements > 0 || r.dateObj);
-        analyticsRaw.sort((a, b) => (a.dateObj && b.dateObj) ? a.dateObj - b.dateObj : 0);
-        hasFollowerData = analyticsRaw.some(r => r.followers > 0 || r.followerGain !== 0);
+        const wrapper = Array.isArray(data) ? data[0] : data;
+
+        // Account performance — array of daily rows
+        const acctArr = wrapper['Account Performance Data'] || [];
+        accountRaw = acctArr.map(normalizeAccountRow).filter(r => r.dateObj);
+        accountRaw.sort((a, b) => a.dateObj - b.dateObj);
+
+        // Post performance — stored as JSON string in the webhook response
+        let postArr = [];
+        const postSrc = wrapper['Post Performance Data'];
+        if (typeof postSrc === 'string') { try { postArr = JSON.parse(postSrc); } catch(e) { postArr = []; } }
+        else if (Array.isArray(postSrc)) { postArr = postSrc; }
+        postRaw = postArr.map(normalizeAnalyticsRow).filter(r => r.impressions > 0 || r.engagements > 0 || r.dateObj);
+        postRaw.sort((a, b) => (a.dateObj && b.dateObj) ? a.dateObj - b.dateObj : 0);
+
         document.getElementById('an-status').innerText = 'CONNECTED';
-        addLogEntry(`Analytics synced: ${analyticsRaw.length} posts.`);
-        showToast(`Loaded ${analyticsRaw.length} posts of analytics`, 'success');
+        addLogEntry(`Analytics synced: ${accountRaw.length} account days, ${postRaw.length} posts.`);
+        showToast(`Loaded ${accountRaw.length} days + ${postRaw.length} posts`, 'success');
         buildFilterChips();
-        applyAnalyticsFilters();
+        if (anTab === 'account') applyAccountFilters(); else applyAnalyticsFilters();
       } catch (err) {
-        analyticsRaw = [];
+        accountRaw = []; postRaw = [];
         document.getElementById('an-status').innerText = 'OFFLINE';
         addLogEntry(`<span style="color: var(--red);">Analytics sync failed: ${err.message || err}</span>`);
         showToast('Analytics webhook offline.', 'toast-error');
         document.getElementById('an-body').innerHTML = `<div class="an-empty"><div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><div style="color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;">Couldn't reach the analytics engine</div><div>${escapeHtml(err.message || String(err))}</div><button class="an-btn" onclick="fetchAnalytics()" style="margin-top:8px;">Retry</button></div></div>`;
       }
+    }
+
+    function normalizeAccountRow(r) {
+      const dateStr = String(anGet(r, ['Date', 'date']) || '');
+      const dateObj = anParseDate(dateStr);
+      const day = dateObj ? dateObj.toLocaleDateString('en-US', { weekday: 'long' }) : '—';
+      return {
+        dateStr, dateObj, day,
+        monthKey: dateObj ? monthKey(dateObj) : 'Unknown',
+        followersGained: anNum(r['Followers gained'] || r['Followers Gained'] || r['followers_gained'] || 0),
+        impressions: anNum(r['Impressions'] || r['impressions'] || 0),
+        engagement: anNum(r['Engagement'] || r['engagement'] || 0)
+      };
     }
 
     function normalizeAnalyticsRow(r) {
@@ -2371,7 +2437,7 @@
 
     // ---- filter chips --------------------------------------------------
     function uniqueSorted(key, order) {
-      const set = new Set(analyticsRaw.map(r => r[key]).filter(v => v && v !== '—'));
+      const set = new Set(postRaw.map(r => r[key]).filter(v => v && v !== '—'));
       const arr = [...set];
       if (order) arr.sort((a, b) => order.indexOf(a) - order.indexOf(b));
       else arr.sort();
@@ -2397,7 +2463,7 @@
       else { set.add(val); btn.classList.add('active'); }
       applyAnalyticsFilters();
     }
-    function anOnSearch() { anFilters.search = document.getElementById('an-search').value.trim().toLowerCase(); applyAnalyticsFilters(); }
+    function anOnSearch() { anFilters.search = document.getElementById('an-search').value.trim().toLowerCase(); if (anTab === 'account') applyAccountFilters(); else applyAnalyticsFilters(); }
 
     // ---- date presets --------------------------------------------------
     function anSetPreset(preset, btn) {
@@ -2417,14 +2483,14 @@
       anFilters.from = from; anFilters.to = to;
       document.getElementById('an-from').value = from ? from.toISOString().slice(0, 10) : '';
       document.getElementById('an-to').value = to ? to.toISOString().slice(0, 10) : '';
-      applyAnalyticsFilters();
+      if (anTab === 'account') applyAccountFilters(); else applyAnalyticsFilters();
     }
     function anCustomDate() {
       document.querySelectorAll('.an-preset').forEach(b => b.classList.remove('active'));
       const f = document.getElementById('an-from').value, t = document.getElementById('an-to').value;
       anFilters.from = f ? new Date(f + 'T00:00:00') : null;
       anFilters.to = t ? new Date(t + 'T23:59:59') : null;
-      applyAnalyticsFilters();
+      if (anTab === 'account') applyAccountFilters(); else applyAnalyticsFilters();
     }
     function anResetFilters() {
       anFilters.from = null; anFilters.to = null; anFilters.search = '';
@@ -2434,12 +2500,20 @@
       document.querySelectorAll('.an-preset').forEach(b => b.classList.remove('active'));
       const allBtn = document.querySelector('.an-preset[data-preset="all"]'); if (allBtn) allBtn.classList.add('active');
       buildFilterChips();
-      applyAnalyticsFilters();
+      if (anTab === 'account') applyAccountFilters(); else applyAnalyticsFilters();
     }
 
     // ---- apply filters -------------------------------------------------
+    function applyAccountFilters() {
+      accountFiltered = accountRaw.filter(r => {
+        if (anFilters.from && (!r.dateObj || r.dateObj < anFilters.from)) return false;
+        if (anFilters.to && (!r.dateObj || r.dateObj > anFilters.to)) return false;
+        return true;
+      });
+      renderAccountAnalytics();
+    }
     function applyAnalyticsFilters() {
-      analyticsFiltered = analyticsRaw.filter(r => {
+      postFiltered = postRaw.filter(r => {
         if (anFilters.from && (!r.dateObj || r.dateObj < anFilters.from)) return false;
         if (anFilters.to && (!r.dateObj || r.dateObj > anFilters.to)) return false;
         if (anFilters.formats.size && !anFilters.formats.has(r.format)) return false;
@@ -2451,7 +2525,7 @@
         }
         return true;
       });
-      renderAnalytics();
+      renderPostAnalytics();
     }
 
     // ---- aggregation helpers ------------------------------------------
@@ -2482,29 +2556,122 @@
       return ((m2 - m1) / Math.abs(m1)) * 100;
     }
 
-    // ---- main render ---------------------------------------------------
-    function renderAnalytics() {
-      const rows = analyticsFiltered;
+    // ---- account performance render ------------------------------------
+    function renderAccountAnalytics() {
+      const rows = accountFiltered;
       document.getElementById('an-post-count').innerText = rows.length;
+      const lbl = document.getElementById('an-count-label'); if (lbl) lbl.innerText = 'days tracked';
       document.getElementById('an-range-label').innerText =
         (anFilters.from || anFilters.to)
           ? `${anFilters.from ? anFilters.from.toLocaleDateString('en-GB') : '…'} → ${anFilters.to ? anFilters.to.toLocaleDateString('en-GB') : '…'}`
           : 'All time';
-
       const body = document.getElementById('an-body');
-      if (analyticsRaw.length === 0) { body.innerHTML = `<div class="an-empty">No analytics data returned by the webhook yet.</div>`; return; }
+      if (accountRaw.length === 0) { body.innerHTML = `<div class="an-empty">No account performance data returned yet. Refresh to pull the latest data.</div>`; return; }
+      if (rows.length === 0) { body.innerHTML = `<div class="an-empty">No data matches the selected date range.<br><button class="an-btn" style="margin-top:14px;" onclick="anResetFilters()">Clear filters</button></div>`; return; }
+
+      const totalFollowers = rows.reduce((s, r) => s + r.followersGained, 0);
+      const totalImpr = rows.reduce((s, r) => s + r.impressions, 0);
+      const totalEng = rows.reduce((s, r) => s + r.engagement, 0);
+      const avgDailyImpr = rows.length ? totalImpr / rows.length : 0;
+      const avgDailyFollowers = rows.length ? totalFollowers / rows.length : 0;
+      const avgEngRate = totalImpr ? (totalEng / totalImpr) * 100 : 0;
+      const byMonth = groupBy(rows, r => r.monthKey);
+      let bestMonth = null, bestMonthVal = -Infinity;
+      byMonth.forEach((g, k) => { const s = g.reduce((s2, r) => s2 + r.followersGained, 0); if (s > bestMonthVal) { bestMonthVal = s; bestMonth = k; } });
+      const bestMonthLabel = bestMonth ? monthLabel(anParseDate(bestMonth + '-01')) : '—';
+      const byDay = groupBy(rows, r => r.day);
+      let bestDay = null, bestDayVal = -Infinity;
+      byDay.forEach((g, k) => { const avg = g.reduce((s2, r) => s2 + r.followersGained, 0) / g.length; if (avg > bestDayVal) { bestDayVal = avg; bestDay = k; } });
+
+      body.innerHTML = `
+        <div class="an-desc"><b>Account Performance</b> tracks your LinkedIn profile's daily growth — followers gained, profile impressions, and total engagement. Use the date range filters to zoom into specific campaigns or time windows and understand what's driving your audience growth.</div>
+        <div class="kpi-grid">
+          ${kpiCard('Total Followers Gained', (totalFollowers >= 0 ? '+' : '') + fmtNum(totalFollowers), deltaHtml(halfDelta(rows, r => r.followersGained)))}
+          ${kpiCard('Total Impressions', fmtNum(totalImpr), deltaHtml(halfDelta(rows, r => r.impressions)))}
+          ${kpiCard('Total Engagement', fmtNum(totalEng), deltaHtml(halfDelta(rows, r => r.engagement)))}
+          ${kpiCard('Avg Engagement Rate', fmtPct(avgEngRate), 'engagement ÷ impressions')}
+          ${kpiCard('Avg Daily Impressions', fmtNum(avgDailyImpr), 'per day in range')}
+          ${kpiCard('Avg Daily Followers', '+' + fmtNum(avgDailyFollowers), 'per active day')}
+          ${kpiCard('Best Month', bestMonthLabel, '+' + fmtNum(bestMonthVal) + ' followers')}
+          ${kpiCard('Best Day to Grow', bestDay || '—', 'avg +' + fmtNum(bestDayVal) + ' followers')}
+        </div>
+        <div class="an-sect"><h2>Follower Growth</h2><span class="line"></span><span class="tag">growth</span></div>
+        <div class="an-card"><div class="an-card-title"><span>Cumulative Followers Gained</span><span class="hint">running total over time</span></div><div class="an-chart-box tall"><canvas id="ch-cumul-followers"></canvas></div><div class="an-chart-desc">A consistently rising curve means your content strategy is working. Plateaus indicate periods with low posting frequency or low-resonance content.</div></div>
+        <div class="an-grid-2" style="margin-top:0;">
+          <div class="an-card"><div class="an-card-title"><span>Daily Followers Gained</span><span class="hint">day-by-day</span></div><div class="an-chart-box"><canvas id="ch-daily-followers"></canvas></div><div class="an-chart-desc">Spikes usually correlate with a viral or high-reach post. Cross-reference with Post Performance to find which content triggered the growth.</div></div>
+          <div class="an-card"><div class="an-card-title"><span>Best Day to Grow</span><span class="hint">avg followers per weekday</span></div><div class="an-chart-box"><canvas id="ch-dow-followers"></canvas></div><div class="an-chart-desc">Publish your strongest content on the days your audience is most likely to follow. Use this to time your best posts.</div></div>
+        </div>
+        <div class="an-sect"><h2>Reach &amp; Engagement</h2><span class="line"></span><span class="tag">impressions</span></div>
+        <div class="an-card"><div class="an-card-title"><span>Daily Impressions &amp; Engagement</span><span class="hint">profile-level reach trend</span></div><div class="an-chart-box tall"><canvas id="ch-acct-impr"></canvas></div><div class="an-chart-desc">High impressions with flat engagement may signal you're reaching the wrong audience. Ideal: both curves rise together.</div></div>
+        <div class="an-grid-2" style="margin-top:0;">
+          <div class="an-card"><div class="an-card-title"><span>Monthly Summary</span><span class="hint">followers + impressions by month</span></div><div class="an-chart-box"><canvas id="ch-acct-monthly"></canvas></div><div class="an-chart-desc">Compare month-over-month to spot seasonal patterns or the impact of campaigns. Bars = impressions; line = followers gained.</div></div>
+          <div class="an-card"><div class="an-card-title"><span>Impressions vs Engagement</span><span class="hint">each dot = one day</span></div><div class="an-chart-box"><canvas id="ch-acct-scatter"></canvas></div><div class="an-chart-desc">Days in the top-right corner are your highest-value content days — strong reach AND deep engagement. Aim to have more of these.</div></div>
+        </div>
+        ${acctInsightsSection(rows)}
+        ${acctDataTable(rows)}`;
+      requestAnimationFrame(() => { drawAccountCharts(rows); });
+    }
+
+    function acctInsightsSection(rows) {
+      const I = {
+        bolt: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+        trend: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>`,
+        cal: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+        eye: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+      };
+      const cards = [];
+      const dF = halfDelta(rows, r => r.followersGained);
+      if (dF !== null) { const up = dF >= 0; cards.push(insightCard(I.trend, up ? 'Follower growth accelerating' : 'Follower growth slowing', (up ? '+' : '') + dF.toFixed(0) + '%', `Avg daily followers gained in the second half of the period vs the first. ${up ? 'Keep up the momentum.' : 'Review what changed mid-period.'}`)); }
+      const dI = halfDelta(rows, r => r.impressions);
+      if (dI !== null) { const up = dI >= 0; cards.push(insightCard(I.eye, up ? 'Reach is expanding' : 'Reach is contracting', (up ? '+' : '') + dI.toFixed(0) + '%', `Profile impressions — second half vs first. ${up ? 'Content is spreading further.' : 'Post more frequently or experiment with content types.'}`)); }
+      const byDay = groupBy(rows, r => r.day);
+      let bestDay = null, bestDayVal = -Infinity;
+      byDay.forEach((g, k) => { if (k === '—') return; const avg = g.reduce((s, r) => s + r.followersGained, 0) / g.length; if (avg > bestDayVal) { bestDayVal = avg; bestDay = k; } });
+      if (bestDay) cards.push(insightCard(I.cal, 'Best day for follower growth', bestDay, `Averages <b>+${fmtNum(bestDayVal)}</b> followers. Schedule your most compelling content on this day to maximise growth.`));
+      const topDay = [...rows].sort((a, b) => b.impressions - a.impressions)[0];
+      if (topDay) cards.push(insightCard(I.bolt, 'Peak reach day', topDay.dateObj ? topDay.dateObj.toLocaleDateString('en-GB') : topDay.dateStr, `${fmtNum(topDay.impressions)} impressions, ${fmtNum(topDay.followersGained)} followers gained. Investigate what content was active this day.`));
+      return `<div class="an-sect"><h2>Key Insights</h2><span class="line"></span><span class="tag">auto</span></div><div class="insight-grid">${cards.join('')}</div>`;
+    }
+
+    function acctDataTable(rows) {
+      const sorted = [...rows].sort((a, b) => b.dateObj - a.dateObj);
+      const bodyRows = sorted.map(r => `<tr>
+        <td>${r.dateObj ? r.dateObj.toLocaleDateString('en-GB') : r.dateStr}</td>
+        <td>${r.day}</td>
+        <td class="pos">${r.followersGained >= 0 ? '+' : ''}${fmtNum(r.followersGained)}</td>
+        <td>${fmtNum(r.impressions)}</td>
+        <td>${fmtNum(r.engagement)}</td>
+        <td>${r.impressions ? fmtPct((r.engagement / r.impressions) * 100) : '—'}</td>
+      </tr>`).join('');
+      return `<div class="an-sect"><h2>Daily Data</h2><span class="line"></span><span class="tag">${rows.length} rows</span></div>
+        <div class="an-card" style="padding:0;"><div class="an-table-scroll">
+          <table class="an-table"><thead><tr><th>Date</th><th>Day</th><th>Followers Gained</th><th>Impressions</th><th>Engagement</th><th>Eng. Rate</th></tr></thead><tbody>${bodyRows}</tbody></table>
+        </div></div>`;
+    }
+
+    // ---- post performance render ---------------------------------------
+    function renderPostAnalytics() {
+      const rows = postFiltered;
+      document.getElementById('an-post-count').innerText = rows.length;
+      const lbl = document.getElementById('an-count-label'); if (lbl) lbl.innerText = 'posts analyzed';
+      document.getElementById('an-range-label').innerText =
+        (anFilters.from || anFilters.to)
+          ? `${anFilters.from ? anFilters.from.toLocaleDateString('en-GB') : '…'} → ${anFilters.to ? anFilters.to.toLocaleDateString('en-GB') : '…'}`
+          : 'All time';
+      const body = document.getElementById('an-body');
+      if (postRaw.length === 0) { body.innerHTML = `<div class="an-empty">No post performance data returned by the webhook yet.</div>`; return; }
       if (rows.length === 0) { body.innerHTML = `<div class="an-empty">No posts match the current filters.<br><button class="an-btn" style="margin-top:14px;" onclick="anResetFilters()">Clear filters</button></div>`; return; }
 
       const t = totals(rows);
       body.innerHTML =
+        `<div class="an-desc"><b>Post Performance</b> breaks down every individual LinkedIn post — reach (impressions), engagement (likes, comments, reposts), virality score, and engagement rate. Use the format, category, and day filters to drill into what content strategy is working best.</div>` +
         kpiSection(rows, t) +
-        followerNote() +
         insightsSection(rows) +
         `<div class="an-sect"><h2>Growth Over Time</h2><span class="line"></span><span class="tag">trend</span></div>
-         <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagement</span><span class="hint">are we growing?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div></div>` +
+         <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagement</span><span class="hint">are we growing?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div><div class="an-chart-desc">Bars = total impressions per month; green line = total engagements. Target: both rising together.</div></div>` +
         `<div class="an-grid-2" style="margin-top:0;">
-           <div class="an-card"><div class="an-card-title"><span>Per-Post Impressions Timeline</span></div><div class="an-chart-box"><canvas id="ch-timeline"></canvas></div></div>
-           <div class="an-card"><div class="an-card-title"><span>Engagement Rate Over Time</span><span class="hint">%</span></div><div class="an-chart-box"><canvas id="ch-engtime"></canvas></div></div>
+           <div class="an-card"><div class="an-card-title"><span>Per-Post Impressions Timeline</span></div><div class="an-chart-box"><canvas id="ch-timeline"></canvas></div><div class="an-chart-desc">Each point is a post. Hover to see the topic. Gaps = periods without publishing.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Engagement Rate Over Time</span><span class="hint">%</span></div><div class="an-chart-box"><canvas id="ch-engtime"></canvas></div><div class="an-chart-desc">Engagement rate = (likes+comments+reposts) ÷ impressions. B2B LinkedIn benchmark: above 2% is strong.</div></div>
          </div>` +
         `<div class="an-sect"><h2>What Works Best</h2><span class="line"></span><span class="tag">decisions</span></div>
          <div class="an-grid-2">
@@ -2513,11 +2680,16 @@
            <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div></div>
            <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div></div>
          </div>` +
+        `<div class="an-sect"><h2>Engagement Breakdown</h2><span class="line"></span><span class="tag">mix</span></div>
+         <div class="an-grid-2">
+           <div class="an-card"><div class="an-card-title"><span>Likes / Comments / Reposts Split</span><span class="hint">total engagement composition</span></div><div class="an-chart-box"><canvas id="ch-eng-donut"></canvas></div><div class="an-chart-desc">Comments = deep resonance. Reposts = shareability. Likes = broad approval.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Format Distribution</span><span class="hint">posts by content type</span></div><div class="an-chart-box"><canvas id="ch-fmt-donut"></canvas></div><div class="an-chart-desc">Is your format mix balanced? Combine with the engagement chart to find gaps.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Mix</span><span class="hint">posts by content category</span></div><div class="an-chart-box"><canvas id="ch-cat-donut"></canvas></div><div class="an-chart-desc">Is the content calendar skewed toward one category? Diversify to maintain audience interest.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Likes vs Comments per Post</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-lc-scatter"></canvas></div><div class="an-chart-desc">Top-right posts drive both broad likes and deep comments — your highest-resonance content.</div></div>
+         </div>` +
         groupSection(rows) +
         leaderboardSection(rows) +
         tableSection(rows);
-
-      // draw charts after DOM exists
       requestAnimationFrame(() => { drawAllCharts(rows); });
     }
 
@@ -2540,12 +2712,8 @@
         ${kpiCard('Avg Impressions / Post', fmtNum(t.avgImpr), deltaHtml(halfDelta(rows, r => r.impressions)))}
         ${kpiCard('Total Comments', fmtNum(t.comments), `${fmtNum(t.reposts)} reposts`)}
         ${kpiCard('Avg Virality Score', t.avgVir.toFixed(1), deltaHtml(halfDelta(rows, r => r.viralityScore)))}
-        ${hasFollowerData ? kpiCard('Follower Growth', '+' + fmtNum(t.followerGain), 'in selected period') : kpiCard('Reposts (Shares)', fmtNum(t.reposts), `amplification signal`)}
+        ${kpiCard('Reposts (Shares)', fmtNum(t.reposts), 'amplification signal')}
       </div>`;
-    }
-    function followerNote() {
-      if (hasFollowerData) return '';
-      return `<div class="an-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span><b>Follower growth isn't in the data feed yet.</b> This dashboard auto-detects a <code>Followers</code> or <code>Follower Growth</code> column from the webhook and will surface follower-growth KPIs &amp; charts automatically once your n8n sheet includes it. Everything below is computed from impressions, likes, comments, reposts &amp; the virality/engagement scores you currently send.</span></div>`;
     }
 
     // ---- insights ------------------------------------------------------
@@ -2621,7 +2789,7 @@
         </select></div>
         <div class="an-card"><div class="an-table-scroll"><div id="an-group-table"></div></div></div>`;
     }
-    function anChangeGroup(dim) { anGroupDim = dim; renderGroupTable(analyticsFiltered); }
+    function anChangeGroup(dim) { anGroupDim = dim; renderGroupTable(postFiltered); }
     function groupKeyFn(dim) {
       if (dim === 'Day') return r => r.day;
       if (dim === 'Format') return r => r.format;
@@ -2700,7 +2868,7 @@
     function anSortBy(key) {
       if (anSort.key === key) anSort.dir = anSort.dir === 'desc' ? 'asc' : 'desc';
       else { anSort.key = key; anSort.dir = (key === 'topics' || key === 'format' || key === 'category') ? 'asc' : 'desc'; }
-      renderDataTable(analyticsFiltered);
+      renderDataTable(postFiltered);
     }
     function renderDataTable(rows) {
       const el = document.getElementById('an-data-table');
@@ -2747,6 +2915,7 @@
       drawGroupChart(rows, 'ch-format', r => r.format, null, AN_C.blue);
       drawGroupChart(rows, 'ch-cat', r => r.category, null, AN_C.amber);
       drawScatter(rows);
+      drawEngDonut(rows); drawFmtDonut(rows); drawCatDonut(rows); drawLCScatter(rows);
       renderGroupTable(rows);
       renderDataTable(rows);
     }
@@ -2818,24 +2987,159 @@
       });
     }
 
+    // ---- new post charts -----------------------------------------------
+    function drawEngDonut(rows) {
+      destroyChart('ch-eng-donut');
+      const ctx = document.getElementById('ch-eng-donut'); if (!ctx) return;
+      const t = totals(rows);
+      anCharts['ch-eng-donut'] = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels: ['Likes', 'Comments', 'Reposts'], datasets: [{ data: [t.likes, t.comments, t.reposts], backgroundColor: ['rgba(167,139,250,0.8)','rgba(74,222,128,0.8)','rgba(245,166,35,0.8)'], borderColor: ['#a78bfa','#4ade80','#f5a623'], borderWidth: 1 }] },
+        options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'bottom', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 12 } }, tooltip: { backgroundColor: '#15112a', borderColor: '#2a2350', borderWidth: 1, titleColor: '#fff', bodyColor: '#e8e2ff', callbacks: { label: c => `${c.label}: ${fmtNum(c.raw)} (${t.engagements ? ((c.raw/t.engagements)*100).toFixed(1) : 0}%)` } } } }
+      });
+    }
+    function drawFmtDonut(rows) {
+      destroyChart('ch-fmt-donut');
+      const ctx = document.getElementById('ch-fmt-donut'); if (!ctx) return;
+      const byFmt = groupBy(rows, r => r.format);
+      const labels = [], data = [];
+      byFmt.forEach((g, k) => { if (k !== '—') { labels.push(k); data.push(g.length); } });
+      const colors = ['rgba(167,139,250,0.8)','rgba(96,165,250,0.8)','rgba(74,222,128,0.8)','rgba(245,166,35,0.8)','rgba(248,113,113,0.8)','rgba(200,150,100,0.8)'];
+      anCharts['ch-fmt-donut'] = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels, datasets: [{ data, backgroundColor: colors.slice(0, labels.length), borderColor: ['#a78bfa','#60a5fa','#4ade80','#f5a623','#f87171','#c89664'].slice(0, labels.length), borderWidth: 1 }] },
+        options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'bottom', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 12 } }, tooltip: { backgroundColor: '#15112a', borderColor: '#2a2350', borderWidth: 1, titleColor: '#fff', bodyColor: '#e8e2ff' } } }
+      });
+    }
+    function drawCatDonut(rows) {
+      destroyChart('ch-cat-donut');
+      const ctx = document.getElementById('ch-cat-donut'); if (!ctx) return;
+      const byCat = groupBy(rows, r => r.category);
+      const labels = [], data = [];
+      byCat.forEach((g, k) => { if (k !== '—') { labels.push(k); data.push(g.length); } });
+      const colors = ['rgba(245,166,35,0.8)','rgba(167,139,250,0.8)','rgba(96,165,250,0.8)','rgba(74,222,128,0.8)','rgba(248,113,113,0.8)','rgba(200,100,200,0.8)'];
+      anCharts['ch-cat-donut'] = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels, datasets: [{ data, backgroundColor: colors.slice(0, labels.length), borderColor: ['#f5a623','#a78bfa','#60a5fa','#4ade80','#f87171','#c864c8'].slice(0, labels.length), borderWidth: 1 }] },
+        options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'bottom', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 12 } }, tooltip: { backgroundColor: '#15112a', borderColor: '#2a2350', borderWidth: 1, titleColor: '#fff', bodyColor: '#e8e2ff' } } }
+      });
+    }
+    function drawLCScatter(rows) {
+      destroyChart('ch-lc-scatter');
+      const ctx = document.getElementById('ch-lc-scatter'); if (!ctx) return;
+      const pts = rows.map(r => ({ x: r.likes, y: r.comments, t: (r.topics || r.postKey || '').slice(0, 40) }));
+      anCharts['ch-lc-scatter'] = new Chart(ctx, {
+        type: 'scatter',
+        data: { datasets: [{ label: 'Posts', data: pts, backgroundColor: 'rgba(74,222,128,0.55)', borderColor: AN_C.green, pointRadius: 4, pointHoverRadius: 6 }] },
+        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.raw.t} — ${c.raw.x} likes, ${c.raw.y} cmts` } } }, scales: { x: { type: 'linear', ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, title: { display: true, text: 'Likes', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Comments', color: AN_C.text, font: { size: 9 } } } } })
+      });
+    }
+
+    // ---- account charts ------------------------------------------------
+    function drawAccountCharts(rows) {
+      if (typeof Chart === 'undefined') return;
+      drawCumulFollowers(rows); drawDailyFollowers(rows); drawDowFollowers(rows);
+      drawAcctImpressions(rows); drawAcctMonthly(rows); drawAcctScatter(rows);
+    }
+    function drawCumulFollowers(rows) {
+      destroyChart('ch-cumul-followers');
+      const ctx = document.getElementById('ch-cumul-followers'); if (!ctx) return;
+      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
+      let cumul = 0;
+      const data = dated.map(r => { cumul += r.followersGained; return cumul; });
+      anCharts['ch-cumul-followers'] = new Chart(ctx, {
+        type: 'line',
+        data: { labels: dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })), datasets: [{ label: 'Cumulative Followers', data, borderColor: AN_C.signal, backgroundColor: 'rgba(167,139,250,0.15)', fill: true, tension: 0.3, pointRadius: 2, pointHoverRadius: 5 }] },
+        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 14 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => '+' + fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+      });
+    }
+    function drawDailyFollowers(rows) {
+      destroyChart('ch-daily-followers');
+      const ctx = document.getElementById('ch-daily-followers'); if (!ctx) return;
+      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
+      anCharts['ch-daily-followers'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })), datasets: [{ label: 'Followers Gained', data: dated.map(r => r.followersGained), backgroundColor: 'rgba(124,58,237,0.6)', borderColor: AN_C.signal, borderWidth: 1, borderRadius: 3 }] },
+        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 14 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+      });
+    }
+    function drawDowFollowers(rows) {
+      destroyChart('ch-dow-followers');
+      const ctx = document.getElementById('ch-dow-followers'); if (!ctx) return;
+      const byDay = groupBy(rows, r => r.day);
+      const arr = DAY_ORDER.map(d => { const g = byDay.get(d) || []; return { d, avg: g.length ? g.reduce((s, r) => s + r.followersGained, 0) / g.length : 0 }; });
+      anCharts['ch-dow-followers'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: arr.map(x => x.d.slice(0, 3)), datasets: [{ label: 'Avg Followers', data: arr.map(x => +x.avg.toFixed(1)), backgroundColor: 'rgba(96,165,250,0.65)', borderColor: AN_C.blue, borderWidth: 1, borderRadius: 4 }] },
+        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+      });
+    }
+    function drawAcctImpressions(rows) {
+      destroyChart('ch-acct-impr');
+      const ctx = document.getElementById('ch-acct-impr'); if (!ctx) return;
+      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
+      anCharts['ch-acct-impr'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })), datasets: [
+          { label: 'Impressions', data: dated.map(r => r.impressions), backgroundColor: 'rgba(124,58,237,0.45)', borderColor: AN_C.signal, borderWidth: 1, yAxisID: 'y', order: 2 },
+          { label: 'Engagement', data: dated.map(r => r.engagement), type: 'line', borderColor: AN_C.green, backgroundColor: 'transparent', tension: 0.3, yAxisID: 'y1', pointRadius: 2, order: 1 }
+        ] },
+        options: baseOpts({ scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 14 }, grid: { color: AN_C.grid } }, y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Engagement', color: AN_C.green, font: { size: 9 } } } } })
+      });
+    }
+    function drawAcctMonthly(rows) {
+      destroyChart('ch-acct-monthly');
+      const ctx = document.getElementById('ch-acct-monthly'); if (!ctx) return;
+      const byMonth = groupBy(rows.filter(r => r.dateObj), r => monthKey(r.dateObj));
+      const keys = [...byMonth.keys()].sort();
+      anCharts['ch-acct-monthly'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: keys.map(k => monthLabel(anParseDate(k + '-01'))), datasets: [
+          { label: 'Impressions', data: keys.map(k => byMonth.get(k).reduce((s, r) => s + r.impressions, 0)), backgroundColor: 'rgba(124,58,237,0.55)', borderColor: AN_C.signal, borderWidth: 1, yAxisID: 'y', order: 2 },
+          { label: 'Followers Gained', data: keys.map(k => byMonth.get(k).reduce((s, r) => s + r.followersGained, 0)), type: 'line', borderColor: AN_C.amber, backgroundColor: 'transparent', tension: 0.3, yAxisID: 'y1', pointRadius: 4, pointHoverRadius: 6, order: 1 }
+        ] },
+        options: baseOpts({ scales: { x: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } }, y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true }, y1: { position: 'right', ticks: { color: AN_C.amber, font: { size: 9 } }, grid: { drawOnChartArea: false }, beginAtZero: true } } })
+      });
+    }
+    function drawAcctScatter(rows) {
+      destroyChart('ch-acct-scatter');
+      const ctx = document.getElementById('ch-acct-scatter'); if (!ctx) return;
+      const pts = rows.map(r => ({ x: r.impressions, y: r.engagement, d: r.dateObj ? r.dateObj.toLocaleDateString('en-GB') : r.dateStr }));
+      anCharts['ch-acct-scatter'] = new Chart(ctx, {
+        type: 'scatter',
+        data: { datasets: [{ label: 'Days', data: pts, backgroundColor: 'rgba(167,139,250,0.55)', borderColor: AN_C.signal, pointRadius: 4, pointHoverRadius: 6 }] },
+        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.raw.d} — ${fmtNum(c.raw.x)} impr, ${fmtNum(c.raw.y)} eng` } } }, scales: { x: { type: 'linear', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement', color: AN_C.text, font: { size: 9 } } } } })
+      });
+    }
+
     // ---- CSV export ----------------------------------------------------
     function anExportCsv() {
-      const rows = analyticsFiltered;
-      if (!rows.length) { showToast('Nothing to export', 'toast-error'); return; }
-      const cols = ['Date', 'Day', 'Format', 'Category', 'Content Topics', 'Impressions', 'Likes', 'Comments', 'Reposts', 'Engagements', 'Engagement Rate %', 'Virality Score', 'Engagement Score', 'Post Link'];
       const esc = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
-      const lines = [cols.join(',')];
-      [...rows].sort((a, b) => (a.dateObj && b.dateObj) ? a.dateObj - b.dateObj : 0).forEach(r => {
-        lines.push([r.dateStr, r.day, r.format, r.category, r.topics, r.impressions, r.likes, r.comments, r.reposts, r.engagements, r.engRate.toFixed(2), r.viralityScore, r.engScore.toFixed(2), r.link].map(esc).join(','));
-      });
-      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `tofler-linkedin-analytics-${new Date().toISOString().slice(0, 10)}.csv`;
-      a.click();
-      URL.revokeObjectURL(a.href);
-      showToast(`Exported ${rows.length} posts to CSV`, 'success');
-      addLogEntry(`Exported ${rows.length} analytics rows to CSV.`);
+      if (anTab === 'account') {
+        const rows = accountFiltered;
+        if (!rows.length) { showToast('Nothing to export', 'toast-error'); return; }
+        const cols = ['Date', 'Day', 'Followers Gained', 'Impressions', 'Engagement', 'Engagement Rate %'];
+        const lines = [cols.join(',')];
+        rows.forEach(r => { const er = r.impressions ? ((r.engagement / r.impressions) * 100).toFixed(2) : '0'; lines.push([r.dateStr, r.day, r.followersGained, r.impressions, r.engagement, er].map(esc).join(',')); });
+        const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+        a.download = `tofler-account-analytics-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(a.href);
+        showToast(`Exported ${rows.length} days to CSV`, 'success');
+        addLogEntry(`Exported ${rows.length} account analytics rows to CSV.`);
+      } else {
+        const rows = postFiltered;
+        if (!rows.length) { showToast('Nothing to export', 'toast-error'); return; }
+        const cols = ['Date', 'Day', 'Format', 'Category', 'Content Topics', 'Impressions', 'Likes', 'Comments', 'Reposts', 'Engagements', 'Engagement Rate %', 'Virality Score', 'Post Link'];
+        const lines = [cols.join(',')];
+        [...rows].sort((a, b) => (a.dateObj && b.dateObj) ? a.dateObj - b.dateObj : 0).forEach(r => {
+          lines.push([r.dateStr, r.day, r.format, r.category, r.topics, r.impressions, r.likes, r.comments, r.reposts, r.engagements, r.engRate.toFixed(2), r.viralityScore, r.link].map(esc).join(','));
+        });
+        const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+        a.download = `tofler-post-analytics-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(a.href);
+        showToast(`Exported ${rows.length} posts to CSV`, 'success');
+        addLogEntry(`Exported ${rows.length} post analytics rows to CSV.`);
+      }
     }
   </script>
 </body>
