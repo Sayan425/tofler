@@ -2734,31 +2734,29 @@
 
       const t = totals(rows);
       body.innerHTML =
-        `<div class="an-desc"><b>Post Performance</b> breaks down every individual LinkedIn post — reach (impressions), engagement (likes, comments, reposts), virality score, and engagement rate. Use the format, category, and day filters to drill into what content strategy is working best.</div>` +
+        `<div class="an-desc"><b>Post Performance</b> breaks down every individual LinkedIn post — reach, engagement, virality score, and engagement rate. Use the format, category, and day filters to drill into what's working. New formats and categories are detected automatically from your data.</div>` +
+        leaderboardSection(rows) +
         kpiSection(rows, t) +
         insightsSection(rows) +
-        `<div class="an-sect"><h2>Growth Over Time</h2><span class="line"></span><span class="tag">trend</span></div>
-         <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagement</span><span class="hint">are we growing?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div><div class="an-chart-desc">Bars = total impressions per month; green line = total engagements. Target: both rising together.</div></div>` +
-        `<div class="an-grid-2" style="margin-top:0;">
-           <div class="an-card"><div class="an-card-title"><span>Per-Post Impressions Timeline</span></div><div class="an-chart-box"><canvas id="ch-timeline"></canvas></div><div class="an-chart-desc">Each point is a post. Hover to see the topic. Gaps = periods without publishing.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Engagement Rate Over Time</span><span class="hint">%</span></div><div class="an-chart-box"><canvas id="ch-engtime"></canvas></div><div class="an-chart-desc">Engagement rate = (likes+comments+reposts) ÷ impressions. B2B LinkedIn benchmark: above 2% is strong.</div></div>
-         </div>` +
+        `<div class="an-sect"><h2>Per-Post Performance</h2><span class="line"></span><span class="tag">post-by-post</span></div>
+         <div class="an-card"><div class="an-card-title"><span>Impressions &amp; Engagement Rate — Per Post</span><span class="hint">bars = impressions · line = eng. rate %</span></div><div class="an-chart-box tall"><canvas id="ch-per-post"></canvas></div><div class="an-chart-desc">Each bar is one post ordered by date. Hover for full topic and exact values. A high bar with a low line means broad reach but weak resonance — revisit the hook or content angle.</div></div>` +
+        `<div class="an-sect"><h2>Monthly Trend</h2><span class="line"></span><span class="tag">aggregate</span></div>
+         <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagements</span><span class="hint">are we growing month-over-month?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div><div class="an-chart-desc">Bars = total impressions per month; green line = total engagements. Both rising together = healthy content flywheel.</div></div>` +
         `<div class="an-sect"><h2>What Works Best</h2><span class="line"></span><span class="tag">decisions</span></div>
          <div class="an-grid-2">
-           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div></div>
-           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div></div>
-           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div></div>
-           <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg engagement rate by weekday</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div><div class="an-chart-desc">Schedule your strongest posts on the day with the highest avg engagement rate.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div><div class="an-chart-desc">Which content format consistently resonates most with your audience?</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div><div class="an-chart-desc">High bar + high line = best category. High bar + low line = reaches many but resonates less. Low bar + high line = niche but high quality.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">log scale · each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div><div class="an-chart-desc">X-axis is logarithmic so spread is visible across all reach levels. Top-right = high reach AND high engagement — your best posts.</div></div>
          </div>` +
         `<div class="an-sect"><h2>Engagement Breakdown</h2><span class="line"></span><span class="tag">mix</span></div>
          <div class="an-grid-2">
            <div class="an-card"><div class="an-card-title"><span>Likes / Comments / Reposts Split</span><span class="hint">total engagement composition</span></div><div class="an-chart-box"><canvas id="ch-eng-donut"></canvas></div><div class="an-chart-desc">Comments = deep resonance. Reposts = shareability. Likes = broad approval.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Format Distribution</span><span class="hint">posts by content type</span></div><div class="an-chart-box"><canvas id="ch-fmt-donut"></canvas></div><div class="an-chart-desc">Is your format mix balanced? Combine with the engagement chart to find gaps.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Category Mix</span><span class="hint">posts by content category</span></div><div class="an-chart-box"><canvas id="ch-cat-donut"></canvas></div><div class="an-chart-desc">Is the content calendar skewed toward one category? Diversify to maintain audience interest.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Likes vs Comments per Post</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-lc-scatter"></canvas></div><div class="an-chart-desc">Top-right posts drive both broad likes and deep comments — your highest-resonance content.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Format Distribution</span><span class="hint">post count by content type</span></div><div class="an-chart-box"><canvas id="ch-fmt-donut"></canvas></div><div class="an-chart-desc">New formats added to your data automatically appear here. Is your mix balanced?</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Mix</span><span class="hint">post count by category</span></div><div class="an-chart-box"><canvas id="ch-cat-donut"></canvas></div><div class="an-chart-desc">New categories appear automatically. Is your calendar skewed toward one theme?</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Likes vs Comments per Post</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-lc-scatter"></canvas></div><div class="an-chart-desc">Top-right = high likes AND high comments. These are your highest-resonance posts to replicate.</div></div>
          </div>` +
         groupSection(rows) +
-        leaderboardSection(rows) +
         tableSection(rows);
       requestAnimationFrame(() => { drawAllCharts(rows); });
     }
@@ -2911,10 +2909,9 @@
     }
     function leaderboardSection(rows) {
       return `<div class="an-sect"><h2>Leaderboards</h2><span class="line"></span><span class="tag">top 5</span></div>
-        <div class="lead-grid">
-          <div class="an-card"><div class="an-card-title"><span>🏆 By Impressions</span></div>${leaderList(rows, (a, b) => b.impressions - a.impressions, r => r.impressions, r => fmtNum(r.impressions))}</div>
-          <div class="an-card"><div class="an-card-title"><span>💜 By Engagement Rate</span></div>${leaderList(rows, (a, b) => b.engRate - a.engRate, r => r.engRate, r => fmtPct(r.engRate))}</div>
-          <div class="an-card"><div class="an-card-title"><span>🔥 By Virality Score</span></div>${leaderList(rows, (a, b) => b.viralityScore - a.viralityScore, r => r.viralityScore, r => r.viralityScore.toFixed(1))}</div>
+        <div class="an-grid-2">
+          <div class="an-card"><div class="an-card-title"><span>🔥 By Virality Score</span><span class="hint">reposts + comments relative to impressions</span></div>${leaderList(rows, (a, b) => b.viralityScore - a.viralityScore, r => r.viralityScore, r => r.viralityScore.toFixed(1))}</div>
+          <div class="an-card"><div class="an-card-title"><span>💜 By Engagement Rate</span><span class="hint">total engagements ÷ impressions</span></div>${leaderList(rows, (a, b) => b.engRate - a.engRate, r => r.engRate, r => fmtPct(r.engRate))}</div>
         </div>`;
     }
 
@@ -2980,10 +2977,10 @@
     }
     function drawAllCharts(rows) {
       if (typeof Chart === 'undefined') return;
-      drawMonthChart(rows); drawTimelineChart(rows); drawEngTimeChart(rows);
+      drawMonthChart(rows); drawPerPostChart(rows);
       drawGroupChart(rows, 'ch-day', r => r.day, DAY_ORDER, AN_C.signal);
       drawGroupChart(rows, 'ch-format', r => r.format, null, AN_C.blue);
-      drawGroupChart(rows, 'ch-cat', r => r.category, null, AN_C.amber);
+      drawCatDualChart(rows);
       drawScatter(rows);
       drawEngDonut(rows); drawFmtDonut(rows); drawCatDonut(rows); drawLCScatter(rows);
       renderGroupTable(rows);
@@ -3010,26 +3007,62 @@
         } })
       });
     }
-    function drawTimelineChart(rows) {
-      destroyChart('ch-timeline');
+    function drawPerPostChart(rows) {
+      destroyChart('ch-per-post');
+      const ctx = document.getElementById('ch-per-post'); if (!ctx) return;
       const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
-      const labels = dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
-      const ctx = document.getElementById('ch-timeline'); if (!ctx) return;
-      anCharts['ch-timeline'] = new Chart(ctx, {
-        type: 'line',
-        data: { labels, datasets: [{ label: 'Impressions', data: dated.map(r => r.impressions), borderColor: AN_C.signal, backgroundColor: 'rgba(167,139,250,0.12)', fill: true, tension: 0.25, pointRadius: 2, pointHoverRadius: 5 }] },
-        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: (c) => { const r = dated[c.dataIndex]; return (r.topics || r.postKey || '').slice(0, 50); } } } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 12 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+      const labels = dated.map(r => {
+        const d = r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        const topic = (r.topics && r.topics !== '—' ? r.topics : (r.postKey || '')).slice(0, 28);
+        return topic ? `${d} · ${topic}` : d;
+      });
+      anCharts['ch-per-post'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [
+          { label: 'Impressions', data: dated.map(r => r.impressions), backgroundColor: 'rgba(124,58,237,0.5)', borderColor: AN_C.signal, borderWidth: 1, borderRadius: 3, yAxisID: 'y', order: 2 },
+          { label: 'Eng. Rate %', data: dated.map(r => +r.engRate.toFixed(2)), type: 'line', borderColor: AN_C.green, backgroundColor: 'transparent', tension: 0.35, pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: AN_C.green, yAxisID: 'y1', order: 1 }
+        ] },
+        options: baseOpts({
+          plugins: {
+            legend: { display: true, position: 'top', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14, padding: 16 } },
+            tooltip: { callbacks: {
+              title: (items) => { const r = dated[items[0].dataIndex]; return (r.topics && r.topics !== '—' ? r.topics : (r.postKey || 'Post')).slice(0, 60); },
+              afterBody: (items) => { const r = dated[items[0].dataIndex]; return [`Format: ${r.format}`, `Category: ${r.category}`, `Date: ${r.dateObj.toLocaleDateString('en-GB')}`]; }
+            } }
+          },
+          scales: {
+            x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 8 }, maxRotation: 55, minRotation: 30, maxTicksLimit: 20 }, grid: { color: AN_C.grid } },
+            y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } },
+            y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => v + '%' }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Engagement Rate %', color: AN_C.green, font: { size: 9 } } }
+          }
+        })
       });
     }
-    function drawEngTimeChart(rows) {
-      destroyChart('ch-engtime');
-      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
-      const labels = dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
-      const ctx = document.getElementById('ch-engtime'); if (!ctx) return;
-      anCharts['ch-engtime'] = new Chart(ctx, {
-        type: 'line',
-        data: { labels, datasets: [{ label: 'Engagement Rate %', data: dated.map(r => +r.engRate.toFixed(2)), borderColor: AN_C.green, backgroundColor: 'rgba(74,222,128,0.12)', fill: true, tension: 0.25, pointRadius: 2, pointHoverRadius: 5 }] },
-        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 12 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+    function drawCatDualChart(rows) {
+      destroyChart('ch-cat');
+      const ctx = document.getElementById('ch-cat'); if (!ctx) return;
+      const groups = groupBy(rows, r => r.category);
+      let arr = [];
+      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: t.avgImpr, engRate: t.engRate, n: g.length }); });
+      arr.sort((a, b) => b.avgImpr - a.avgImpr);
+      anCharts['ch-cat'] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: arr.map(x => x.k), datasets: [
+          { label: 'Avg Impressions', data: arr.map(x => Math.round(x.avgImpr)), backgroundColor: 'rgba(245,166,35,0.55)', borderColor: AN_C.amber, borderWidth: 1, borderRadius: 4, yAxisID: 'y', order: 2 },
+          { label: 'Avg Eng. Rate %', data: arr.map(x => +x.engRate.toFixed(2)), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, pointHoverRadius: 7, pointBackgroundColor: AN_C.signal, yAxisID: 'y1', order: 1 }
+        ] },
+        options: baseOpts({
+          indexAxis: 'y',
+          plugins: {
+            legend: { display: true, position: 'top', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14, padding: 12 } },
+            tooltip: { callbacks: { afterLabel: (c) => `${arr[c.dataIndex].n} post(s)` } }
+          },
+          scales: {
+            y: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 } }, grid: { color: AN_C.grid } },
+            x: { position: 'bottom', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Avg Impressions', color: AN_C.text, font: { size: 9 } } },
+            x1: { position: 'top', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => v + '%' }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Avg Eng. Rate %', color: AN_C.signal, font: { size: 9 } } }
+          }
+        })
       });
     }
     function drawGroupChart(rows, id, keyFn, order, color) {
@@ -3053,7 +3086,7 @@
       anCharts['ch-scatter'] = new Chart(ctx, {
         type: 'scatter',
         data: { datasets: [{ label: 'Posts', data: pts, backgroundColor: 'rgba(167,139,250,0.6)', borderColor: AN_C.signal, pointRadius: 5, pointHoverRadius: 7 }] },
-        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.t} — ${fmtNum(c.raw.x)} impr, ${c.raw.y}%` } } }, scales: { x: { type: 'linear', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement Rate', color: AN_C.text, font: { size: 9 } } } } })
+        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.t} — ${fmtNum(c.raw.x)} impr, ${c.raw.y}%` } } }, scales: { x: { type: 'logarithmic', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions (log scale)', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement Rate', color: AN_C.text, font: { size: 9 } } } } })
       });
     }
 
