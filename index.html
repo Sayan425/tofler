@@ -1156,21 +1156,31 @@
     .an-note { font-family: var(--mono); font-size: 10px; color: var(--text-dimmer); line-height: 1.6; background: var(--amber-dim); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; padding: 10px 14px; display: flex; gap: 8px; align-items: flex-start; }
     .an-note svg { flex-shrink: 0; color: var(--amber); margin-top: 1px; }
 
-    /* Analytics tab bar */
-    .an-tab-bar { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 16px; flex-wrap: wrap; }
-    .an-tab { display: flex; flex-direction: column; gap: 3px; padding: 11px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text-dim); transition: all 0.2s; text-align: left; line-height: 1.4; min-width: 200px; }
-    .an-tab:hover { border-color: var(--border2); color: var(--text); }
-    .an-tab.active { background: rgba(124,58,237,0.12); border-color: var(--signal); color: var(--signal); }
-    .an-tab-icon { display: flex; align-items: center; gap: 6px; }
+    /* Analytics tab bar — full-width 50/50 toggle */
+    .an-tab-bar { display: flex; gap: 0; margin-bottom: 20px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .an-tab { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 12px 20px; background: var(--surface2); border: none; border-right: 1px solid var(--border); cursor: pointer; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text-dim); transition: all 0.2s; text-align: center; line-height: 1.4; align-items: center; }
+    .an-tab:last-child { border-right: none; }
+    .an-tab:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+    .an-tab.active { background: rgba(124,58,237,0.12); color: var(--signal); }
+    .an-tab-icon { display: flex; align-items: center; gap: 6px; justify-content: center; }
     .an-tab-desc { font-size: 9.5px; font-family: var(--mono); color: var(--text-dimmer); font-weight: 400; line-height: 1.4; }
     .an-tab.active .an-tab-desc { color: var(--text-dim); }
     .an-post-only { transition: opacity 0.2s; }
     .an-post-only.an-hidden { display: none !important; }
 
+    /* Chart mode toggle (Cumulative / Daily) */
+    .an-chart-toggle { display: flex; border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .an-ctoggle { padding: 4px 11px; background: var(--surface2); border: none; border-right: 1px solid var(--border); font-family: var(--mono); font-size: 9.5px; color: var(--text-dim); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .an-ctoggle:last-child { border-right: none; }
+    .an-ctoggle:hover { color: var(--text); }
+    .an-ctoggle.active { background: rgba(124,58,237,0.18); color: var(--signal); }
+
     /* Account performance KPIs & description text */
     .an-desc { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; }
     .an-desc b { color: var(--text); }
     .an-chart-desc { font-family: var(--mono); font-size: 9.5px; color: var(--text-dimmer); margin-top: 6px; line-height: 1.5; }
+    .an-table th[data-sort] { cursor: pointer; user-select: none; }
+    .an-table th[data-sort]:hover { color: var(--signal); }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script>
@@ -1460,9 +1470,11 @@
           <span class="an-ctrl-label">Day</span>
           <div class="an-chip-group" id="an-day-chips"></div>
         </div>
-        <div class="an-ctrl-row">
+        <div class="an-ctrl-row an-post-only">
           <span class="an-ctrl-label">Search</span>
           <input type="text" id="an-search" class="an-search" placeholder="Filter by topic or post text…" oninput="anOnSearch()">
+        </div>
+        <div class="an-ctrl-row">
           <button class="an-btn" onclick="fetchAnalytics()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>Refresh</button>
           <button class="an-btn ghost" onclick="anResetFilters()">Reset</button>
           <button class="an-btn ghost" onclick="anExportCsv()" style="border-color:var(--border2);color:var(--text-dim);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Export CSV</button>
@@ -2300,6 +2312,9 @@
     let postFiltered = [];
     let analyticsLoaded = false;
     let anTab = 'account';
+    let anFollowersMode = 'cumul';
+    let acctSort = { key: 'dateObj', dir: 'desc' };
+    let acctShowAll = false;
     const anCharts = {};
     const anFilters = { from: null, to: null, formats: new Set(), categories: new Set(), days: new Set(), search: '' };
     let anSort = { key: 'dateObj', dir: 'desc' };
@@ -2340,6 +2355,7 @@
     // ---- tab switch ----------------------------------------------------
     function anSwitchTab(tab) {
       anTab = tab;
+      acctShowAll = false;
       document.getElementById('tab-btn-account').classList.toggle('active', tab === 'account');
       document.getElementById('tab-btn-post').classList.toggle('active', tab === 'post');
       document.querySelectorAll('.an-post-only').forEach(el => el.classList.toggle('an-hidden', tab === 'account'));
@@ -2572,70 +2588,112 @@
       const totalFollowers = rows.reduce((s, r) => s + r.followersGained, 0);
       const totalImpr = rows.reduce((s, r) => s + r.impressions, 0);
       const totalEng = rows.reduce((s, r) => s + r.engagement, 0);
-      const avgDailyImpr = rows.length ? totalImpr / rows.length : 0;
-      const avgDailyFollowers = rows.length ? totalFollowers / rows.length : 0;
-      const avgEngRate = totalImpr ? (totalEng / totalImpr) * 100 : 0;
-      const byMonth = groupBy(rows, r => r.monthKey);
-      let bestMonth = null, bestMonthVal = -Infinity;
-      byMonth.forEach((g, k) => { const s = g.reduce((s2, r) => s2 + r.followersGained, 0); if (s > bestMonthVal) { bestMonthVal = s; bestMonth = k; } });
-      const bestMonthLabel = bestMonth ? monthLabel(anParseDate(bestMonth + '-01')) : '—';
-      const byDay = groupBy(rows, r => r.day);
-      let bestDay = null, bestDayVal = -Infinity;
-      byDay.forEach((g, k) => { const avg = g.reduce((s2, r) => s2 + r.followersGained, 0) / g.length; if (avg > bestDayVal) { bestDayVal = avg; bestDay = k; } });
 
       body.innerHTML = `
-        <div class="an-desc"><b>Account Performance</b> tracks your LinkedIn profile's daily growth — followers gained, profile impressions, and total engagement. Use the date range filters to zoom into specific campaigns or time windows and understand what's driving your audience growth.</div>
-        <div class="kpi-grid">
+        <div class="an-desc"><b>Account Performance</b> tracks your LinkedIn profile's daily growth — followers gained, profile impressions, and total engagement. Use the date range filter above to zoom into specific campaigns or time windows.</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
           ${kpiCard('Total Followers Gained', (totalFollowers >= 0 ? '+' : '') + fmtNum(totalFollowers), deltaHtml(halfDelta(rows, r => r.followersGained)))}
           ${kpiCard('Total Impressions', fmtNum(totalImpr), deltaHtml(halfDelta(rows, r => r.impressions)))}
           ${kpiCard('Total Engagement', fmtNum(totalEng), deltaHtml(halfDelta(rows, r => r.engagement)))}
-          ${kpiCard('Avg Engagement Rate', fmtPct(avgEngRate), 'engagement ÷ impressions')}
-          ${kpiCard('Avg Daily Impressions', fmtNum(avgDailyImpr), 'per day in range')}
-          ${kpiCard('Avg Daily Followers', '+' + fmtNum(avgDailyFollowers), 'per active day')}
-          ${kpiCard('Best Month', bestMonthLabel, '+' + fmtNum(bestMonthVal) + ' followers')}
-          ${kpiCard('Best Day to Grow', bestDay || '—', 'avg +' + fmtNum(bestDayVal) + ' followers')}
         </div>
+
         <div class="an-sect"><h2>Follower Growth</h2><span class="line"></span><span class="tag">growth</span></div>
-        <div class="an-card"><div class="an-card-title"><span>Cumulative Followers Gained</span><span class="hint">running total over time</span></div><div class="an-chart-box tall"><canvas id="ch-cumul-followers"></canvas></div><div class="an-chart-desc">A consistently rising curve means your content strategy is working. Plateaus indicate periods with low posting frequency or low-resonance content.</div></div>
-        <div class="an-grid-2" style="margin-top:0;">
-          <div class="an-card"><div class="an-card-title"><span>Daily Followers Gained</span><span class="hint">day-by-day</span></div><div class="an-chart-box"><canvas id="ch-daily-followers"></canvas></div><div class="an-chart-desc">Spikes usually correlate with a viral or high-reach post. Cross-reference with Post Performance to find which content triggered the growth.</div></div>
-          <div class="an-card"><div class="an-card-title"><span>Best Day to Grow</span><span class="hint">avg followers per weekday</span></div><div class="an-chart-box"><canvas id="ch-dow-followers"></canvas></div><div class="an-chart-desc">Publish your strongest content on the days your audience is most likely to follow. Use this to time your best posts.</div></div>
+        <div class="an-card">
+          <div class="an-card-title">
+            <span>Followers Gained Over Time</span>
+            <div class="an-chart-toggle">
+              <button class="an-ctoggle ${anFollowersMode === 'cumul' ? 'active' : ''}" id="ftog-cumul" onclick="anToggleFollowers('cumul')">Cumulative</button>
+              <button class="an-ctoggle ${anFollowersMode === 'daily' ? 'active' : ''}" id="ftog-daily" onclick="anToggleFollowers('daily')">Daily</button>
+            </div>
+          </div>
+          <div class="an-chart-box tall"><canvas id="ch-followers"></canvas></div>
+          <div class="an-chart-desc">Cumulative view shows compounding effect of growth. Daily view reveals spikes — cross-reference with Post Performance to find which content drove them.</div>
         </div>
+
+        <div class="an-grid-2" style="margin-top:0;">
+          <div class="an-card">
+            <div class="an-card-title"><span>Best Day to Grow</span><span class="hint">avg followers gained per weekday</span></div>
+            <div class="an-chart-box"><canvas id="ch-dow-followers"></canvas></div>
+            <div class="an-chart-desc">Schedule your strongest content on days your audience is most likely to follow you.</div>
+          </div>
+          <div class="an-card">
+            <div class="an-card-title"><span>Monthly Summary</span><span class="hint">impressions + followers by month</span></div>
+            <div class="an-chart-box"><canvas id="ch-acct-monthly"></canvas></div>
+            <div class="an-chart-desc">Bars = impressions · amber line = followers gained. Hover any point to see exact values.</div>
+          </div>
+        </div>
+
         <div class="an-sect"><h2>Reach &amp; Engagement</h2><span class="line"></span><span class="tag">impressions</span></div>
-        <div class="an-card"><div class="an-card-title"><span>Daily Impressions &amp; Engagement</span><span class="hint">profile-level reach trend</span></div><div class="an-chart-box tall"><canvas id="ch-acct-impr"></canvas></div><div class="an-chart-desc">High impressions with flat engagement may signal you're reaching the wrong audience. Ideal: both curves rise together.</div></div>
-        <div class="an-grid-2" style="margin-top:0;">
-          <div class="an-card"><div class="an-card-title"><span>Monthly Summary</span><span class="hint">followers + impressions by month</span></div><div class="an-chart-box"><canvas id="ch-acct-monthly"></canvas></div><div class="an-chart-desc">Compare month-over-month to spot seasonal patterns or the impact of campaigns. Bars = impressions; line = followers gained.</div></div>
-          <div class="an-card"><div class="an-card-title"><span>Impressions vs Engagement</span><span class="hint">each dot = one day</span></div><div class="an-chart-box"><canvas id="ch-acct-scatter"></canvas></div><div class="an-chart-desc">Days in the top-right corner are your highest-value content days — strong reach AND deep engagement. Aim to have more of these.</div></div>
+        <div class="an-card">
+          <div class="an-card-title"><span>Daily Impressions &amp; Engagement</span><span class="hint">profile-level trend · hover for values</span></div>
+          <div class="an-chart-box tall"><canvas id="ch-acct-impr"></canvas></div>
+          <div class="an-chart-desc">Bars = impressions (left axis) · green line = engagement (right axis). Rising both together means content resonance is improving.</div>
         </div>
+
         ${acctInsightsSection(rows)}
         ${acctDataTable(rows)}`;
-      requestAnimationFrame(() => { drawAccountCharts(rows); });
+
+      requestAnimationFrame(() => {
+        drawAccountCharts(rows);
+        renderAcctDataTable(rows);
+      });
     }
 
     function acctInsightsSection(rows) {
       const I = {
+        cal:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
         bolt: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
-        trend: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>`,
-        cal: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
-        eye: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+        fire: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-1 .5-2 .5-2S6 11 6 14a6 6 0 0 0 12 0c0-5-6-12-6-12z"></path></svg>`
       };
       const cards = [];
-      const dF = halfDelta(rows, r => r.followersGained);
-      if (dF !== null) { const up = dF >= 0; cards.push(insightCard(I.trend, up ? 'Follower growth accelerating' : 'Follower growth slowing', (up ? '+' : '') + dF.toFixed(0) + '%', `Avg daily followers gained in the second half of the period vs the first. ${up ? 'Keep up the momentum.' : 'Review what changed mid-period.'}`)); }
-      const dI = halfDelta(rows, r => r.impressions);
-      if (dI !== null) { const up = dI >= 0; cards.push(insightCard(I.eye, up ? 'Reach is expanding' : 'Reach is contracting', (up ? '+' : '') + dI.toFixed(0) + '%', `Profile impressions — second half vs first. ${up ? 'Content is spreading further.' : 'Post more frequently or experiment with content types.'}`)); }
+
+      // 1 — Best day for follower growth
       const byDay = groupBy(rows, r => r.day);
       let bestDay = null, bestDayVal = -Infinity;
-      byDay.forEach((g, k) => { if (k === '—') return; const avg = g.reduce((s, r) => s + r.followersGained, 0) / g.length; if (avg > bestDayVal) { bestDayVal = avg; bestDay = k; } });
-      if (bestDay) cards.push(insightCard(I.cal, 'Best day for follower growth', bestDay, `Averages <b>+${fmtNum(bestDayVal)}</b> followers. Schedule your most compelling content on this day to maximise growth.`));
-      const topDay = [...rows].sort((a, b) => b.impressions - a.impressions)[0];
-      if (topDay) cards.push(insightCard(I.bolt, 'Peak reach day', topDay.dateObj ? topDay.dateObj.toLocaleDateString('en-GB') : topDay.dateStr, `${fmtNum(topDay.impressions)} impressions, ${fmtNum(topDay.followersGained)} followers gained. Investigate what content was active this day.`));
+      byDay.forEach((g, k) => {
+        if (k === '—') return;
+        const avg = g.reduce((s, r) => s + r.followersGained, 0) / g.length;
+        if (avg > bestDayVal) { bestDayVal = avg; bestDay = k; }
+      });
+      if (bestDay) cards.push(insightCard(I.cal, 'Best day for follower growth', bestDay, `Avg <b>+${fmtNum(bestDayVal)}</b> followers gained on this day. Schedule your most compelling content here to maximise growth.`));
+
+      // 2 — Highest engagement day
+      const topEng = [...rows].filter(r => r.dateObj).sort((a, b) => b.engagement - a.engagement)[0];
+      if (topEng) cards.push(insightCard(I.fire, 'Highest engagement day', topEng.dateObj.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }), `<b>${fmtNum(topEng.engagement)}</b> total engagements and <b>${fmtNum(topEng.impressions)}</b> impressions. Analyse what content was live this day.`));
+
+      // 3 — Highest impressions day
+      const topImpr = [...rows].filter(r => r.dateObj).sort((a, b) => b.impressions - a.impressions)[0];
+      if (topImpr) cards.push(insightCard(I.bolt, 'Highest impressions day', topImpr.dateObj.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }), `<b>${fmtNum(topImpr.impressions)}</b> impressions with <b>${fmtNum(topImpr.followersGained)}</b> followers gained. Your peak reach day — replicate what drove it.`));
+
       return `<div class="an-sect"><h2>Key Insights</h2><span class="line"></span><span class="tag">auto</span></div><div class="insight-grid">${cards.join('')}</div>`;
     }
 
     function acctDataTable(rows) {
-      const sorted = [...rows].sort((a, b) => b.dateObj - a.dateObj);
-      const bodyRows = sorted.map(r => `<tr>
+      return `<div class="an-sect"><h2>Daily Data</h2><span class="line"></span><span class="tag" id="an-acct-count">${rows.length} rows</span></div>
+        <div class="an-card" style="padding:0;"><div id="an-acct-table-wrap"></div></div>`;
+    }
+
+    function acctSortBy(key) {
+      if (acctSort.key === key) acctSort.dir = acctSort.dir === 'desc' ? 'asc' : 'desc';
+      else { acctSort.key = key; acctSort.dir = 'desc'; }
+      renderAcctDataTable(accountFiltered);
+    }
+
+    function toggleAcctShowAll() {
+      acctShowAll = !acctShowAll;
+      renderAcctDataTable(accountFiltered);
+    }
+
+    function renderAcctDataTable(rows) {
+      const wrap = document.getElementById('an-acct-table-wrap'); if (!wrap) return;
+      const sorted = [...rows].sort((a, b) => {
+        let va = a[acctSort.key], vb = b[acctSort.key];
+        if (acctSort.key === 'dateObj') { va = a.dateObj ? a.dateObj.getTime() : 0; vb = b.dateObj ? b.dateObj.getTime() : 0; }
+        return acctSort.dir === 'asc' ? (va - vb) : (vb - va);
+      });
+      const display = acctShowAll ? sorted : sorted.slice(0, 5);
+      const arr = (k) => acctSort.key === k ? `<span class="arr">${acctSort.dir === 'asc' ? '▲' : '▼'}</span>` : '';
+      const bodyRows = display.map(r => `<tr>
         <td>${r.dateObj ? r.dateObj.toLocaleDateString('en-GB') : r.dateStr}</td>
         <td>${r.day}</td>
         <td class="pos">${r.followersGained >= 0 ? '+' : ''}${fmtNum(r.followersGained)}</td>
@@ -2643,10 +2701,22 @@
         <td>${fmtNum(r.engagement)}</td>
         <td>${r.impressions ? fmtPct((r.engagement / r.impressions) * 100) : '—'}</td>
       </tr>`).join('');
-      return `<div class="an-sect"><h2>Daily Data</h2><span class="line"></span><span class="tag">${rows.length} rows</span></div>
-        <div class="an-card" style="padding:0;"><div class="an-table-scroll">
-          <table class="an-table"><thead><tr><th>Date</th><th>Day</th><th>Followers Gained</th><th>Impressions</th><th>Engagement</th><th>Eng. Rate</th></tr></thead><tbody>${bodyRows}</tbody></table>
-        </div></div>`;
+      const moreBtn = sorted.length > 5 ? `<div style="text-align:center;padding:10px 0 4px;">
+        <button class="an-btn ghost" onclick="toggleAcctShowAll()" style="font-size:11px;">
+          ${acctShowAll ? '▲ Collapse' : `▼ Show ${sorted.length - 5} more rows`}
+        </button>
+      </div>` : '';
+      wrap.innerHTML = `<div class="an-table-scroll"><table class="an-table">
+        <thead><tr>
+          <th data-sort onclick="acctSortBy('dateObj')" style="cursor:pointer;">Date${arr('dateObj')}</th>
+          <th>Day</th>
+          <th data-sort onclick="acctSortBy('followersGained')" style="cursor:pointer;">Followers Gained${arr('followersGained')}</th>
+          <th data-sort onclick="acctSortBy('impressions')" style="cursor:pointer;">Impressions${arr('impressions')}</th>
+          <th data-sort onclick="acctSortBy('engagement')" style="cursor:pointer;">Engagement${arr('engagement')}</th>
+          <th>Eng. Rate</th>
+        </tr></thead>
+        <tbody>${bodyRows}</tbody>
+      </table></div>${moreBtn}`;
     }
 
     // ---- post performance render ---------------------------------------
@@ -3038,42 +3108,58 @@
     // ---- account charts ------------------------------------------------
     function drawAccountCharts(rows) {
       if (typeof Chart === 'undefined') return;
-      drawCumulFollowers(rows); drawDailyFollowers(rows); drawDowFollowers(rows);
-      drawAcctImpressions(rows); drawAcctMonthly(rows); drawAcctScatter(rows);
+      drawFollowersChart(rows);
+      drawDowFollowers(rows);
+      drawAcctMonthly(rows);
+      drawAcctImpressions(rows);
     }
-    function drawCumulFollowers(rows) {
-      destroyChart('ch-cumul-followers');
-      const ctx = document.getElementById('ch-cumul-followers'); if (!ctx) return;
+
+    function anToggleFollowers(mode) {
+      anFollowersMode = mode;
+      const cumBtn = document.getElementById('ftog-cumul');
+      const dayBtn = document.getElementById('ftog-daily');
+      if (cumBtn) cumBtn.classList.toggle('active', mode === 'cumul');
+      if (dayBtn) dayBtn.classList.toggle('active', mode === 'daily');
+      drawFollowersChart(accountFiltered);
+    }
+
+    function drawFollowersChart(rows) {
+      destroyChart('ch-followers');
+      const ctx = document.getElementById('ch-followers'); if (!ctx) return;
       const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
-      let cumul = 0;
-      const data = dated.map(r => { cumul += r.followersGained; return cumul; });
-      anCharts['ch-cumul-followers'] = new Chart(ctx, {
-        type: 'line',
-        data: { labels: dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })), datasets: [{ label: 'Cumulative Followers', data, borderColor: AN_C.signal, backgroundColor: 'rgba(167,139,250,0.15)', fill: true, tension: 0.3, pointRadius: 2, pointHoverRadius: 5 }] },
-        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 14 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => '+' + fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true } } })
-      });
+      const labels = dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
+      if (anFollowersMode === 'cumul') {
+        let cumul = 0;
+        const data = dated.map(r => { cumul += r.followersGained; return cumul; });
+        anCharts['ch-followers'] = new Chart(ctx, {
+          type: 'line',
+          data: { labels, datasets: [{ label: 'Cumulative Followers Gained', data, borderColor: AN_C.signal, backgroundColor: 'rgba(167,139,250,0.15)', fill: true, tension: 0.3, pointRadius: 3, pointHoverRadius: 6 }] },
+          options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `Total gained: +${fmtNum(c.raw)}` } } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 16 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => '+' + fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+        });
+      } else {
+        anCharts['ch-followers'] = new Chart(ctx, {
+          type: 'bar',
+          data: { labels, datasets: [{ label: 'Followers Gained', data: dated.map(r => r.followersGained), backgroundColor: 'rgba(124,58,237,0.6)', borderColor: AN_C.signal, borderWidth: 1, borderRadius: 3 }] },
+          options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `+${c.raw} followers` } } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 16 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+        });
+      }
     }
-    function drawDailyFollowers(rows) {
-      destroyChart('ch-daily-followers');
-      const ctx = document.getElementById('ch-daily-followers'); if (!ctx) return;
-      const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
-      anCharts['ch-daily-followers'] = new Chart(ctx, {
-        type: 'bar',
-        data: { labels: dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })), datasets: [{ label: 'Followers Gained', data: dated.map(r => r.followersGained), backgroundColor: 'rgba(124,58,237,0.6)', borderColor: AN_C.signal, borderWidth: 1, borderRadius: 3 }] },
-        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 14 }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true } } })
-      });
-    }
+
     function drawDowFollowers(rows) {
       destroyChart('ch-dow-followers');
       const ctx = document.getElementById('ch-dow-followers'); if (!ctx) return;
       const byDay = groupBy(rows, r => r.day);
-      const arr = DAY_ORDER.map(d => { const g = byDay.get(d) || []; return { d, avg: g.length ? g.reduce((s, r) => s + r.followersGained, 0) / g.length : 0 }; });
+      const arr = DAY_ORDER.map(d => {
+        const g = byDay.get(d) || [];
+        return { d, avg: g.length ? g.reduce((s, r) => s + r.followersGained, 0) / g.length : 0, n: g.length };
+      }).filter(x => x.n > 0);
       anCharts['ch-dow-followers'] = new Chart(ctx, {
         type: 'bar',
-        data: { labels: arr.map(x => x.d.slice(0, 3)), datasets: [{ label: 'Avg Followers', data: arr.map(x => +x.avg.toFixed(1)), backgroundColor: 'rgba(96,165,250,0.65)', borderColor: AN_C.blue, borderWidth: 1, borderRadius: 4 }] },
-        options: baseOpts({ plugins: { legend: { display: false } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid }, beginAtZero: true } } })
+        data: { labels: arr.map(x => x.d), datasets: [{ label: 'Avg Followers Gained', data: arr.map(x => +x.avg.toFixed(2)), backgroundColor: arr.map(x => x.avg === Math.max(...arr.map(a => a.avg)) ? 'rgba(167,139,250,0.85)' : 'rgba(96,165,250,0.55)'), borderColor: arr.map(x => x.avg === Math.max(...arr.map(a => a.avg)) ? AN_C.signal : AN_C.blue), borderWidth: 1, borderRadius: 4 }] },
+        options: baseOpts({ indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `+${c.raw} avg · ${arr[c.dataIndex].n} day(s)` } } }, scales: { x: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => '+' + v }, grid: { color: AN_C.grid }, beginAtZero: true }, y: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } } } })
       });
     }
+
     function drawAcctImpressions(rows) {
       destroyChart('ch-acct-impr');
       const ctx = document.getElementById('ch-acct-impr'); if (!ctx) return;
@@ -3082,33 +3168,27 @@
         type: 'bar',
         data: { labels: dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })), datasets: [
           { label: 'Impressions', data: dated.map(r => r.impressions), backgroundColor: 'rgba(124,58,237,0.45)', borderColor: AN_C.signal, borderWidth: 1, yAxisID: 'y', order: 2 },
-          { label: 'Engagement', data: dated.map(r => r.engagement), type: 'line', borderColor: AN_C.green, backgroundColor: 'transparent', tension: 0.3, yAxisID: 'y1', pointRadius: 2, order: 1 }
+          { label: 'Engagement', data: dated.map(r => r.engagement), type: 'line', borderColor: AN_C.green, backgroundColor: 'transparent', tension: 0.3, yAxisID: 'y1', pointRadius: 3, pointHoverRadius: 6, order: 1 }
         ] },
-        options: baseOpts({ scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 14 }, grid: { color: AN_C.grid } }, y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Engagement', color: AN_C.green, font: { size: 9 } } } } })
+        options: baseOpts({ scales: { x: { ticks: { color: AN_C.text, font: { size: 8 }, maxTicksLimit: 16 }, grid: { color: AN_C.grid } }, y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Engagement', color: AN_C.green, font: { size: 9 } } } } })
       });
     }
+
     function drawAcctMonthly(rows) {
       destroyChart('ch-acct-monthly');
       const ctx = document.getElementById('ch-acct-monthly'); if (!ctx) return;
       const byMonth = groupBy(rows.filter(r => r.dateObj), r => monthKey(r.dateObj));
       const keys = [...byMonth.keys()].sort();
+      const labels = keys.map(k => monthLabel(anParseDate(k + '-01')));
+      const imprData = keys.map(k => byMonth.get(k).reduce((s, r) => s + r.impressions, 0));
+      const follData = keys.map(k => byMonth.get(k).reduce((s, r) => s + r.followersGained, 0));
       anCharts['ch-acct-monthly'] = new Chart(ctx, {
         type: 'bar',
-        data: { labels: keys.map(k => monthLabel(anParseDate(k + '-01'))), datasets: [
-          { label: 'Impressions', data: keys.map(k => byMonth.get(k).reduce((s, r) => s + r.impressions, 0)), backgroundColor: 'rgba(124,58,237,0.55)', borderColor: AN_C.signal, borderWidth: 1, yAxisID: 'y', order: 2 },
-          { label: 'Followers Gained', data: keys.map(k => byMonth.get(k).reduce((s, r) => s + r.followersGained, 0)), type: 'line', borderColor: AN_C.amber, backgroundColor: 'transparent', tension: 0.3, yAxisID: 'y1', pointRadius: 4, pointHoverRadius: 6, order: 1 }
+        data: { labels, datasets: [
+          { label: 'Impressions', data: imprData, backgroundColor: 'rgba(124,58,237,0.55)', borderColor: AN_C.signal, borderWidth: 1, yAxisID: 'y', order: 2 },
+          { label: 'Followers Gained', data: follData, type: 'line', borderColor: AN_C.amber, backgroundColor: 'rgba(245,166,35,0.1)', tension: 0.3, yAxisID: 'y1', pointRadius: 5, pointHoverRadius: 7, order: 1 }
         ] },
-        options: baseOpts({ scales: { x: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } }, y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true }, y1: { position: 'right', ticks: { color: AN_C.amber, font: { size: 9 } }, grid: { drawOnChartArea: false }, beginAtZero: true } } })
-      });
-    }
-    function drawAcctScatter(rows) {
-      destroyChart('ch-acct-scatter');
-      const ctx = document.getElementById('ch-acct-scatter'); if (!ctx) return;
-      const pts = rows.map(r => ({ x: r.impressions, y: r.engagement, d: r.dateObj ? r.dateObj.toLocaleDateString('en-GB') : r.dateStr }));
-      anCharts['ch-acct-scatter'] = new Chart(ctx, {
-        type: 'scatter',
-        data: { datasets: [{ label: 'Days', data: pts, backgroundColor: 'rgba(167,139,250,0.55)', borderColor: AN_C.signal, pointRadius: 4, pointHoverRadius: 6 }] },
-        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.raw.d} — ${fmtNum(c.raw.x)} impr, ${fmtNum(c.raw.y)} eng` } } }, scales: { x: { type: 'linear', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement', color: AN_C.text, font: { size: 9 } } } } })
+        options: baseOpts({ scales: { x: { ticks: { color: AN_C.text, font: { size: 9 } }, grid: { color: AN_C.grid } }, y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } }, y1: { position: 'right', ticks: { color: AN_C.amber, font: { size: 9 }, callback: v => '+' + v }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Followers', color: AN_C.amber, font: { size: 9 } } } } })
       });
     }
 
