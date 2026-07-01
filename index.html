@@ -2740,7 +2740,6 @@
       const t = totals(rows);
       body.innerHTML =
         `<div class="an-desc"><b>Post Performance</b> breaks down every individual LinkedIn post — reach, engagement, virality score, and engagement rate. Use the format, category, and day filters to drill into what's working. New formats and categories are detected automatically from your data.</div>` +
-        leaderboardSection(rows) +
         kpiSection(rows, t) +
         `<div class="an-sect"><h2>Per-Post Performance</h2><span class="line"></span><span class="tag">post-by-post</span></div>
          <div class="an-card" style="padding: 20px 0 16px 0; overflow: hidden;">
@@ -2755,9 +2754,9 @@
          <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagements</span><span class="hint">are we growing month-over-month?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div><div class="an-chart-desc">Bars = total impressions per month; green line = total engagements. Both rising together = healthy content flywheel.</div></div>` +
         `<div class="an-sect"><h2>What Works Best</h2><span class="line"></span><span class="tag">decisions</span></div>
          <div class="an-grid-2">
-           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div><div class="an-chart-desc">The taller the bar, the more reach you get on that day. The higher the line, the stronger the engagement. Find the sweet spot where both are elevated.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div><div class="an-chart-desc">Which format delivers reach? Which one drives resonance? These may not be the same — balance them intentionally.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div><div class="an-chart-desc">High bar + high line = best category to double down on. High bar + low line = reaches many but resonates less. Low bar + high line = niche but high quality.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg impressions (bars) · avg engagements (line)</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div><div class="an-chart-desc">The taller the bar, the more reach you get on that day. The higher the line, the stronger the engagement. Find the sweet spot where both are elevated.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg impressions (bars) · avg engagements (line)</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div><div class="an-chart-desc">Which format delivers reach? Which one drives resonance? These may not be the same — balance them intentionally.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg impressions (bars) · avg engagements (line)</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div><div class="an-chart-desc">High bar + high line = best category to double down on. High bar + low line = reaches many but resonates less. Low bar + high line = niche but high quality.</div></div>
            <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">log scale · each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div><div class="an-chart-desc">X-axis is logarithmic so posts with very different reach levels all spread out visibly. Top-right = high reach AND high engagement — your best posts to replicate.</div></div>
          </div>` +
         `<div class="an-sect"><h2>Mixed Breakdown</h2><span class="line"></span><span class="tag">mix</span></div>
@@ -2767,6 +2766,7 @@
            <div class="an-card"><div class="an-card-title"><span>Category Mix</span><span class="hint">post count by category</span></div><div class="an-chart-box"><canvas id="ch-cat-donut"></canvas></div><div class="an-chart-desc">New categories appear automatically as your data grows. Are you publishing across themes or relying on one?</div></div>
            <div class="an-card"><div class="an-card-title"><span>Likes vs Comments per Post</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-lc-scatter"></canvas></div><div class="an-chart-desc">Top-right = high likes AND high comments. These are your highest-resonance posts — study them and replicate the format.</div></div>
          </div>` +
+        leaderboardSection(rows) +
         groupSection(rows) +
         tableSection(rows);
       requestAnimationFrame(() => { drawAllCharts(rows); });
@@ -3063,14 +3063,14 @@
       const ctx = document.getElementById(id); if (!ctx) return;
       const groups = groupBy(rows, keyFn);
       let arr = [];
-      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: Math.round(t.avgImpr), engRate: +t.engRate.toFixed(2), n: g.length }); });
+      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: Math.round(t.avgImpr), avgEng: Math.round(t.avgEng), n: g.length }); });
       if (order) arr.sort((a, b) => order.indexOf(a.k) - order.indexOf(b.k));
       else arr.sort((a, b) => b.avgImpr - a.avgImpr);
       anCharts[id] = new Chart(ctx, {
         type: 'bar',
         data: { labels: arr.map(x => x.k), datasets: [
           { label: 'Avg Impressions', data: arr.map(x => x.avgImpr), backgroundColor: barColor + '88', borderColor: barColor, borderWidth: 1, borderRadius: 4, yAxisID: 'y', order: 2 },
-          { label: 'Avg Eng. Rate %', data: arr.map(x => x.engRate), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: AN_C.signal, borderWidth: 2, yAxisID: 'y1', order: 1 }
+          { label: 'Avg Engagements', data: arr.map(x => x.avgEng), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: AN_C.signal, borderWidth: 2, yAxisID: 'y1', order: 1 }
         ] },
         options: baseOpts({
           plugins: {
@@ -3080,7 +3080,7 @@
           scales: {
             x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 }, maxRotation: 30 }, grid: { color: AN_C.grid } },
             y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Avg Impressions', color: AN_C.text, font: { size: 9 } } },
-            y1: { position: 'right', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => +v.toFixed(3) + '%' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Eng. Rate %', color: AN_C.signal, font: { size: 9 } } }
+            y1: { position: 'right', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Avg Engagements', color: AN_C.signal, font: { size: 9 } } }
           }
         })
       });
@@ -3090,23 +3090,23 @@
       const ctx = document.getElementById('ch-cat'); if (!ctx) return;
       const groups = groupBy(rows, r => r.category);
       let arr = [];
-      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: Math.round(t.avgImpr), engRate: +t.engRate.toFixed(4), n: g.length }); });
+      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: Math.round(t.avgImpr), avgEng: Math.round(t.avgEng), n: g.length }); });
       arr.sort((a, b) => b.avgImpr - a.avgImpr);
       anCharts['ch-cat'] = new Chart(ctx, {
         type: 'bar',
         data: { labels: arr.map(x => x.k), datasets: [
           { label: 'Avg Impressions', data: arr.map(x => x.avgImpr), backgroundColor: 'rgba(245,166,35,0.55)', borderColor: AN_C.amber, borderWidth: 1, borderRadius: 4, yAxisID: 'y', order: 2 },
-          { label: 'Avg Eng. Rate %', data: arr.map(x => x.engRate), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: AN_C.signal, borderWidth: 2, yAxisID: 'y1', order: 1 }
+          { label: 'Avg Engagements', data: arr.map(x => x.avgEng), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: AN_C.signal, borderWidth: 2, yAxisID: 'y1', order: 1 }
         ] },
         options: baseOpts({
           plugins: {
             legend: { display: true, position: 'top', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14, padding: 12 } },
-            tooltip: { callbacks: { label: (c) => c.datasetIndex === 1 ? `${arr[c.dataIndex].k}: ${c.raw.toFixed(3)}%` : `${arr[c.dataIndex].k}: ${fmtNum(c.raw)}`, afterLabel: (c) => `${arr[c.dataIndex].n} post(s)` } }
+            tooltip: { callbacks: { afterLabel: (c) => `${arr[c.dataIndex].n} post(s)` } }
           },
           scales: {
             x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 }, maxRotation: 30 }, grid: { color: AN_C.grid } },
             y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Avg Impressions', color: AN_C.amber, font: { size: 9 } } },
-            y1: { position: 'right', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => +v.toFixed(3) + '%' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Eng. Rate %', color: AN_C.signal, font: { size: 9 } } }
+            y1: { position: 'right', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Avg Engagements', color: AN_C.signal, font: { size: 9 } } }
           }
         })
       });
