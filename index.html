@@ -1077,24 +1077,25 @@
     .kpi-delta.flat { color: var(--text-dimmer); }
 
     /* Section title */
-    .an-sect { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
-    .an-sect h2 { font-family: var(--sans); font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
+    .an-sect { display: flex; align-items: center; gap: 12px; margin-top: 36px; margin-bottom: 4px; }
+    .an-sect h2 { font-family: var(--sans); font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.3px; white-space: nowrap; }
     .an-sect .line { flex: 1; height: 1px; background: var(--border); }
-    .an-sect .tag { font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dimmer); border: 1px solid var(--border2); padding: 2px 7px; border-radius: 4px; }
+    .an-sect .tag { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dimmer); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
 
     /* Cards / charts */
     .an-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
+      border-radius: 12px;
+      padding: 20px;
       box-shadow: var(--panel-shadow);
     }
-    .an-card-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    .an-card-title .hint { color: var(--text-dimmer); font-size: 9px; letter-spacing: 0; text-transform: none; font-style: italic; }
-    .an-chart-box { position: relative; width: 100%; height: 260px; margin-top: 8px; }
-    .an-chart-box.tall { height: 300px; }
-    .an-grid-2 { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .an-card-title { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .an-card-title .hint { color: var(--text-dimmer); font-size: 10px; letter-spacing: 0; text-transform: none; font-style: italic; }
+    .an-chart-box { position: relative; width: 100%; height: 280px; margin-top: 10px; }
+    .an-chart-box.tall { height: 360px; }
+    .an-chart-box.xtall { height: 440px; }
+    .an-grid-2 { display: grid; grid-template-columns: 1fr; gap: 18px; }
     @media (min-width: 820px) { .an-grid-2 { grid-template-columns: 1fr 1fr; } }
 
     /* Insights */
@@ -1178,7 +1179,10 @@
     /* Account performance KPIs & description text */
     .an-desc { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; }
     .an-desc b { color: var(--text); }
-    .an-chart-desc { font-family: var(--mono); font-size: 9.5px; color: var(--text-dimmer); margin-top: 6px; line-height: 1.5; }
+    .an-chart-desc { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-top: 8px; line-height: 1.65; }
+    .an-show-more-bar { display: flex; gap: 10px; justify-content: center; padding: 14px 0 4px; }
+    .an-show-btn { font-family: var(--mono); font-size: 11px; padding: 6px 18px; border-radius: 6px; border: 1px solid var(--border2); background: var(--surface2); color: var(--text-dim); cursor: pointer; transition: all 0.15s; }
+    .an-show-btn:hover { color: var(--signal); border-color: var(--signal); }
     .an-table th[data-sort] { cursor: pointer; user-select: none; }
     .an-table th[data-sort]:hover { color: var(--signal); }
   </style>
@@ -1458,19 +1462,19 @@
           <span style="color:var(--text-dimmer);font-size:11px;">→</span>
           <input type="date" id="an-to" class="an-date" onchange="anCustomDate()" title="To date">
         </div>
-        <div class="an-ctrl-row an-post-only" id="an-format-row">
+        <div class="an-ctrl-row an-post-only an-hidden" id="an-format-row">
           <span class="an-ctrl-label">Format</span>
           <div class="an-chip-group" id="an-format-chips"></div>
         </div>
-        <div class="an-ctrl-row an-post-only" id="an-cat-row">
+        <div class="an-ctrl-row an-post-only an-hidden" id="an-cat-row">
           <span class="an-ctrl-label">Category</span>
           <div class="an-chip-group" id="an-cat-chips"></div>
         </div>
-        <div class="an-ctrl-row an-post-only" id="an-day-row">
+        <div class="an-ctrl-row an-post-only an-hidden" id="an-day-row">
           <span class="an-ctrl-label">Day</span>
           <div class="an-chip-group" id="an-day-chips"></div>
         </div>
-        <div class="an-ctrl-row an-post-only">
+        <div class="an-ctrl-row an-post-only an-hidden">
           <span class="an-ctrl-label">Search</span>
           <input type="text" id="an-search" class="an-search" placeholder="Filter by topic or post text…" oninput="anOnSearch()">
         </div>
@@ -2319,6 +2323,7 @@
     const anFilters = { from: null, to: null, formats: new Set(), categories: new Set(), days: new Set(), search: '' };
     let anSort = { key: 'dateObj', dir: 'desc' };
     let anGroupDim = 'Day';
+    let postTablePage = 5;
     const DAY_ORDER = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 
     // ---- helpers -------------------------------------------------------
@@ -2737,24 +2742,30 @@
         `<div class="an-desc"><b>Post Performance</b> breaks down every individual LinkedIn post — reach, engagement, virality score, and engagement rate. Use the format, category, and day filters to drill into what's working. New formats and categories are detected automatically from your data.</div>` +
         leaderboardSection(rows) +
         kpiSection(rows, t) +
-        insightsSection(rows) +
         `<div class="an-sect"><h2>Per-Post Performance</h2><span class="line"></span><span class="tag">post-by-post</span></div>
-         <div class="an-card"><div class="an-card-title"><span>Impressions &amp; Engagement Rate — Per Post</span><span class="hint">bars = impressions · line = eng. rate %</span></div><div class="an-chart-box tall"><canvas id="ch-per-post"></canvas></div><div class="an-chart-desc">Each bar is one post ordered by date. Hover for full topic and exact values. A high bar with a low line means broad reach but weak resonance — revisit the hook or content angle.</div></div>` +
+         <div class="an-card" style="padding: 20px 0 16px 0; overflow: hidden;">
+           <div class="an-card-title" style="padding: 0 20px;">
+             <span>Impressions &amp; Engagement Rate — Per Post</span>
+             <span class="hint">bars = impressions · line = eng. rate %</span>
+           </div>
+           <div class="an-chart-box xtall" style="margin-top: 14px;"><canvas id="ch-per-post"></canvas></div>
+           <div class="an-chart-desc" style="padding: 0 20px;">Each bar is one post ordered by date. Hover to see full values. A high bar with a low line = broad reach but weak resonance — revisit the hook or content angle.</div>
+         </div>` +
         `<div class="an-sect"><h2>Monthly Trend</h2><span class="line"></span><span class="tag">aggregate</span></div>
          <div class="an-card"><div class="an-card-title"><span>Monthly Impressions &amp; Engagements</span><span class="hint">are we growing month-over-month?</span></div><div class="an-chart-box tall"><canvas id="ch-month"></canvas></div><div class="an-chart-desc">Bars = total impressions per month; green line = total engagements. Both rising together = healthy content flywheel.</div></div>` +
         `<div class="an-sect"><h2>What Works Best</h2><span class="line"></span><span class="tag">decisions</span></div>
          <div class="an-grid-2">
-           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg engagement rate by weekday</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div><div class="an-chart-desc">Schedule your strongest posts on the day with the highest avg engagement rate.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg engagement rate</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div><div class="an-chart-desc">Which content format consistently resonates most with your audience?</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div><div class="an-chart-desc">High bar + high line = best category. High bar + low line = reaches many but resonates less. Low bar + high line = niche but high quality.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">log scale · each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div><div class="an-chart-desc">X-axis is logarithmic so spread is visible across all reach levels. Top-right = high reach AND high engagement — your best posts.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Day to Post</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-day"></canvas></div><div class="an-chart-desc">The taller the bar, the more reach you get on that day. The higher the line, the stronger the engagement. Find the sweet spot where both are elevated.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Best Posting Format</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-format"></canvas></div><div class="an-chart-desc">Which format delivers reach? Which one drives resonance? These may not be the same — balance them intentionally.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Performance</span><span class="hint">avg impressions (bars) · avg eng. rate % (line)</span></div><div class="an-chart-box"><canvas id="ch-cat"></canvas></div><div class="an-chart-desc">High bar + high line = best category to double down on. High bar + low line = reaches many but resonates less. Low bar + high line = niche but high quality.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Reach vs Engagement</span><span class="hint">log scale · each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-scatter"></canvas></div><div class="an-chart-desc">X-axis is logarithmic so posts with very different reach levels all spread out visibly. Top-right = high reach AND high engagement — your best posts to replicate.</div></div>
          </div>` +
-        `<div class="an-sect"><h2>Engagement Breakdown</h2><span class="line"></span><span class="tag">mix</span></div>
+        `<div class="an-sect"><h2>Mixed Breakdown</h2><span class="line"></span><span class="tag">mix</span></div>
          <div class="an-grid-2">
-           <div class="an-card"><div class="an-card-title"><span>Likes / Comments / Reposts Split</span><span class="hint">total engagement composition</span></div><div class="an-chart-box"><canvas id="ch-eng-donut"></canvas></div><div class="an-chart-desc">Comments = deep resonance. Reposts = shareability. Likes = broad approval.</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Format Distribution</span><span class="hint">post count by content type</span></div><div class="an-chart-box"><canvas id="ch-fmt-donut"></canvas></div><div class="an-chart-desc">New formats added to your data automatically appear here. Is your mix balanced?</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Category Mix</span><span class="hint">post count by category</span></div><div class="an-chart-box"><canvas id="ch-cat-donut"></canvas></div><div class="an-chart-desc">New categories appear automatically. Is your calendar skewed toward one theme?</div></div>
-           <div class="an-card"><div class="an-card-title"><span>Likes vs Comments per Post</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-lc-scatter"></canvas></div><div class="an-chart-desc">Top-right = high likes AND high comments. These are your highest-resonance posts to replicate.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Likes / Comments / Reposts Split</span><span class="hint">total engagement composition</span></div><div class="an-chart-box"><canvas id="ch-eng-donut"></canvas></div><div class="an-chart-desc">Comments = deep resonance. Reposts = shareability. Likes = broad approval. Ideal mix: strong across all three.</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Format Distribution</span><span class="hint">post count by content type</span></div><div class="an-chart-box"><canvas id="ch-fmt-donut"></canvas></div><div class="an-chart-desc">New formats added to your data appear here automatically. Is your content mix balanced or heavily skewed?</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Category Mix</span><span class="hint">post count by category</span></div><div class="an-chart-box"><canvas id="ch-cat-donut"></canvas></div><div class="an-chart-desc">New categories appear automatically as your data grows. Are you publishing across themes or relying on one?</div></div>
+           <div class="an-card"><div class="an-card-title"><span>Likes vs Comments per Post</span><span class="hint">each dot = one post</span></div><div class="an-chart-box"><canvas id="ch-lc-scatter"></canvas></div><div class="an-chart-desc">Top-right = high likes AND high comments. These are your highest-resonance posts — study them and replicate the format.</div></div>
          </div>` +
         groupSection(rows) +
         tableSection(rows);
@@ -2929,14 +2940,17 @@
       { key: 'viralityScore', label: 'Virality', get: r => r.viralityScore.toFixed(1) }
     ];
     function tableSection(rows) {
-      return `<div class="an-sect"><h2>All Posts</h2><span class="line"></span><span class="tag" id="an-table-count">${rows.length} rows</span></div>
-        <div class="an-card" style="padding:0;"><div class="an-table-scroll"><div id="an-data-table"></div></div></div>`;
+      return `<div class="an-sect"><h2>All Posts</h2><span class="line"></span><span class="tag" id="an-table-count">${rows.length} posts</span></div>
+        <div class="an-card" style="padding:0;"><div class="an-table-scroll"><div id="an-data-table"></div></div><div id="an-table-more-bar"></div></div>`;
     }
     function anSortBy(key) {
       if (anSort.key === key) anSort.dir = anSort.dir === 'desc' ? 'asc' : 'desc';
       else { anSort.key = key; anSort.dir = (key === 'topics' || key === 'format' || key === 'category') ? 'asc' : 'desc'; }
+      postTablePage = 5;
       renderDataTable(postFiltered);
     }
+    function anTableShowMore() { postTablePage += 5; renderDataTable(postFiltered); }
+    function anTableCollapse() { postTablePage = 5; renderDataTable(postFiltered); }
     function renderDataTable(rows) {
       const el = document.getElementById('an-data-table');
       if (!el) return;
@@ -2946,11 +2960,13 @@
         if (typeof va === 'string') { va = va.toLowerCase(); vb = String(vb).toLowerCase(); return anSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va); }
         return anSort.dir === 'asc' ? (va - vb) : (vb - va);
       });
+      const visible = sorted.slice(0, postTablePage);
+      const remaining = sorted.length - visible.length;
       const head = AN_COLS.map(c => {
         const arrow = anSort.key === c.key ? `<span class="arr">${anSort.dir === 'asc' ? '▲' : '▼'}</span>` : '';
-        return `<th onclick="anSortBy('${c.key}')" ${c.align === 'left' ? '' : ''}>${c.label}${arrow}</th>`;
+        return `<th onclick="anSortBy('${c.key}')">${c.label}${arrow}</th>`;
       }).join('');
-      const body = sorted.map(r => {
+      const body = visible.map(r => {
         const cells = AN_COLS.map(c => {
           if (c.topic) {
             const topic = escapeHtml((r.topics && r.topics !== '—' ? r.topics : (r.postKey || 'Untitled')).slice(0, 90));
@@ -2962,7 +2978,14 @@
         return `<tr>${cells}</tr>`;
       }).join('');
       el.innerHTML = `<table class="an-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
-      const cnt = document.getElementById('an-table-count'); if (cnt) cnt.innerText = `${rows.length} rows`;
+      const cnt = document.getElementById('an-table-count'); if (cnt) cnt.innerText = `${rows.length} posts`;
+      const bar = document.getElementById('an-table-more-bar');
+      if (bar) {
+        const btns = [];
+        if (remaining > 0) btns.push(`<button class="an-show-btn" onclick="anTableShowMore()">Show ${Math.min(5, remaining)} more ▼</button>`);
+        if (postTablePage > 5) btns.push(`<button class="an-show-btn" onclick="anTableCollapse()">▲ Collapse</button>`);
+        bar.innerHTML = btns.length ? `<div class="an-show-more-bar">${btns.join('')}</div>` : '';
+      }
     }
 
     // ---- charts --------------------------------------------------------
@@ -2978,8 +3001,8 @@
     function drawAllCharts(rows) {
       if (typeof Chart === 'undefined') return;
       drawMonthChart(rows); drawPerPostChart(rows);
-      drawGroupChart(rows, 'ch-day', r => r.day, DAY_ORDER, AN_C.signal);
-      drawGroupChart(rows, 'ch-format', r => r.format, null, AN_C.blue);
+      drawDualGroupChart(rows, 'ch-day', r => r.day, DAY_ORDER, AN_C.blue);
+      drawDualGroupChart(rows, 'ch-format', r => r.format, null, AN_C.amber);
       drawCatDualChart(rows);
       drawScatter(rows);
       drawEngDonut(rows); drawFmtDonut(rows); drawCatDonut(rows); drawLCScatter(rows);
@@ -3011,29 +3034,53 @@
       destroyChart('ch-per-post');
       const ctx = document.getElementById('ch-per-post'); if (!ctx) return;
       const dated = [...rows].filter(r => r.dateObj).sort((a, b) => a.dateObj - b.dateObj);
-      const labels = dated.map(r => {
-        const d = r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-        const topic = (r.topics && r.topics !== '—' ? r.topics : (r.postKey || '')).slice(0, 28);
-        return topic ? `${d} · ${topic}` : d;
-      });
+      const labels = dated.map(r => r.dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
       anCharts['ch-per-post'] = new Chart(ctx, {
         type: 'bar',
         data: { labels, datasets: [
-          { label: 'Impressions', data: dated.map(r => r.impressions), backgroundColor: 'rgba(124,58,237,0.5)', borderColor: AN_C.signal, borderWidth: 1, borderRadius: 3, yAxisID: 'y', order: 2 },
-          { label: 'Eng. Rate %', data: dated.map(r => +r.engRate.toFixed(2)), type: 'line', borderColor: AN_C.green, backgroundColor: 'transparent', tension: 0.35, pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: AN_C.green, yAxisID: 'y1', order: 1 }
+          { label: 'Impressions', data: dated.map(r => r.impressions), backgroundColor: 'rgba(124,58,237,0.45)', borderColor: AN_C.signal, borderWidth: 1, borderRadius: 2, yAxisID: 'y', order: 2 },
+          { label: 'Eng. Rate %', data: dated.map(r => +r.engRate.toFixed(2)), type: 'line', borderColor: AN_C.green, backgroundColor: 'transparent', tension: 0.35, pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: AN_C.green, borderWidth: 2, yAxisID: 'y1', order: 1 }
         ] },
         options: baseOpts({
+          layout: { padding: { left: 0, right: 0 } },
           plugins: {
             legend: { display: true, position: 'top', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14, padding: 16 } },
             tooltip: { callbacks: {
-              title: (items) => { const r = dated[items[0].dataIndex]; return (r.topics && r.topics !== '—' ? r.topics : (r.postKey || 'Post')).slice(0, 60); },
-              afterBody: (items) => { const r = dated[items[0].dataIndex]; return [`Format: ${r.format}`, `Category: ${r.category}`, `Date: ${r.dateObj.toLocaleDateString('en-GB')}`]; }
+              title: (items) => { const r = dated[items[0].dataIndex]; return (r.topics && r.topics !== '—' ? r.topics : (r.postKey || 'Post')).slice(0, 70); },
+              afterBody: (items) => { const r = dated[items[0].dataIndex]; return [`Format: ${r.format}`, `Category: ${r.category}`, `Impressions: ${fmtNum(r.impressions)}`, `Eng. Rate: ${fmtPct(r.engRate)}`]; }
             } }
           },
           scales: {
-            x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 8 }, maxRotation: 55, minRotation: 30, maxTicksLimit: 20 }, grid: { color: AN_C.grid } },
+            x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 }, maxRotation: 45, minRotation: 30, autoSkip: true, maxTicksLimit: 24 }, grid: { color: AN_C.grid } },
             y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Impressions', color: AN_C.text, font: { size: 9 } } },
-            y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => v + '%' }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Engagement Rate %', color: AN_C.green, font: { size: 9 } } }
+            y1: { position: 'right', ticks: { color: AN_C.green, font: { size: 9 }, callback: v => v + '%' }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Eng. Rate %', color: AN_C.green, font: { size: 9 } } }
+          }
+        })
+      });
+    }
+    function drawDualGroupChart(rows, id, keyFn, order, barColor) {
+      destroyChart(id);
+      const ctx = document.getElementById(id); if (!ctx) return;
+      const groups = groupBy(rows, keyFn);
+      let arr = [];
+      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: Math.round(t.avgImpr), engRate: +t.engRate.toFixed(2), n: g.length }); });
+      if (order) arr.sort((a, b) => order.indexOf(a.k) - order.indexOf(b.k));
+      else arr.sort((a, b) => b.avgImpr - a.avgImpr);
+      anCharts[id] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: arr.map(x => x.k), datasets: [
+          { label: 'Avg Impressions', data: arr.map(x => x.avgImpr), backgroundColor: barColor + '88', borderColor: barColor, borderWidth: 1, borderRadius: 4, yAxisID: 'y', order: 2 },
+          { label: 'Avg Eng. Rate %', data: arr.map(x => x.engRate), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: AN_C.signal, borderWidth: 2, yAxisID: 'y1', order: 1 }
+        ] },
+        options: baseOpts({
+          plugins: {
+            legend: { display: true, position: 'top', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14, padding: 12 } },
+            tooltip: { callbacks: { afterLabel: (c) => `${arr[c.dataIndex].n} post(s)` } }
+          },
+          scales: {
+            x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 }, maxRotation: 30 }, grid: { color: AN_C.grid } },
+            y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Avg Impressions', color: AN_C.text, font: { size: 9 } } },
+            y1: { position: 'right', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => +v.toFixed(3) + '%' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Eng. Rate %', color: AN_C.signal, font: { size: 9 } } }
           }
         })
       });
@@ -3043,24 +3090,23 @@
       const ctx = document.getElementById('ch-cat'); if (!ctx) return;
       const groups = groupBy(rows, r => r.category);
       let arr = [];
-      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: t.avgImpr, engRate: t.engRate, n: g.length }); });
+      groups.forEach((g, k) => { if (k === '—' || k === 'Unknown') return; const t = totals(g); arr.push({ k, avgImpr: Math.round(t.avgImpr), engRate: +t.engRate.toFixed(4), n: g.length }); });
       arr.sort((a, b) => b.avgImpr - a.avgImpr);
       anCharts['ch-cat'] = new Chart(ctx, {
         type: 'bar',
         data: { labels: arr.map(x => x.k), datasets: [
-          { label: 'Avg Impressions', data: arr.map(x => Math.round(x.avgImpr)), backgroundColor: 'rgba(245,166,35,0.55)', borderColor: AN_C.amber, borderWidth: 1, borderRadius: 4, yAxisID: 'y', order: 2 },
-          { label: 'Avg Eng. Rate %', data: arr.map(x => +x.engRate.toFixed(2)), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, pointHoverRadius: 7, pointBackgroundColor: AN_C.signal, yAxisID: 'y1', order: 1 }
+          { label: 'Avg Impressions', data: arr.map(x => x.avgImpr), backgroundColor: 'rgba(245,166,35,0.55)', borderColor: AN_C.amber, borderWidth: 1, borderRadius: 4, yAxisID: 'y', order: 2 },
+          { label: 'Avg Eng. Rate %', data: arr.map(x => x.engRate), type: 'line', borderColor: AN_C.signal, backgroundColor: 'transparent', tension: 0.3, pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: AN_C.signal, borderWidth: 2, yAxisID: 'y1', order: 1 }
         ] },
         options: baseOpts({
-          indexAxis: 'y',
           plugins: {
             legend: { display: true, position: 'top', labels: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14, padding: 12 } },
-            tooltip: { callbacks: { afterLabel: (c) => `${arr[c.dataIndex].n} post(s)` } }
+            tooltip: { callbacks: { label: (c) => c.datasetIndex === 1 ? `${arr[c.dataIndex].k}: ${c.raw.toFixed(3)}%` : `${arr[c.dataIndex].k}: ${fmtNum(c.raw)}`, afterLabel: (c) => `${arr[c.dataIndex].n} post(s)` } }
           },
           scales: {
-            y: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 } }, grid: { color: AN_C.grid } },
-            x: { position: 'bottom', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Avg Impressions', color: AN_C.text, font: { size: 9 } } },
-            x1: { position: 'top', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => v + '%' }, grid: { drawOnChartArea: false }, beginAtZero: true, title: { display: true, text: 'Avg Eng. Rate %', color: AN_C.signal, font: { size: 9 } } }
+            x: { ticks: { color: AN_C.text, font: { family: 'IBM Plex Mono', size: 9 }, maxRotation: 30 }, grid: { color: AN_C.grid } },
+            y: { position: 'left', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Avg Impressions', color: AN_C.amber, font: { size: 9 } } },
+            y1: { position: 'right', ticks: { color: AN_C.signal, font: { size: 9 }, callback: v => +v.toFixed(3) + '%' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Eng. Rate %', color: AN_C.signal, font: { size: 9 } } }
           }
         })
       });
@@ -3086,7 +3132,7 @@
       anCharts['ch-scatter'] = new Chart(ctx, {
         type: 'scatter',
         data: { datasets: [{ label: 'Posts', data: pts, backgroundColor: 'rgba(167,139,250,0.6)', borderColor: AN_C.signal, pointRadius: 5, pointHoverRadius: 7 }] },
-        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.t} — ${fmtNum(c.raw.x)} impr, ${c.raw.y}%` } } }, scales: { x: { type: 'logarithmic', ticks: { color: AN_C.text, font: { size: 9 }, callback: v => fmtNum(v) }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions (log scale)', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement Rate', color: AN_C.text, font: { size: 9 } } } } })
+        options: baseOpts({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.t} — ${fmtNum(c.raw.x)} impr, ${c.raw.y}%` } } }, scales: { x: { type: 'logarithmic', ticks: { color: AN_C.text, font: { size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 7, callback: v => { const mag = [500,1000,2000,5000,10000,20000,50000,100000,200000,500000]; return mag.includes(v) ? fmtNum(v) : ''; } }, grid: { color: AN_C.grid }, title: { display: true, text: 'Impressions (log scale)', color: AN_C.text, font: { size: 9 } } }, y: { ticks: { color: AN_C.text, font: { size: 9 }, callback: v => v + '%' }, grid: { color: AN_C.grid }, beginAtZero: true, title: { display: true, text: 'Engagement Rate', color: AN_C.text, font: { size: 9 } } } } })
       });
     }
 
